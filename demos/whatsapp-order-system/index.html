@@ -1,0 +1,342 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>WhatsApp Order System Demo | Smesh.Dev</title><meta name="description" content="A WhatsApp-based ordering system for local fabric shops — customers browse products, place orders, and receive confirmations entirely through chat."><meta name="author" content="Haider Ali, Smesh.Dev"><link rel="canonical" href="https://smesh.dev/demos/whatsapp-order-system/"><!-- Open Graph / Facebook --><meta property="og:site_name" content="Smesh.Dev"><meta property="og:title" content="WhatsApp Order System Demo | Smesh.Dev"><meta property="og:description" content="A WhatsApp-based ordering system for local fabric shops — customers browse products, place orders, and receive confirmations entirely through chat."><meta property="og:type" content="website"><meta property="og:url" content="https://smesh.dev/demos/whatsapp-order-system/"><meta property="og:image" content="/assets/images/whatsapp-phone-mockup.png"><meta property="og:locale" content="en_US"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="WhatsApp Order System Demo | Smesh.Dev"><meta name="twitter:description" content="A WhatsApp-based ordering system for local fabric shops — customers browse products, place orders, and receive confirmations entirely through chat."><meta name="twitter:image" content="/assets/images/whatsapp-phone-mockup.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"BismillahTC Digital Services","alternateName":"Smesh.Dev","url":"https://smesh.dev/","logo":"https://smesh.dev/assets/logo.png","description":"Automation systems, websites, and AI support tools for founders, retailers, and service businesses.","knowsAbout":["n8n automation","Supabase","Vibe Coding","web development","PostgreSQL","Astro","Next.js","AI Support Chatbots","Workflow Automation"],"founder":{"@type":"Person","name":"Haider Ali","jobTitle":"Principal Developer & Automation Engineer","image":"https://smesh.dev/assets/images/resources/author-haider-ali.webp","knowsAbout":["n8n automation","Supabase","Vibe Coding","web development","AI agent orchestration"],"sameAs":["https://github.com/affaan-m"]},"contactPoint":{"@type":"ContactPoint","telephone":"+923422222752","contactType":"sales","email":"ali.kwl@live.com","areaServed":["Pakistan","Worldwide"]}}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Smesh.Dev","parentOrganization":"BismillahTC","founder":"Faisal Amin","knowsAbout":["n8n","AI Agents"],"url":"https://smesh.dev/","logo":"https://smesh.dev/assets/logo.png","description":"Automation systems, websites, and AI support tools for founders, retailers, and service businesses.","telephone":"+923422222752","email":"ali.kwl@live.com","address":{"@type":"PostalAddress","addressCountry":"PK","addressRegion":"KPK","addressLocality":"Kohat"},"areaServed":["Pakistan","Worldwide"],"serviceType":["WhatsApp Automation","AI Support Chatbots","Business Websites","Workflow & n8n Automation","Appointment Booking Systems","SaaS & MVP Development","Dashboards & Internal Tools","POS & Inventory Systems","Social Media & Lead Automation","SEO, AIO & GEO Setup"]}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://smesh.dev/"},{"@type":"ListItem","position":2,"name":"Demos","item":"https://smesh.dev/demos/"},{"@type":"ListItem","position":3,"name":"WhatsApp Order System Demo","item":"https://smesh.dev/demos/whatsapp-order-system/"}]}</script><!-- Favicons --><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"><link rel="manifest" href="/assets/favicon/site.webmanifest"><!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet"><!-- Lucide Icons CDN --><script type="module">window.enhanceMarkdownContent=s=>{const a=s||document;a.querySelectorAll("pre").forEach(e=>{if(e.dataset.wrapped)return;e.dataset.wrapped="true";const t=document.createElement("div");t.style.cssText="position:relative; margin: 1.5rem 0;",e.parentNode.insertBefore(t,e),t.appendChild(e);const o=e.querySelector("code")?.className?.replace("language-","")||"code",n=document.createElement("div");n.innerHTML=`
+      <span style="color:#94a3b8;text-transform:uppercase;font-size:11px;font-family:sans-serif;font-weight:500;">${o}</span>
+      <button class="copy-code-btn" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:10px;text-transform:uppercase;font-weight:600;transition:all 180ms ease;">Copy</button>
+    `,n.style.cssText="display:flex;justify-content:space-between;align-items:center;background:#1a1f2e;padding:6px 16px;border-radius:10px 10px 0 0;",t.insertBefore(n,e),e.style.borderRadius="0 0 10px 10px",e.style.marginTop="0",n.querySelector(".copy-code-btn").addEventListener("click",()=>{const c=e.querySelector("code")?.innerText||e.innerText;navigator.clipboard.writeText(c).then(()=>{const r=n.querySelector(".copy-code-btn");r.textContent="Copied!",r.style.color="#1D9E75",r.style.borderColor="#1D9E75",setTimeout(()=>{r.textContent="Copy",r.style.color="#94a3b8",r.style.borderColor="#334155"},2e3)})})}),a.querySelectorAll("table").forEach(e=>{if(e.parentElement&&e.parentElement.classList.contains("table-responsive-wrapper"))return;const t=document.createElement("div");t.className="table-responsive-wrapper",e.parentNode&&(e.parentNode.insertBefore(t,e),t.appendChild(e))}),a.querySelectorAll("h2, h3").forEach(e=>{if(!(e.closest("header")||e.closest("footer")||e.closest(".unlock-card-container")||e.closest("#mockup-gated-overlay")||e.closest(".site-navigation"))&&(e.id||(e.id=e.textContent?e.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,""):"heading"),!e.querySelector(".heading-anchor"))){const t=document.createElement("a");t.className="heading-anchor",t.href=`#${e.id}`,t.textContent="#",t.setAttribute("aria-label",`Link to section ${e.textContent}`),e.insertBefore(t,e.firstChild)}}),a.querySelectorAll("img").forEach(e=>{if(e.classList.contains("w-8")||e.classList.contains("w-10")||e.classList.contains("w-12")||e.id==="resource-preview-img"||e.closest(".site-navigation")||e.closest(".unlock-card-container"))return;e.setAttribute("loading","lazy");const t=e.getAttribute("alt");if(t&&e.parentElement&&e.parentElement.tagName.toLowerCase()!=="figure"){const o=document.createElement("figure");if(o.className="prose-figure",e.parentNode){e.parentNode.insertBefore(o,e),o.appendChild(e);const n=document.createElement("figcaption");n.className="prose-figcaption",n.textContent=t,o.appendChild(n)}}})};document.addEventListener("DOMContentLoaded",()=>{window.enhanceMarkdownContent()});</script><link rel="stylesheet" href="/_astro/about.D5YKV4GZ.css"></head> <body id="top" class="min-h-screen flex flex-col"> <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900">
+Skip to content
+</a> <div class="grain-overlay"></div> <header id="site-navigation" class="sticky top-0 z-50 border-b border-transparent bg-white/80 backdrop-blur-md transition-all duration-300"> <div class="site-shell"> <div class="flex min-h-[64px] items-center justify-between gap-4"> <!-- Logo --> <a href="/" class="flex items-center gap-2.5"> <img src="/assets/logo.png" alt="Smesh.Dev logo" class="h-8 w-8 object-contain"> <div> <div class="font-display text-[1.1rem] font-bold leading-none text-slate-900">Smesh.Dev</div> <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-semibold font-sans">Automation Studio</div> </div> </a> <!-- Desktop Nav Link list --> <nav class="hidden items-center gap-2 lg:flex font-sans"> <a href="/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> Home </a><a href="/services/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> Services </a><a href="/portfolio/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> Portfolio </a><a href="/resources/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> Resources </a><a href="/about/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> About </a><a href="/blog/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> Blog </a><a href="/contact/" class="rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition text-slate-650 hover:bg-slate-100 hover:text-slate-900"> Contact </a> </nav> <!-- CTA Section --> <div class="hidden items-center gap-3 lg:flex font-sans"> <button id="nav-audit-btn" class="button-primary px-4 py-2 text-xs font-bold shadow-md cursor-pointer">
+Get a Free Audit
+<i data-lucide="sparkles" class="h-3.5 w-3.5 ml-1"></i> </button> </div> <!-- Mobile Hamburger Button --> <button id="mobile-nav-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-slate-200 bg-white text-slate-800 lg:hidden" aria-controls="mobile-nav-menu" aria-expanded="false"> <span class="sr-only">Open main menu</span> <span id="nav-menu-icon" class="flex h-5 w-5 flex-col items-center justify-center gap-[3.5px]"> <span class="block h-[1.8px] w-5 rounded-full bg-current"></span> <span class="block h-[1.8px] w-5 rounded-full bg-current"></span> <span class="block h-[1.8px] w-5 rounded-full bg-current"></span> </span> <span id="nav-close-icon" class="hidden relative h-5 w-5"> <span class="absolute left-1/2 top-1/2 block h-[1.8px] w-5 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-current"></span> <span class="absolute left-1/2 top-1/2 block h-[1.8px] w-5 -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-current"></span> </span> </button> </div> </div> <!-- Mobile Nav Overlay Menu --> <div id="mobile-nav-menu" class="hidden border-t border-slate-100 bg-white lg:hidden"> <div class="site-shell py-5 space-y-4 font-sans"> <div class="grid gap-2"> <a href="/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> Home </a><a href="/services/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> Services </a><a href="/portfolio/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> Portfolio </a><a href="/resources/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> Resources </a><a href="/about/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> About </a><a href="/blog/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> Blog </a><a href="/contact/" class="block rounded-2xl px-4 py-3 text-sm font-semibold transition bg-slate-50 text-slate-650 hover:bg-slate-100"> Contact </a> </div> <div class="pt-2"> <button id="mobile-nav-audit-btn" class="button-primary w-full justify-center py-3 text-sm font-bold shadow-md cursor-pointer">
+Get a Free Audit
+<i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i> </button> </div> </div> </div> </header> <!-- Audit Modal Container --> <div id="audit-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-all duration-300"> <div class="bg-white rounded-[24px] sm:rounded-[32px] max-w-3xl w-full border border-slate-100 shadow-2xl relative scale-95 transition-all duration-300 flex flex-col overflow-hidden max-h-[92vh] sm:max-h-[90vh]"> <button id="close-audit-modal" class="absolute top-4 right-4 z-20 p-2 rounded-xl text-slate-450 hover:bg-slate-50 hover:text-slate-800 transition cursor-pointer bg-white/80 backdrop-blur-xs shadow-xs border border-slate-100/50" aria-label="Close modal"> <i data-lucide="x" class="w-4 h-4"></i> </button> <div class="overflow-y-auto p-5 sm:p-8 md:p-10"> <section id="contact"> <div> <div class>  <!-- Form interactive wrapper --> <div id="form-interactive-container"> <!-- Progress Header --> <div class="mb-6 space-y-3 font-sans"> <div class="flex items-center justify-between text-xs font-bold uppercase tracking-[0.12em] text-[color:var(--muted-soft)]"> <span id="step-number-display">Step 1 of 4</span> <span id="step-name-display" class="text-[color:var(--accent-strong)]">Contact Information</span> </div> <div class="h-1.5 w-full rounded-full bg-slate-100/85"> <div id="form-progress-bar" class="h-1.5 rounded-full bg-[color:var(--accent)] transition-all duration-300" style="width: 25%"></div> </div> </div> <form id="smesh-contact-form" class="space-y-4" novalidate> <!-- Honeypot --> <input type="text" id="company_website" name="company_website" autocomplete="off" tabindex="-1" class="hidden"> <!-- STEP 1: Contact Info --> <div data-step="1" class="space-y-4"> <div> <label for="name" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Full Name</label> <input type="text" id="name" name="name" required placeholder="Haider Ali" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <p data-error-for="name" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter your full name.</p> </div> <div> <label for="whatsapp" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">WhatsApp Number</label> <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+92 300 0000000" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <p data-error-for="whatsapp" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter your WhatsApp number (min 8 digits).</p> </div> <div> <div class="flex items-center justify-between mb-1.5"> <label for="email" class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Email</label> <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span> </div> <input type="email" id="email" name="email" placeholder="you@domain.com" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <p data-error-for="email" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter a valid email address.</p> </div> <div class="pt-2"> <button type="button" class="btn-next button-primary w-full text-xs sm:text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-1.5 shadow-sm bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white border-none cursor-pointer font-sans font-bold"> <span>Next Step →</span> </button> </div> </div> <!-- STEP 2: Business Details --> <div data-step="2" class="space-y-4 hidden"> <div> <label for="business_type" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Business Type</label> <input type="text" id="business_type" name="business_type" required placeholder="Retail shop, clinic, SaaS, agency, freelancer..." class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <p data-error-for="business_type" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter your business type.</p> </div> <div> <label for="current_problem" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Current Problem</label> <textarea id="current_problem" name="current_problem" rows="3" required placeholder="What is currently wasting time or bottlenecking revenue?" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm leading-relaxed text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all resize-none"></textarea> <p data-error-for="current_problem" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please describe your problem (min 10 characters).</p> </div> <div> <div class="flex items-center justify-between mb-1.5"> <label for="tools_used" class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Tools Already Using</label> <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span> </div> <input type="text" id="tools_used" name="tools_used" placeholder="WhatsApp, Excel, Google Sheets, Shopify... whatever you currently use" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> </div> <div class="pt-2 flex gap-3"> <button type="button" class="btn-back button-secondary py-3 px-5 rounded-xl text-xs sm:text-sm font-semibold shrink-0 cursor-pointer font-sans">
+← Back
+</button> <button type="button" class="btn-next button-primary w-full text-xs sm:text-sm py-3 px-6 rounded-xl flex items-center justify-center gap-1.5 shadow-sm bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white border-none cursor-pointer font-sans font-bold"> <span>Next →</span> </button> </div> </div> <!-- STEP 3: Budget & Timeline --> <div data-step="3" class="space-y-4 hidden"> <div> <label for="budget" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Budget Range</label> <select id="budget" name="budget" required class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <option value="">Select budget range</option> <option value="Under $1,500 USD">Under $1,500 USD</option> <option value="$1,500 – $3,500 USD">$1,500 – $3,500 USD</option> <option value="$3,500 – $7,500 USD">$3,500 – $7,500 USD</option> <option value="$7,500+ USD">$7,500+ USD</option> <option value="Not sure yet — suggest a budget">Not sure yet — suggest a budget</option> </select> <p data-error-for="budget" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please select a budget range.</p> </div> <div> <label for="timeline" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Timeline</label> <select id="timeline" name="timeline" required class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <option value="">Select timeline</option> <option value="As soon as possible">As soon as possible</option> <option value="Within 1 month">Within 1 month</option> <option value="Within 2-3 months">Within 2-3 months</option> <option value="Just exploring/planning">Just exploring/planning</option> </select> <p data-error-for="timeline" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please select a project timeline.</p> </div> <div> <label class="mb-2 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Service Needed</label> <div class="flex flex-wrap gap-2 pt-0.5"> <label class="cursor-pointer select-none"> <input type="checkbox" name="services" value="AI Chatbot" class="sr-only peer"> <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans"> AI Chatbot </span> </label><label class="cursor-pointer select-none"> <input type="checkbox" name="services" value="WhatsApp Bot" class="sr-only peer"> <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans"> WhatsApp Bot </span> </label><label class="cursor-pointer select-none"> <input type="checkbox" name="services" value="n8n Workflow" class="sr-only peer"> <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans"> n8n Workflow </span> </label><label class="cursor-pointer select-none"> <input type="checkbox" name="services" value="SaaS/MVP" class="sr-only peer"> <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans"> SaaS/MVP </span> </label><label class="cursor-pointer select-none"> <input type="checkbox" name="services" value="Chrome Extension" class="sr-only peer"> <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans"> Chrome Extension </span> </label><label class="cursor-pointer select-none"> <input type="checkbox" name="services" value="Something else" class="sr-only peer"> <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans"> Something else </span> </label> </div> <p data-error-for="services" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please select at least one service.</p> </div> <div class="pt-2 flex gap-3"> <button type="button" class="btn-back button-secondary py-3 px-5 rounded-xl text-xs sm:text-sm font-semibold shrink-0 cursor-pointer font-sans">
+← Back
+</button> <button type="button" class="btn-next button-primary w-full text-xs sm:text-sm py-3 px-6 rounded-xl flex items-center justify-center gap-1.5 shadow-sm bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white border-none cursor-pointer font-sans font-bold"> <span>Almost done →</span> </button> </div> </div> <!-- STEP 4: Project Brief --> <div data-step="4" class="space-y-4 hidden"> <div> <label for="message" class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">Project Brief</label> <textarea id="message" name="message" rows="6" required placeholder="Describe what is happening today, what the system should do, and what a successful outcome looks like. The more detail you share, the better proposal you'll get." class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm leading-relaxed text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all resize-none"></textarea> <p data-error-for="message" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please add a project brief (min 15 characters).</p> </div> <div> <div class="flex items-center justify-between mb-1.5"> <label for="referral" class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans">How did you find us</label> <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span> </div> <select id="referral" name="referral" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all"> <option value="">Select source</option> <option value="Google Search">Google Search</option> <option value="LinkedIn">LinkedIn</option> <option value="Referral">Referral</option> <option value="Social Media">Social Media</option> <option value="Direct/Already knew">Direct/Already knew</option> </select> </div> <div class="pt-2 space-y-3"> <button type="submit" id="submit-btn" class="button-primary w-full text-xs sm:text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-1.5 shadow-sm bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white border-none cursor-pointer font-sans font-bold"> <span>Submit Project Details</span> <i data-lucide="send" class="h-4 w-4"></i> </button> <button type="button" class="btn-back text-xs font-semibold text-slate-500 hover:text-slate-900 transition flex items-center justify-center gap-1 mx-auto py-1 font-sans cursor-pointer">
+← Go back to change details
+</button> </div> <div class="text-center pt-2"> <p class="text-xs text-[color:var(--muted)] font-sans">
+Prefer to chat?
+<a href="https://wa.me/923422222752?text=Hi%20Haider%2C%20I%20want%20to%20discuss%20a%20website%20%2F%20automation%20project%20for%20my%20business." target="_blank" rel="noopener" class="font-bold text-[color:var(--accent-strong)] hover:underline inline-flex items-center gap-0.5 font-sans">
+Message on WhatsApp directly
+<i data-lucide="arrow-up-right" class="w-3 h-3 text-[color:var(--accent-strong)]"></i> </a> </p> </div> </div> </form> <div id="form-error-alert" class="mt-6 hidden rounded-[22px] border border-rose-100 bg-rose-50/50 p-4 text-xs text-slate-600 font-sans"> <h4 class="font-bold text-rose-700">Connection failed. Please try again.</h4> <p class="mt-1">If the form still fails, email <a href="mailto:ali.kwl@live.com" class="font-semibold text-[color:var(--accent-strong)] hover:underline">ali.kwl@live.com</a> or send the brief on WhatsApp.</p> </div> </div> <!-- SUCCESS STATE --> <div id="form-success-container" class="hidden py-8 text-center space-y-6"> <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-[color:var(--accent)] border border-emerald-100"> <i data-lucide="check" class="h-8 w-8"></i> </div> <div class="space-y-2"> <h3 class="text-xl font-bold text-slate-950 font-display">Brief received — thank you!</h3> <p class="text-xs text-slate-655 leading-relaxed font-light font-sans max-w-sm mx-auto">
+I will review your requirements and respond within 4 hours via WhatsApp or email to share the project scope.
+</p> </div> <div class="pt-2 max-w-sm mx-auto"> <a href="https://wa.me/923422222752?text=Hi%20Haider%2C%20I%20want%20to%20discuss%20a%20website%20%2F%20automation%20project%20for%20my%20business." target="_blank" rel="noopener" class="button-primary w-full justify-center text-xs py-3.5 px-8 font-sans font-bold flex items-center gap-2 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] border-none text-white shadow-sm"> <span>Message on WhatsApp too →</span> </a> </div> </div> </div> </div> </section> <script type="module" src="/_astro/ContactForm.astro_astro_type_script_index_0_lang.sF6KMsFM.js"></script> </div> </div> </div> <script type="module">document.addEventListener("DOMContentLoaded",()=>{const n=document.getElementById("mobile-nav-btn"),d=document.getElementById("mobile-nav-menu"),c=document.getElementById("nav-menu-icon"),a=document.getElementById("nav-close-icon"),s=document.getElementById("site-navigation"),e=document.getElementById("audit-modal"),l=[document.getElementById("nav-audit-btn"),document.getElementById("mobile-nav-audit-btn")],r=document.getElementById("close-audit-modal"),o=()=>{if(!s)return;const t=window.scrollY>15;s.classList.toggle("shadow-[0_8px_30px_rgba(15,23,42,0.06)]",t),s.classList.toggle("border-slate-100",t),s.classList.toggle("bg-white/95",t)};window.addEventListener("scroll",o,{passive:!0}),o(),n&&d&&n.addEventListener("click",()=>{const t=n.getAttribute("aria-expanded")==="true";n.setAttribute("aria-expanded",String(!t)),d.classList.toggle("hidden"),c?.classList.toggle("hidden"),a?.classList.toggle("hidden")});const m=()=>{e&&(e.classList.remove("hidden"),e.classList.add("flex"),setTimeout(()=>{e.classList.remove("opacity-0"),e.querySelector(".bg-white")?.classList.remove("scale-95")},10))},i=()=>{e&&(e.classList.add("opacity-0"),e.querySelector(".bg-white")?.classList.add("scale-95"),setTimeout(()=>{e.classList.remove("flex"),e.classList.add("hidden")},300))};l.forEach(t=>t?.addEventListener("click",m)),r?.addEventListener("click",i),e?.addEventListener("click",t=>{t.target===e&&i()})});</script> <!-- Main content wrapper --> <main id="main-content" class="flex-grow">   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"WhatsApp Order System Demo","description":"A WhatsApp-based ordering system for local fabric shops — customers browse products, place orders, and receive confirmations entirely through chat.","applicationCategory":"BusinessApplication","operatingSystem":"All","image":"https://smesh.dev/assets/images/whatsapp-phone-mockup.png","author":{"@type":"Person","name":"Haider Ali","url":"https://smesh.dev/"},"publisher":{"@type":"Organization","name":"BismillahTC Digital Services"}}</script>  <nav class="site-shell py-6 text-xs font-sans" aria-label="Breadcrumb"> <ol class="inline-flex flex-wrap items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/78 px-4 py-2 text-[color:var(--muted)]"> <li class="inline-flex items-center"> <a href="/" class="inline-flex items-center transition hover:text-[color:var(--ink)]"> <i data-lucide="home" class="w-3 h-3 mr-1.5"></i>
+Home
+</a> </li> <li> <div class="flex items-center"> <i data-lucide="chevron-right" class="mx-1 h-3 w-3 text-[color:var(--muted-soft)]"></i> <a href="/demos/" class="transition hover:text-[color:var(--ink)]">Demos</a> </div> </li> <li aria-current="page"> <div class="flex items-center"> <i data-lucide="chevron-right" class="mx-1 h-3 w-3 text-[color:var(--muted-soft)]"></i> <span class="font-medium text-[color:var(--ink)]">WhatsApp Order System Demo</span> </div> </li> </ol> </nav>  <section class="site-shell py-10 md:py-14" aria-label="Demo Header"> <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8"> <div class="max-w-3xl space-y-4"> <span class="section-kicker"> <i data-lucide="play-circle" class="w-3.5 h-3.5"></i>
+Simulated Sandbox
+</span> <h1 class="display-title font-extrabold text-slate-950 leading-[1.08] font-display"> WhatsApp Order System Demo </h1> <p class="body-copy text-slate-650 font-light max-w-2xl leading-relaxed"> A WhatsApp-based ordering system for local fabric shops — customers browse products, place orders, and receive confirmations entirely through chat. </p> </div> <div class="shrink-0 pt-2 lg:pt-0"> <a href="#interactive-demo-sandbox" class="inline-flex items-center justify-center button-primary py-3.5 px-6 text-xs font-bold shadow-md cursor-pointer">
+Launch Sandbox Preview
+<i data-lucide="arrow-down" class="w-4 h-4 ml-2 animate-bounce"></i> </a> </div> </div> </section>  <section id="interactive-demo-sandbox" class="site-shell pb-20" aria-label="Interactive Demo Sandbox"> <!-- Browser Mockup Window --> <div class="w-full bg-slate-50/20 border border-slate-200/80 rounded-[32px] overflow-hidden shadow-xl flex flex-col"> <!-- Browser Top Bar Controls --> <div class="bg-slate-100/90 border-b border-slate-200/60 h-12 px-5 flex items-center justify-between shrink-0 select-none"> <!-- Window circles --> <div class="flex items-center gap-1.5"> <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span> <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span> <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span> </div> <!-- URL Input --> <div class="flex-grow max-w-sm px-4 hidden sm:block"> <div class="bg-white/80 border border-slate-200/50 rounded-lg py-1 px-4 text-[10px] font-mono text-slate-400 select-all truncate text-center">
+https://sandbox.smesh.dev/demo/whatsapp-order-system </div> </div> <!-- Active Status Badge --> <div class="flex items-center gap-1.5 select-none shrink-0"> <span class="live-dot h-1.5 w-1.5 rounded-full bg-emerald-500"></span> <span class="text-[9px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-100/50 px-2.5 py-0.5 rounded-full uppercase tracking-wider font-bold">Simulated Live</span> </div> </div> <!-- Browser Workspace Body (Directly Renders the Content) --> <div class="p-6 md:p-8 bg-slate-50/50 backdrop-blur-sm relative"> <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+<!-- Interactive WhatsApp Sandbox (Col 7) -->
+<div class="md:col-span-7 flex flex-col justify-between bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+<!-- WhatsApp Header -->
+<div class="bg-emerald-600 text-white px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-emerald-700/50 flex items-center justify-center text-sm font-bold">FS</div>
+<div>
+<p class="font-semibold text-sm leading-tight">Fabric Shop Bot</p>
+<p class="text-xs text-emerald-100 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> online
+</p>
+</div>
+</div>
+<div class="flex gap-3 text-white/80">
+<i data-lucide="phone" class="w-4 h-4"></i>
+<i data-lucide="video" class="w-4 h-4"></i>
+</div>
+</div>
+<!-- Chat Body -->
+<div id="wa-chat-body" class="px-3 py-4 space-y-3 bg-[#efeae2] overflow-y-auto h-96 text-xs flex flex-col">
+<!-- Bot message -->
+<div class="flex justify-start">
+<div class="bg-white rounded-xl rounded-tl-none px-3 py-2 max-w-[80%] shadow-sm">
+<p>Welcome to <strong>Fabric Shop</strong>! 🧵</p>
+<p class="mt-1">What would you like to order today?</p>
+<p class="text-[9px] text-gray-400 text-right mt-1">9:00 AM</p>
+</div>
+</div>
+<!-- Quick reply choices -->
+<div id="wa-quick-replies" class="flex flex-wrap gap-2 pl-2">
+<button onclick="handleWASend(&#x27;Lawn Collection&#x27;)" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">🪡 Lawn Collection</button>
+<button onclick="handleWASend(&#x27;Silk Range&#x27;)" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">👗 Silk Range</button>
+<button onclick="handleWASend(&#x27;Track Order&#x27;)" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">📦 Track Order</button>
+</div>
+</div>
+<!-- Input Bar -->
+<form id="wa-input-form" onsubmit="handleWASubmit(event)" class="bg-slate-50 px-3 py-2.5 flex items-center gap-2 border-t border-slate-200">
+<input type="text" id="wa-input-text" placeholder="Type a message..." required class="flex-grow bg-white border border-slate-200 rounded-full px-4 py-2 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 transition-colors">
+<button type="submit" class="w-9 h-9 bg-emerald-500 hover:bg-emerald-600 rounded-full flex items-center justify-center text-white transition-colors active:scale-95">
+<i data-lucide="send" class="w-4 h-4"></i>
+</button>
+</form>
+</div>
+<!-- Interactive Sandbox Logs / Use Case (Col 5) -->
+<div class="md:col-span-5 flex flex-col justify-between bg-slate-55 rounded-2xl border border-slate-200 p-6 space-y-4">
+<div>
+<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider">Use Case Context</span>
+<h3 class="font-bold text-slate-900 mt-2">WhatsApp Order Intake</h3>
+<p class="text-xs text-slate-600 leading-relaxed mt-2">
+In Pakistan, many local fashion brands manage hundreds of order queries manually on WhatsApp, resulting in long response delays. Smesh.Dev replaces this manual workflow with an automated database catalog sync.
+</p>
+<div class="mt-4 pt-4 border-t border-slate-200/60 space-y-3">
+<h4 class="text-xs font-bold text-slate-800">⚡ Live System Logs (Simulated)</h4>
+<div id="wa-logs" class="bg-slate-900 rounded-lg p-3 font-mono text-[10px] text-teal-400 space-y-1 h-36 overflow-y-auto">
+<p class="text-slate-400">// Ready to capture user choices...</p>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-200/60">
+<button onclick="resetWASimulation()" class="w-full text-center text-xs text-slate-650 hover:text-slate-800 font-bold py-2 border border-slate-200 rounded-lg bg-white hover:bg-slate-50 transition">
+Reset Bot Conversation
+</button>
+</div>
+</div>
+</div>
+<script>
+// Flow steps: 0=greeting, 1=category selected, 2=product ordered, 3=confirming
+let waStep = 0;
+let waSelectedProduct = '';
+let waProductPrice = 0;
+
+function appendWAMessage(sender, content, isHtml = false) {
+const chatBody = document.getElementById('wa-chat-body');
+const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+const msgDiv = document.createElement('div');
+msgDiv.className = sender === 'bot' ? 'flex justify-start' : 'flex justify-end';
+
+if (sender === 'bot') {
+msgDiv.innerHTML = `
+<div class="bg-white rounded-xl rounded-tl-none px-3 py-2 max-w-[80%] shadow-sm">
+${isHtml ? content : `<p>${content}</p>`}
+<p class="text-[9px] text-gray-400 text-right mt-1">${timeString}</p>
+</div>
+`;
+} else {
+msgDiv.innerHTML = `
+<div class="bg-emerald-100 rounded-xl rounded-tr-none px-3 py-2 max-w-[75%] shadow-sm">
+<p>${content}</p>
+<p class="text-[9px] text-gray-400 text-right mt-1">${timeString}</p>
+</div>
+`;
+}
+
+chatBody.appendChild(msgDiv);
+chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function appendWALog(text) {
+const logs = document.getElementById('wa-logs');
+const p = document.createElement('p');
+p.innerText = `[${new Date().toLocaleTimeString()}] ${text}`;
+logs.appendChild(p);
+logs.scrollTop = logs.scrollHeight;
+}
+
+function handleWASubmit(e) {
+e.preventDefault();
+const input = document.getElementById('wa-input-text');
+const val = input.value.trim();
+if (!val) return;
+input.value = '';
+handleWASend(val);
+}
+
+function handleWASend(text) {
+appendWAMessage('user', text);
+appendWALog(`Incoming webhook from user session: "${text}"`);
+
+// Simulate typing indicator
+const chatBody = document.getElementById('wa-chat-body');
+const typingDiv = document.createElement('div');
+typingDiv.className = 'flex justify-start id-typing';
+typingDiv.innerHTML = `
+<div class="bg-white rounded-xl rounded-tl-none px-3 py-1.5 shadow-sm text-gray-400 italic">
+Typing...
+</div>
+`;
+chatBody.appendChild(typingDiv);
+chatBody.scrollTop = chatBody.scrollHeight;
+
+setTimeout(() => {
+// Remove typing indicator
+const indicators = chatBody.querySelectorAll('.id-typing');
+indicators.forEach(i => i.remove());
+
+processBotLogic(text);
+}, 800);
+}
+
+function processBotLogic(text) {
+const cleaned = text.toLowerCase();
+
+if (cleaned.includes('lawn')) {
+waStep = 1;
+waSelectedProduct = 'Spring Lawn - 3pc';
+waProductPrice = 3200;
+
+appendWALog(`DB Query: SELECT * FROM products WHERE category = 'lawn'`);
+appendWAMessage('bot', `
+<div class="w-full h-24 bg-gradient-to-br from-pink-100 to-yellow-50 rounded-lg flex items-center justify-center text-2xl mb-2">🌸</div>
+<p class="font-semibold">Spring Lawn — 3pc Unstitched</p>
+<p class="text-gray-500 text-xs">Premium lawn with chiffon dupatta</p>
+<p class="text-emerald-700 font-bold mt-1">Rs 3,200</p>
+<p class="mt-2 text-xs text-gray-600">How many suits would you like to order? (Type a number, e.g. 1 or 2)</p>
+`, true);
+
+// Update quick replies
+document.getElementById('wa-quick-replies').innerHTML = `
+<button onclick="handleWASend('1')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">1 Suit</button>
+<button onclick="handleWASend('2')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">2 Suits</button>
+`;
+} else if (cleaned.includes('silk')) {
+waStep = 1;
+waSelectedProduct = 'Festive Silk - 2pc';
+waProductPrice = 4800;
+
+appendWALog(`DB Query: SELECT * FROM products WHERE category = 'silk'`);
+appendWAMessage('bot', `
+<div class="w-full h-24 bg-gradient-to-br from-teal-50 to-indigo-100 rounded-lg flex items-center justify-center text-2xl mb-2">👗</div>
+<p class="font-semibold">Festive Silk — 2pc Premium</p>
+<p class="text-gray-500 text-xs">Satin silk blend embroidered suit</p>
+<p class="text-emerald-700 font-bold mt-1">Rs 4,800</p>
+<p class="mt-2 text-xs text-gray-600">How many suits would you like to order? (Type a number, e.g. 1 or 2)</p>
+`, true);
+
+document.getElementById('wa-quick-replies').innerHTML = `
+<button onclick="handleWASend('1')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">1 Suit</button>
+<button onclick="handleWASend('2')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">2 Suits</button>
+`;
+} else if (cleaned.includes('track')) {
+appendWALog(`API Call: fetchOrderStatus()`);
+appendWAMessage('bot', "Please enter your 5-digit Order ID (e.g. 10245) to track your delivery status.");
+document.getElementById('wa-quick-replies').innerHTML = `
+<button onclick="handleWASend('10245')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">Track Order #10245</button>
+`;
+} else if (cleaned === '10245') {
+appendWALog(`Google Sheet Sync: Order #10245 found`);
+appendWAMessage('bot', "📦 <strong>Order #10245 Status:</strong> Dispatched via Leopards Courier. Current location: Lahore Hub. Estimated delivery: Tomorrow.");
+resetRepliesToMain();
+} else if (waStep === 1 && !isNaN(cleaned)) {
+const quantity = parseInt(cleaned);
+waStep = 2;
+const subtotal = waProductPrice * quantity;
+const delivery = 200;
+const total = subtotal + delivery;
+
+appendWALog(`n8n Node: calculateTotal() - Subtotal: Rs ${subtotal}`);
+appendWAMessage('bot', `
+<p class="font-semibold mb-1">📋 Order Summary</p>
+<div class="border-t border-gray-200 pt-1 text-xs space-y-1">
+<div class="flex justify-between"><span>${waSelectedProduct} × ${quantity}</span><span>Rs ${subtotal}</span></div>
+<div class="flex justify-between"><span>Delivery Charge</span><span>Rs ${delivery}</span></div>
+<div class="flex justify-between font-bold border-t border-gray-200 pt-1"><span>Total</span><span>Rs ${total}</span></div>
+</div>
+<p class="mt-2 text-xs text-gray-500">Reply <strong>CONFIRM</strong> to submit order details or <strong>CANCEL</strong> to restart.</p>
+`, true);
+
+document.getElementById('wa-quick-replies').innerHTML = `
+<button onclick="handleWASend('Confirm')" class="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-4 py-1.5 text-xs font-semibold active:scale-95 transition-all">Confirm Order</button>
+<button onclick="handleWASend('Cancel')" class="border border-red-500 text-red-600 rounded-full px-4 py-1.5 text-xs font-semibold bg-white hover:bg-red-50 active:scale-95 transition-all">Cancel</button>
+`;
+} else if (cleaned === 'confirm') {
+appendWALog(`Google Sheet: Row Appended - Order confirmed!`);
+appendWALog(`n8n Webhook: Sent email notification to Haider Ali`);
+appendWAMessage('bot', "🎉 <strong>Order Confirmed!</strong> We have saved your order. Our logistics team will call you shortly on this number to coordinate delivery. Thank you!");
+resetRepliesToMain();
+waStep = 0;
+} else if (cleaned === 'cancel') {
+appendWALog(`Session reset requested`);
+appendWAMessage('bot', "Order cancelled. What would you like to look at now?");
+resetRepliesToMain();
+waStep = 0;
+} else {
+appendWAMessage('bot', "Sorry, I didn't catch that. Please select one of the options below or type 'lawn' or 'silk'.");
+resetRepliesToMain();
+}
+}
+
+function resetRepliesToMain() {
+document.getElementById('wa-quick-replies').innerHTML = `
+<button onclick="handleWASend('Lawn Collection')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">🪡 Lawn Collection</button>
+<button onclick="handleWASend('Silk Range')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">👗 Silk Range</button>
+<button onclick="handleWASend('Track Order')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">📦 Track Order</button>
+`;
+}
+
+function resetWASimulation() {
+document.getElementById('wa-chat-body').innerHTML = `
+<div class="flex justify-start">
+<div class="bg-white rounded-xl rounded-tl-none px-3 py-2 max-w-[80%] shadow-sm">
+<p>Welcome to <strong>Fabric Shop</strong>! 🧵</p>
+<p class="mt-1">What would you like to order today?</p>
+<p class="text-[9px] text-gray-400 text-right mt-1">9:00 AM</p>
+</div>
+</div>
+<div id="wa-quick-replies" class="flex flex-wrap gap-2 pl-2">
+<button onclick="handleWASend('Lawn Collection')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">🪡 Lawn Collection</button>
+<button onclick="handleWASend('Silk Range')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">👗 Silk Range</button>
+<button onclick="handleWASend('Track Order')" class="border border-emerald-500 text-emerald-700 rounded-full px-3 py-1.5 text-xs font-semibold bg-white hover:bg-emerald-50 active:scale-95 transition-all">📦 Track Order</button>
+</div>
+`;
+document.getElementById('wa-logs').innerHTML = `<p class="text-slate-400">// Simulation reset.</p>`;
+waStep = 0;
+waSelectedProduct = '';
+waProductPrice = 0;
+}
+</script> </div> </div> </section>  <section class="border-t border-slate-200/60 bg-slate-50/40 py-24" aria-label="Technical Details"> <div class="site-shell"> <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start font-sans"> <!-- LEFT: How It Works Process (col-span-7) --> <div class="lg:col-span-7 space-y-8"> <div class="space-y-3"> <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)]">
+Workflow Mechanics
+</span> <h2 class="text-2xl font-bold text-slate-900 font-display">How This Automation Works</h2> <p class="body-copy text-slate-600 font-light max-w-xl">
+A step-by-step breakdown of the backend logic, triggers, and sync rules powering this application mockup.
+</p> </div> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div class="surface-card p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 hover:shadow-md transition duration-150 bg-white"> <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/30 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5"> <i data-lucide="message-circle" class="w-5 h-5"></i> </div> <div class="space-y-1"> <h4 class="font-bold text-slate-950 text-sm font-display">1. Customer Opens Chat</h4> <p class="text-xs text-slate-500 leading-relaxed font-light">WhatsApp API receives the incoming message via webhook</p> </div> </div><div class="surface-card p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 hover:shadow-md transition duration-150 bg-white"> <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/30 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5"> <i data-lucide="cpu" class="w-5 h-5"></i> </div> <div class="space-y-1"> <h4 class="font-bold text-slate-950 text-sm font-display">2. Bot Processes Query</h4> <p class="text-xs text-slate-500 leading-relaxed font-light">n8n workflow matches intent and queries product catalog</p> </div> </div><div class="surface-card p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 hover:shadow-md transition duration-150 bg-white"> <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/30 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5"> <i data-lucide="check-circle" class="w-5 h-5"></i> </div> <div class="space-y-1"> <h4 class="font-bold text-slate-950 text-sm font-display">3. Order Confirmed</h4> <p class="text-xs text-slate-500 leading-relaxed font-light">Order saved to Google Sheets, confirmation sent to customer</p> </div> </div><div class="surface-card p-5 rounded-2xl border border-slate-200 shadow-sm flex gap-4 hover:shadow-md transition duration-150 bg-white"> <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100/30 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5"> <i data-lucide="bell" class="w-5 h-5"></i> </div> <div class="space-y-1"> <h4 class="font-bold text-slate-950 text-sm font-display">4. Team Notified</h4> <p class="text-xs text-slate-500 leading-relaxed font-light">Shop owner receives email notification with order details</p> </div> </div> </div> </div> <!-- RIGHT: Info Sidebar (col-span-5) --> <div class="lg:col-span-5 space-y-8"> <!-- Tech Stack Card --> <div class="ambient-panel bg-white border border-slate-200 rounded-[28px] p-6 md:p-8 space-y-4 shadow-sm"> <h3 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Technologies Demonstrated</h3> <div class="flex flex-wrap gap-1.5 font-sans"> <span class="px-3 py-1 bg-slate-100 border border-slate-200/50 rounded-lg text-[10px] font-semibold text-slate-600 shadow-xs">n8n</span><span class="px-3 py-1 bg-slate-100 border border-slate-200/50 rounded-lg text-[10px] font-semibold text-slate-600 shadow-xs">WhatsApp API</span><span class="px-3 py-1 bg-slate-100 border border-slate-200/50 rounded-lg text-[10px] font-semibold text-slate-600 shadow-xs">Google Sheets</span> </div> </div> <!-- Want This System Card --> <div class="bg-slate-950 border border-slate-800 text-white rounded-[32px] p-8 md:p-10 shadow-xl relative overflow-hidden flex flex-col justify-between"> <div class="absolute -top-12 -right-12 w-40 h-40 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none"></div> <div class="relative z-10 space-y-6"> <div> <span class="text-[9px] font-bold uppercase tracking-[0.22em] text-indigo-400 bg-indigo-950 border border-indigo-900 px-2.5 py-0.5 rounded-full">
+Deployment Scope
+</span> </div> <div class="space-y-1"> <h3 class="text-xl font-bold font-display text-white">Need a system like this?</h3> <p class="text-xs text-slate-350 leading-relaxed font-sans font-light pt-2">
+We specialize in building bespoke automation webhooks, Point of Sale dashboards, WhatsApp intake bots, and client booking grids tailored to your data architecture.
+</p> </div> <div class="space-y-2 text-xs text-slate-300 font-sans font-light leading-relaxed pt-2 border-t border-white/10"> <p>✓ Custom RAG databases & Pinecone integrations.</p> <p>✓ Automated lead routing and n8n pipelines.</p> <p>✓ Client-side testing sandbox build included.</p> </div> </div> <div class="pt-8 relative z-10"> <button class="trigger-audit-modal w-full justify-center inline-flex items-center justify-center px-6 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+Request Similar Build
+<i data-lucide="sparkles" class="w-4 h-4 ml-2"></i> </button> </div> </div> <div class="text-center pt-2 font-sans"> <a href="/portfolio/" class="inline-flex items-center gap-1.5 text-xs text-indigo-650 hover:text-indigo-805 font-bold transition"> <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+Back to Portfolio Showcase
+</a> </div> </div> </div> </div> </section>  <section class="site-shell py-16 md:py-20" aria-label="Lead funnel conversion banner"> <div class="bg-white rounded-[36px] border border-slate-200 p-8 md:p-14 text-center space-y-6 shadow-sm relative overflow-hidden font-sans"> <div class="max-w-2xl mx-auto space-y-6 relative z-10"> <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 font-display">
+Ready to launch a custom automation blueprint?
+</h2> <p class="text-xs md:text-sm text-slate-655 max-w-lg mx-auto font-light leading-relaxed">
+Let's schedule a 15-minute Discovery Consultation. We will analyze your workflows, identify manual bottlenecks, and structure a working sandbox.
+</p> <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"> <button class="trigger-audit-modal w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition shadow cursor-pointer">
+Request Custom Quote
+</button> <a href="https://wa.me/923422222752" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 border border-slate-300 text-xs font-bold rounded-xl bg-white text-slate-900 hover:bg-slate-50 transition shadow-xs"> <i data-lucide="message-circle" class="w-4 h-4 mr-2 text-emerald-600"></i>
+WhatsApp Me
+</a> </div> </div> </div> </section>  </main> <footer class="border-t border-slate-200 bg-slate-50/50 py-12 md:py-16"> <div class="site-shell"> <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-12"> <!-- Brand & Entity details --> <div class="lg:col-span-3 space-y-4"> <a href="/" class="flex items-center gap-3"> <img src="/assets/logo.png" alt="Smesh.Dev logo" class="h-9 w-9 object-contain"> <div> <div class="text-lg font-bold text-slate-900 leading-none">Smesh.Dev</div> <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-slate-400 font-semibold font-sans">Automation Studio</div> </div> </a> <p class="text-xs leading-relaxed text-slate-500 max-w-sm">
+Smesh.Dev is operated under <strong>BismillahTC Digital Services</strong>, spearheaded by developer <strong>Haider Ali</strong>. We ship grounded AI agents, automated sales pipelines, and high-performance web systems.
+</p> <!-- SEO Social Graph Anchors --> <div class="flex items-center gap-3 pt-2 font-sans" aria-label="Social Profiles"> <a href="https://github.com/affaan-m" target="_blank" rel="me noopener" class="text-slate-400 hover:text-slate-900 transition" aria-label="GitHub Developer Profile"> <i data-lucide="github" class="w-4 h-4"></i> </a> <a href="https://wa.me/923422222752" target="_blank" rel="noopener" class="text-slate-400 hover:text-emerald-600 transition" aria-label="WhatsApp Business Contact"> <i data-lucide="phone-call" class="w-4 h-4"></i> </a> <a href="mailto:ali.kwl@live.com" class="text-slate-400 hover:text-indigo-600 transition" aria-label="Email Address"> <i data-lucide="mail" class="w-4 h-4"></i> </a> </div> </div> <!-- Links Grid --> <div class="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:col-span-6 font-sans"> <div> <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Services</h3> <ul class="mt-4 space-y-2.5"> <li> <a href="/services/ai-support-chatbots/" class="text-xs text-slate-500 hover:text-slate-900 transition"> AI Support Chatbots </a> </li><li> <a href="/services/whatsapp-automation/" class="text-xs text-slate-500 hover:text-slate-900 transition"> WhatsApp Automation </a> </li><li> <a href="/services/workflow-automation/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Workflow Automation </a> </li><li> <a href="/services/saas-mvp-development/" class="text-xs text-slate-500 hover:text-slate-900 transition"> SaaS MVP Development </a> </li> </ul> </div> <div> <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Company</h3> <ul class="mt-4 space-y-2.5"> <li> <a href="/about/" class="text-xs text-slate-500 hover:text-slate-900 transition"> About Us </a> </li><li> <a href="/contact/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Contact Us </a> </li> </ul> </div> <div> <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Resources</h3> <ul class="mt-4 space-y-2.5"> <li> <a href="/resources/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Resources Hub </a> </li><li> <a href="/resources/sample-resource/" class="text-xs text-slate-500 hover:text-slate-900 transition"> n8n Setup Guide </a> </li><li> <a href="/blog/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Latest Blog Posts </a> </li> </ul> </div> <div> <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Legal</h3> <ul class="mt-4 space-y-2.5"> <li> <a href="/privacy-policy/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Privacy Policy </a> </li><li> <a href="/terms/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Terms of Service </a> </li><li> <a href="/disclaimer/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Disclaimer </a> </li><li> <a href="/cookies/" class="text-xs text-slate-500 hover:text-slate-900 transition"> Cookie Policy </a> </li> </ul> </div> </div> <!-- Newsletter Form (Linked to Supabase) --> <div class="lg:col-span-3 space-y-4 font-sans"> <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Join Newsletter</h3> <p class="text-xs text-slate-500 leading-relaxed">Blueprints and setups on n8n and vector setups.</p> <form id="footer-newsletter-form" class="space-y-2"> <div class="flex gap-2"> <input type="email" id="news-email" required placeholder="name@domain.com" class="flex-grow rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs focus:ring-1 focus:ring-slate-900 focus:outline-none"> <button type="submit" id="news-submit-btn" class="bg-slate-900 hover:bg-slate-800 text-white rounded-lg px-3 flex items-center justify-center transition" aria-label="Subscribe"> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i> </button> </div> <p id="news-status-msg" class="text-[10px] text-emerald-600 hidden font-semibold">Subscribed successfully!</p> <p id="news-error-msg" class="text-[10px] text-rose-600 hidden font-semibold">Subscription failed. Try again.</p> </form> </div> </div> <!-- Copyright banner --> <div class="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between font-sans"> <span>&copy; 2026 BismillahTC Digital Services. All rights reserved.</span> <span>Engineered for SEO entity mapping, AEO positioning, and automated flow scaling.</span> </div> </div> </footer> <script type="module" src="/_astro/Footer.astro_astro_type_script_index_0_lang.Cz0g67hQ.js"></script> <!-- Chat Widget --> <!-- Smesh.Dev Floating Chat Widget --><div class="fixed bottom-4 right-4 z-50 hidden items-end lg:flex"> <!-- Chat Panel --> <div id="smesh-chat-panel" class="mb-3 hidden w-[340px] rounded-2xl border border-slate-100 bg-white shadow-2xl opacity-0 transition-all duration-300 origin-bottom-right scale-95 flex-col overflow-hidden"> <!-- Header --> <div class="bg-indigo-600 p-4 text-white flex items-center justify-between"> <div class="flex items-center space-x-2"> <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">S</div> <div> <h4 class="text-xs font-bold font-display">Ask Smesh.Dev</h4> <p class="text-[10px] text-white/80">AI Assistant / Operator</p> </div> </div> <button id="smesh-close-chat" class="p-1 hover:bg-white/10 rounded transition-colors" aria-label="Close Chat"> <i data-lucide="x" class="w-4 h-4"></i> </button> </div> <!-- Message Area --> <div id="smesh-chat-messages" class="flex-grow p-4 h-64 overflow-y-auto space-y-3 bg-slate-50 text-xs"> <!-- Bot Greeting --> <div class="flex items-start space-x-2"> <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 text-[10px] font-bold">S</div> <div class="bg-white p-3 rounded-lg border border-slate-200 text-slate-800 shadow-sm max-w-[80%]">
+Hi! Tell me what you want to build or choose an option below.
+</div> </div> <!-- Quick Options Panel --> <div id="smesh-chat-quick-options" class="flex flex-wrap gap-2 pl-8 pt-1"> <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">Website</button> <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">WhatsApp Bot</button> <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">AI Chatbot</button> <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">n8n Automation</button> <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">Dashboard</button> <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">Pricing</button> </div> </div> <!-- Contact Info Capture Form (Grounded lead generation, shown under specific conditions) --> <div id="smesh-lead-capture" class="hidden p-3 bg-indigo-50 border-t border-slate-100 text-xs"> <p class="font-medium text-slate-700 mb-2">Want to save this lead or get a custom reply?</p> <div class="space-y-2"> <input type="text" id="chat-lead-name" placeholder="Your Name" class="w-full px-2.5 py-1.5 rounded border border-slate-200 bg-white"> <input type="tel" id="chat-lead-whatsapp" placeholder="WhatsApp Number" class="w-full px-2.5 py-1.5 rounded border border-slate-200 bg-white"> <button id="chat-lead-submit" class="w-full bg-indigo-600 text-white py-1.5 rounded font-semibold hover:bg-indigo-700 transition-colors">Submit Details</button> </div> </div> <!-- Input Form --> <form id="smesh-chat-input-form" class="p-3 border-t border-slate-200 bg-white flex items-center space-x-2"> <input type="text" id="smesh-chat-input" placeholder="Type your message..." required class="flex-grow px-3 py-2 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"> <button type="submit" class="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"> <i data-lucide="send" class="w-4 h-4"></i> </button> </form> </div> <!-- Chat Button Trigger --> <button id="smesh-chat-trigger" class="flex items-center space-x-2 rounded-full bg-indigo-600 px-4 py-2.5 text-white shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl active:scale-95" aria-label="Open Chat"> <i data-lucide="message-square" id="smesh-trigger-icon" class="w-5 h-5"></i> <span class="text-xs font-bold font-display">Ask Smesh.Dev</span> </button> </div> <script type="module" src="/_astro/ChatWidget.astro_astro_type_script_index_0_lang.BEsf3XnB.js"></script> <button id="back-to-top" type="button" class="back-to-top" aria-label="Back to top"> <i data-lucide="arrow-up" class="h-4 w-4"></i> </button> <!-- Initializing Lucide Icons & Global Code Blocks --> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_1_lang.CN6pKSHs.js"></script> <script>
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+
+    const revealNodes = document.querySelectorAll('[data-reveal]');
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    revealNodes.forEach((node) => revealObserver.observe(node));
+
+    const backToTop = document.getElementById('back-to-top');
+    const toggleBackToTop = () => {
+      if (!backToTop) return;
+      backToTop.classList.toggle('is-visible', window.scrollY > 520);
+    };
+
+    backToTop?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    toggleBackToTop();
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  </script> </body> </html> <script type="module">document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("audit-modal");document.querySelectorAll(".trigger-audit-modal").forEach(t=>{t.addEventListener("click",()=>{e&&(e.classList.remove("hidden"),e.classList.add("flex"),setTimeout(()=>{e.classList.remove("opacity-0"),e.querySelector(".bg-white")?.classList.remove("scale-95")},10))})})});</script>
