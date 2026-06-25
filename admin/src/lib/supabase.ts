@@ -123,18 +123,12 @@ export async function getLeads() {
   return { leads, contacts };
 }
 
-// GitHub deploy trigger
+// GitHub deploy trigger via deployments table insert
 export async function triggerDeploy() {
-  const pat = import.meta.env.PUBLIC_GITHUB_PAT;
-  const repo = import.meta.env.PUBLIC_GITHUB_REPO;
-  const res = await fetch(`https://api.github.com/repos/${repo}/dispatches`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${pat}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ event_type: 'supabase-content-updated' })
-  });
-  return res.ok;
+  const { data: { session } } = await supabase.auth.getSession();
+  const email = session?.user?.email || 'unknown';
+  const { error } = await supabase
+    .from('deployments')
+    .insert([{ triggered_by: email }]);
+  return !error;
 }

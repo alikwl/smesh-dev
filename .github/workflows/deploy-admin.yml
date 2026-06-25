@@ -53,8 +53,6 @@ jobs:
         env:
           PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-          PUBLIC_GITHUB_PAT: ${{ secrets.ADMIN_GITHUB_PAT }}
-          PUBLIC_GITHUB_REPO: ${{ secrets.GITHUB_REPO }}
         run: npm run build
 
       - name: Deploy to gh-pages (admin subfolder)
