@@ -1,0 +1,165 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+interface FAQ {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  title: string;
+  headline?: string;
+  description?: string;
+  hero_icon?: string;
+  hero_sub?: string;
+  direct_answer: string;
+  who_this_is_for: string[];
+  what_you_get: string[];
+  integrations?: string[];
+  expected_delivery: string;
+  starting_price: string;
+  faqs?: FAQ[];
+}
+
+const {
+  title,
+  headline = title,
+  description,
+  hero_icon = 'sparkles',
+  hero_sub = description,
+  direct_answer,
+  who_this_is_for = [],
+  what_you_get = [],
+  integrations = [],
+  expected_delivery = '1-2 weeks',
+  starting_price = 'Custom Quote',
+  faqs = [],
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} schemaType="service">
+  <Breadcrumbs title={title} />
+
+  <article class="service-detail-article">
+    <!-- Header Section -->
+    <header class="site-shell py-14 md:py-20">
+      <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+        <div>
+          <div class="section-kicker">Service detail</div>
+          <h1 class="display-title mt-5 text-[color:var(--ink)]">{headline}</h1>
+          <p class="body-copy mt-5 max-w-2xl">{hero_sub}</p>
+          <div class="mt-8 flex flex-wrap gap-3 font-sans">
+            <a href="#contact" class="button-primary">Get a scoped quote</a>
+            <a href="/portfolio/" class="button-secondary">See related work</a>
+          </div>
+        </div>
+
+        <!-- AEO / GEO Direct Answer Card -->
+        <aside class="aeo-summary ambient-panel rounded-[32px] p-6 md:p-8 border-2 border-dashed border-[color:var(--accent)] bg-[rgba(15,118,110,0.04)]" aria-label="AI Search Quick Summary">
+          <div class="flex items-start gap-4">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-[18px] border border-[color:var(--line)] bg-white text-[color:var(--accent-strong)]">
+              <i data-lucide={hero_icon} class="h-5 w-5"></i>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[color:var(--accent-strong)]">Direct Answer (AEO Summary)</p>
+              <p class="mt-2 text-xs leading-relaxed text-[color:var(--ink)] font-medium">
+                {direct_answer || "This service provides custom digital and automation configurations tailored to streamline manual business work and structure cleaner data layers."}
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2 font-sans">
+            <div class="rounded-[20px] border border-[color:var(--line)] bg-white p-4">
+              <p class="text-[9px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">Expected Delivery</p>
+              <p class="mt-1 text-sm font-bold text-[color:var(--ink)]">{expected_delivery}</p>
+            </div>
+            <div class="rounded-[20px] border border-[color:var(--line)] bg-white p-4">
+              <p class="text-[9px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">Investment</p>
+              <p class="mt-1 text-sm font-bold text-[color:var(--ink)]">{starting_price}</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- Scope Requirements Section -->
+    <section class="site-shell pb-16 md:pb-20" aria-label="Scope and Requirements">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="surface-card rounded-[30px] p-7 md:p-8 border border-[color:var(--line)] bg-white/60">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">Who this is for</p>
+          <ul class="mt-5 space-y-4">
+            {who_this_is_for.map((item) => (
+              <li class="flex gap-3 text-sm leading-7 text-[color:var(--muted)]">
+                <i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-[color:var(--accent-strong)]"></i>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="surface-card rounded-[30px] p-7 md:p-8 border border-[color:var(--line)] bg-white/60">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">What you get</p>
+          <ul class="mt-5 space-y-4">
+            {what_you_get.map((item) => (
+              <li class="flex gap-3 text-sm leading-7 text-[color:var(--muted)]">
+                <i data-lucide="arrow-up-right" class="mt-1 h-4 w-4 shrink-0 text-[color:var(--accent-strong)]"></i>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Breakdown Section -->
+    <section class="site-shell pb-16 md:pb-20" aria-label="Implementation Breakdown">
+      <div class="surface-card rounded-[32px] p-8 md:p-10 border border-[color:var(--line)] bg-white/60">
+        <div class="max-w-3xl">
+          <div class="section-kicker">How it works</div>
+          <h2 class="section-title mt-4 text-[color:var(--ink)]">A clear implementation path, not a vague service page.</h2>
+        </div>
+        <div class="prose-shell mt-8">
+          <slot />
+        </div>
+      </div>
+    </section>
+
+    <!-- Integrations Section -->
+    {integrations.length > 0 && (
+      <section class="site-shell pb-16 md:pb-20" aria-label="Stack Integrations">
+        <div class="ambient-panel rounded-[32px] p-8 md:p-10 border border-[color:var(--line)] bg-white/60">
+          <div class="max-w-2xl">
+            <div class="section-kicker">Tools and platforms</div>
+            <h2 class="section-title mt-4 text-[color:var(--ink)]">Connected to the stack your business already relies on.</h2>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            {integrations.map((integration) => (
+              <span class="chip">{integration}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- FAQ Section -->
+    {faqs.length > 0 && (
+      <section class="site-shell pb-16 md:pb-20" aria-label="Frequently Asked Questions">
+        <div class="grid gap-4">
+          <div class="max-w-2xl">
+            <div class="section-kicker">FAQ</div>
+            <h2 class="section-title mt-4 text-[color:var(--ink)]">Questions clients usually ask before moving ahead.</h2>
+          </div>
+          {faqs.map((faq) => (
+            <article class="surface-card rounded-[28px] p-6 md:p-7 border border-[color:var(--line)] bg-white/60">
+              <h3 class="text-lg font-semibold text-[color:var(--ink)]">{faq.q}</h3>
+              <p class="mt-3 text-sm leading-7 text-[color:var(--muted)]">{faq.a}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+
+  <ContactForm />
+</BaseLayout>

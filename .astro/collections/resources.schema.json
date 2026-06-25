@@ -1,0 +1,74 @@
+{
+  "$ref": "#/definitions/resources",
+  "definitions": {
+    "resources": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "PDF",
+            "Prompt",
+            "Guide"
+          ]
+        },
+        "targetServiceTag": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "premium": {
+          "type": "boolean"
+        },
+        "downloadUrl": {
+          "type": "string"
+        },
+        "bulletPoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "previewImage": {
+          "type": "string"
+        },
+        "estimatedValue": {
+          "type": "string"
+        },
+        "teaserPoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "tableOfContents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "lockedContentFile": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "category",
+        "targetServiceTag",
+        "description",
+        "premium"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

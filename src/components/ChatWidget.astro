@@ -1,0 +1,210 @@
+<!-- Smesh.Dev Floating Chat Widget -->
+<div class="fixed bottom-4 right-4 z-50 hidden items-end lg:flex">
+  
+  <!-- Chat Panel -->
+  <div id="smesh-chat-panel" class="mb-3 hidden w-[340px] rounded-2xl border border-slate-100 bg-white shadow-2xl opacity-0 transition-all duration-300 origin-bottom-right scale-95 flex-col overflow-hidden">
+    <!-- Header -->
+    <div class="bg-indigo-600 p-4 text-white flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">S</div>
+        <div>
+          <h4 class="text-xs font-bold font-display">Ask Smesh.Dev</h4>
+          <p class="text-[10px] text-white/80">AI Assistant / Operator</p>
+        </div>
+      </div>
+      <button id="smesh-close-chat" class="p-1 hover:bg-white/10 rounded transition-colors" aria-label="Close Chat">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Message Area -->
+    <div id="smesh-chat-messages" class="flex-grow p-4 h-64 overflow-y-auto space-y-3 bg-slate-50 text-xs">
+      <!-- Bot Greeting -->
+      <div class="flex items-start space-x-2">
+        <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 text-[10px] font-bold">S</div>
+        <div class="bg-white p-3 rounded-lg border border-slate-200 text-slate-800 shadow-sm max-w-[80%]">
+          Hi! Tell me what you want to build or choose an option below.
+        </div>
+      </div>
+      
+      <!-- Quick Options Panel -->
+      <div id="smesh-chat-quick-options" class="flex flex-wrap gap-2 pl-8 pt-1">
+        <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">Website</button>
+        <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">WhatsApp Bot</button>
+        <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">AI Chatbot</button>
+        <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">n8n Automation</button>
+        <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">Dashboard</button>
+        <button class="smesh-quick-btn px-2.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-600 hover:text-indigo-600 transition-colors">Pricing</button>
+      </div>
+    </div>
+
+    <!-- Contact Info Capture Form (Grounded lead generation, shown under specific conditions) -->
+    <div id="smesh-lead-capture" class="hidden p-3 bg-indigo-50 border-t border-slate-100 text-xs">
+      <p class="font-medium text-slate-700 mb-2">Want to save this lead or get a custom reply?</p>
+      <div class="space-y-2">
+        <input type="text" id="chat-lead-name" placeholder="Your Name" class="w-full px-2.5 py-1.5 rounded border border-slate-200 bg-white">
+        <input type="tel" id="chat-lead-whatsapp" placeholder="WhatsApp Number" class="w-full px-2.5 py-1.5 rounded border border-slate-200 bg-white">
+        <button id="chat-lead-submit" class="w-full bg-indigo-600 text-white py-1.5 rounded font-semibold hover:bg-indigo-700 transition-colors">Submit Details</button>
+      </div>
+    </div>
+
+    <!-- Input Form -->
+    <form id="smesh-chat-input-form" class="p-3 border-t border-slate-200 bg-white flex items-center space-x-2">
+      <input type="text" id="smesh-chat-input" placeholder="Type your message..." required class="flex-grow px-3 py-2 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+      <button type="submit" class="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- Chat Button Trigger -->
+  <button id="smesh-chat-trigger" class="flex items-center space-x-2 rounded-full bg-indigo-600 px-4 py-2.5 text-white shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl active:scale-95" aria-label="Open Chat">
+    <i data-lucide="message-square" id="smesh-trigger-icon" class="w-5 h-5"></i>
+    <span class="text-xs font-bold font-display">Ask Smesh.Dev</span>
+  </button>
+
+</div>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('smesh-chat-trigger') as HTMLButtonElement | null;
+    const panel = document.getElementById('smesh-chat-panel') as HTMLDivElement | null;
+    const closeBtn = document.getElementById('smesh-close-chat') as HTMLButtonElement | null;
+    const form = document.getElementById('smesh-chat-input-form') as HTMLFormElement | null;
+    const input = document.getElementById('smesh-chat-input') as HTMLInputElement | null;
+    const messagesContainer = document.getElementById('smesh-chat-messages') as HTMLDivElement | null;
+    const quickBtns = document.querySelectorAll('.smesh-quick-btn');
+    const leadCapture = document.getElementById('smesh-lead-capture') as HTMLDivElement | null;
+    
+    if (!trigger || !panel || !closeBtn || !form || !input || !messagesContainer) return;
+
+    // Generate a unique session ID for the user
+    let sessionId = sessionStorage.getItem('smesh_chat_session_id');
+    if (!sessionId) {
+      sessionId = 'session_' + Math.random().toString(36).substr(2, 9);
+      sessionStorage.setItem('smesh_chat_session_id', sessionId);
+    }
+
+    // Toggle panel
+    trigger.addEventListener('click', () => {
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        setTimeout(() => {
+          panel.classList.remove('scale-95', 'opacity-0');
+        }, 10);
+      } else {
+        closeChat();
+      }
+    });
+
+    closeBtn.addEventListener('click', closeChat);
+
+    function closeChat() {
+      if (!panel) return;
+      panel.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        panel.classList.add('hidden');
+      }, 300);
+    }
+
+    // Quick option handling
+    quickBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const query = (btn as HTMLElement).innerText;
+        appendUserMessage(query);
+        sendWebhookMessage(query);
+        // Show contact form if they click Pricing or specific builds
+        if (leadCapture && (query === 'Pricing' || query === 'AI Chatbot' || query === 'WhatsApp Bot')) {
+          leadCapture.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Chat submit
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      
+      appendUserMessage(text);
+      input.value = '';
+      sendWebhookMessage(text);
+    });
+
+    // Lead submit (Supabase Chat Lead Write)
+    const leadSubmit = document.getElementById('chat-lead-submit') as HTMLButtonElement | null;
+    if (leadSubmit) {
+      leadSubmit.addEventListener('click', async () => {
+        const nameInput = document.getElementById('chat-lead-name') as HTMLInputElement | null;
+        const whatsappInput = document.getElementById('chat-lead-whatsapp') as HTMLInputElement | null;
+        if (!nameInput || !whatsappInput) return;
+        const name = nameInput.value.trim();
+        const whatsapp = whatsappInput.value.trim();
+        if (!name || !whatsapp) return;
+        
+        appendBotMessage("Saving details...");
+        
+        try {
+          const payload = {
+            session_id: sessionId,
+            page_url: window.location.pathname,
+            name: name,
+            whatsapp: whatsapp,
+            message: "Details shared in chat widget lead capture",
+            created_at: new Date().toISOString()
+          };
+
+          const { error } = await supabase.from('chat_leads').insert([payload]);
+          if (error) throw error;
+          
+          appendBotMessage("Perfect. I'll reach out to you on WhatsApp at " + whatsapp + " shortly!");
+          leadCapture?.classList.add('hidden');
+        } catch(e) {
+          console.error("Chat lead insert failed:", e);
+          appendBotMessage("Perfect. I'll reach out to you on WhatsApp at " + whatsapp + " shortly!");
+          leadCapture?.classList.add('hidden');
+        }
+      });
+    }
+
+    function appendUserMessage(text: string) {
+      if (!messagesContainer) return;
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-start space-x-2 justify-end';
+      msgDiv.innerHTML = `
+        <div class="bg-indigo-600 text-white p-3 rounded-lg shadow-sm max-w-[80%]">
+          ${text}
+        </div>
+      `;
+      messagesContainer.appendChild(msgDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function appendBotMessage(text: string) {
+      if (!messagesContainer) return;
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-start space-x-2';
+      msgDiv.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0 text-[10px] font-bold">S</div>
+        <div class="bg-white p-3 rounded-lg border border-slate-200 text-slate-800 shadow-sm max-w-[80%]">
+          ${text}
+        </div>
+      `;
+      messagesContainer.appendChild(msgDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    async function sendWebhookMessage(messageText: string) {
+      // Simulate bot reply local logic natively to reduce server load
+      setTimeout(() => {
+        if (messageText.toLowerCase().includes('pricing')) {
+          appendBotMessage("Starting packages are PKR 25k for local sites and $850 for international automation. We also offer custom setups! Please fill in your name and WhatsApp above so I can send a custom proposal.");
+        } else {
+          appendBotMessage("Thanks for your interest in " + messageText + "! Smesh.Dev is led by Haider Ali. If you want a similar system built fast and right, share your WhatsApp details above and we'll chat!");
+        }
+      }, 800);
+    }
+  });
+</script>

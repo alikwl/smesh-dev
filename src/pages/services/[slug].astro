@@ -1,0 +1,270 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import MDXComponents from '../../components/MDXComponents.astro';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({
+    params: { slug: service.id.replace(/\.md$/, '') },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props as { service: CollectionEntry<'services'> };
+const {
+  title,
+  hero_icon = 'cpu',
+  headline = title,
+  hero_sub = '',
+  direct_answer = '',
+  who_this_is_for = [],
+  what_you_get = [],
+  integrations = [],
+  expected_delivery = '1-2 weeks',
+  starting_price = 'Custom Quote',
+  faqs = [],
+} = service.data;
+
+const { Content } = await service.render();
+const metaDescription = hero_sub || service.data.description || `Explore our ${title} integration service. Smesh.Dev by Haider Ali (BismillahTC) designs custom n8n workflows, databases, and setups.`;
+---
+
+<BaseLayout title={title} description={metaDescription} schemaType="service">
+  <!-- Breadcrumbs navigation -->
+  <Breadcrumbs title={title} />
+
+  <!-- Section 1: Hero & AEO Answer Box -->
+  <section class="site-shell py-14 md:py-20" aria-label="Service Introduction">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <!-- Left Hero Details -->
+      <div class="space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-[18px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] border border-[color:var(--accent)]/10">
+            <i data-lucide={hero_icon} class="w-6 h-6"></i>
+          </div>
+          <span class="section-kicker">Core System Architecture</span>
+        </div>
+        <h1 class="display-title font-extrabold text-slate-950 leading-[1.08] font-display">
+          {headline}
+        </h1>
+        <p class="body-copy max-w-2xl text-slate-650 leading-relaxed font-light">
+          {hero_sub}
+        </p>
+        <div class="pt-4 flex flex-wrap gap-3 font-sans">
+          <a href="#scope" class="button-primary text-xs py-3 px-6">Explore System Scope</a>
+          <a href="/portfolio/" class="button-secondary text-xs py-3 px-6">View Client Portfolio</a>
+        </div>
+      </div>
+
+      <!-- Right AEO Answer Card -->
+      <aside class="ambient-panel rounded-[32px] p-6 md:p-8 border border-slate-200 bg-white/70 backdrop-blur-md shadow-md" aria-label="AI Search Engine Optimization Summary">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="live-dot h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            <span class="text-[9px] font-bold uppercase tracking-[0.22em] text-emerald-700 bg-emerald-50 border border-emerald-100/50 px-2.5 py-0.5 rounded-full">Direct Answer</span>
+            <span class="text-[9px] font-medium text-slate-400 font-mono">AEO / GEO Optimized</span>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-700 font-light">
+            {direct_answer || "Custom business architecture designed to clean manual operations and deploy high-speed static integrations."}
+          </p>
+        </div>
+        
+        <div class="mt-6 grid gap-4 grid-cols-2 font-sans border-t border-slate-100 pt-6">
+          <div class="rounded-2xl border border-slate-200/50 bg-slate-50/50 p-4">
+            <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Standard Delivery</p>
+            <p class="mt-1 text-sm font-bold text-slate-900">{expected_delivery}</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200/50 bg-slate-50/50 p-4">
+            <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Investment</p>
+            <p class="mt-1 text-sm font-bold text-slate-900">{starting_price}</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Section 2: Target Audience Matrix ("Who This Is For") -->
+  {who_this_is_for.length > 0 && (
+    <section class="site-shell pb-16 md:pb-24" aria-label="Target Audience">
+      <div class="space-y-4 mb-10">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
+          Ideal Scopes
+        </span>
+        <h2 class="text-2xl font-bold text-slate-900 font-display">Who This Is Engineered For</h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {who_this_is_for.map((item) => (
+          <article class="surface-card rounded-[24px] p-6 border border-slate-200/60 bg-white/50 backdrop-blur-sm shadow-sm flex items-start gap-4">
+            <div class="h-10 w-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-200/60 text-[color:var(--accent-strong)]">
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+            <p class="text-xs leading-relaxed text-slate-650 font-light font-sans">{item}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Section 3: Core Architecture Scope ("What You Get") -->
+  {what_you_get.length > 0 && (
+    <section id="scope" class="site-shell pb-16 md:pb-24" aria-label="System Deliverables">
+      <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm">
+        <div class="max-w-2xl space-y-4">
+          <span class="section-kicker">Deployment Deliverables</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 font-display">What You Get in the Base Setup</h2>
+          <p class="body-copy text-slate-600 font-light">
+            A comprehensive list of fully configured nodes, layouts, and pipelines included in our custom system builds.
+          </p>
+        </div>
+
+        <ul class="grid gap-6 md:grid-cols-2 mt-10">
+          {what_you_get.map((item) => (
+            <li class="flex items-start gap-4 p-5 rounded-[22px] bg-slate-50/80 border border-slate-100 shadow-sm hover:bg-slate-50 transition duration-150">
+              <div class="h-7 w-7 rounded-full bg-teal-50 border border-teal-200/50 flex items-center justify-center text-teal-600 shrink-0 mt-0.5">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+              </div>
+              <span class="text-sm text-slate-700 leading-relaxed font-light font-sans">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Section 4: Integration Badges & High-Ticket Checkout Box -->
+  <section class="site-shell pb-16 md:pb-24" aria-label="Integration and Checkout">
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-stretch">
+      <!-- Integrations Info -->
+      <div class="ambient-panel rounded-[32px] p-8 md:p-10 border border-slate-200 bg-white/50 backdrop-blur-sm flex flex-col justify-between">
+        <div class="space-y-4">
+          <span class="section-kicker">Integrations</span>
+          <h2 class="text-2xl font-bold text-slate-900 font-display">Connected to Your Existing Stack</h2>
+          <p class="body-copy text-slate-600 font-light max-w-md">
+            We configure safe, secure webhooks, vector connections, and client databases directly interacting with the products you already rely on.
+          </p>
+        </div>
+
+        {integrations.length > 0 && (
+          <div class="flex flex-wrap gap-2.5 pt-8">
+            {integrations.map((item) => (
+              <span class="px-3.5 py-1.5 rounded-xl bg-indigo-50 border border-indigo-100/60 text-indigo-700 text-xs font-semibold tracking-wide font-sans shadow-sm">
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- High-Ticket Checkout Card -->
+      <div class="bg-slate-950 border border-slate-800 text-white rounded-[32px] p-8 md:p-10 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div class="absolute -top-12 -right-12 w-40 h-40 bg-teal-500/10 rounded-full blur-[60px] pointer-events-none"></div>
+        
+        <div class="relative z-10 space-y-6">
+          <div>
+            <span class="text-[9px] font-bold uppercase tracking-[0.22em] text-teal-400 bg-teal-950 border border-teal-900 px-2.5 py-0.5 rounded-full">
+              System Checkout
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 border-b border-white/10 pb-6">
+            <div>
+              <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-sans">Expected Delivery</p>
+              <p class="text-xl font-extrabold text-white mt-1 font-display">{expected_delivery}</p>
+            </div>
+            <div>
+              <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-sans">Starting Quote</p>
+              <p class="text-xl font-extrabold text-white mt-1 font-display">{starting_price}</p>
+            </div>
+          </div>
+          
+          <div class="space-y-2 text-xs text-slate-300 font-sans font-light leading-relaxed">
+            <p>✓ Custom n8n workflow pipelines included.</p>
+            <p>✓ Full client-side data configuration & Supabase hook setup.</p>
+            <p>✓ Hand-off instruction session & 30 days post-launch support.</p>
+          </div>
+        </div>
+
+        <div class="pt-8 relative z-10">
+          <button id="deploy-system-btn" class="w-full justify-center inline-flex items-center justify-center px-6 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+            Deploy This System For My Business
+            <i data-lucide="sparkles" class="w-4 h-4 ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Deep Dive Article Content & FAQ Accordion -->
+  <section class="site-shell pb-16 md:pb-24" aria-label="Technical Details">
+    <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm">
+      <span class="section-kicker mb-4">Implementation breakdown</span>
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 font-display">Deep Dive & Technical Breakdown</h2>
+      <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8 mt-4 text-slate-650">
+        <MDXComponents>
+          <Content />
+        </MDXComponents>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  {faqs.length > 0 && (
+    <section class="site-shell pb-24" aria-label="Frequently Asked Questions">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="space-y-4 mb-10">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
+            Service FAQ
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 font-display">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="group border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-6 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between font-sans text-sm font-semibold text-slate-900 cursor-pointer list-none">
+                <span>{faq.q}</span>
+                <span class="ml-1.5 shrink-0 rounded-full bg-slate-100 p-1.5 text-slate-900 group-open:rotate-180 transition duration-300">
+                  <svg class="h-4.5 w-4.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </span>
+              </summary>
+              <p class="mt-4 leading-relaxed text-xs text-slate-650 font-light font-sans border-t border-slate-100 pt-4">
+                {faq.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const auditModal = document.getElementById('audit-modal');
+    const openBtn = document.getElementById('deploy-system-btn');
+
+    if (auditModal && openBtn) {
+      openBtn.addEventListener('click', () => {
+        auditModal.classList.remove('hidden');
+        auditModal.classList.add('flex');
+        setTimeout(() => {
+          auditModal.classList.remove('opacity-0');
+          auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+        }, 10);
+      });
+    }
+  });
+</script>

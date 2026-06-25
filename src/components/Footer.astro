@@ -1,0 +1,187 @@
+---
+import { site } from '../data/site';
+
+const serviceLinks = [
+  { name: 'AI Support Chatbots', href: '/services/ai-support-chatbots/' },
+  { name: 'WhatsApp Automation', href: '/services/whatsapp-automation/' },
+  { name: 'Workflow Automation', href: '/services/workflow-automation/' },
+  { name: 'SaaS MVP Development', href: '/services/saas-mvp-development/' },
+];
+
+const resourceLinks = [
+  { name: 'Resources Hub', href: '/resources/' },
+  { name: 'n8n Setup Guide', href: '/resources/sample-resource/' },
+  { name: 'Latest Blog Posts', href: '/blog/' },
+];
+
+const legalLinks = [
+  { name: 'Privacy Policy', href: '/privacy-policy/' },
+  { name: 'Terms of Service', href: '/terms/' },
+  { name: 'Disclaimer', href: '/disclaimer/' },
+  { name: 'Cookie Policy', href: '/cookies/' },
+];
+
+const companyLinks = [
+  { name: 'About Us', href: '/about/' },
+  { name: 'Contact Us', href: '/contact/' },
+];
+---
+
+<footer class="border-t border-slate-200 bg-slate-50/50 py-12 md:py-16">
+  <div class="site-shell">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
+      <!-- Brand & Entity details -->
+      <div class="lg:col-span-3 space-y-4">
+        <a href="/" class="flex items-center gap-3">
+          <img src="/assets/logo.png" alt="Smesh.Dev logo" class="h-9 w-9 object-contain" />
+          <div>
+            <div class="text-lg font-bold text-slate-900 leading-none">Smesh.Dev</div>
+            <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-slate-400 font-semibold font-sans">Automation Studio</div>
+          </div>
+        </a>
+
+        <p class="text-xs leading-relaxed text-slate-500 max-w-sm">
+          Smesh.Dev is operated under <strong>BismillahTC Digital Services</strong>, spearheaded by developer <strong>Haider Ali</strong>. We ship grounded AI agents, automated sales pipelines, and high-performance web systems.
+        </p>
+
+        <!-- SEO Social Graph Anchors -->
+        <div class="flex items-center gap-3 pt-2 font-sans" aria-label="Social Profiles">
+          <a href="https://github.com/affaan-m" target="_blank" rel="me noopener" class="text-slate-400 hover:text-slate-900 transition" aria-label="GitHub Developer Profile">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+          <a href="https://wa.me/923422222752" target="_blank" rel="noopener" class="text-slate-400 hover:text-emerald-600 transition" aria-label="WhatsApp Business Contact">
+            <i data-lucide="phone-call" class="w-4 h-4"></i>
+          </a>
+          <a href={`mailto:${site.email}`} class="text-slate-400 hover:text-indigo-600 transition" aria-label="Email Address">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links Grid -->
+      <div class="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:col-span-6 font-sans">
+        <div>
+          <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Services</h3>
+          <ul class="mt-4 space-y-2.5">
+            {serviceLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-xs text-slate-500 hover:text-slate-900 transition">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Company</h3>
+          <ul class="mt-4 space-y-2.5">
+            {companyLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-xs text-slate-500 hover:text-slate-900 transition">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Resources</h3>
+          <ul class="mt-4 space-y-2.5">
+            {resourceLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-xs text-slate-500 hover:text-slate-900 transition">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Legal</h3>
+          <ul class="mt-4 space-y-2.5">
+            {legalLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-xs text-slate-500 hover:text-slate-900 transition">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Newsletter Form (Linked to Supabase) -->
+      <div class="lg:col-span-3 space-y-4 font-sans">
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Join Newsletter</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">Blueprints and setups on n8n and vector setups.</p>
+        
+        <form id="footer-newsletter-form" class="space-y-2">
+          <div class="flex gap-2">
+            <input type="email" id="news-email" required placeholder="name@domain.com" class="flex-grow rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs focus:ring-1 focus:ring-slate-900 focus:outline-none">
+            <button type="submit" id="news-submit-btn" class="bg-slate-900 hover:bg-slate-800 text-white rounded-lg px-3 flex items-center justify-center transition" aria-label="Subscribe">
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+          <p id="news-status-msg" class="text-[10px] text-emerald-600 hidden font-semibold">Subscribed successfully!</p>
+          <p id="news-error-msg" class="text-[10px] text-rose-600 hidden font-semibold">Subscription failed. Try again.</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Copyright banner -->
+    <div class="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between font-sans">
+      <span>&copy; {new Date().getFullYear()} BismillahTC Digital Services. All rights reserved.</span>
+      <span>Engineered for SEO entity mapping, AEO positioning, and automated flow scaling.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('footer-newsletter-form') as HTMLFormElement | null;
+    const emailInput = document.getElementById('news-email') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('news-submit-btn') as HTMLButtonElement | null;
+    
+    const successMsg = document.getElementById('news-status-msg');
+    const errorMsg = document.getElementById('news-error-msg');
+
+    if (!form || !emailInput || !submitBtn) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      if (successMsg) successMsg.classList.add('hidden');
+      if (errorMsg) errorMsg.classList.add('hidden');
+
+      try {
+        const payload = {
+          name: 'Newsletter Subscriber',
+          whatsapp: '0000000000', // Default phone fallback
+          email: email,
+          service: 'Newsletter Signup',
+          message: 'User subscribed to newsletter updates via footer email collection field.',
+          created_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase.from('contact_submissions').insert([payload]);
+        if (error) throw error;
+
+        if (successMsg) successMsg.classList.remove('hidden');
+        form.reset();
+      } catch(err) {
+        console.error('Newsletter sign-up failed:', err);
+        if (errorMsg) errorMsg.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  });
+</script>

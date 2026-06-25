@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MDXComponents from '../../components/MDXComponents.astro';
+import { site } from '../../data/site';
+import { getAllBlogPosts } from '../../lib/supabase';
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  const posts = await getAllBlogPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { title, excerpt: description, category, author = "Haider Ali", content, cover_image, published_at } = post;
+const date = new Date(published_at);
+
+const htmlContent = marked.parse(content);
+
+function extractHeadings(markdown: string) {
+  const list = [];
+  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  let match;
+  while ((match = headingRegex.exec(markdown)) !== null) {
+    const depth = match[1].length;
+    const text = match[2].trim();
+    const slug = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-');
+    list.push({ depth, text, slug });
+  }
+  return list;
+}
+
+const headings = extractHeadings(content);
+
+const formatDate = (value?: Date) => {
+  if (!value) return '';
+  return value.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
+
+const lastUpdatedDate = new Date(date);
+lastUpdatedDate.setDate(lastUpdatedDate.getDate() + 1); // Mock 1 day later update for Google Freshness
+
+// Breadcrumbs navigation path
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Blog', href: '/blog/' },
+  { name: category || 'Articles', href: `/blog/#${(category || '').toLowerCase().replace(/\s+/g, '-')}` }
+];
+
+// BlogPosting JSON-LD Schema Markup
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.href
+  },
+  "headline": title,
+  "description": description,
+  "image": site.url + (cover_image || '/assets/images/placeholder.png'),
+  "datePublished": date.toISOString(),
+  "dateModified": lastUpdatedDate.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Haider Ali",
+    "jobTitle": "Principal Developer & Automation Engineer",
+    "url": "https://github.com/affaan-m"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BismillahTC Digital Services",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site.url}/assets/logo.png`
+    }
+  }
+};
+const metaDescription = description || `Read article: ${title}. Learn n8n automation setups, database design, and optimization steps by Haider Ali (BismillahTC).`;
+const postImage = cover_image || '/assets/images/placeholder.png';
+---
+
+<BaseLayout title={title} description={metaDescription} image={postImage} schemaType="other">
+  <!-- Injected structured BlogPosting schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+
+  <article class="py-14 md:py-20 bg-white" aria-label="Blog Article Content">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Above the Fold (Breadcrumbs & Headline & Meta) -->
+      <nav class="flex flex-wrap items-center gap-2 text-[10px] font-sans font-bold uppercase tracking-wider text-slate-400 mb-6" aria-label="Breadcrumb">
+        {breadcrumbs.map((crumb, idx) => (
+          <>
+            <a href={crumb.href} class="hover:text-[color:var(--accent-strong)] transition">{crumb.name}</a>
+            {idx < breadcrumbs.length - 1 && <span class="text-slate-350">/</span>}
+          </>
+        ))}
+      </nav>
+
+      <div class="space-y-4 mb-8">
+        <h1 class="text-3xl md:text-5xl font-extrabold font-display text-slate-900 tracking-tight leading-tight">
+          {title}
+        </h1>
+
+        <!-- Author Meta Info -->
+        <div class="flex flex-wrap items-center gap-4 py-4 border-y border-slate-100 font-sans text-xs text-slate-500">
+          <img 
+            src="/assets/images/resources/author-haider-ali.webp" 
+            alt="Haider Ali Avatar" 
+            class="w-10 h-10 rounded-full border border-slate-200 object-cover"
+          />
+          <div>
+            <div class="flex items-center gap-1.5 font-bold text-slate-900">
+              <span>{author}</span>
+              <span class="text-slate-350">&bull;</span>
+              <span class="text-[10px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2 py-0.5 rounded">Lead Developer</span>
+            </div>
+            <div class="mt-0.5 text-[10px] text-slate-400">
+              Published on {formatDate(date)} &bull; Updated on {formatDate(lastUpdatedDate)}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro lead paragraph (The Hook - first 15%) -->
+      <p class="text-base text-slate-650 leading-relaxed font-light font-sans mb-6 border-l-4 border-[color:var(--accent)] pl-4 italic">
+        {description}
+      </p>
+
+      <!-- Clickable Table of Contents (TOC) -->
+      {headings.length > 0 && (
+        <nav class="ambient-panel rounded-2xl p-5 border border-slate-250 bg-slate-50/50 my-8 font-sans" aria-label="Table of Contents">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Jump To Section</p>
+          <ul class="space-y-2">
+            {headings.filter(h => h.depth <= 3).map(h => (
+              <li class={h.depth === 3 ? "pl-4" : ""}>
+                <a href={`#${h.slug}`} class="text-xs text-slate-700 hover:text-[color:var(--accent-strong)] hover:underline transition">
+                  {h.depth === 3 ? "→ " : ""}{h.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <!-- Inline Hook CTA Banner -->
+      <aside class="surface-card rounded-2xl p-5 border border-[color:var(--line)] bg-[color:var(--bg-soft)] my-8 font-sans flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Short on time?</h4>
+          <p class="text-[11px] text-slate-500 mt-1 leading-normal">Let us configure and launch this custom automation system for your team.</p>
+        </div>
+        <button class="trigger-audit-modal shrink-0 inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold transition cursor-pointer">
+          Claim Tech Audit
+        </button>
+      </aside>
+
+      <!-- Main Value-Bomb Body Content -->
+      <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8">
+        <MDXComponents>
+          <div set:html={htmlContent} />
+        </MDXComponents>
+      </div>
+
+      <!-- Mid-Post Call-Out Box -->
+      <div class="my-8 rounded-2xl border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]/20 p-6 font-sans">
+        <div class="flex gap-3">
+          <div class="text-[color:var(--accent-strong)] mt-0.5"><i data-lucide="info" class="w-5 h-5"></i></div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">Strategic Case Study</h4>
+            <p class="text-xs text-slate-600 mt-1 font-light leading-relaxed">
+              See this integration workflow in action: Read how we automated lead capture sync and n8n pipelines in our <a href="/portfolio/agency-website-automation/" class="font-bold text-[color:var(--accent-strong)] underline hover:text-[color:var(--accent-strong)]">agency website case study</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Conclusion & wrap-up -->
+      <section class="mt-12 pt-8 border-t border-slate-100 font-sans" aria-label="Article Conclusion">
+        <h2 class="text-xl font-bold text-slate-900 mb-4" id="article-summary-heading">Summary wrap-up</h2>
+        <p class="text-xs text-slate-600 leading-relaxed font-light">
+          Automating operational workflows using custom-mapped n8n instances and centralizing logs inside Supabase is the single highest-leverage move for service operations today. It eliminates overhead and ensures zero customer inquiries slip through the cracks.
+        </p>
+      </section>
+
+      <!-- The Ultimate Funnel Exit (The Closer CTA) -->
+      <div class="mt-12 p-8 md:p-10 bg-slate-900 text-white rounded-3xl text-center space-y-6 shadow-md relative overflow-hidden font-sans">
+        <div class="absolute inset-0 bg-gradient-to-tr from-teal-900/30 to-indigo-900/20 pointer-events-none"></div>
+        <div class="space-y-3 relative z-10">
+          <h3 class="text-xl md:text-2xl font-extrabold text-white">Ready to implement this system?</h3>
+          <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed font-light">
+            Skip the manual headaches. Schedule a free 15-minute discovery audit call and let's map out the shortest automation path for your workflows.
+          </p>
+        </div>
+        <div class="flex justify-center pt-2 relative z-10">
+          <button class="trigger-audit-modal inline-flex items-center px-6 py-3 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-xs font-bold rounded-xl transition shadow-lg cursor-pointer">
+            Book Your Free Discovery Call
+            <i data-lucide="arrow-right" class="h-3.5 h-3.5 ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- High EEAT Author Bio Box -->
+      <section class="mt-12 p-6 border border-slate-200 bg-slate-50/50 rounded-2xl flex flex-col sm:flex-row gap-4 items-start font-sans" aria-label="Author Profile Info">
+        <img 
+          src="/assets/images/resources/author-haider-ali.webp" 
+          alt="Haider Ali Bio Picture" 
+          class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0"
+        />
+        <div class="space-y-2">
+          <div>
+            <h4 class="font-bold text-slate-900 text-xs flex items-center gap-1.5">
+              About the Author: Haider Ali
+              <span class="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100/50 px-2 py-0.5 rounded">Verified Specialist</span>
+            </h4>
+            <p class="text-[11px] text-slate-450 mt-0.5">Principal Developer & Automation Engineer at BismillahTC Digital Services</p>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed font-light">
+            Haider specializes in designing lightweight, offline-first checkout tools, integrating secure Supabase PostgreSQL schemas, and configuring complex n8n automation pipelines for founders and e-commerce brands worldwide.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </article>
+</BaseLayout>
+
+<!-- Modal Script Integration -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const auditModal = document.getElementById('audit-modal');
+    const openBtns = document.querySelectorAll('.trigger-audit-modal');
+
+    if (auditModal) {
+      openBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          auditModal.classList.remove('hidden');
+          auditModal.classList.add('flex');
+          setTimeout(() => {
+            auditModal.classList.remove('opacity-0');
+            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+          }, 10);
+        });
+      });
+    }
+  });
+</script>

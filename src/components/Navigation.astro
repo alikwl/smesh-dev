@@ -1,0 +1,174 @@
+---
+import ContactForm from './ContactForm.astro';
+
+const currentPath = Astro.url.pathname;
+const isActive = (url: string) => {
+  if (url === '/') return currentPath === '/' || currentPath === '/index.html';
+  return currentPath.startsWith(url);
+};
+
+const menuItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/' },
+  { name: 'Portfolio', url: '/portfolio/' },
+  { name: 'Resources', url: '/resources/' },
+  { name: 'About', url: '/about/' },
+  { name: 'Blog', url: '/blog/' },
+  { name: 'Contact', url: '/contact/' },
+];
+---
+
+<header id="site-navigation" class="sticky top-0 z-50 border-b border-transparent bg-white/80 backdrop-blur-md transition-all duration-300">
+  <div class="site-shell">
+    <div class="flex min-h-[64px] items-center justify-between gap-4">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/assets/logo.png" alt="Smesh.Dev logo" class="h-8 w-8 object-contain" />
+        <div>
+          <div class="font-display text-[1.1rem] font-bold leading-none text-slate-900">Smesh.Dev</div>
+          <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-semibold font-sans">Automation Studio</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Link list -->
+      <nav class="hidden items-center gap-2 lg:flex font-sans">
+        {menuItems.map((item) => (
+          <a
+            href={item.url}
+            class:list={[
+              'rounded-full px-2.5 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition',
+              isActive(item.url)
+                ? 'bg-slate-900 text-white shadow-sm'
+                : 'text-slate-650 hover:bg-slate-100 hover:text-slate-900',
+            ]}
+          >
+            {item.name}
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA Section -->
+      <div class="hidden items-center gap-3 lg:flex font-sans">
+        <button id="nav-audit-btn" class="button-primary px-4 py-2 text-xs font-bold shadow-md cursor-pointer">
+          Get a Free Audit
+          <i data-lucide="sparkles" class="h-3.5 w-3.5 ml-1"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-nav-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-slate-200 bg-white text-slate-800 lg:hidden" aria-controls="mobile-nav-menu" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <span id="nav-menu-icon" class="flex h-5 w-5 flex-col items-center justify-center gap-[3.5px]">
+          <span class="block h-[1.8px] w-5 rounded-full bg-current"></span>
+          <span class="block h-[1.8px] w-5 rounded-full bg-current"></span>
+          <span class="block h-[1.8px] w-5 rounded-full bg-current"></span>
+        </span>
+        <span id="nav-close-icon" class="hidden relative h-5 w-5">
+          <span class="absolute left-1/2 top-1/2 block h-[1.8px] w-5 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-current"></span>
+          <span class="absolute left-1/2 top-1/2 block h-[1.8px] w-5 -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-current"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Nav Overlay Menu -->
+  <div id="mobile-nav-menu" class="hidden border-t border-slate-100 bg-white lg:hidden">
+    <div class="site-shell py-5 space-y-4 font-sans">
+      <div class="grid gap-2">
+        {menuItems.map((item) => (
+          <a href={item.url} class={`block rounded-2xl px-4 py-3 text-sm font-semibold transition ${isActive(item.url) ? 'bg-slate-900 text-white shadow-sm' : 'bg-slate-50 text-slate-650 hover:bg-slate-100'}`}>
+            {item.name}
+          </a>
+        ))}
+      </div>
+
+      <div class="pt-2">
+        <button id="mobile-nav-audit-btn" class="button-primary w-full justify-center py-3 text-sm font-bold shadow-md cursor-pointer">
+          Get a Free Audit
+          <i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Audit Modal Container -->
+<div id="audit-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-all duration-300">
+  <div class="bg-white rounded-[24px] sm:rounded-[32px] max-w-3xl w-full border border-slate-100 shadow-2xl relative scale-95 transition-all duration-300 flex flex-col overflow-hidden max-h-[92vh] sm:max-h-[90vh]">
+    <button id="close-audit-modal" class="absolute top-4 right-4 z-20 p-2 rounded-xl text-slate-450 hover:bg-slate-50 hover:text-slate-800 transition cursor-pointer bg-white/80 backdrop-blur-xs shadow-xs border border-slate-100/50" aria-label="Close modal">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+    <div class="overflow-y-auto p-5 sm:p-8 md:p-10">
+      <ContactForm isBare={true} />
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileBtn = document.getElementById('mobile-nav-btn');
+    const mobileMenu = document.getElementById('mobile-nav-menu');
+    const menuIcon = document.getElementById('nav-menu-icon');
+    const closeIcon = document.getElementById('nav-close-icon');
+    const header = document.getElementById('site-navigation');
+
+    const auditModal = document.getElementById('audit-modal');
+    const openAuditBtns = [
+      document.getElementById('nav-audit-btn'),
+      document.getElementById('mobile-nav-audit-btn')
+    ];
+    const closeAuditBtn = document.getElementById('close-audit-modal');
+
+    // Scroll state header
+    const updateHeader = () => {
+      if (!header) return;
+      const scrolled = window.scrollY > 15;
+      header.classList.toggle('shadow-[0_8px_30px_rgba(15,23,42,0.06)]', scrolled);
+      header.classList.toggle('border-slate-100', scrolled);
+      header.classList.toggle('bg-white/95', scrolled);
+    };
+
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+
+    // Mobile menu toggles
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+        mobileBtn.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden');
+        menuIcon?.classList.toggle('hidden');
+        closeIcon?.classList.toggle('hidden');
+      });
+    }
+
+    // Modal Control
+    const openModal = () => {
+      if (!auditModal) return;
+      auditModal.classList.remove('hidden');
+      auditModal.classList.add('flex');
+      setTimeout(() => {
+        auditModal.classList.remove('opacity-0');
+        auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+      }, 10);
+    };
+
+    const closeModal = () => {
+      if (!auditModal) return;
+      auditModal.classList.add('opacity-0');
+      auditModal.querySelector('.bg-white')?.classList.add('scale-95');
+      setTimeout(() => {
+        auditModal.classList.remove('flex');
+        auditModal.classList.add('hidden');
+      }, 300);
+    };
+
+    openAuditBtns.forEach(btn => btn?.addEventListener('click', openModal));
+    closeAuditBtn?.addEventListener('click', closeModal);
+    
+    // Close modal on background click
+    auditModal?.addEventListener('click', (e) => {
+      if (e.target === auditModal) closeModal();
+    });
+  });
+</script>

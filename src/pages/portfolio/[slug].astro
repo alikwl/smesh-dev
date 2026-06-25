@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SmartImage from '../../components/SmartImage.astro';
+import { getPortfolioImage } from '../../data/portfolioImages';
+import { site } from '../../data/site';
+import MDXComponents from '../../components/MDXComponents.astro';
+import { getAllPortfolio } from '../../lib/supabase';
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  const items = await getAllPortfolio();
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { slug, title, client_type: category, description, problem, solution, outcome: result, cover_image: image, tech_stack: techList = [], content } = item;
+
+const htmlContent = marked.parse(content || '');
+
+// Image resolution
+const heroImage = image || getPortfolioImage(slug) || '/assets/images/placeholder.png';
+const client = category || 'Enterprise Client';
+
+const canonicalURL = new URL(Astro.url.pathname, site.url).href;
+
+// 2026 CaseStudy JSON-LD Schema
+const caseStudySchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": `Case Study: ${title}`,
+  "description": description,
+  "image": `${site.url}${heroImage}`,
+  "author": {
+    "@type": "Person",
+    "name": "Haider Ali",
+    "url": site.url
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BismillahTC Digital Services",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site.url}/assets/logo.png`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  }
+};
+const metaDescription = description || `Read case study: ${title}. Learn how Smesh.Dev engineered a custom system resolving bottlenecks using n8n and databases.`;
+---
+
+<BaseLayout title={`Case Study: ${title}`} description={metaDescription} image={heroImage}>
+  <!-- Injected JSON-LD Rich Snippet Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(caseStudySchema)} />
+
+  <!-- Breadcrumbs -->
+  <nav class="site-shell py-6 text-xs font-sans" aria-label="Breadcrumb">
+    <ol class="inline-flex flex-wrap items-center gap-2 rounded-full border border-[color:var(--line)] bg-white/78 px-4 py-2 text-[color:var(--muted)]">
+      <li class="inline-flex items-center">
+        <a href="/" class="inline-flex items-center transition hover:text-[color:var(--ink)]">
+          <i data-lucide="home" class="w-3 h-3 mr-1.5"></i>
+          Home
+        </a>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <i data-lucide="chevron-right" class="mx-1 h-3 w-3 text-[color:var(--muted-soft)]"></i>
+          <a href="/portfolio/" class="transition hover:text-[color:var(--ink)]">Portfolio</a>
+        </div>
+      </li>
+      <li aria-current="page">
+        <div class="flex items-center">
+          <i data-lucide="chevron-right" class="mx-1 h-3 w-3 text-[color:var(--muted-soft)]"></i>
+          <span class="font-medium text-[color:var(--ink)]">{title}</span>
+        </div>
+      </li>
+    </ol>
+  </nav>
+
+  <article class="pb-24">
+    <!-- Section 1: Hero Section (Above the Fold) -->
+    <header class="site-shell pt-8 md:pt-12 text-center space-y-6">
+      <div class="max-w-3xl mx-auto space-y-4">
+        <span class="section-kicker">
+          <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i>
+          Business Case Study
+        </span>
+        <h1 class="display-title font-extrabold text-slate-950 leading-[1.08] tracking-tight font-display">
+          {title}
+        </h1>
+        <p class="body-copy max-w-xl mx-auto text-slate-655 leading-relaxed font-light">
+          {description}
+        </p>
+      </div>
+
+      <!-- Quick Summary Card Metadata -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-slate-50 border border-slate-200/60 rounded-[24px] p-6 text-xs text-slate-655 font-sans mt-10 max-w-4xl mx-auto text-left">
+        <div>
+          <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Client</p>
+          <p class="font-bold text-slate-900 mt-1">{client}</p>
+        </div>
+        <div>
+          <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Deployment Category</p>
+          <p class="font-bold text-slate-900 mt-1">{category || 'Automation'}</p>
+        </div>
+        <div>
+          <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Engineering Duration</p>
+          <p class="font-bold text-slate-900 mt-1">10-15 Days</p>
+        </div>
+        <div>
+          <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Tech Stack</p>
+          <p class="font-bold text-slate-900 mt-1 font-mono">{techList.slice(0, 3).join(', ')}</p>
+        </div>
+      </div>
+
+      <!-- CTA Hook button -->
+      <div class="pt-6">
+        <button class="trigger-audit-modal button-primary text-xs py-3.5 px-8 cursor-pointer">
+          Get A Similar Result
+          <i data-lucide="sparkles" class="w-4 h-4 ml-1.5"></i>
+        </button>
+      </div>
+
+      <!-- High-Quality Visual Thumbnail (Strictly 4:3 default ratio) -->
+      {heroImage && (
+        <div class="max-w-4xl mx-auto rounded-[32px] overflow-hidden border border-slate-200 bg-slate-100/50 shadow-lg mt-14 aspect-[4/3] relative">
+          <SmartImage src={heroImage} alt={`Case Study: ${title} Showcase Image`} class="w-full h-full object-cover" />
+        </div>
+      )}
+    </header>
+
+    <!-- Section 2: The Hook (Problem & Goal) -->
+    <section class="site-shell py-20" aria-label="Project Challenges">
+      <div class="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+        <!-- Challenge Card -->
+        <div class="surface-card rounded-[28px] p-8 border border-slate-200/60 bg-white/60 flex flex-col justify-between">
+          <div class="space-y-4">
+            <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400 font-sans">The Challenge</span>
+            <h3 class="text-lg font-bold text-slate-950 font-display">Manual Bottlenecks</h3>
+            <p class="text-xs text-slate-655 leading-relaxed font-light">{problem || "Operational inefficiencies, typing backlogs, and slow response loops led to missed sales conversions."}</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-[10px] font-mono text-slate-450">
+            <i data-lucide="alert-circle" class="w-4 h-4 mr-1.5 text-rose-500"></i> Status: Resolved
+          </div>
+        </div>
+
+        <!-- Target Card -->
+        <div class="surface-card rounded-[28px] p-8 border border-slate-200/60 bg-white/60 flex flex-col justify-between">
+          <div class="space-y-4">
+            <span class="text-[9px] font-bold uppercase tracking-wider text-[color:var(--accent-strong)] font-sans">The Project Target</span>
+            <h3 class="text-lg font-bold text-slate-950 font-display">Automated Solution</h3>
+            <p class="text-xs text-slate-655 leading-relaxed font-light">{solution || "Deploy secure database integration nodes, sync catalog structures, and execute automatic customer updates."}</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-[10px] font-mono text-[color:var(--accent-strong)]">
+            <i data-lucide="check-circle" class="w-4 h-4 mr-1.5 text-teal-600"></i> Status: Deployed
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The Core (Process & Solution) -->
+    <section class="site-shell pb-20" aria-label="Case Study Execution">
+      <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 max-w-4xl mx-auto">
+        <span class="section-kicker mb-4">Implementation Architecture</span>
+        <h2 class="text-2xl font-bold text-slate-950 mb-6 font-display">Execution Blueprint & Details</h2>
+        <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8 text-slate-655">
+          <MDXComponents>
+            <div set:html={htmlContent} />
+          </MDXComponents>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: The Proof (Results & Impact) -->
+    <section class="site-shell pb-20" aria-label="Results and Impact">
+      <div class="ambient-panel rounded-[32px] p-8 md:p-12 border border-[color:var(--line)] bg-[rgba(15,118,110,0.03)] text-center space-y-4 max-w-4xl mx-auto">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)]">Business Impact</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 font-display">Proven Metrics Achieved</h2>
+        
+        <div class="py-6 max-w-2xl mx-auto">
+          <p class="text-sm md:text-base text-slate-700 leading-relaxed font-light">
+            {result || "Operations synced cleanly to Supabase, eliminating order log delays and saving up to 15+ staff hours daily."}
+          </p>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 text-xs font-mono text-slate-400 border-t border-slate-200/50 pt-6">
+          <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Verify: Active in Production
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: The Funnel Exit: Final CTA (Conversion) -->
+    <section class="site-shell max-w-4xl mx-auto" aria-label="Case Study Conversion">
+      <div class="bg-slate-950 text-white rounded-[40px] p-8 md:p-16 text-center space-y-6 shadow-xl relative overflow-hidden font-sans border border-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-950/40 to-teal-950/30 pointer-events-none"></div>
+        <div class="absolute -top-1/2 -left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-1/2 -right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-2xl mx-auto space-y-6 relative z-10">
+          <span class="section-kicker border-white/10 text-teal-400 bg-teal-950/40">Scale Your Operations</span>
+          <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight font-display">
+            Claim Your Free 15-Minute Tech Strategy Call
+          </h2>
+          <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto font-light leading-relaxed">
+            Let's audit your manual loops, design a prototype sandbox, and calculate custom automation savings.
+          </p>
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button class="trigger-audit-modal w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+              Book Tech Call Now
+            </button>
+            <a href="/portfolio/" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border border-slate-800 text-xs font-bold rounded-xl bg-slate-900/50 hover:bg-slate-900 text-white transition">
+              Back to Portfolio
+            </a>
+          </div>
+          <p class="text-[10px] text-slate-400 font-mono tracking-wider pt-2">✓ No pitch. Just pure architecture logic.</p>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const auditModal = document.getElementById('audit-modal');
+    const openBtns = document.querySelectorAll('.trigger-audit-modal');
+
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (auditModal) {
+          auditModal.classList.remove('hidden');
+          auditModal.classList.add('flex');
+          setTimeout(() => {
+            auditModal.classList.remove('opacity-0');
+            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+          }, 10);
+        }
+      });
+    });
+  });
+</script>
