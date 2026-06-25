@@ -1,1 +1,0 @@
-import{s as e}from"./supabase.DrEM_WOr.js";const s=async()=>{try{const{data:{session:o}}=await e.auth.getSession();if(!o)window.location.href="/login";else{const t=document.getElementById("auth-loading");t&&(t.classList.add("opacity-0","transition-all","duration-350"),setTimeout(()=>t.remove(),350))}}catch(o){console.error(o),window.location.href="/login"}};s();
