@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-// Trigger push for Deploy Admin Dashboard workflow
+// Trigger push for Deploy Admin Dashboard workflow with keep_files
 
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || 'https://placeholder-project-url.supabase.co';
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
