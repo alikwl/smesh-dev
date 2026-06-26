@@ -5,11 +5,48 @@ import { getCollection, getEntry } from 'astro:content';
 import { getAllResources } from '../../lib/supabase';
 
 export async function getStaticPaths() {
-  const resources = await getAllResources();
-  return resources.map((r) => ({
-    params: { slug: r.slug },
-    props: { resource: r },
-  }));
+  const localResources = await getCollection('resources');
+  const localSlugs = new Set(localResources.map(r => r.id.replace(/\.(md|mdx)$/, '')));
+
+  let dbResources = [];
+  try {
+    dbResources = await getAllResources();
+  } catch (err) {
+    console.warn("[Warning] Failed to fetch resources from Supabase:", err);
+  }
+
+  if (dbResources && dbResources.length > 0) {
+    return dbResources
+      .filter((r) => localSlugs.has(r.slug))
+      .map((r) => ({
+        params: { slug: r.slug },
+        props: { resource: r },
+      }));
+  }
+
+  // Fallback to local files only
+  return localResources.map((r) => {
+    const slug = r.id.replace(/\.(md|mdx)$/, '');
+    return {
+      params: { slug },
+      props: {
+        resource: {
+          slug,
+          title: r.data.title,
+          category: r.data.category,
+          target_service_tag: r.data.targetServiceTag,
+          description: r.data.description,
+          premium: r.data.premium,
+          download_url: r.data.downloadUrl,
+          bullet_points: r.data.bulletPoints,
+          preview_image: r.data.previewImage,
+          estimated_value: r.data.estimatedValue,
+          teaser_points: r.data.teaserPoints,
+          table_of_contents: r.data.tableOfContents,
+        }
+      }
+    };
+  });
 }
 
 const { resource } = Astro.props;
