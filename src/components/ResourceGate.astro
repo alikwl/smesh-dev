@@ -114,7 +114,7 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
   import { marked } from 'marked';
   import { supabase } from '../lib/supabase';
 
-  document.addEventListener('DOMContentLoaded', () => {
+  const initGate = () => {
     const wrapper = document.querySelector('.resource-gate-wrapper');
     if (!wrapper) return;
 
@@ -199,7 +199,8 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
       try {
         const { data, error } = await supabase.rpc('unlock_resource', {
           email_input: email,
-          slug_input: slug
+          slug_input: slug,
+          page_url_input: window.location.href
         });
 
         if (error) {
@@ -281,6 +282,8 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
         const payload = {
           email: email,
           resource_title: wrapper.getAttribute('data-title') || '',
+          resource_slug: slug,
+          page_url: window.location.href,
           gdpr_consent: gdprConsent,
           created_at: new Date().toISOString()
         };
@@ -291,5 +294,11 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
 
       await unlockResource(email, false);
     });
-  });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGate);
+  } else {
+    initGate();
+  }
 </script>
