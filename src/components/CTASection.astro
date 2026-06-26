@@ -1,0 +1,61 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  title = "Ready to build or automate your process?",
+  description = "Get a free 30-minute consultation. We'll map your system workflow together, no strings attached.",
+  ctaText = "Get a Custom Quote",
+  ctaLink = "#contact"
+} = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-br from-indigo-500 via-blue-500 to-emerald-500 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
+      <!-- Decorative pattern background -->
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+      
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold font-display leading-tight">{title}</h2>
+          <p class="mt-4 text-sm text-white/80 leading-relaxed font-light">
+            {description}
+          </p>
+          <div class="mt-6">
+            <a href={ctaLink} class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-indigo-700 bg-white hover:bg-slate-50 shadow-md hover:shadow-lg transition-all duration-200">
+              {ctaText}
+              <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-white/10 rounded-2xl p-6 border border-white/20 backdrop-blur-sm space-y-4">
+          <h3 class="text-lg font-bold font-display text-white">Our 4-Step Process</h3>
+          <ol class="space-y-3 text-xs text-white/90">
+            <li class="flex items-start">
+              <span class="font-bold mr-2">1.</span>
+              <span>Understand your business process.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">2.</span>
+              <span>Map the shortest automation workflow.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">3.</span>
+              <span>Build, test, and link webhooks/APIs.</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold mr-2">4.</span>
+              <span>Launch and hand over control.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

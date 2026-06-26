@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SmartImage from '../components/SmartImage.astro';
+import { site } from '../data/site';
+import { deliveryPrinciples, proofMetrics } from '../data/proof';
+---
+
+<BaseLayout title="About Smesh.Dev | AI Automation & Custom Web Studio" description="Meet Haider Ali, founder of Smesh.Dev under BismillahTC Digital Services. We build custom n8n workflows, local retail POS systems, and automation databases.">
+  <section class="site-shell py-16 md:py-24">
+    <div class="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-end">
+      <div>
+        <div class="section-kicker">About the studio</div>
+        <h1 class="display-title mt-5 text-[color:var(--ink)]">Independent execution for founders and operators who need reliable digital systems, not agency theatre.</h1>
+        <p class="body-copy mt-6 max-w-2xl">
+          Smesh.Dev is the personal studio of Haider Ali, focused on websites, automation, internal tools, and AI support systems that solve real operational bottlenecks for service businesses and product teams.
+        </p>
+      </div>
+
+      <div class="ambient-panel rounded-[32px] p-6 md:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">What clients value most</p>
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          {proofMetrics.slice(0, 3).map((metric) => (
+            <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-4">
+              <p class="text-2xl font-semibold text-[color:var(--ink)]">{metric.value}</p>
+              <p class="mt-2 text-sm text-[color:var(--muted)]">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell pb-16 md:pb-20">
+    <div class="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
+      <div class="surface-card overflow-hidden rounded-[34px] border border-slate-200/60 bg-slate-50 min-h-[360px] relative aspect-square lg:aspect-auto lg:h-full">
+        <SmartImage
+          src="/assets/images/resources/author-haider-ali.webp"
+          alt="Haider Ali - Founder & Lead Developer"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </div>
+
+      <div class="surface-card rounded-[34px] p-8 md:p-10">
+        <div class="section-kicker">Founder</div>
+        <h2 class="section-title mt-4 text-[color:var(--ink)]">Haider Ali, lead developer and systems integrator</h2>
+        <p class="mt-5 text-sm leading-7 text-[color:var(--muted)]">
+          I work directly with clients from discovery through launch. That means the same person who maps the workflow also writes the implementation, tests the edge cases, and prepares the handover.
+        </p>
+        <p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">
+          My focus is practical execution: simplify the sales journey, reduce repetitive operations, and build web experiences that make the business look trustworthy the moment someone lands on the page.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={`mailto:${site.email}`} class="button-secondary">Email {site.email}</a>
+          <a href={site.whatsappLink} target="_blank" rel="noopener" class="button-primary">WhatsApp {site.whatsapp}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell pb-16 md:pb-20">
+    <div class="max-w-3xl">
+      <div class="section-kicker">Working principles</div>
+      <h2 class="section-title mt-4 text-[color:var(--ink)]">The studio runs on clarity, lean systems, and honest delivery.</h2>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      {deliveryPrinciples.map((principle, index) => (
+        <article class="surface-card rounded-[30px] p-7">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">Principle 0{index + 1}</p>
+          <h3 class="mt-4 text-xl font-semibold text-[color:var(--ink)]">{principle.title}</h3>
+          <p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">{principle.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell pb-20 md:pb-24">
+    <div class="ambient-panel rounded-[36px] p-8 md:p-10">
+      <div class="max-w-3xl">
+        <div class="section-kicker">Engagement style</div>
+        <h2 class="section-title mt-4 text-[color:var(--ink)]">A straightforward process from brief to handover.</h2>
+      </div>
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
+          <p class="text-sm font-semibold text-[color:var(--ink)]">1. Discovery and flow mapping</p>
+          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">We define the real problem, the current friction, and the smallest system that meaningfully improves it.</p>
+        </div>
+        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
+          <p class="text-sm font-semibold text-[color:var(--ink)]">2. Structured implementation</p>
+          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">Builds are phased so you can see working progress quickly instead of waiting through a long black-box process.</p>
+        </div>
+        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
+          <p class="text-sm font-semibold text-[color:var(--ink)]">3. Real-world testing</p>
+          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">Forms, flows, dashboards, and automation branches are validated around realistic usage, not just happy-path demos.</p>
+        </div>
+        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
+          <p class="text-sm font-semibold text-[color:var(--ink)]">4. Handover and growth path</p>
+          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">You get a usable system plus enough clarity to keep moving without depending on guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

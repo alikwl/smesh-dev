@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found" description="The page you requested is not available. Return to the main Smesh.Dev pages instead.">
+  <section class="site-shell flex min-h-[70vh] items-center py-16 md:py-24">
+    <div class="ambient-panel mx-auto max-w-2xl rounded-[36px] p-8 text-center md:p-10">
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[color:var(--line)] bg-white/80 text-[color:var(--accent-strong)]">
+        <i data-lucide="alert-octagon" class="h-7 w-7"></i>
+      </div>
+      <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--muted-soft)]">404</p>
+      <h1 class="section-title mt-4 text-[color:var(--ink)]">This page could not be found.</h1>
+      <p class="body-copy mx-auto mt-4 max-w-xl">
+        The link may be outdated, the page may have moved, or the URL may be incorrect. Use the main navigation below to get back to active pages.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="button-primary">Go to homepage</a>
+        <a href="/services/" class="button-secondary">Browse services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

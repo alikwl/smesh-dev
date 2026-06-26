@@ -1,0 +1,24 @@
+{
+  "name": "smesh-dev",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "node scripts/fetch-resources.js && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/node": "^9.5.5",
+    "@astrojs/sitemap": "^3.3.1",
+    "@astrojs/tailwind": "^6.0.2",
+    "@supabase/supabase-js": "^2.108.2",
+    "astro": "^5.9.4",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "marked": "^18.0.5"
+  }
+}

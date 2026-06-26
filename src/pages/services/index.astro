@@ -1,0 +1,569 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const collectionServices = await getCollection('services');
+
+// Custom structured FAQ data matching search engine keywords (H3)
+const servicesFaqs = [
+  {
+    q: "How do n8n and Supabase reduce monthly subscription fees?",
+    a: "Traditional automation tools (like Zapier) charge per-task fees that scale rapidly. By deploying custom self-hosted or flat-rate n8n instances connected to Supabase (PostgreSQL), you pay a flat infrastructure fee. This allows you to run millions of automated database tasks and notifications monthly without your bill scaling."
+  },
+  {
+    q: "What is the typical delivery timeline for an automation project?",
+    a: "Simple single-path workflows (like an automated lead log) are completed within 5-10 days. Comprehensive business integrations—such as a WhatsApp catalog syncing with a custom Supabase inventory database—typically take 3-4 weeks depending on the complexity of target APIs."
+  },
+  {
+    q: "Do you build custom code or rely solely on low-code platforms?",
+    a: "We combine both. We write clean custom code for frontends (using Astro or React) to guarantee maximum speed, security, and search indexing. For backend workflows, we write custom JavaScript or Python logic inside n8n node branches, ensuring flexibility without platform locking."
+  },
+  {
+    q: "How do you handle system maintenance and API updates after launch?",
+    a: "Every build comes with 30 days of active post-launch support to resolve any initial edge cases. After that, we offer simple monthly maintenance agreements to manage API changes, review server error logs, and optimize database indexing as your business scales."
+  }
+];
+
+// Testimonials data with corporate/founder faces
+const testimonials = [
+  {
+    name: "Arsalan Khan",
+    role: "E-commerce Founder",
+    location: "Karachi",
+    quote: "Our customer response time went from 3 hours to 2 seconds after automating our WhatsApp catalog and order syncing. Sales increased by 35% in the first month.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80"
+  },
+  {
+    name: "Sofia Chen",
+    role: "SaaS Operator",
+    location: "Singapore",
+    quote: "The AI Support Chatbot grounded in our docs handles 70% of support queries accurately. The human handoff is seamless and easy.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop&q=80"
+  },
+  {
+    name: "Zubair Sheikh",
+    role: "Retail Operations Director",
+    location: "Lahore",
+    quote: "n8n and Supabase replaced three paid integration tools. Our inventory updates automatically across all outlets without manual errors.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&q=80"
+  }
+];
+
+// 4 Core services with distinct definitions matching slug files
+const coreServices = [
+  {
+    title: "WhatsApp Automation",
+    slug: "whatsapp-automation",
+    icon: "message-square",
+    short: "Build interactive WhatsApp order and customer query flows that reply 24/7 without manual effort.",
+    deliverables: [
+      "24/7 automated auto-replies & interactive catalogs",
+      "Direct database syncs to Google Sheets or Supabase",
+      "n8n-triggered follow-up reminders & customer alerts",
+      "Seamless routing to human agents when needed"
+    ]
+  },
+  {
+    title: "AI Support Chatbots",
+    slug: "ai-support-chatbots",
+    icon: "bot",
+    short: "Improve support capacity with custom AI chatbots grounded in your facts, featuring human handoff.",
+    deliverables: [
+      "A custom-styled chat widget for your website",
+      "Secure Supabase Vector database for knowledge docs",
+      "n8n workflows connecting OpenAI / Gemini API nodes",
+      "Hallucination-free direct answers based on your data"
+    ]
+  },
+  {
+    title: "Workflow & n8n Automation",
+    slug: "workflow-automation",
+    icon: "git-branch",
+    short: "Eliminate repetitive tasks by building custom webhooks and robust automation workflows with n8n.",
+    deliverables: [
+      "End-to-end API integrations connecting your tools",
+      "Automated invoice & billing pipeline synchronization",
+      "Error-handling & auto-retry webhook scripts",
+      "Real-time notifications sent to Slack or WhatsApp"
+    ]
+  },
+  {
+    title: "Business Websites & SaaS MVPs",
+    slug: "business-websites",
+    icon: "globe",
+    short: "Professional, clean, credibility-building websites that convert visitors and load instantly.",
+    deliverables: [
+      "High-speed Astro or Next.js static architectures",
+      "100/100 Google PageSpeed scores & SEO readiness",
+      "Relational Supabase database configuration",
+      "Interactive lead-capture contact funnel forms"
+    ]
+  }
+];
+
+// Filter other services to list below core services if any
+const otherServices = collectionServices.filter(s => {
+  const slug = s.id.replace(/\.md$/, '');
+  return !coreServices.map(cs => cs.slug).includes(slug);
+});
+
+// JSON-LD ItemList / Service schema for search optimization
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "BismillahTC Digital Services — Smesh.Dev Service Menu",
+  "description": "Premium automation, custom n8n integration, grounded AI support chatbots, and high-performance Astro/Next.js websites.",
+  "itemListElement": coreServices.map((service, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "Service",
+      "name": service.title,
+      "description": service.short,
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Smesh.Dev",
+        "url": "https://smesh.dev"
+      }
+    }
+  }))
+};
+---
+
+<BaseLayout title="Premium Digital Automation & Custom Web Services" description="Custom n8n workflows, grounded AI-support chatbot systems, Supabase databases, and premium web architectures that scale operations." schemaType="service">
+  <!-- Structured Service Schema Markup -->
+  <script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
+
+  <!-- Section 1: Hero Section (The Hook) -->
+  <section class="site-shell py-20 md:py-28 text-center space-y-8 bg-gradient-to-b from-teal-50/10 via-transparent to-transparent" aria-label="Services Hero Banner">
+    <div class="max-w-4xl mx-auto space-y-6">
+      <span class="px-3.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
+        Custom n8n & Supabase Solutions
+      </span>
+      <h1 class="display-title text-slate-900 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08]">
+        Automate Your Manual Workflows to Scale Operations
+      </h1>
+      <p class="body-copy max-w-2xl mx-auto text-base md:text-lg font-light text-slate-600 leading-relaxed">
+        We integrate your software tools, ground AI support chatbots, and build high-converting web frontends to eliminate repetitive admin work and unlock revenue.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 pt-4 font-sans">
+      <button class="trigger-audit-modal button-primary px-8 py-3.5 rounded-xl text-sm font-bold shadow-md cursor-pointer">
+        Book a Free Consultation
+        <i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i>
+      </button>
+      <a href="#services-matrix" class="button-secondary px-8 py-3.5 rounded-xl text-sm font-bold text-slate-800">
+        View All Services
+        <i data-lucide="arrow-down" class="h-4 w-4 ml-1.5 text-slate-400"></i>
+      </a>
+    </div>
+
+    <!-- Social Proof Brand Logo Wall -->
+    <div class="pt-12 max-w-3xl mx-auto">
+      <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold font-sans text-center mb-6">
+        Powering integrations across modern platforms
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-40 grayscale hover:opacity-75 transition duration-355">
+        <!-- n8n logo -->
+        <span class="text-xs font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1.5">
+          <i data-lucide="git-branch" class="w-4.5 h-4.5"></i> n8n.io
+        </span>
+        <!-- Supabase logo -->
+        <span class="text-xs font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1.5">
+          <i data-lucide="database" class="w-4.5 h-4.5"></i> Supabase
+        </span>
+        <!-- OpenAI logo -->
+        <span class="text-xs font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1.5">
+          <i data-lucide="cpu" class="w-4.5 h-4.5"></i> OpenAI
+        </span>
+        <!-- Stripe logo -->
+        <span class="text-xs font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1.5">
+          <i data-lucide="credit-card" class="w-4.5 h-4.5"></i> Stripe
+        </span>
+        <!-- WhatsApp logo -->
+        <span class="text-xs font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1.5">
+          <i data-lucide="message-square" class="w-4.5 h-4.5"></i> WhatsApp
+        </span>
+        <!-- Google API logo -->
+        <span class="text-xs font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1.5">
+          <i data-lucide="globe" class="w-4.5 h-4.5"></i> Google APIs
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Pain Point & Solution (The Connection) -->
+  <section class="site-shell py-16 md:py-24 border-t border-slate-200/50 bg-white/40 rounded-[36px] my-6" aria-label="Pain Point and Solution Narrative">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+      <div class="space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600 bg-rose-50 border border-rose-100/50 px-3 py-1 rounded-full font-sans">
+          The Problem
+        </span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-955 leading-tight">
+          Slowing Down Due to Copy-Paste Bottlenecks?
+        </h2>
+        <p class="body-copy text-slate-650 leading-relaxed font-light">
+          Most growing businesses waste hours daily moving lead info from Facebook to Google Sheets, sending shipping codes manually on WhatsApp, or copy-pasting customer details into databases.
+        </p>
+        <p class="body-copy text-slate-650 leading-relaxed font-light">
+          This manual lag doesn't just exhaust your team—it costs you sales. Leads left waiting for more than 15 minutes convert at a fraction of the rate.
+        </p>
+      </div>
+
+      <div class="ambient-panel rounded-[32px] p-8 md:p-10 border border-slate-200 bg-white/80 shadow-md space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] bg-[color:var(--accent-soft)] px-3 py-1 rounded-full font-sans">
+          Our Solution
+        </span>
+        <h3 class="text-2xl font-bold text-slate-955 leading-tight">
+          Lightweight, Grounded Automation Hubs
+        </h3>
+        <p class="body-copy text-slate-650 leading-relaxed font-light">
+          We architect secure backend logic using <strong>n8n workflows</strong> and <strong>Supabase (PostgreSQL)</strong>. Your tools connect directly and securely. 
+        </p>
+        <p class="body-copy text-slate-650 leading-relaxed font-light">
+          No monthly subscription spikes based on task volume. You get custom, blazing-fast static frontends and automated database pipelines that run smoothly 24/7.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Core Services Grid (The Menu) -->
+  <section id="services-matrix" class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Our Core Services">
+    <div class="space-y-4 mb-14 text-center max-w-2xl mx-auto">
+      <span class="section-kicker">Core Service Offerings</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+        Grounded automation systems engineered for growth.
+      </h2>
+    </div>
+
+    <!-- Core Grid -->
+    <div class="grid gap-8 md:grid-cols-2">
+      {coreServices.map((service) => (
+        <article class="surface-card rounded-[32px] p-6 md:p-8 border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <div class="inline-flex h-12 w-12 items-center justify-center rounded-[18px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]">
+                <i data-lucide={service.icon} class="h-6 w-6"></i>
+              </div>
+              <span class="chip capitalize font-sans text-[10px] font-bold bg-slate-50 border border-slate-200">Featured Service</span>
+            </div>
+
+            <div class="space-y-3">
+              <h2 class="text-2xl font-bold text-slate-955 leading-snug">
+                <a href={`/services/${service.slug}/`} class="hover:text-[color:var(--accent-strong)] transition">{service.title}</a>
+              </h2>
+              <p class="text-xs text-slate-550 leading-relaxed min-h-[48px] font-light">{service.short}</p>
+            </div>
+
+            <!-- Deliverables checklist -->
+            <div class="space-y-3 pt-6 border-t border-slate-100 font-sans">
+              <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Core Deliverables</p>
+              <ul class="space-y-3">
+                {service.deliverables.map((item) => (
+                  <li class="flex items-start gap-2.5 text-xs text-slate-600 leading-normal font-light">
+                    <i data-lucide="check" class="h-4 w-4 text-[color:var(--accent-strong)] shrink-0 mt-0.5"></i>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between font-sans">
+            <a 
+              href={`/services/${service.slug}/`} 
+              class="inline-flex h-10 px-4 items-center justify-center rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-55 text-xs font-bold transition"
+            >
+              Learn More
+            </a>
+            <button 
+              data-book-service={service.title} 
+              class="book-service-btn inline-flex h-10 px-5 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer"
+            >
+              Book Project
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Other Services Listing -->
+    {otherServices.length > 0 && (
+      <div class="mt-16 pt-10 border-t border-slate-100 space-y-8">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-sans text-center">⚡ Additional Specialized Integrations</h3>
+        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {otherServices.map((service) => {
+            const title = service.data.title;
+            const slug = service.id.replace(/\.md$/, '');
+            const short = service.data.hero_sub || service.data.description || 'Custom tailored backend workflow system.';
+            const icon = service.data.icon || service.data.hero_icon || 'cpu';
+            return (
+              <a href={`/services/${slug}/`} class="group p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow transition flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-150 text-slate-700 flex items-center justify-center shrink-0 group-hover:bg-[color:var(--accent-soft)] group-hover:text-[color:var(--accent-strong)] transition">
+                  <i data-lucide={icon} class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-950 group-hover:text-[color:var(--accent-strong)] transition">{title}</h4>
+                  <p class="text-[10px] text-slate-450 mt-1 line-clamp-2 leading-relaxed font-light">{short}</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    )}
+  </section>
+
+  <!-- Section 4: How It Works (The Process) -->
+  <section class="site-shell py-16 md:py-24 border-t border-slate-100 bg-slate-50/30 rounded-[36px] my-6" aria-label="Our Project Delivery Workflow">
+    <div class="max-w-3xl mx-auto space-y-12">
+      <div class="text-center space-y-3">
+        <span class="section-kicker">Simple 3-Step Process</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">How we construct your systems.</h2>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">From direct discovery to robust deployment—no agency fluff.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3 relative font-sans">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-teal-50/20 text-[color:var(--accent-strong)] flex items-center justify-center">
+            <i data-lucide="map" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-bold text-slate-955 text-sm">Step 1: Discovery Call</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-light">We map your team's manual clicks, catalog files, and API endpoints to find the shortest automation path.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-teal-50/20 text-[color:var(--accent-strong)] flex items-center justify-center">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-bold text-slate-955 text-sm">Step 2: Custom Strategy</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-light">We outline the integration architecture, design visual layout mockups, and specify n8n workflows.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div class="w-10 h-10 rounded-xl bg-teal-50/20 text-[color:var(--accent-strong)] flex items-center justify-center">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-bold text-slate-955 text-sm">Step 3: Execution & Results</h3>
+          <p class="text-xs text-slate-500 leading-relaxed font-light">We compile static web architectures, deploy secure data pipelines, and verify edge cases before handover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Social Proof & Results (The Trust) -->
+  <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Social Proof and Client Outcomes">
+    <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <!-- Outcome Metrics -->
+      <div class="space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
+          Proven Performance
+        </span>
+        <h2 class="text-3xl font-extrabold text-slate-955 leading-tight">
+          Measurable outcomes that keep stacks lean.
+        </h2>
+        <p class="text-xs text-slate-500 leading-relaxed font-light">
+          We focus on reducing developer overhead and speeding up customer response loops.
+        </p>
+        <div class="grid gap-4 grid-cols-2 pt-4 font-sans">
+          <div class="rounded-2xl border border-slate-200 bg-white p-4">
+            <span class="text-2xl font-bold text-slate-955 block">+50%</span>
+            <span class="text-[10px] text-slate-450 uppercase font-semibold">Speed Gains</span>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-4">
+            <span class="text-2xl font-bold text-slate-955 block">24/7</span>
+            <span class="text-[10px] text-slate-450 uppercase font-semibold">Lead Response</span>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-4">
+            <span class="text-2xl font-bold text-slate-955 block">PKR 2M+</span>
+            <span class="text-[10px] text-slate-450 uppercase font-semibold">Dev Costs Saved</span>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-white p-4">
+            <span class="text-2xl font-bold text-slate-955 block">10 Days</span>
+            <span class="text-[10px] text-slate-450 uppercase font-semibold">Avg. Delivery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Testimonials (Carousel format for optimized Mobile UX and page height) -->
+      <div class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-sans">Client Reviews</h3>
+          <!-- Carousel Navigation Controls -->
+          <div class="flex items-center gap-1.5">
+            <button id="testimonial-prev-btn" class="p-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition cursor-pointer" aria-label="Previous review">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button id="testimonial-next-btn" class="p-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition cursor-pointer" aria-label="Next review">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <!-- Slide Container -->
+          <div id="testimonials-slider" class="flex transition-transform duration-300 ease-out" style="transform: translateX(0%);">
+            {testimonials.map((t) => (
+              <div class="w-full shrink-0 p-5 flex gap-4 items-start select-none">
+                <img src={t.image} alt={`${t.name} Portrait`} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+                <div class="space-y-2">
+                  <blockquote class="text-xs text-slate-600 leading-relaxed font-light">
+                    "{t.quote}"
+                  </blockquote>
+                  <div class="text-[10px] font-sans">
+                    <span class="font-bold text-slate-900 block">{t.name}</span>
+                    <span class="text-slate-450">{t.role} &middot; {t.location}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Dot Indicators -->
+        <div class="flex justify-center gap-1.5 pt-1">
+          {testimonials.map((_, idx) => (
+            <button 
+              class={`testimonial-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === 0 ? 'w-4 bg-indigo-600' : 'w-1.5 bg-slate-300'}`}
+              data-index={idx}
+              aria-label={`Go to slide ${idx + 1}`}
+            ></button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: FAQs Section (AI Search Magnet) -->
+  <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Frequently Asked Questions">
+    <div class="max-w-3xl mx-auto space-y-8">
+      <div class="text-center space-y-3">
+        <span class="section-kicker">AI & User FAQ Magnet</span>
+        <h2 class="text-3xl font-extrabold text-slate-955">Services & Integrations FAQs</h2>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">Understanding target-driven workflow logic directly.</p>
+      </div>
+
+      <div class="space-y-4 font-sans">
+        {servicesFaqs.map((faq, index) => (
+          <details class="faq-details group border border-slate-200 rounded-2xl p-5 bg-white transition" open={index === 0}>
+            <summary class="flex items-center justify-between font-bold text-sm text-slate-900 cursor-pointer list-none select-none">
+              <h3>{faq.q}</h3>
+              <span class="transition group-open:rotate-180 text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </summary>
+            <p class="text-xs text-slate-650 leading-relaxed mt-4 pt-4 border-t border-slate-100 font-light">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Final Footer CTA (The Conversion) -->
+  <section class="site-shell pb-16 md:pb-24" aria-label="Exit Conversion Card">
+    <div class="bg-slate-900 text-white rounded-[36px] p-8 md:p-14 text-center space-y-6 shadow-xl relative overflow-hidden font-sans">
+      <div class="absolute inset-0 bg-gradient-to-tr from-teal-900/40 to-indigo-900/30 pointer-events-none"></div>
+      <div class="max-w-2xl mx-auto space-y-4 relative z-10">
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">Ready to scale your business operations?</h2>
+        <p class="text-xs md:text-sm text-slate-350 max-w-md mx-auto">Let's audit your current tool stack, map out manual bottlenecks, and structure custom automated systems.</p>
+        <div class="pt-4">
+          <button class="trigger-audit-modal inline-flex items-center px-8 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+            Get Your Free Tech Audit
+            <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Modal Booking & Selection Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const auditModal = document.getElementById('audit-modal');
+    const openBtns = document.querySelectorAll('.trigger-audit-modal');
+    const bookBtns = document.querySelectorAll('.book-service-btn');
+    const serviceSelect = document.getElementById('service') as HTMLSelectElement | null;
+
+    const openModal = () => {
+      if (!auditModal) return;
+      auditModal.classList.remove('hidden');
+      auditModal.classList.add('flex');
+      setTimeout(() => {
+        auditModal.classList.remove('opacity-0');
+        auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+      }, 10);
+    };
+
+    openBtns.forEach(btn => btn.addEventListener('click', openModal));
+
+    bookBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const serviceName = btn.getAttribute('data-book-service');
+        
+        // Pre-fill the dropdown select inside the contact form
+        if (serviceSelect && serviceName) {
+          const hasOption = Array.from(serviceSelect.options).some(opt => opt.value === serviceName);
+          if (!hasOption) {
+            const opt = document.createElement('option');
+            opt.value = serviceName;
+            opt.text = serviceName;
+            serviceSelect.appendChild(opt);
+          }
+          serviceSelect.value = serviceName;
+        }
+
+        openModal();
+      });
+    });
+
+    // Testimonials Carousel Logic
+    const slider = document.getElementById('testimonials-slider');
+    const prevBtn = document.getElementById('testimonial-prev-btn');
+    const nextBtn = document.getElementById('testimonial-next-btn');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    
+    if (slider && dots.length > 0) {
+      let currentIndex = 0;
+      const totalSlides = dots.length;
+      
+      const updateSlider = (index: number) => {
+        currentIndex = index;
+        if (slider) {
+          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        dots.forEach((dot, idx) => {
+          if (idx === currentIndex) {
+            dot.classList.remove('w-1.5', 'bg-slate-300');
+            dot.classList.add('w-4', 'bg-indigo-600');
+          } else {
+            dot.classList.remove('w-4', 'bg-indigo-600');
+            dot.classList.add('w-1.5', 'bg-slate-300');
+          }
+        });
+      };
+      
+      prevBtn?.addEventListener('click', () => {
+        let prevIndex = currentIndex - 1;
+        if (prevIndex < 0) prevIndex = totalSlides - 1;
+        updateSlider(prevIndex);
+      });
+      
+      nextBtn?.addEventListener('click', () => {
+        let nextIndex = (currentIndex + 1) % totalSlides;
+        updateSlider(nextIndex);
+      });
+      
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index') || '0', 10);
+          updateSlider(index);
+        });
+      });
+    }
+  });
+</script>

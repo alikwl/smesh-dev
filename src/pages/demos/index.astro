@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SmartImage from '../../components/SmartImage.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+import { proofMetrics } from '../../data/proof';
+
+const items = await getCollection('demos');
+
+const demoImageMap: Record<string, string> = {
+  'whatsapp-order-system': '/assets/images/whatsapp-phone-mockup.png',
+  'ai-support-chatbot': '/assets/images/ai-network-illustration.png',
+  'booking-dashboard': '/assets/images/calendar-booking-mockup.png',
+  'pos-inventory-dashboard': '/assets/images/saas-dashboard-illustration.png',
+  'saas-mvp-dashboard': '/assets/images/saas-dashboard-illustration.png',
+  'lead-capture-workflow': '/assets/images/automation-workflow-illustration.png',
+};
+
+const categoryCopy: Record<string, string> = {
+  Automation: 'Operational workflows that reduce manual follow-up and handoffs.',
+  'AI Chatbot': 'Support systems that answer faster and stay grounded in your data.',
+  Dashboard: 'Admin panels built to give teams visibility without adding complexity.',
+  'Local Business': 'Practical systems tailored to retail, clinics, and service operators.',
+  SaaS: 'Lean product experiences shaped for founder validation and early users.',
+};
+
+const categories = ['All', ...new Set(items.map((item) => item.data.category))];
+---
+
+<BaseLayout
+  title="Interactive Automation Demos & Sandboxes | Smesh.Dev"
+  description="Test live n8n workflows, WhatsApp retail ordering bots, booking systems, and Supabase RAG chatbots built by Haider Ali (BismillahTC) at Smesh.Dev."
+>
+  
+  <!-- Hero Section -->
+  <section class="site-shell py-20 md:py-28 text-center space-y-6" aria-label="Interactive Demos Hero">
+    <div class="max-w-4xl mx-auto space-y-6">
+      <span class="section-kicker">
+        <i data-lucide="play" class="w-3.5 h-3.5"></i>
+        Interactive Sandboxes
+      </span>
+      <h1 class="display-title text-slate-950 font-extrabold tracking-tight leading-[1.08] font-display">
+        Interact Before You Implement.
+      </h1>
+      <p class="body-copy max-w-2xl mx-auto text-slate-655 leading-relaxed font-light">
+        Test out our simulated live automation systems, databases, and client dashboards right inside your browser to see how we automate operations.
+      </p>
+      
+      <div class="pt-4 flex flex-wrap justify-center gap-3 font-sans">
+        <button class="trigger-audit-modal button-primary text-xs py-3 px-6 cursor-pointer">
+          Claim A Free Tech Audit
+          <i data-lucide="sparkles" class="w-4 h-4 ml-1.5"></i>
+        </button>
+        <a href={site.whatsappLink} target="_blank" rel="noopener" class="button-secondary text-xs py-3 px-6">
+          Discuss Custom Builds
+        </a>
+      </div>
+    </div>
+
+    <!-- Trust Stats Grid -->
+    <div class="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto pt-10">
+      {proofMetrics.slice(0, 3).map((metric) => (
+        <div class="surface-card rounded-[24px] border border-slate-200 bg-white/70 p-6 shadow-sm hover:shadow-md transition duration-200">
+          <p class="text-3xl font-extrabold text-slate-900 font-display">{metric.value}</p>
+          <p class="mt-2 text-[10px] text-slate-500 font-semibold tracking-wider uppercase font-sans">{metric.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Filterable Category Section -->
+  <section class="site-shell pb-10" aria-label="Category Filters">
+    <div class="flex flex-wrap gap-2.5 justify-center" id="demo-filter-container">
+      {categories.map((category, index) => (
+        <button
+          class:list={[
+            'demo-filter-btn rounded-full border px-5 py-2 text-xs font-semibold font-sans tracking-wide transition cursor-pointer',
+            index === 0
+              ? 'border-[color:var(--accent)] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]'
+              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-350 hover:text-slate-900',
+          ]}
+          data-filter={category}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Demos Grid Section -->
+  <section class="site-shell pb-24">
+    <div class="mb-8 max-w-2xl">
+      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Live Interactive Sandboxes</h2>
+      <p class="text-xs text-slate-505 mt-2">Click any mockup to open its interactive flow, configure inputs, and trigger responses.</p>
+    </div>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="demos-grid">
+      {items.map((item, index) => {
+        const slug = item.id.replace(/\.md$/, '');
+        const image = demoImageMap[slug] ?? '/assets/images/placeholder.png';
+        const categoryText = categoryCopy[item.data.category] ?? 'A realistic prototype designed around a clear business workflow.';
+        const tech = item.data.tech || [];
+
+        return (
+          <article
+            class="demo-card surface-card overflow-hidden rounded-[32px] border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative group"
+            data-category={item.data.category}
+          >
+            <!-- Live Indicator Badge -->
+            <div class="absolute top-4 right-4 flex items-center gap-1.5 z-10">
+              <span class="live-dot h-2 w-2 rounded-full bg-emerald-500"></span>
+              <span class="text-[9px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-100/50 px-2.5 py-0.5 rounded-full font-sans">Interactive Sandbox</span>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Aspect 4:3 Image Wrapper -->
+              <div class="relative overflow-hidden aspect-[4/3] bg-slate-100/50 border-b border-slate-200">
+                <SmartImage src={image} alt={item.data.title} class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500" />
+              </div>
+
+              <!-- Card body details -->
+              <div class="px-6 pb-6 space-y-4">
+                <div class="flex flex-wrap items-center gap-1.5 font-sans">
+                  <span class="chip text-[9px] font-bold capitalize">{item.data.category}</span>
+                  {tech.slice(0, 3).map((t) => <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[9px] font-semibold">{t}</span>)}
+                </div>
+
+                <div class="space-y-2">
+                  <h3 class="text-lg font-bold text-slate-950 font-display leading-snug">{item.data.title}</h3>
+                  <p class="text-xs text-slate-600 leading-relaxed font-light line-clamp-3">{item.data.description}</p>
+                </div>
+
+                <!-- Best Use Case Highlight Box -->
+                <div class="rounded-2xl border border-slate-200/50 bg-slate-50/50 p-4 font-sans text-xs">
+                  <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Primary Application</p>
+                  <p class="mt-1.5 text-slate-700 leading-relaxed font-light">{item.data.use_case}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Bottom Action Links -->
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100/80 flex items-center justify-between font-sans mt-auto">
+              <button class="trigger-audit-modal text-xs font-bold text-indigo-650 hover:text-indigo-850 transition cursor-pointer">
+                Request Similar Build
+              </button>
+              <a href={`/demos/${slug}/`} class="inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition shadow-sm">
+                Launch Sandbox
+                <i data-lucide="play" class="w-3 h-3 ml-1.5 fill-current"></i>
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- No results message -->
+    <div id="no-demos-msg" class="mt-10 hidden rounded-[28px] border border-slate-200 bg-white/70 p-12 text-center max-w-md mx-auto">
+      <h3 class="text-lg font-bold text-slate-900 font-display">No demo in this category yet.</h3>
+      <p class="mt-2 text-xs text-slate-500 font-light leading-relaxed">Switch filters or request a custom pipeline demo tailored to your company offer.</p>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Funnel Panel -->
+  <section class="site-shell pb-24" aria-label="Bottom Funnel Banner">
+    <div class="bg-slate-950 text-white rounded-[40px] p-8 md:p-16 text-center space-y-6 shadow-xl relative overflow-hidden font-sans border border-slate-800">
+      <div class="absolute inset-0 bg-gradient-to-tr from-indigo-950/40 to-teal-950/30 pointer-events-none"></div>
+      
+      <!-- Ambient light effect -->
+      <div class="absolute -top-1/2 -left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute -bottom-1/2 -right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div class="max-w-2xl mx-auto space-y-6 relative z-10">
+        <span class="section-kicker border-white/10 text-teal-400 bg-teal-950/40">Custom Prototypes</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight font-display">
+          Need a Custom Sandbox Built for Your Business?
+        </h2>
+        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto font-light leading-relaxed">
+          I can design a realistic interactive mockup tailored to your specific offer, database schema, and client intake journey.
+        </p>
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button class="trigger-audit-modal w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+            Request Custom Sandbox Build
+          </button>
+          <a href={site.whatsappLink} target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border border-slate-800 text-xs font-bold rounded-xl bg-slate-900/50 hover:bg-slate-900 text-white transition">
+            WhatsApp Me
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Category Filter logic
+    const buttons = document.querySelectorAll('.demo-filter-btn');
+    const cards = document.querySelectorAll('.demo-card');
+    const noResults = document.getElementById('no-demos-msg');
+
+    const setActiveState = (activeButton: Element) => {
+      buttons.forEach((button) => {
+        button.classList.remove('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]');
+        button.classList.add('border-slate-200', 'bg-white', 'text-slate-600');
+      });
+
+      activeButton.classList.remove('border-slate-200', 'bg-white', 'text-slate-600');
+      activeButton.classList.add('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]');
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        let visible = 0;
+
+        setActiveState(button);
+
+        cards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          const shouldShow = filter === 'All' || category === filter;
+          card.classList.toggle('hidden', !shouldShow);
+          if (shouldShow) visible += 1;
+        });
+
+        if (noResults) {
+          noResults.classList.toggle('hidden', visible !== 0);
+        }
+      });
+    });
+
+    // Modal Control logic
+    const auditModal = document.getElementById('audit-modal');
+    const openBtns = document.querySelectorAll('.trigger-audit-modal');
+
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (auditModal) {
+          auditModal.classList.remove('hidden');
+          auditModal.classList.add('flex');
+          setTimeout(() => {
+            auditModal.classList.remove('opacity-0');
+            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+          }, 10);
+        }
+      });
+    });
+  });
+</script>

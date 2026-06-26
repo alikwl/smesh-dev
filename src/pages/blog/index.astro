@@ -1,0 +1,283 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SmartImage from '../../components/SmartImage.astro';
+import { getAllBlogPosts } from '../../lib/supabase';
+
+const posts = await getAllBlogPosts();
+
+// Sort posts by date descending
+const sortedPosts = posts.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+
+// The latest post is featured
+const featuredPost = sortedPosts[0];
+const gridPosts = sortedPosts.slice(1);
+
+// Get unique categories for navigation filtering
+const categories = Array.from(new Set(sortedPosts.map(post => post.category).filter(Boolean)));
+
+const formatDate = (value?: Date) => {
+  if (!value) return '';
+  return value.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
+
+const estimateReadTime = (body: string) => {
+  const words = body.trim().split(/\s+/).length;
+  return Math.ceil(words / 220); // 220 words per minute average reading speed
+};
+
+// Map post slugs to visual thumbnail illustrations
+const postImageMap: Record<string, string> = {
+  'how-whatsapp-automation-helps-local-shops': '/assets/images/whatsapp-phone-mockup.png',
+  'what-is-ai-support-chatbot-rag': '/assets/images/ai-network-illustration.png',
+  'business-website-checklist-pakistan': '/assets/images/website-mockup-illustration.png',
+  'n8n-automation-ideas-for-founders': '/assets/images/automation-workflow-illustration.png',
+  'seo-basics-for-service-businesses-2026': '/assets/images/website-mockup-illustration.png',
+};
+---
+
+<BaseLayout title="Workflow Automation & Tech Blog | Smesh.Dev" description="Explore guides on n8n workflows, local retail POS integrations, and Supabase databases written by Haider Ali at Smesh.Dev (BismillahTC).">
+  
+  <!-- Section 1: Hero Section (The Hook & Lead Magnet) -->
+  <section class="site-shell py-16 md:py-24" aria-label="Blog Lead Magnet Hero">
+    <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <!-- Left Hook & Signup Form -->
+      <div class="space-y-6">
+        <span class="px-3.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
+          BismillahTC Systems Academy
+        </span>
+        <h1 class="display-title text-slate-900 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08]">
+          Master Workflow Automation: Free Blueprints & Guides
+        </h1>
+        <p class="body-copy text-base text-slate-600 leading-relaxed font-light">
+          Get actionable tutorials, custom n8n configurations, and Supabase integration guides written to eliminate administrative overhead from your operations.
+        </p>
+
+        <!-- Newsletter Subscription Form -->
+        <div class="pt-4 space-y-3 font-sans">
+          <p class="text-xs font-semibold text-slate-500">Join 10,000+ founders and operators receiving weekly blueprints</p>
+          <form id="blog-subscribe-form" class="flex flex-col sm:flex-row gap-3 max-w-lg">
+            <input 
+              type="email" 
+              required 
+              placeholder="Enter your work email" 
+              class="flex-grow rounded-xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)]"
+            />
+            <button type="submit" class="button-primary px-6 py-3 rounded-xl text-sm font-bold shadow-md cursor-pointer shrink-0">
+              Subscribe Free
+            </button>
+          </form>
+          <p id="subscribe-success-msg" class="text-xs text-emerald-650 font-bold hidden flex items-center gap-1">
+            <i data-lucide="check" class="w-4 h-4"></i> Welcome to the insider list! Your first guide is on its way.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Featured Offer Lead Magnet Card -->
+      <aside class="ambient-panel rounded-[32px] p-6 md:p-8 border border-slate-200 bg-white/70 backdrop-blur-md shadow-md space-y-6" aria-label="Featured Lead Magnet Download">
+        <div class="flex items-center justify-between font-sans">
+          <span class="chip bg-amber-50 border border-amber-100/50 text-amber-700 text-[9px] font-bold uppercase tracking-wider">Free Checklist ⭐</span>
+          <span class="text-[9px] font-mono text-slate-400">PDF + Workflow JSON</span>
+        </div>
+        <div class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 leading-snug">The Ultimate n8n & Supabase Lead Funnel Blueprint</h2>
+          <p class="text-xs text-slate-550 leading-relaxed font-light">
+            Download our step-by-step setup guide and importable JSON file to capture leads from WhatsApp, run RAG matching, and sync them directly to your Supabase tables.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 font-sans flex items-center justify-between">
+          <span class="text-[10px] text-slate-450">Includes standard webhooks</span>
+          <button class="trigger-audit-modal inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer">
+            Get Blueprint
+          </button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Section 2: Featured Post (The Authority Builder) -->
+  {featuredPost && (
+    <section class="site-shell pb-16" aria-label="Featured Trending Article">
+      <div class="section-kicker mb-6">Featured Article</div>
+      {(() => {
+        const slug = featuredPost.slug;
+        const image = featuredPost.cover_image || postImageMap[slug] || '/assets/images/placeholder.png';
+        const readTime = estimateReadTime(featuredPost.content);
+        return (
+          <article class="surface-card rounded-[32px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] hover:shadow-md transition duration-300">
+            <div class="relative overflow-hidden aspect-[16/10] lg:aspect-auto lg:h-full min-h-[300px]">
+              <SmartImage src={image} alt={featuredPost.title} class="w-full h-full object-cover" />
+            </div>
+            <div class="p-8 md:p-12 flex flex-col justify-between space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 font-sans">
+                  <span class="chip bg-indigo-50 border border-indigo-100/50 text-indigo-700 text-[10px] font-bold capitalize">{featuredPost.category}</span>
+                  <span class="text-slate-400 text-[10px] font-medium">&bull;</span>
+                  <span class="text-slate-400 text-[10px] font-medium">{readTime} min read</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-955 leading-tight hover:text-[color:var(--accent-strong)] transition">
+                  <a href={`/blog/${slug}/`}>{featuredPost.title}</a>
+                </h2>
+                <p class="text-xs md:text-sm text-slate-550 leading-relaxed font-light line-clamp-3">
+                  {featuredPost.excerpt}
+                </p>
+              </div>
+              <div class="font-sans flex items-center justify-between border-t border-slate-100 pt-6">
+                <span class="text-[10px] text-slate-400 font-semibold">{formatDate(new Date(featuredPost.published_at))}</span>
+                <a href={`/blog/${slug}/`} class="inline-flex h-10 px-5 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition">
+                  Read Article
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })()}
+    </section>
+  )}
+
+  <!-- Section 3: Topic Categories Grid (The AI Explorer) -->
+  <section class="site-shell py-8 border-t border-slate-200/50" aria-label="Topic Navigation Filter">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">All Engineering Articles</h2>
+      <p class="text-xs text-slate-500 mt-2">Deep dives, blueprints, and strategies on automation systems.</p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <button 
+        data-filter="all" 
+        class="category-btn active px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition cursor-pointer font-sans"
+      >
+        All Articles
+      </button>
+      {categories.map((category) => (
+        <button 
+          data-filter={category.toLowerCase().replace(/\s+/g, '-')} 
+          class="category-btn px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition cursor-pointer font-sans"
+        >
+          #{category}
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 4: The Content Grid (Scannable Cards) -->
+  <section class="site-shell pb-20" aria-label="Scannable Article Grid">
+    <div id="posts-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {gridPosts.length > 0 ? (
+        gridPosts.map((post) => {
+          const slug = post.slug;
+          const image = post.cover_image || postImageMap[slug] || '/assets/images/placeholder.png';
+          const readTime = estimateReadTime(post.content);
+          const filterTag = (post.category || '').toLowerCase().replace(/\s+/g, '-');
+          return (
+            <article 
+              data-category={filterTag} 
+              class="post-card surface-card rounded-[28px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col justify-between hover:shadow-md transition duration-300"
+            >
+              <div>
+                <div class="relative overflow-hidden aspect-[16/10]">
+                  <SmartImage src={image} alt={post.title} class="w-full h-full object-cover" />
+                </div>
+                <div class="p-6 space-y-4">
+                  <div class="flex items-center gap-3 font-sans">
+                    <span class="chip bg-indigo-50 border border-indigo-100/50 text-indigo-700 text-[10px] font-bold capitalize">{post.category}</span>
+                    <span class="text-slate-400 text-[9px] font-medium">{readTime} min read</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-slate-900 leading-snug hover:text-[color:var(--accent-strong)] transition">
+                    <a href={`/blog/${slug}/`}>{post.title}</a>
+                  </h3>
+                  <p class="text-xs text-slate-550 leading-relaxed line-clamp-3 font-light">
+                    {post.excerpt}
+                  </p>
+                </div>
+              </div>
+              <div class="p-6 pt-0 font-sans flex items-center justify-between border-t border-slate-100/60 mt-4">
+                <span class="text-[10px] text-slate-400 font-semibold">{formatDate(new Date(post.published_at))}</span>
+                <a href={`/blog/${slug}/`} class="text-indigo-650 hover:text-indigo-850 text-xs font-bold inline-flex items-center gap-1">
+                  Read Article
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </article>
+          );
+        })
+      ) : (
+        <div class="col-span-full text-center py-16 bg-slate-50 border border-dashed border-slate-200 rounded-2xl p-8 font-sans">
+          <p class="text-slate-500 text-sm font-sans">No additional posts found. Check back soon for updates!</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Section 5: Bottom Funnel Push (The Secondary CTA) -->
+  <section class="site-shell pb-20 md:pb-24" aria-label="Resources Promotion Funnel">
+    <div class="bg-gradient-to-r from-teal-900/90 to-slate-900 text-white rounded-[36px] p-8 md:p-12 text-center space-y-6 shadow-xl relative overflow-hidden font-sans">
+      <div class="max-w-2xl mx-auto space-y-4 relative z-10">
+        <span class="chip bg-teal-500/20 border border-teal-400/30 text-teal-350 text-[9px] font-bold uppercase tracking-wider font-sans mx-auto">Free Resource Hub</span>
+        <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight">Need Importable Workflow JSON Files?</h2>
+        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto">Skip the manual setup entirely. Grab our complete pre-built n8n automations and Supabase database schemas directly from our Resources Hub.</p>
+        <div class="pt-4">
+          <a href="/resources/" class="inline-flex items-center px-8 py-3.5 bg-white text-slate-900 hover:bg-slate-50 text-sm font-bold rounded-xl transition shadow-lg">
+            Explore Resources Hub
+            <i data-lucide="arrow-right" class="h-4 w-4 ml-2 text-slate-500"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Client-side filters & newsletter submission script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Newsletter signup form handle
+    const subscribeForm = document.getElementById('blog-subscribe-form');
+    const successMsg = document.getElementById('subscribe-success-msg');
+
+    if (subscribeForm && successMsg) {
+      subscribeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        subscribeForm.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+      });
+    }
+
+    // Category button filters
+    const filterBtns = document.querySelectorAll('.category-btn');
+    const postCards = document.querySelectorAll('.post-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active states
+        filterBtns.forEach(b => b.classList.remove('active', 'bg-slate-900', 'text-white', 'border-slate-900'));
+        filterBtns.forEach(b => b.classList.add('bg-white', 'text-slate-700', 'border-slate-200'));
+
+        btn.classList.add('active', 'bg-slate-900', 'text-white', 'border-slate-900');
+        btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+
+        const filter = btn.getAttribute('data-filter');
+
+        postCards.forEach(card => {
+          const cardEl = card as HTMLElement;
+          const cardCategory = cardEl.getAttribute('data-category');
+
+          if (filter === 'all' || cardCategory === filter) {
+            cardEl.style.display = 'flex';
+          } else {
+            cardEl.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .category-btn.active {
+    background-color: #171713;
+    color: #ffffff;
+    border-color: #171713;
+  }
+</style>

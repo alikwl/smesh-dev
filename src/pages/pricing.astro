@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pricing } from '../data/pricing';
+
+const localPk = pricing.local_pk;
+const international = pricing.international;
+---
+
+<BaseLayout
+  title="Automation & Web Development Pricing | Smesh.Dev"
+  description="Get transparent packages for custom n8n workflows, local retail POS features, AI support chatbots, and MVP builds from Haider Ali at Smesh.Dev."
+>
+  <section class="site-shell py-16 md:py-24">
+    <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+      <div>
+        <div class="section-kicker">Pricing</div>
+        <h1 class="display-title mt-5 text-[color:var(--ink)]">Clear packages for clients who want speed, scope clarity, and no bloated retainers.</h1>
+        <p class="body-copy mt-6 max-w-2xl">
+          These starting ranges help you understand the kind of build that fits your current stage. Final pricing depends on integrations, content volume, complexity, and delivery speed.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#local-pk" class="button-primary">Local business packages</a>
+          <a href="#international" class="button-secondary">Founder and SaaS packages</a>
+        </div>
+      </div>
+
+      <div class="ambient-panel rounded-[32px] p-6 md:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">How pricing stays practical</p>
+        <div class="mt-5 grid gap-4">
+          <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-4">
+            <p class="text-sm font-semibold text-[color:var(--ink)]">Fixed starting scope</p>
+            <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">We align around a concrete deliverable instead of open-ended billing.</p>
+          </div>
+          <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-4">
+            <p class="text-sm font-semibold text-[color:var(--ink)]">Milestone-based delivery</p>
+            <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">Work is broken into clear phases so progress and payment stay transparent.</p>
+          </div>
+          <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-4">
+            <p class="text-sm font-semibold text-[color:var(--ink)]">Direct founder communication</p>
+            <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">No account-manager gap between your brief and the actual implementation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="local-pk" class="site-shell pb-16 md:pb-20">
+    <div class="max-w-3xl">
+      <div class="section-kicker">Pakistan packages</div>
+      <h2 class="section-title mt-4 text-[color:var(--ink)]">{localPk.title}</h2>
+      <p class="body-copy mt-4">{localPk.description}</p>
+    </div>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      {localPk.packages.map((pkg) => (
+        <article
+          class:list={[
+            'surface-card flex h-full flex-col rounded-[30px] p-7',
+            pkg.popular && 'ring-2 ring-[rgba(15,118,110,0.18)]',
+          ]}
+        >
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-xl font-semibold text-[color:var(--ink)]">{pkg.name}</h3>
+            {pkg.popular && <span class="chip">Most requested</span>}
+          </div>
+          <p class="mt-2 text-sm text-[color:var(--muted)]">Delivery window: {pkg.duration}</p>
+          <p class="mt-6 text-4xl font-semibold text-[color:var(--ink)]">{pkg.price}</p>
+          <p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">{pkg.description}</p>
+          <ul class="mt-6 space-y-3">
+            {pkg.features.map((feature) => (
+              <li class="flex gap-3 text-sm leading-7 text-[color:var(--muted)]">
+                <i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-[color:var(--accent-strong)]"></i>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href={`/contact/?package=${encodeURIComponent(pkg.name)}&ref=pricing-local`} class={pkg.popular ? 'button-primary w-full justify-center' : 'button-secondary w-full justify-center'}>
+              {pkg.cta}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="international" class="site-shell pb-16 md:pb-20">
+    <div class="max-w-3xl">
+      <div class="section-kicker">Global founder builds</div>
+      <h2 class="section-title mt-4 text-[color:var(--ink)]">{international.title}</h2>
+      <p class="body-copy mt-4">{international.description}</p>
+    </div>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      {international.packages.map((pkg) => (
+        <article
+          class:list={[
+            'surface-card flex h-full flex-col rounded-[30px] p-7',
+            pkg.popular && 'ring-2 ring-[rgba(15,118,110,0.18)]',
+          ]}
+        >
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-xl font-semibold text-[color:var(--ink)]">{pkg.name}</h3>
+            {pkg.popular && <span class="chip">Popular</span>}
+          </div>
+          <p class="mt-2 text-sm text-[color:var(--muted)]">Delivery window: {pkg.duration}</p>
+          <p class="mt-6 text-4xl font-semibold text-[color:var(--ink)]">{pkg.price}</p>
+          <p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">{pkg.description}</p>
+          <ul class="mt-6 space-y-3">
+            {pkg.features.map((feature) => (
+              <li class="flex gap-3 text-sm leading-7 text-[color:var(--muted)]">
+                <i data-lucide="arrow-up-right" class="mt-1 h-4 w-4 shrink-0 text-[color:var(--accent-strong)]"></i>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href={`/contact/?package=${encodeURIComponent(pkg.name)}&ref=pricing-international`} class={pkg.popular ? 'button-primary w-full justify-center' : 'button-secondary w-full justify-center'}>
+              {pkg.cta}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell pb-20 md:pb-24">
+    <div class="ambient-panel rounded-[34px] p-8 md:p-10 text-center">
+      <h2 class="section-title text-[color:var(--ink)]">Need a hybrid scope or a custom roadmap?</h2>
+      <p class="body-copy mx-auto mt-4 max-w-2xl">
+        If your project spans website work, automation, internal tooling, and AI support, I can shape a combined proposal around business outcomes instead of forcing everything into one package.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact/?ref=pricing-custom" class="button-primary">Request custom proposal</a>
+        <a href="/services/" class="button-secondary">Compare services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,495 @@
+/* src/styles/prose.css */
+
+/* Global typography wrapper */
+.prose, .content-body, .prose-shell {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #171713; /* site default dark */
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+/* --- HEADINGS --- */
+.prose h1, .content-body h1, .prose-shell h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #1D9E75; /* Teal primary brand color */
+  padding-bottom: 0.5rem;
+  color: #171713;
+  line-height: 1.2;
+}
+
+.prose h2, .content-body h2, .prose-shell h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: #171713;
+  line-height: 1.25;
+  scroll-margin-top: 100px; /* Offset for sticky nav headers */
+}
+
+.prose h3, .content-body h3, .prose-shell h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #1D9E75; /* Teal primary */
+  line-height: 1.3;
+  scroll-margin-top: 100px;
+}
+
+.prose h4, .content-body h4, .prose-shell h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b; /* Muted text */
+}
+
+/* Heading Anchors */
+.prose-shell .heading-anchor,
+.prose .heading-anchor,
+.content-body .heading-anchor {
+  position: absolute;
+  left: -1.25rem;
+  color: #1D9E75;
+  opacity: 0;
+  text-decoration: none !important;
+  transition: opacity 200ms ease;
+  font-weight: normal;
+  user-select: none;
+}
+
+.prose-shell h2:hover .heading-anchor,
+.prose-shell h3:hover .heading-anchor,
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor,
+.content-body h2:hover .heading-anchor,
+.content-body h3:hover .heading-anchor {
+  opacity: 1;
+}
+
+/* --- PARAGRAPHS --- */
+.prose p, .content-body p, .prose-shell p {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  max-width: 70ch;
+  color: #171713;
+}
+
+/* --- LINKS --- */
+.prose a, .content-body a, .prose-shell a {
+  color: #1D9E75;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(29, 158, 117, 0.4);
+  transition: color 220ms ease, text-decoration-color 220ms ease;
+}
+
+.prose a:hover, .content-body a:hover, .prose-shell a:hover {
+  color: #0F6E56;
+  text-decoration-color: #0F6E56;
+}
+
+/* --- CODE BLOCKS --- */
+.code-block-wrapper {
+  margin: 1.5rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  background-color: #0f1117;
+  position: relative;
+}
+
+.code-block-header {
+  background-color: #1a1f2e;
+  padding: 6px 16px;
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.06);
+  user-select: none;
+}
+
+.code-block-copy-btn {
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #94a3b8;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.code-block-copy-btn:hover {
+  background-color: rgba(148, 163, 184, 0.1);
+  color: #e2e8f0;
+  border-color: rgba(148, 163, 184, 0.6);
+}
+
+.prose pre, .content-body pre, .prose-shell pre {
+  margin: 0 !important;
+  background-color: #0f1117 !important;
+  padding: 1.25rem 1.5rem !important;
+  overflow-x: auto !important;
+  white-space: pre !important;
+  word-wrap: normal !important;
+  border-radius: 0 0 10px 10px !important;
+}
+
+/* Fallback for pre elements not wrapped by script */
+.prose pre:not(.code-block-wrapper pre), 
+.content-body pre:not(.code-block-wrapper pre),
+.prose-shell pre:not(.code-block-wrapper pre) {
+  border-radius: 10px !important;
+  border: 1px solid #e2e8f0;
+}
+
+.prose pre code, .content-body pre code, .prose-shell pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  color: #e2e8f0 !important;
+  font-size: 0.85rem !important;
+  line-height: 1.7 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/* --- INLINE CODE --- */
+.prose :not(pre) > code, .content-body :not(pre) > code, .prose-shell :not(pre) > code {
+  background-color: #f1f5f9;
+  color: #1D9E75;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  word-break: break-word;
+}
+
+/* --- TABLES --- */
+.table-responsive-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.prose table, .content-body table, .prose-shell table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 !important;
+}
+
+.prose th, .content-body th, .prose-shell th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid #1D9E75;
+  color: #171713;
+}
+
+.prose td, .content-body td, .prose-shell td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #171713;
+}
+
+.prose tbody tr:nth-child(even), .content-body tbody tr:nth-child(even), .prose-shell tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* --- BLOCKQUOTES --- */
+.prose blockquote, .content-body blockquote, .prose-shell blockquote {
+  border-left: 4px solid #1D9E75 !important;
+  background-color: #f0fdf9 !important;
+  padding: 1rem 1.25rem !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-style: italic;
+  color: #374151 !important;
+  margin: 1.5rem 0 !important;
+}
+
+.prose blockquote p, .content-body blockquote p, .prose-shell blockquote p {
+  margin-bottom: 0 !important;
+  color: #374151 !important;
+}
+
+/* Remove default quotes in blockquotes */
+.prose-shell blockquote::before,
+.prose-shell blockquote::after,
+.prose blockquote::before,
+.prose blockquote::after,
+.content-body blockquote::before,
+.content-body blockquote::after {
+  content: "" !important;
+}
+
+/* --- CALLOUT BOXES --- */
+.prose .callout-info, .content-body .callout-info, .prose-shell .callout-info {
+  background-color: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  color: #1e3a8a;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.prose .callout-info::before, .content-body .callout-info::before, .prose-shell .callout-info::before {
+  content: "ℹ️";
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.prose .callout-warning, .content-body .callout-warning, .prose-shell .callout-warning {
+  background-color: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  color: #78350f;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.prose .callout-warning::before, .content-body .callout-warning::before, .prose-shell .callout-warning::before {
+  content: "⚠️";
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.prose .callout-success, .content-body .callout-success, .prose-shell .callout-success {
+  background-color: #f0fdf4;
+  border-left: 4px solid #1D9E75;
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  color: #064e3b;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.prose .callout-success::before, .content-body .callout-success::before, .prose-shell .callout-success::before {
+  content: "✓";
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1D9E75;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.prose .callout-danger, .content-body .callout-danger, .prose-shell .callout-danger {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  color: #7f1d1d;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.prose .callout-danger::before, .content-body .callout-danger::before, .prose-shell .callout-danger::before {
+  content: "✕";
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ef4444;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* --- LISTS & CHECKLISTS --- */
+.prose ul, .content-body ul, .prose-shell ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 1.25rem;
+}
+
+.prose ul li, .content-body ul li, .prose-shell ul li {
+  padding-left: 1.5rem !important;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.prose ul li::before, .content-body ul li::before, .prose-shell ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #1D9E75;
+  font-weight: 600;
+}
+
+.prose ol, .content-body ol, .prose-shell ol {
+  counter-reset: prose-counter;
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 1.25rem;
+}
+
+.prose ol li, .content-body ol li, .prose-shell ol li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose ol li::before, .content-body ol li::before, .prose-shell ol li::before {
+  counter-increment: prose-counter;
+  content: counter(prose-counter) ".";
+  position: absolute;
+  left: 0;
+  color: #1D9E75;
+  font-weight: 600;
+}
+
+/* GFM Checklist items styling override */
+.prose-shell li:has(input[type="checkbox"]),
+.prose li:has(input[type="checkbox"]),
+.content-body li:has(input[type="checkbox"]) {
+  list-style-type: none !important;
+  padding-left: 1.75rem !important;
+  position: relative;
+}
+
+.prose-shell li:has(input[type="checkbox"])::before,
+.prose li:has(input[type="checkbox"])::before,
+.content-body li:has(input[type="checkbox"])::before {
+  display: none !important; /* Hide the standard "→" bullet */
+}
+
+/* Hide native checkbox input styling */
+.prose-shell li input[type="checkbox"],
+.prose li input[type="checkbox"],
+.content-body li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: default;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Checklist indicators (Unchecked state: gray circle outline) */
+.prose-shell li:has(input[type="checkbox"])::after,
+.prose li:has(input[type="checkbox"])::after,
+.content-body li:has(input[type="checkbox"])::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Checklist indicators (Checked state: teal filled circle with checkmark) */
+.prose-shell li:has(input[type="checkbox"]:checked)::after,
+.prose li:has(input[type="checkbox"]:checked)::after,
+.content-body li:has(input[type="checkbox"]:checked)::after {
+  content: "✓";
+  font-size: 8px;
+  font-weight: 900;
+  color: white;
+  background-color: #1D9E75;
+  border-color: #1D9E75;
+  line-height: 10px;
+  text-align: center;
+}
+
+/* Gray text for unchecked checklist item */
+.prose-shell li:has(input[type="checkbox"]:not(:checked)),
+.prose li:has(input[type="checkbox"]:not(:checked)),
+.content-body li:has(input[type="checkbox"]:not(:checked)) {
+  color: #64748b;
+}
+
+/* --- HORIZONTAL RULE --- */
+.prose hr, .content-body hr, .prose-shell hr {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 2.5rem 0;
+}
+
+/* --- IMAGES & FIGURES --- */
+.prose img, .content-body img, .prose-shell img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.prose-figure {
+  margin: 1.8rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.prose-figure img {
+  margin: 0 !important; /* Overriden by figure margin */
+}
+
+.prose-figcaption {
+  font-size: 0.8rem;
+  color: #64748b; /* Muted slate gray */
+  margin-top: 0.6rem;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* --- STRONG / BOLD --- */
+.prose strong, .content-body strong, .prose-shell strong {
+  color: #171713; /* site default dark, not teal */
+  font-weight: 700;
+}
+
+/* --- KEYBOARD / KBD TAG --- */
+.prose kbd, .content-body kbd, .prose-shell kbd {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-bottom: 3px solid #94a3b8;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #171713;
+}

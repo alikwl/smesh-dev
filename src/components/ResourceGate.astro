@@ -1,0 +1,295 @@
+---
+interface Props {
+  slug: string;
+  resourceTitle: string;
+  downloadUrl?: string;
+}
+
+const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
+---
+
+<!-- Gated Content Container -->
+<div class="resource-gate-wrapper w-full max-w-2xl mx-auto my-8 font-sans" data-slug={slug} data-title={resourceTitle} data-download={downloadUrl}>
+  
+  <!-- Blocking script to hide the gate card immediately on page load for returning visitors (prevents flash) -->
+  <script is:inline define:vars={{ slug }}>
+    try {
+      if (localStorage.getItem(`unlocked_${slug}`)) {
+        document.write('<style>#gate-card { display: none !important; }</style>');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  </script>
+
+  <!-- Toast message (hidden by default, positioned fixed) -->
+  <div 
+    id="unlock-toast" 
+    class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-500 bg-emerald-800 text-white px-5 py-3.5 rounded-xl shadow-xl flex items-center gap-2.5 text-xs font-bold font-sans"
+  >
+    <span class="ti-check text-sm"></span>
+    <span>Full resource unlocked</span>
+  </div>
+
+  <!-- Locked State: Gate Card -->
+  <div 
+    id="gate-card" 
+    class="ambient-panel rounded-3xl p-6 sm:p-10 border border-[color:var(--line)] bg-white/60 backdrop-blur-md shadow-xl space-y-6 transition-all duration-300"
+  >
+    <div class="flex flex-col items-center text-center space-y-3">
+      <!-- Icon Container -->
+      <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100/50 text-[color:var(--accent)] flex items-center justify-center shrink-0 shadow-sm">
+        <span class="ti-lock text-lg" id="gate-lock-icon"></span>
+      </div>
+      <div class="space-y-1">
+        <h3 class="text-base font-bold text-[color:var(--ink)] leading-tight">Unlock system blueprint.</h3>
+        <p class="text-xs text-[color:var(--muted)] font-light leading-relaxed max-w-sm">
+          Enter email to sync access credentials and download files instantly.
+        </p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="gate-form" class="space-y-4">
+      <div>
+        <label for="gate-email-input" class="block text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 font-sans">Email Address</label>
+        <input 
+          type="email" 
+          id="gate-email-input"
+          required 
+          placeholder="you@company.com" 
+          class="w-full px-4 py-3 rounded-xl border border-[color:var(--line)] bg-white text-xs focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] transition font-sans"
+        />
+      </div>
+
+      <!-- GDPR Checklist for legal compliance & trust indicators -->
+      <label class="flex items-start gap-2.5 rounded-xl border border-slate-150 bg-slate-50/50 px-3.5 py-3 text-xs text-slate-500 font-sans cursor-pointer select-none">
+        <input 
+          id="gate-gdpr-input" 
+          type="checkbox" 
+          required 
+          class="mt-0.5 h-4 w-4 rounded border-slate-350 text-[color:var(--accent)] focus:ring-[rgba(15,118,110,0.12)]" 
+        />
+        <span class="font-light leading-normal">I agree to receive free weekly resources & updates.</span>
+      </label>
+
+      <button 
+        type="submit" 
+        id="gate-submit-btn" 
+        class="w-full bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white font-bold py-3.5 rounded-xl text-xs transition flex items-center justify-center cursor-pointer shadow-sm gap-2 select-none font-sans"
+      >
+        <span id="gate-submit-text">Unlock Free Access →</span>
+        <!-- Loading Spinner -->
+        <svg id="gate-spinner" class="hidden animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </button>
+    </form>
+
+    <!-- Inline Error -->
+    <div id="gate-error-message" class="hidden text-center text-xs text-rose-600 font-semibold leading-tight bg-rose-50 border border-rose-100 py-2.5 rounded-xl">
+      Something went wrong &mdash; try again
+    </div>
+
+    <!-- Trust Lines -->
+    <div class="space-y-1.5 pt-2 select-none border-t border-[color:var(--line)]">
+      <span class="text-[10px] text-slate-400 font-light flex items-center gap-1.5 justify-center">
+        ✓ Instant access &mdash; no email confirmation needed
+      </span>
+      <span class="text-[10px] text-slate-400 font-light flex items-center gap-1.5 justify-center">
+        ✓ Unsubscribe anytime
+      </span>
+    </div>
+  </div>
+
+  <!-- Unlocked State Content Div (starts EMPTY) -->
+  <div 
+    id="locked-content" 
+    class="hidden content-body prose max-w-[72ch] mx-auto transition-all duration-500"
+  ></div>
+</div>
+
+<script>
+  import { marked } from 'marked';
+  import { supabase } from '../lib/supabase';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('.resource-gate-wrapper');
+    if (!wrapper) return;
+
+    const slug = wrapper.getAttribute('data-slug') || '';
+    const gateCard = document.getElementById('gate-card');
+    const lockedContent = document.getElementById('locked-content');
+    const form = document.getElementById('gate-form') as HTMLFormElement | null;
+    const emailInput = document.getElementById('gate-email-input') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('gate-submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('gate-submit-text');
+    const spinner = document.getElementById('gate-spinner');
+    const errorMessage = document.getElementById('gate-error-message');
+    const toast = document.getElementById('unlock-toast');
+
+    if (!gateCard || !lockedContent || !form) return;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Show dynamic success toast
+    const showToast = () => {
+      if (!toast) return;
+      toast.classList.remove('opacity-0', 'translate-y-12', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-12', 'pointer-events-none');
+      }, 3500);
+    };
+
+    // Render markdown to HTML, inject, enhance, and display
+    const renderAndDisplay = (markdown: string, silent: boolean = false) => {
+      // 1. Compile markdown to HTML client-side
+      const htmlContent = marked.parse(markdown) as string;
+
+      // 2. Hide gate card completely and remove from layout flow
+      gateCard.style.display = 'none';
+      gateCard.remove();
+
+      // 3. Inject HTML and display container
+      lockedContent.innerHTML = `<div class="mdx-content prose content-body prose-shell">${htmlContent}</div>`;
+      lockedContent.classList.remove('hidden');
+
+      // 4. Run global enhancers (syntax highlighting copy buttons, tables, anchors, etc.)
+      if ((window as any).enhanceMarkdownContent) {
+        (window as any).enhanceMarkdownContent(lockedContent);
+      }
+
+      // Dispatch global event for other components (e.g. mockup overlay)
+      window.dispatchEvent(new CustomEvent('resource-unlocked', { detail: { slug } }));
+
+      // 5. Scroll to content, show toast and trigger auto-download if not a silent unlock
+      if (!silent) {
+        lockedContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showToast();
+
+        // Auto-download trigger
+        const downloadUrl = wrapper.getAttribute('data-download');
+        if (downloadUrl && downloadUrl !== '#' && downloadUrl !== '') {
+          const tempLink = document.createElement('a');
+          tempLink.href = downloadUrl;
+          tempLink.target = '_blank';
+          tempLink.rel = 'noopener';
+          tempLink.setAttribute('download', '');
+          document.body.appendChild(tempLink);
+          tempLink.click();
+          document.body.removeChild(tempLink);
+        }
+      }
+    };
+
+    // Fetch and unlock content via the Supabase database RPC function
+    const unlockResource = async (email: string, silent: boolean = false) => {
+      if (!silent) {
+        // Show loading state
+        if (errorMessage) errorMessage.classList.add('hidden');
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Unlocking...';
+        if (spinner) spinner.classList.remove('hidden');
+      }
+
+      try {
+        const { data, error } = await supabase.rpc('unlock_resource', {
+          email_input: email,
+          slug_input: slug
+        });
+
+        if (error) {
+          throw error;
+        }
+
+        if (!data) {
+          throw new Error('Content missing in response');
+        }
+
+        // Cache unlock state and the unlocked content in localStorage
+        localStorage.setItem(`unlocked_${slug}`, JSON.stringify({ 
+          email, 
+          unlockedAt: Date.now(),
+          content: data // Cache the markdown content to avoid future database reads
+        }));
+
+        // Render and show
+        renderAndDisplay(data, silent);
+
+      } catch (err) {
+        console.error('Failed to unlock resource:', err);
+        if (!silent) {
+          // Revert form state and show simple error
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Unlock Free Access →';
+          if (spinner) spinner.classList.add('hidden');
+          if (errorMessage) errorMessage.classList.remove('hidden');
+        } else {
+          // If silent check fails (e.g. offline, bad key), restore card visibility so they can try again
+          gateCard.style.display = 'block';
+        }
+      }
+    };
+
+    // 1. Returning Visitor Flow (On page load check)
+    const saved = localStorage.getItem(`unlocked_${slug}`);
+    if (saved) {
+      try {
+        const { email, content } = JSON.parse(saved);
+        if (email && emailRegex.test(email)) {
+          if (content) {
+            // Render directly from local storage cache - ZERO API CALLS!
+            renderAndDisplay(content, true);
+          } else {
+            // Fallback: fetch silently in the background if content is not cached yet
+            unlockResource(email, true);
+          }
+        } else {
+          // Invalid storage value, restore gate card visibility
+          gateCard.style.display = 'block';
+        }
+      } catch (e) {
+        // Corrupted JSON, restore gate card visibility
+        gateCard.style.display = 'block';
+      }
+    }
+
+    // 2. Form Submission Flow
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!emailInput) return;
+
+      const email = emailInput.value.trim();
+      const gdprInput = document.getElementById('gate-gdpr-input') as HTMLInputElement | null;
+      const gdprConsent = gdprInput ? gdprInput.checked : false;
+
+      // Client-side email validation
+      if (!email || !emailRegex.test(email)) {
+        if (errorMessage) {
+          errorMessage.textContent = 'Please enter a valid email address';
+          errorMessage.classList.remove('hidden');
+        }
+        return;
+      }
+
+      // Proactively write download tracking to resource_downloads table
+      try {
+        const payload = {
+          email: email,
+          resource_title: wrapper.getAttribute('data-title') || '',
+          gdpr_consent: gdprConsent,
+          created_at: new Date().toISOString()
+        };
+        await supabase.from('resource_downloads').insert([payload]);
+      } catch (err) {
+        console.error('Failed to log to resource_downloads:', err);
+      }
+
+      await unlockResource(email, false);
+    });
+  });
+</script>

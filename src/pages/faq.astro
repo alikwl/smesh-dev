@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { faqs } from '../data/faqs';
+---
+
+<BaseLayout title="Automation & Development FAQs | Smesh.Dev" description="Find answers to common questions about custom n8n workflows, local retail POS setups, AI support chatbots, and web systems engineered by Smesh.Dev.">
+  <section class="section-frame pt-6 md:pt-8">
+    <div class="site-shell">
+      <div class="max-w-3xl">
+        <div class="section-kicker">FAQ</div>
+        <h1 class="display-title mt-4 text-[color:var(--ink)]">Common questions before starting a project.</h1>
+        <p class="body-copy mt-4">
+          Clear answers about scope, timelines, pricing direction, support, and what kind of businesses these systems fit best.
+        </p>
+      </div>
+
+      <div class="card-grid-tight mt-8 lg:grid-cols-2">
+        {faqs.map((faq, index) => (
+          <article class="surface-card rounded-[18px] p-4" data-reveal style={`--reveal-delay: ${index * 50}ms;`}>
+            <h2 class="text-[1rem] font-semibold leading-6 text-[color:var(--ink)]">{faq.question}</h2>
+            <p class="mt-3 text-[13px] leading-7 text-[color:var(--muted)]">{faq.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
