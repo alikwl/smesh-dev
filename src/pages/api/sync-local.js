@@ -100,8 +100,6 @@ ${tocList ? `tableOfContents:\n${tocList}` : ''}
 lockedContentFile: "src/content/locked/${slug}.md"
 ---
 
-import ResourceGate from '../../components/ResourceGate.astro';
-
 # ${cleanTitle}
 
 ${res.description}
@@ -114,8 +112,6 @@ ${(res.table_of_contents || []).map((toc, idx) => `${idx + 1}. **${toc}**`).join
 
 ### 📖 Excerpt: Chapter 1 Preview
 ${res.excerpt || ''}
-
-<ResourceGate slug="${slug}" resourceTitle="${cleanTitle.replace(/"/g, '\\"')}" downloadUrl="${res.download_url || ''}" />
 
 ${testimonials}
 `;

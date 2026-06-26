@@ -64,18 +64,14 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
               <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-semibold font-sans">Automation Studio</div>
             </div>
           </a>
-          <!-- Back button or Distraction-free badge -->
+          <!-- Back button -->
           <div class="flex items-center gap-4">
             {backUrl && (
-              <a href={backUrl} class="text-xs font-semibold text-slate-655 hover:text-indigo-650 transition flex items-center gap-1 font-sans border-r border-slate-200 pr-4">
+              <a href={backUrl} class="text-xs font-semibold text-slate-655 hover:text-indigo-650 transition flex items-center gap-1 font-sans">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-0.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 {backLabel}
               </a>
             )}
-            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-sans flex items-center gap-1.5 select-none">
-              <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              🔒 Gated Page
-            </div>
           </div>
         </div>
       </div>

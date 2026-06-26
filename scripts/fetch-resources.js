@@ -86,7 +86,7 @@ async function run() {
       // 3. Construct MDX teaser content
       const testimonials = testimonialsMap[slug] || '';
       
-      const cleanTitle = res.title.replace(/^#\s*/, '').trim();
+      const cleanTitle = res.title.replace(/^#+\s*/, '').trim();
       const bulletList = (res.bullet_points || []).map(bp => `  - "${bp.replace(/"/g, '\\"')}"`).join('\n');
       const teaserList = (res.teaser_points || []).map(tp => `  - "${tp.replace(/"/g, '\\"')}"`).join('\n');
       const tocList = (res.table_of_contents || []).map(toc => `  - "${toc.replace(/"/g, '\\"')}"`).join('\n');
@@ -105,27 +105,18 @@ ${res.download_url ? `downloadUrl: "${res.download_url}"` : ''}
 ${bulletList ? `bulletPoints:\n${bulletList}` : ''}
 ${res.preview_image ? `previewImage: "${res.preview_image}"` : ''}
 ${res.estimated_value ? `estimatedValue: "${res.estimated_value}"` : ''}
+${res.cta_headline ? `ctaHeadline: "${res.cta_headline.replace(/"/g, '\\"')}"` : ''}
+${res.cta_subtext ? `ctaSubtext: "${res.cta_subtext.replace(/"/g, '\\"')}"` : ''}
 ${teaserList ? `teaserPoints:\n${teaserList}` : ''}
 ${tocList ? `tableOfContents:\n${tocList}` : ''}
 lockedContentFile: "src/content/locked/${slug}.md"
 ---
-
-import ResourceGate from '../../components/ResourceGate.astro';
-
-${res.description}
-
-### What you'll unlock:
-${(res.bullet_points || []).map(bp => `* **${bp}**`).join('\n')}
 
 ### Table of Contents:
 ${(res.table_of_contents || []).map((toc, idx) => `${idx + 1}. **${toc}**`).join('\n')}
 
 ### 📖 Excerpt: Chapter 1 Preview
 ${res.excerpt || ''}
-
-<ResourceGate slug="${slug}" resourceTitle="${cleanTitle.replace(/"/g, '\\"')}" downloadUrl="${res.download_url || ''}" />
-
-${testimonials}
 `;
       
       // 4. Write MDX file

@@ -12,6 +12,13 @@ const estimatedValues: Record<string, string> = {
   'supabase-vector-rag-prompt': '$39 Value',
   'sample-khazaana': '$19 Value',
 };
+
+const categoryGradients: Record<string, string> = {
+  'PDF': 'from-indigo-500 via-indigo-600 to-violet-700',
+  'Guide': 'from-teal-500 via-teal-600 to-emerald-700',
+  'Prompt': 'from-amber-500 via-amber-600 to-orange-600',
+};
+const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
 ---
 
 <BaseLayout title="n8n Blueprints & Automation Resources | Smesh.Dev" description="Download free n8n workflows, database schemas, local retail POS checklists, and prompt strategies designed by Haider Ali (BismillahTC)." image="https://drive.google.com/thumbnail?id=1GtxC4TjFV8BQrUKqRayyqWOJORHC9dz3&sz=w1200">
@@ -82,71 +89,70 @@ const estimatedValues: Record<string, string> = {
   <section class="site-shell pb-20 md:pb-24">
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="resources-grid">
       {items.map((item) => {
-        const { title, category, targetServiceTag, description, premium } = item.data;
+        const { title, category, targetServiceTag, description, premium, previewImage } = item.data;
         const slug = item.id.replace(/\.(md|mdx)$/, '');
         const valText = estimatedValues[slug] || '$29 Value';
-        const cleanTitle = title.replace(/^#\s*/, '').trim();
+        const cleanTitle = title.replace(/^#+\s*/, '').trim();
+        const gradientClass = categoryGradients[category] || defaultGradient;
         return (
           <article 
             class="resources-card ambient-panel overflow-hidden rounded-[30px] border border-[color:var(--line)] bg-white/50 backdrop-blur-md hover:-translate-y-1.5 hover:shadow-xl hover:bg-white/80 transition-all duration-300 flex flex-col justify-between"
             data-category={category}
+            data-slug={slug}
           >
             <div>
               <!-- 1. The Teaser Visual & Lock Badge -->
               <div class="relative overflow-hidden aspect-[16/10] bg-slate-950 flex items-center justify-center border-b border-slate-100 select-none">
-                <!-- Blurred preview code/workflow mockup -->
-                <div class="absolute inset-0 opacity-25 filter blur-xs scale-110 font-mono text-[9px] text-teal-400 p-5 overflow-hidden leading-relaxed">
-                  {"{\n  \"meta\": {\n    \"instanceId\": \"smesh-dev-flow\"\n  },\n  \"nodes\": [\n    {\n      \"parameters\": {\n        \"path\": \"whatsapp-webhook\"\n      },\n      \"id\": \"wh-node\",\n      \"name\": \"Webhook\",\n      \"type\": \"n8n-nodes-base.webhook\"\n    }\n  ]\n}"}
-                </div>
-                <!-- Lock Badge Overlay -->
-                <div class="z-10 flex flex-col items-center gap-2">
-                  <div class="w-11 h-11 rounded-full bg-slate-900/80 border border-slate-700/50 flex items-center justify-center shadow-lg transform group-hover:scale-105 transition">
-                    <span class="text-lg">🔒</span>
-                  </div>
-                  <span class="text-[8px] uppercase tracking-widest font-bold text-teal-300 bg-teal-950/80 px-2.5 py-0.5 rounded border border-teal-500/20 font-sans">
-                    Locked System File
-                  </span>
-                </div>
+                {previewImage ? (
+                  <img 
+                    src={previewImage} 
+                    alt={cleanTitle} 
+                    loading="lazy"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div class={`absolute inset-0 bg-gradient-to-br ${gradientClass}`} />
+                )}
+
               </div>
 
               <!-- Content Area & Value Hook -->
-              <div class="p-6 space-y-4">
+              <div class="p-7 space-y-4">
                 <div class="flex items-center justify-between font-sans">
                   <span class="px-2.5 py-0.5 rounded bg-[color:var(--line)] text-[color:var(--ink)] text-[9px] font-bold uppercase tracking-wider">
                     {category}
                   </span>
                   
                   <!-- 2. Value Hook Badge -->
-                  <span class="px-2.5 py-0.5 rounded border border-amber-200 bg-amber-50 text-amber-700 text-[9px] font-bold uppercase tracking-wider font-sans">
-                    {premium ? `Premium Template - ${valText}` : `Grounded PDF - ${valText}`}
+                  <span class="px-2.5 py-0.5 rounded border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]/20 text-[color:var(--accent-strong)] text-[9px] font-bold uppercase tracking-wider font-sans">
+                    FREE RESOURCE
                   </span>
                 </div>
 
                 <div class="space-y-2">
-                  <h3 class="text-lg font-bold text-[color:var(--ink)] leading-snug">
-                    <a href={`/resources/${slug}/`} class="hover:text-[color:var(--accent-strong)] transition">{cleanTitle}</a>
+                  <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug line-clamp-2 min-h-[3rem] hover:text-[color:var(--accent-strong)] transition">
+                    <a href={`/resources/${slug}/`}>{cleanTitle}</a>
                   </h3>
-                  <p class="text-xs text-[color:var(--muted)] leading-relaxed line-clamp-3 font-light">{description}</p>
+                  <p class="text-sm text-slate-500 leading-relaxed line-clamp-3 font-light">{description}</p>
                 </div>
               </div>
             </div>
 
             <!-- Card Footer -->
-            <div class="mx-6 pb-6 pt-4 border-t border-[color:var(--line)] flex items-center justify-between font-sans">
+            <div class="mx-7 pb-7 pt-5 border-t border-[color:var(--line)] flex items-center justify-between font-sans">
               <div>
-                <span class="text-[8px] uppercase tracking-[0.16em] text-[color:var(--muted-soft)] block font-semibold">Target Service</span>
-                <span class="chip text-[9px] py-0.5 px-2 mt-1 inline-block capitalize bg-[rgba(15,118,110,0.06)] text-[color:var(--accent-strong)]">{targetServiceTag}</span>
+                <span class="text-[8px] uppercase tracking-[0.16em] text-[color:var(--muted-soft)] block font-semibold">Best For</span>
+                <span class="chip text-[9px] py-0.5 px-2 mt-1 inline-block capitalize bg-[rgba(15,118,110,0.06)] text-[color:var(--accent-strong)] font-semibold rounded">{targetServiceTag.replace(/-/g, ' ')}</span>
               </div>
 
               <!-- 4. Micro-Copy CTA -->
               <div>
-                <button 
-                  data-resource-title={cleanTitle}
-                  data-resource-download={item.data.downloadUrl}
-                  class="trigger-unlock-modal inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer"
+                <a 
+                  href={`/resources/${slug}/`}
+                  class="inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer font-sans"
                 >
-                  Unlock for Free
-                </button>
+                  Read Now
+                </a>
               </div>
             </div>
           </article>
@@ -166,82 +172,59 @@ const estimatedValues: Record<string, string> = {
     </div>
   </section>
 
-  <!-- 2. The Pop-Up Box (The Capture Step Modal) -->
-  <div id="capture-unlock-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-all duration-300">
-    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full border border-slate-100 shadow-2xl relative scale-95 transition-all duration-300">
-      <button id="close-capture-modal" class="absolute top-4 right-4 p-1 rounded-md text-slate-400 hover:bg-slate-50 transition cursor-pointer" aria-label="Close modal">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
+  <!-- Newsletter Signup Strip -->
+  <section class="site-shell pb-20 md:pb-24">
+    <div 
+      class="newsletter-signup-strip p-6 sm:p-10 bg-slate-900 text-white border border-slate-800 rounded-[32px] shadow-lg relative overflow-hidden font-sans"
+      data-resource-slug="resources-hub"
+      data-resource-type="newsletter"
+    >
+      <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
 
-      <div class="space-y-5">
-        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-50 text-[color:var(--accent-strong)]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      <div class="strip-inner relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <!-- Left side content -->
+        <div class="max-w-xl space-y-2">
+          <div class="text-[10px] font-bold tracking-wider text-[color:var(--accent)] uppercase flex items-center gap-1.5 select-none">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-[color:var(--accent)] animate-pulse"></span>
+            WEEKLY BLUEPRINTS
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white leading-tight">
+            Get new blueprints before they go public.
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed">
+            Join developers getting n8n + Supabase resources weekly. No fluff, no spam.
+          </p>
         </div>
-        <div>
-          <!-- Dynamic Headline -->
-          <h4 class="text-xl font-bold text-slate-950">Where should we send your access link?</h4>
-          <p class="text-xs text-slate-500 mt-1 font-light">Enter email to unlock <span id="modal-resource-name" class="font-bold text-slate-800">this premium resource</span> instantly.</p>
-        </div>
 
-        <form id="capture-lead-form" class="space-y-4 pt-1">
-          <!-- Hidden Inputs to carry resource state -->
-          <input type="hidden" id="modal-resource-title-val" value="" />
-          <input type="hidden" id="modal-resource-download-val" value="" />
-
-          <!-- Single Input Field -->
-          <div>
-            <label for="capture-email" class="block text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 font-sans">Email Address</label>
+        <!-- Right side form -->
+        <div class="w-full lg:w-auto lg:min-w-[360px]">
+          <form class="newsletter-signup-form flex flex-col sm:flex-row gap-3 w-full">
             <input 
               type="email" 
-              id="capture-email" 
               required 
               placeholder="you@company.com" 
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans"
+              class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 text-xs focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] transition font-sans"
             />
-          </div>
-
-          <!-- GDPR Checklist -->
-          <label class="flex items-start gap-2.5 rounded-xl border border-slate-150 bg-slate-50/50 px-3.5 py-3 text-xs text-slate-500 font-sans cursor-pointer">
-            <input 
-              id="capture-gdpr" 
-              type="checkbox" 
-              required 
-              class="mt-0.5 h-4 w-4 rounded border-slate-350 text-[color:var(--accent)] focus:ring-[rgba(15,118,110,0.12)]" 
-            />
-            <span class="font-light leading-normal select-none">I agree to receive free weekly resources & updates.</span>
-          </label>
-
-          <button type="submit" id="capture-submit-btn" class="w-full button-primary font-bold py-3.5 rounded-xl text-sm transition mt-3 flex items-center justify-center cursor-pointer font-sans">
-            <span>Get Instant Access</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </button>
-        </form>
-
-        <!-- Dynamic Success Download Reveal -->
-        <div id="capture-success-revealer" class="hidden text-center space-y-4 animate-fade-in font-sans py-4">
-          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mx-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          </div>
-          <div class="space-y-1">
-            <h4 class="font-bold text-slate-900 text-sm">System Unlocked Successfully!</h4>
-            <p class="text-xs text-slate-500 font-light">Your download should start automatically. If not, use the button below:</p>
-          </div>
-          <a 
-            id="modal-direct-download-btn" 
-            href="#" 
-            target="_blank" 
-            rel="noopener" 
-            class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md transition"
-          >
-            Download Resource File
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          </a>
+            <button 
+              type="submit" 
+              class="submit-btn bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white font-bold px-6 py-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5 shrink-0 select-none font-sans cursor-pointer"
+            >
+              <span>Join the List</span>
+              <!-- Loading Spinner -->
+              <svg class="spinner hidden animate-spin h-3.5 w-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </form>
+          <!-- Interactive status messaging -->
+          <div class="message-box hidden mt-3 text-xs font-semibold text-center py-2.5 px-3 rounded-xl transition-all duration-300"></div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Client-Side Category Filtering & Unlock Script -->
+  <!-- Client-Side Category Filtering & Newsletter Script -->
   <script>
     import { supabase } from '../../lib/supabase';
 
@@ -249,7 +232,6 @@ const estimatedValues: Record<string, string> = {
       let currentFilter = 'All';
       let currentSearch = '';
 
-      // Category filter buttons
       const filterButtons = document.querySelectorAll('.resources-filter-btn');
       const searchInput = document.getElementById('resources-search-input') as HTMLInputElement | null;
       const cards = document.querySelectorAll('.resources-card');
@@ -291,7 +273,6 @@ const estimatedValues: Record<string, string> = {
           const filterValue = btn.getAttribute('data-filter') || 'All';
           currentFilter = filterValue;
 
-          // Paint active button state
           filterButtons.forEach(b => {
             b.classList.remove('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]', 'shadow-sm');
             b.classList.add('border-[color:var(--line)]', 'bg-white/40', 'text-[color:var(--muted)]');
@@ -309,112 +290,75 @@ const estimatedValues: Record<string, string> = {
         filterCards();
       });
 
-      // Capture modal handles
-      const modal = document.getElementById('capture-unlock-modal');
-      const closeBtn = document.getElementById('close-capture-modal');
-      const triggerBtns = document.querySelectorAll('.trigger-unlock-modal');
+      // Newsletter Signup Script
+      const newsletterStrip = document.querySelector('.newsletter-signup-strip');
+      if (newsletterStrip) {
+        const form = newsletterStrip.querySelector('.newsletter-signup-form');
+        if (form) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-      const modalResourceName = document.getElementById('modal-resource-name');
-      const hiddenTitleVal = document.getElementById('modal-resource-title-val') as HTMLInputElement | null;
-      const hiddenDownloadVal = document.getElementById('modal-resource-download-val') as HTMLInputElement | null;
+            const resourceSlug = newsletterStrip.getAttribute('data-resource-slug') || 'resources-hub';
+            const resourceType = newsletterStrip.getAttribute('data-resource-type') || 'newsletter';
+            const input = form.querySelector('input[type="email"]') as HTMLInputElement | null;
+            const submitBtn = form.querySelector('.submit-btn') as HTMLButtonElement | null;
+            const submitText = submitBtn?.querySelector('span');
+            const spinner = submitBtn?.querySelector('.spinner');
+            const messageBox = newsletterStrip.querySelector('.message-box') as HTMLDivElement | null;
 
-      const form = document.getElementById('capture-lead-form') as HTMLFormElement | null;
-      const successRevealer = document.getElementById('capture-success-revealer');
-      const directDownloadBtn = document.getElementById('modal-direct-download-btn') as HTMLAnchorElement | null;
+            if (!input || !submitBtn || !messageBox) return;
 
-      const openModal = (title: string, downloadUrl: string) => {
-        if (!modal) return;
+            const email = input.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // Reset state
-        if (form) form.classList.remove('hidden');
-        if (successRevealer) successRevealer.classList.add('hidden');
-        if (form) form.reset();
+            if (!email || !emailRegex.test(email)) {
+              messageBox.textContent = "Please enter a valid email";
+              messageBox.className = 'message-box block mt-2.5 text-xs text-rose-400 font-semibold text-center bg-rose-950/20 border border-rose-900/30 py-2.5 rounded-xl';
+              messageBox.classList.remove('hidden');
+              return;
+            }
 
-        // Bind fields
-        if (modalResourceName) modalResourceName.textContent = `"${title}"`;
-        if (hiddenTitleVal) hiddenTitleVal.value = title;
-        if (hiddenDownloadVal) hiddenDownloadVal.value = downloadUrl;
+            input.disabled = true;
+            submitBtn.disabled = true;
+            if (submitText) submitText.textContent = 'Joining...';
+            if (spinner) spinner.classList.remove('hidden');
+            messageBox.classList.add('hidden');
 
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        setTimeout(() => {
-          modal.classList.remove('opacity-0');
-          modal.querySelector('.bg-white')?.classList.remove('scale-95');
-        }, 10);
-      };
+            try {
+              const { error } = await supabase.from('email_leads').insert([
+                {
+                  email: email,
+                  resource_id: null,
+                  resource_slug: resourceSlug,
+                  resource_type: resourceType
+                }
+              ]);
 
-      const closeModal = () => {
-        if (!modal) return;
-        modal.classList.add('opacity-0');
-        modal.querySelector('.bg-white')?.classList.add('scale-95');
-        setTimeout(() => {
-          modal.classList.remove('flex');
-          modal.classList.add('hidden');
-        }, 300);
-      };
+              if (error) throw error;
 
-      triggerBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const title = btn.getAttribute('data-resource-title') || 'Selected Resource';
-          const downloadUrl = btn.getAttribute('data-resource-download') || '#';
-          openModal(title, downloadUrl);
-        });
-      });
+              newsletterStrip.innerHTML = `<div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div><div class="relative z-10 flex items-center justify-center py-8 text-emerald-400 font-semibold text-sm font-sans"><p>✓ You're on the list! We'll be in touch soon.</p></div>`;
+              console.log(`Newsletter signup: ${email}`);
+            } catch (err: any) {
+              console.error('Failed to subscribe:', err);
 
-      closeBtn?.addEventListener('click', closeModal);
+              input.disabled = false;
+              submitBtn.disabled = false;
+              if (submitText) submitText.textContent = 'Join the List';
+              if (spinner) spinner.classList.add('hidden');
 
-      // Submit lead & write to public.resource_downloads table
-      form?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const emailInput = document.getElementById('capture-email') as HTMLInputElement | null;
-        const gdprInput = document.getElementById('capture-gdpr') as HTMLInputElement | null;
-        const submitBtn = document.getElementById('capture-submit-btn') as HTMLButtonElement | null;
-
-        if (!emailInput || !gdprInput || !submitBtn || !hiddenTitleVal || !hiddenDownloadVal) return;
-
-        const email = emailInput.value.trim();
-        const gdprConsent = gdprInput.checked;
-        const resourceTitle = hiddenTitleVal.value;
-        const downloadUrl = hiddenDownloadVal.value;
-
-        if (!email || !resourceTitle) return;
-
-        submitBtn.disabled = true;
-        const labelText = submitBtn.querySelector('span');
-        if (labelText) labelText.textContent = 'Unlocking Blueprint...';
-
-        try {
-          // Write directly to Supabase resource_downloads table
-          const payload = {
-            email: email,
-            resource_title: resourceTitle,
-            gdpr_consent: gdprConsent,
-            created_at: new Date().toISOString()
-          };
-
-          const { error } = await supabase.from('resource_downloads').insert([payload]);
-          if (error) throw error;
-
-          // On success, hide form and show direct download link
-          form.classList.add('hidden');
-          if (successRevealer) successRevealer.classList.remove('hidden');
-
-          if (directDownloadBtn) {
-            directDownloadBtn.href = downloadUrl;
-            // Trigger download automatically
-            directDownloadBtn.click();
-          }
-        } catch (err) {
-          console.error('Resource download sync failed:', err);
-          // Fallback to unlock locally on connection failure to maintain good UX
-          form.classList.add('hidden');
-          if (successRevealer) successRevealer.classList.remove('hidden');
-          if (directDownloadBtn) {
-            directDownloadBtn.href = downloadUrl;
-          }
+              const isDuplicate = err.code === '23505' || err.message?.includes('duplicate');
+              if (isDuplicate) {
+                messageBox.textContent = "You're already on the list! 🎉";
+                messageBox.className = 'message-box block mt-2.5 text-xs text-amber-400 font-semibold text-center bg-amber-950/20 border border-amber-900/30 py-2.5 rounded-xl';
+              } else {
+                messageBox.textContent = "Something went wrong. Please try again.";
+                messageBox.className = 'message-box block mt-2.5 text-xs text-rose-400 font-semibold text-center bg-rose-950/20 border border-rose-900/30 py-2.5 rounded-xl';
+              }
+              messageBox.classList.remove('hidden');
+            }
+          });
         }
-      });
+      }
     });
   </script>
-</BaseLayout>ut>
+</BaseLayout>

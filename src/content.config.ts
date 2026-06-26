@@ -73,6 +73,8 @@ const resources = defineCollection({
     bulletPoints: z.array(z.string()).optional(),
     previewImage: z.string().optional(),
     estimatedValue: z.string().optional(),
+    ctaHeadline: z.string().optional(),
+    ctaSubtext: z.string().optional(),
     teaserPoints: z.array(z.string()).default([]),
     tableOfContents: z.array(z.string()).default([]),
     lockedContentFile: z.string().optional(),

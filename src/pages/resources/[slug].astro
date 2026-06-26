@@ -1,13 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MDXComponents from '../../components/MDXComponents.astro';
-import { getCollection, getEntry } from 'astro:content';
 import { getAllResources } from '../../lib/supabase';
+import { marked } from 'marked';
+import ResourceCTA from '../../components/ResourceCTA.astro';
 
 export async function getStaticPaths() {
-  const localResources = await getCollection('resources');
-  const localSlugs = new Set(localResources.map(r => r.id.replace(/\.(md|mdx)$/, '')));
-
   let dbResources = [];
   try {
     dbResources = await getAllResources();
@@ -15,59 +12,52 @@ export async function getStaticPaths() {
     console.warn("[Warning] Failed to fetch resources from Supabase:", err);
   }
 
-  if (dbResources && dbResources.length > 0) {
-    return dbResources
-      .filter((r) => localSlugs.has(r.slug))
-      .map((r) => ({
-        params: { slug: r.slug },
-        props: { resource: r },
-      }));
-  }
-
-  // Fallback to local files only
-  return localResources.map((r) => {
-    const slug = r.id.replace(/\.(md|mdx)$/, '');
-    return {
-      params: { slug },
-      props: {
-        resource: {
-          slug,
-          title: r.data.title,
-          category: r.data.category,
-          target_service_tag: r.data.targetServiceTag,
-          description: r.data.description,
-          premium: r.data.premium,
-          download_url: r.data.downloadUrl,
-          bullet_points: r.data.bulletPoints,
-          preview_image: r.data.previewImage,
-          estimated_value: r.data.estimatedValue,
-          teaser_points: r.data.teaserPoints,
-          table_of_contents: r.data.tableOfContents,
-        }
-      }
-    };
-  });
+  return dbResources.map((r) => ({
+    params: { slug: r.slug },
+    props: { resource: r },
+  }));
 }
 
 const { resource } = Astro.props;
 const { slug, title, category, description, preview_image, estimated_value = '$29 Value' } = resource;
-const cleanTitle = title.replace(/^#\s*/, '').trim();
+const cleanTitle = title.replace(/^#+\s*/, '').trim();
 
-const item = await getEntry('resources', slug);
-if (!item) {
-  throw new Error(`Local MDX resource file not found for slug: ${slug}`);
+const typeMap: Record<string, 'article' | 'pdf' | 'tool' | 'snippet'> = {
+  'Guide': 'article',
+  'article': 'article',
+  'PDF': 'pdf',
+  'pdf': 'pdf',
+  'Prompt': 'snippet',
+  'snippet': 'snippet',
+  'Tool': 'tool',
+  'tool': 'tool'
+};
+const resourceType = typeMap[resource.type || category] || 'article';
+
+const author = "Haider Ali";
+const datePublished = resource.created_at ? new Date(resource.created_at) : undefined;
+const dateModified = undefined;
+
+const previewImage = preview_image || "/assets/images/placeholder.png";
+const estimatedValue = estimated_value || '$29 Value';
+
+const bulletPoints = resource.bullet_points ?? [];
+const tableOfContents = resource.table_of_contents ?? [];
+const excerpt = resource.excerpt ?? '';
+const teaserPoints = resource.teaser_points ?? [];
+
+// Read and parse locked content from Supabase
+let lockedHtml = '';
+if (resource.locked_content) {
+  try {
+    lockedHtml = await marked.parse(resource.locked_content);
+  } catch (e) {
+    console.error(`Failed to parse locked content from database for ${slug}:`, e);
+  }
 }
 
-const { targetServiceTag, bulletPoints = [], author = "Haider Ali", datePublished, dateModified } = item.data;
-const { Content } = await item.render();
-
-const previewImage = preview_image || item.data.previewImage;
-const estimatedValue = estimated_value || item.data.estimatedValue || '$29 Value';
-
-// Fetch related services for Dynamic Context Matching (Self-Promotion Loop)
-const services = await getCollection('services');
-const matchedService = services.find((s) => s.data.tag === targetServiceTag) || services[0];
-const serviceSlug = matchedService?.id.replace(/\.(md|mdx)$/, '') || '';
+// Service matching hardcode
+const serviceSlug = 'workflow-automation';
 
 // Truncate description to max 155 characters for search snippet optimizations
 const truncateDesc = (text: string, max: number = 155) => {
@@ -269,14 +259,7 @@ const pageTitle = `${cleanTitle} — Free Download`;
   <!-- Themify Icons CDN for Lock and Checkmark Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@themify/themify-icons@1.0.1/css/themify-icons.css" />
 
-  <!-- Synchronous block check to hide mockup overlay immediately for returning visitors -->
-  <script is:inline define:vars={{ slug }}>
-    try {
-      if (localStorage.getItem('unlocked_' + slug)) {
-        document.write('<style>#mockup-gated-overlay { display: none !important; }</style>');
-      }
-    } catch (e) {}
-  </script>
+
 
   <div id="resource-details-root" data-resource-title={cleanTitle} data-resource-slug={slug}>
     
@@ -296,9 +279,9 @@ const pageTitle = `${cleanTitle} — Free Download`;
               <span class="text-slate-655 font-semibold truncate min-w-0 max-w-[130px] xs:max-w-[180px] sm:max-w-[260px] md:max-w-xs">{cleanTitle}</span>
             </nav>
 
-            <!-- Premium Value Badge -->
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-800 text-[10px] font-bold font-sans uppercase tracking-wide select-none">
-              🔥 Premium Resource &middot; {estimatedValue} &mdash; Now Free
+            <!-- Free Resource Badge -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]/20 text-[color:var(--accent-strong)] text-[10px] font-bold font-sans uppercase tracking-wide select-none">
+              ✓ FREE RESOURCE
             </div>
 
             <!-- Title -->
@@ -358,15 +341,7 @@ const pageTitle = `${cleanTitle} — Free Download`;
                 id="resource-preview-img"
               />
               
-              <!-- Lock Status Overlay -->
-              <div class="absolute inset-0 bg-slate-950/45 backdrop-blur-xs flex flex-col items-center justify-center text-center p-4 transition-opacity duration-300" id="mockup-gated-overlay">
-                <div class="w-10 h-10 rounded-full bg-white/95 border border-slate-200 flex items-center justify-center shadow-lg mb-2 transform scale-100 animate-pulse text-slate-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-5 h-5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                </div>
-                <span class="text-[9px] uppercase tracking-widest font-bold text-white bg-slate-950/80 px-2.5 py-0.5 rounded border border-slate-700/50 font-sans">
-                  Gated System Blueprint
-                </span>
-              </div>
+
             </div>
           </div>
 
@@ -390,16 +365,52 @@ const pageTitle = `${cleanTitle} — Free Download`;
           <!-- Gated Vault Container (renders the teaser and the ResourceGate component inside the MDX) -->
           <div class="relative rounded-[32px] border border-[color:var(--line)] bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-lg" id="gated-vault-container">
             <div class="content-body prose max-w-[72ch] mx-auto px-4 py-6 sm:px-6 md:px-8">
-              <MDXComponents>
-                <Content />
-              </MDXComponents>
+              {tableOfContents && tableOfContents.length > 0 && (
+                <div class="mb-8 font-sans">
+                  <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">Table of Contents:</h3>
+                  <ol class="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-slate-655">
+                    {tableOfContents.map((item) => (
+                      <li>
+                        <strong>{item}</strong>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {excerpt && (
+                <div class="mb-8 font-sans border-t border-slate-100 pt-6">
+                  <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">📄 Excerpt: Chapter 1 Preview</h3>
+                  <p class="text-xs sm:text-sm text-slate-655 font-light leading-relaxed">{excerpt}</p>
+                </div>
+              )}
+
+              <!-- System Content -->
+              {lockedHtml && (
+                <div id="locked-content-vault" class="border-t border-dashed border-slate-200 pt-8 mt-12 animate-fade-in">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider font-sans select-none mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    System Blueprint
+                  </div>
+                  <div set:html={lockedHtml} />
+                </div>
+              )}
             </div>
           </div>
 
-          <!-- Bottom Auditing Option -->
+          <!-- Inline Lead Capture CTA -->
+          <ResourceCTA 
+            resourceId={resource.id}
+            resourceSlug={resource.slug}
+            resourceType={resource.category.toLowerCase()}
+            ctaHeadline={resource.cta_headline ?? "Found this useful?"}
+            ctaSubtext={resource.cta_subtext ?? "Get notified when we publish more like this."}
+          />
+
+          <!-- Bottom Conversion Option -->
           <div class="text-center pt-8 border-t border-[color:var(--line)]">
-            <a href={`/services/${serviceSlug}/`} class="inline-flex items-center gap-2 text-xs font-bold text-[color:var(--accent)] hover:text-[color:var(--accent-strong)] transition font-sans">
-              Need this customized for your business? Learn about our {matchedService?.data.title || 'services'} &rarr;
+            <a href="/services#workflow-automation" class="inline-flex items-center gap-2 text-xs font-bold text-[color:var(--accent)] hover:text-[color:var(--accent-strong)] transition font-sans">
+              Need this customized for your business? Learn about our Workflow Automation services &rarr;
             </a>
           </div>
 
@@ -432,13 +443,4 @@ const pageTitle = `${cleanTitle} — Free Download`;
   </div>
 </BaseLayout>
 
-<script>
-  // Hide mockup overlay when the page is unlocked dynamically
-  window.addEventListener('resource-unlocked', () => {
-    const mockupOverlay = document.getElementById('mockup-gated-overlay');
-    if (mockupOverlay) {
-      mockupOverlay.classList.add('opacity-0');
-      setTimeout(() => mockupOverlay.classList.add('hidden'), 300);
-    }
-  });
-</script>
+

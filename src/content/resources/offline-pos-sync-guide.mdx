@@ -4,7 +4,7 @@ slug: "offline-pos-sync-guide"
 category: "Guide"
 targetServiceTag: "pos-inventory-systems"
 description: "A detailed architectural manual mapping transaction queue stores, offline databases, conflict resolution strategies, and remote Supabase syncing for retail business."
-premium: true
+premium: false
 author: "Haider Ali"
 datePublished: "2026-06-25T01:24:31.933032+00:00"
 dateModified: "2026-06-26T13:40:39.581+00:00"
@@ -15,6 +15,8 @@ bulletPoints:
   - "Conflict resolution strategy checklist for inventory values"
 previewImage: "/assets/images/portfolio/pos-inventory.webp"
 estimatedValue: "$29 Value"
+ctaHeadline: "Found this guide useful?"
+ctaSubtext: "Get notified when we publish more like this."
 teaserPoints:
   - "Offline SQLite queue structures for retail transactions"
   - "Step-by-step automatic network recovery sync scripts"
@@ -26,15 +28,6 @@ tableOfContents:
 lockedContentFile: "src/content/locked/offline-pos-sync-guide.md"
 ---
 
-import ResourceGate from '../../components/ResourceGate.astro';
-
-A detailed architectural manual mapping transaction queue stores, offline databases, conflict resolution strategies, and remote Supabase syncing for retail business.
-
-### What you'll unlock:
-* **Offline SQLite queue structures for retail transactions**
-* **Step-by-step automatic network recovery sync scripts**
-* **Conflict resolution strategy checklist for inventory values**
-
 ### Table of Contents:
 1. **Chapter 1: Local SQLite Queue Setup**
 2. **Chapter 2: Connectivity Heartbeat Logic**
@@ -42,12 +35,3 @@ A detailed architectural manual mapping transaction queue stores, offline databa
 
 ### 📖 Excerpt: Chapter 1 Preview
 To ensure zero transaction loss during active internet outages, local sales terminals write transaction records directly into an offline SQLite queue file. This transaction database...
-
-<ResourceGate slug="offline-pos-sync-guide" resourceTitle="Offline-First Local POS Sync Guide" downloadUrl="/assets/images/portfolio/pos-inventory.webp" />
-
-### What other professionals say:
-> "Offline-first syncing is notoriously hard to get right. This guide mapped out conflict resolution perfectly."
-> — Zain A., Lead Retail Engineer
-
-> "Our SQLite queue hasn't dropped a single transaction since we implemented this architecture."
-> — David M., CTO

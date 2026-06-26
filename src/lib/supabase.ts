@@ -29,7 +29,7 @@ export async function getBlogPost(slug: string) {
 export async function getAllResources() {
   const { data } = await supabase
     .from('resources')
-    .select('id, slug, title, description, category, teaser_points, preview_image, estimated_value, premium')
+    .select('*')
     .eq('published', true);
   return data || [];
 }
@@ -37,12 +37,11 @@ export async function getAllResources() {
 export async function getResource(slug: string) {
   const { data } = await supabase
     .from('resources')
-    .select('id, slug, title, description, category, teaser_points, table_of_contents, preview_image, estimated_value')
+    .select('*')
     .eq('slug', slug)
     .eq('published', true)
     .single();
   return data;
-  // NOTE: locked_content is NOT selected here — only served via /api/unlock-resource
 }
 
 // Portfolio
