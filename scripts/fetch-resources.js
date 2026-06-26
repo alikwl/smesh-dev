@@ -2,6 +2,10 @@ import { createClient } from '@supabase/supabase-js';
 import fs from 'fs/promises';
 import path from 'path';
 
+try {
+  process.loadEnvFile();
+} catch (e) {}
+
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
 
@@ -43,6 +47,15 @@ const testimonialsMap = {
 > — Julia W., Solopreneur`
 };
 
+function normalizeCategory(category) {
+  if (!category) return 'Prompt';
+  const cat = category.trim().toLowerCase();
+  if (cat.startsWith('prompt')) return 'Prompt';
+  if (cat.startsWith('pdf')) return 'PDF';
+  if (cat.startsWith('guide')) return 'Guide';
+  return 'Prompt'; // default fallback
+}
+
 async function run() {
   try {
     // 1. Fetch all resources from Supabase (including locked_content)
@@ -81,7 +94,7 @@ async function run() {
       const mdxContent = `---
 title: "${cleanTitle.replace(/"/g, '\\"')}"
 slug: "${slug}"
-category: "${res.category}"
+category: "${normalizeCategory(res.category)}"
 targetServiceTag: "${res.target_service_tag}"
 description: "${res.description.replace(/"/g, '\\"')}"
 premium: ${res.premium}
