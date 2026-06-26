@@ -89,6 +89,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
   <section class="site-shell pb-20 md:pb-24">
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="resources-grid">
       {items.map((item) => {
+        // NOTE: Drive images must be shared publicly (Anyone with link → Viewer)
         const { title, category, targetServiceTag, description, premium, previewImage } = item.data;
         const slug = item.id.replace(/\.(md|mdx)$/, '');
         const valText = estimatedValues[slug] || '$29 Value';
@@ -109,6 +110,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
                     alt={cleanTitle} 
                     loading="lazy"
                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onerror="this.onerror=null;this.src='/assets/images/placeholder.png'"
                   />
                 ) : (
                   <div class={`absolute inset-0 bg-gradient-to-br ${gradientClass}`} />

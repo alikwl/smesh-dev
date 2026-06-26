@@ -38,6 +38,7 @@ const author = "Haider Ali";
 const datePublished = resource.created_at ? new Date(resource.created_at) : undefined;
 const dateModified = undefined;
 
+// NOTE: Drive images must be shared publicly (Anyone with link → Viewer)
 const previewImage = preview_image || "/assets/images/placeholder.png";
 const estimatedValue = estimated_value || '$29 Value';
 
@@ -339,6 +340,7 @@ const pageTitle = `${cleanTitle} — Free Download`;
                 alt={`${cleanTitle} Mockup Preview`} 
                 class="w-full h-full object-cover select-none" 
                 id="resource-preview-img"
+                onerror="this.onerror=null;this.src='/assets/images/placeholder.png'"
               />
               
 
