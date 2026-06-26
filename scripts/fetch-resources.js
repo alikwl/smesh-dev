@@ -132,6 +132,33 @@ ${testimonials}
       await fs.writeFile(mdxPath, mdxContent, 'utf-8');
       console.log(`- Saved MDX teaser: ${mdxPath}`);
     }
+
+    // 5. Clean up old files not in Supabase database
+    const dbSlugs = new Set(dbResources.map(res => res.slug));
+    
+    // Clean resources directory
+    const existingMdxFiles = await fs.readdir(resourcesDir);
+    for (let file of existingMdxFiles) {
+      if (!file.endsWith('.mdx')) continue;
+      const slug = file.replace(/\.mdx$/, '');
+      if (!dbSlugs.has(slug)) {
+        const filePath = path.join(resourcesDir, file);
+        await fs.unlink(filePath);
+        console.log(`- Deleted stale MDX file: ${filePath}`);
+      }
+    }
+    
+    // Clean locked directory
+    const existingMdFiles = await fs.readdir(lockedDir);
+    for (let file of existingMdFiles) {
+      if (!file.endsWith('.md')) continue;
+      const slug = file.replace(/\.md$/, '');
+      if (!dbSlugs.has(slug)) {
+        const filePath = path.join(lockedDir, file);
+        await fs.unlink(filePath);
+        console.log(`- Deleted stale locked content file: ${filePath}`);
+      }
+    }
     
     console.log('All resources successfully compiled from Supabase to local content files!');
   } catch (err) {
