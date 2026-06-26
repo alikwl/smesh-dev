@@ -106,7 +106,7 @@ async function run() {
         teaser_points: data.teaserPoints || [],
         table_of_contents: data.tableOfContents || [],
         locked_content: lockedContent
-      });
+      }, { onConflict: 'slug' });
       
       if (error) {
         console.error(`[Error] Failed to sync ${slug}:`, error.message);
