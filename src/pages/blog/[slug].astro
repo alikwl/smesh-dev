@@ -84,6 +84,68 @@ const blogSchema = {
     }
   }
 };
+const howToMap = {
+  'how-i-built-smesh-dev-using-ai-vibe-coding': {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to build a website using AI Vibe Coding",
+    "description": "A step-by-step approach to rapidly creating and deploying websites using AI coding assistants.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Define Structure and Requirements",
+        "text": "Draft a clear specification of the pages, components, and integrations needed.",
+        "url": `${site.url}/blog/how-i-built-smesh-dev-using-ai-vibe-coding/#define-reqs`
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Iterate with AI Agents",
+        "text": "Prompt AI coding agents to generate components, layout templates, and pages.",
+        "url": `${site.url}/blog/how-i-built-smesh-dev-using-ai-vibe-coding/#iterate-ai`
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Validate and Debug Locally",
+        "text": "Run local build processes and check rendering across dev viewports.",
+        "url": `${site.url}/blog/how-i-built-smesh-dev-using-ai-vibe-coding/#validate`
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Deploy Clean Production Build",
+        "text": "Push files to a remote repository to trigger automated deployments (like GitHub Pages).",
+        "url": `${site.url}/blog/how-i-built-smesh-dev-using-ai-vibe-coding/#deploy`
+      }
+    ]
+  },
+  'business-website-checklist-pakistan': {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to launch a business website in Pakistan",
+    "description": "Learn the step-by-step process of setting up and hosting local business storefronts.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Register Domain Name",
+        "text": "Register a domain name (like .pk or .com) using authorized registrars.",
+        "url": `${site.url}/blog/business-website-checklist-pakistan/#domain`
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Configure Fast Static Hosting",
+        "text": "Select high-speed static CDN hosting to adapt to local internet speeds.",
+        "url": `${site.url}/blog/business-website-checklist-pakistan/#hosting`
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Integrate Local Chat Links",
+        "text": "Add a WhatsApp click-to-chat button to let local visitors connect directly with your sales team.",
+        "url": `${site.url}/blog/business-website-checklist-pakistan/#whatsapp-link`
+      }
+    ]
+  }
+};
+const howToSchema = howToMap[post.slug] || null;
+
 const metaDescription = description || `Read article: ${title}. Learn n8n automation setups, database design, and optimization steps by Haider Ali (BismillahTC).`;
 const postImage = cover_image || '/assets/images/placeholder.png';
 ---
@@ -91,6 +153,7 @@ const postImage = cover_image || '/assets/images/placeholder.png';
 <BaseLayout title={title} description={metaDescription} image={postImage} schemaType="other">
   <!-- Injected structured BlogPosting schema -->
   <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+  {howToSchema && <script slot="head" type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
 
   <article class="py-14 md:py-20 bg-white" aria-label="Blog Article Content">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

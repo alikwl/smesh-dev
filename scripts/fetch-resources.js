@@ -98,6 +98,9 @@ category: "${normalizeCategory(res.category)}"
 targetServiceTag: "${res.target_service_tag}"
 description: "${res.description.replace(/"/g, '\\"')}"
 premium: ${res.premium}
+author: "Haider Ali"
+datePublished: "${res.created_at}"
+dateModified: "${res.updated_at || res.created_at}"
 ${res.download_url ? `downloadUrl: "${res.download_url}"` : ''}
 ${bulletList ? `bulletPoints:\n${bulletList}` : ''}
 ${res.preview_image ? `previewImage: "${res.preview_image}"` : ''}

@@ -134,6 +134,20 @@ const servicesSchema = {
   <!-- Structured Service Schema Markup -->
   <script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
 
+  <!-- Structured FAQPage Schema Markup for AEO/SGE search engines -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": servicesFaqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} />
+
   <!-- Section 1: Hero Section (The Hook) -->
   <section class="site-shell py-20 md:py-28 text-center space-y-8 bg-gradient-to-b from-teal-50/10 via-transparent to-transparent" aria-label="Services Hero Banner">
     <div class="max-w-4xl mx-auto space-y-6">

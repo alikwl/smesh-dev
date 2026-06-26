@@ -11,9 +11,28 @@ const { type = 'other', title, description = site.description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, site.url).href;
 
 // 2026 SEO/AEO-aligned Schema linking Haider Ali and BismillahTC Digital Services
+const founderPerson = {
+  "@type": "Person",
+  "name": "Haider Ali",
+  "jobTitle": "Principal Developer & Automation Engineer",
+  "image": `${site.url}/assets/images/resources/author-haider-ali.webp`,
+  "knowsAbout": [
+    "n8n automation",
+    "Supabase",
+    "Vibe Coding",
+    "web development",
+    "AI agent orchestration"
+  ],
+  "sameAs": [
+    "https://github.com/affaan-m",
+    "https://wa.me/923422222752"
+  ]
+};
+
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${site.url}/#organization`,
   "name": "BismillahTC Digital Services",
   "alternateName": "Smesh.Dev",
   "url": `${site.url}/`,
@@ -22,7 +41,10 @@ const orgSchema = {
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "PK",
-    "addressLocality": "Karachi"
+    "addressRegion": "Sindh",
+    "addressLocality": "Karachi",
+    "postalCode": "74600",
+    "streetAddress": "Karachi, Pakistan"
   },
   "knowsAbout": [
     "n8n automation",
@@ -35,39 +57,31 @@ const orgSchema = {
     "AI Support Chatbots",
     "Workflow Automation"
   ],
-  "founder": {
-    "@type": "Person",
-    "name": "Haider Ali",
-    "jobTitle": "Principal Developer & Automation Engineer",
-    "image": `${site.url}/assets/images/resources/author-haider-ali.webp`,
-    "knowsAbout": [
-      "n8n automation",
-      "Supabase",
-      "Vibe Coding",
-      "web development",
-      "AI agent orchestration"
-    ],
-    "sameAs": [
-      "https://github.com/affaan-m"
-    ]
-  },
+  "founder": founderPerson,
+  "sameAs": [
+    "https://github.com/affaan-m",
+    "https://wa.me/923422222752",
+    "https://www.linkedin.com/company/bismillahtc"
+  ],
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+923422222752",
     "contactType": "sales",
     "email": "ali.kwl@live.com",
     "areaServed": ["Pakistan", "Worldwide"]
-  }
+  },
+  "areaServed": ["Pakistan", "Worldwide"]
 };
 
 // Base ProfessionalService Schema for Local Business indexing
 const localServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${site.url}/#localservice`,
   "name": "Smesh.Dev",
   "parentOrganization": "BismillahTC Digital Services",
-  "founder": "Faisal Amin",
-  "knowsAbout": ["n8n", "AI Agents"],
+  "founder": founderPerson,
+  "knowsAbout": ["n8n", "AI Agents", "Supabase", "PostgreSQL", "Workflow Automation"],
   "url": `${site.url}/`,
   "logo": `${site.url}/assets/logo.png`,
   "description": site.description,
@@ -77,7 +91,9 @@ const localServiceSchema = {
     "@type": "PostalAddress", 
     "addressCountry": "PK",
     "addressRegion": "Sindh",
-    "addressLocality": "Karachi"
+    "addressLocality": "Karachi",
+    "postalCode": "74600",
+    "streetAddress": "Karachi, Pakistan"
   },
   "areaServed": ["Pakistan", "Worldwide"],
   "serviceType": [
@@ -153,9 +169,31 @@ const breadcrumbsSchema = pathname !== '/' ? {
   "@type": "BreadcrumbList",
   "itemListElement": itemListElement
 } : null;
+
+// Global WebPage Speakable Schema for voice / AI summary assistants
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${canonicalURL}#webpage`,
+  "url": canonicalURL,
+  "name": title || site.title,
+  "description": description,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".display-title", ".body-copy", ".section-title", "h1", "p"]
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    "name": site.title,
+    "url": `${site.url}/`
+  }
+};
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(localServiceSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
 {serviceSchema && <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />}
 {breadcrumbsSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbsSchema)} />}
+
