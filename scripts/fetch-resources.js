@@ -109,8 +109,6 @@ lockedContentFile: "src/content/locked/${slug}.md"
 
 import ResourceGate from '../../components/ResourceGate.astro';
 
-# ${cleanTitle}
-
 ${res.description}
 
 ### What you'll unlock:
