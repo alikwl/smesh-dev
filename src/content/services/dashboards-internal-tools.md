@@ -20,7 +20,7 @@ integrations:
   - "Chart.js / Recharts"
   - "n8n Data Pipelines"
 expected_delivery: "10-15 Days"
-starting_price: "$1,500 / PKR 120,000"
+starting_price: "$1,500"
 faqs:
   - q: "Can we connect existing SQL databases?"
     a: "Yes. We can securely connect Postgres, MySQL, or MSSQL instances, keeping your primary database credentials safe behind secure server setups."

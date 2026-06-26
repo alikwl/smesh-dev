@@ -20,7 +20,7 @@ integrations:
   - "Google Analytics 4"
   - "llms.txt configuration"
 expected_delivery: "3-7 Days"
-starting_price: "PKR 35,000 / $700"
+starting_price: "$700"
 faqs:
   - q: "What is GEO (Generative Engine Optimization)?"
     a: "GEO is the practice of optimizing your text and site structure so that when a user asks an AI search engine (like Perplexity or ChatGPT Search) a question, the AI recommends and links to your site."

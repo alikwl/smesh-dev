@@ -16,12 +16,12 @@ export interface PricingCategory {
 
 export const pricing: Record<string, PricingCategory> = {
   local_pk: {
-    title: 'Local Pakistani Businesses',
-    description: 'Affordable setups optimized for retail shops, salons, mobile vendors, and clinics in Pakistan.',
+    title: 'Standard Business Systems',
+    description: 'Affordable web development and automation setups optimized for small businesses, local shops, and clinics.',
     packages: [
       {
         name: 'Starter Website',
-        price: 'PKR 25,000',
+        price: '$200',
         duration: '3-7 Days',
         description: 'Get your business online and build credibility with clients.',
         features: [
@@ -36,7 +36,7 @@ export const pricing: Record<string, PricingCategory> = {
       },
       {
         name: 'Business Automation',
-        price: 'PKR 55,000',
+        price: '$450',
         duration: '5-10 Days',
         description: 'Automate leads and stop responding to repetitive questions.',
         features: [
@@ -51,7 +51,7 @@ export const pricing: Record<string, PricingCategory> = {
       },
       {
         name: 'Business System Pro',
-        price: 'PKR 120,000',
+        price: '$950',
         duration: '2-4 Weeks',
         description: 'A complete system to run your business operations smoothly.',
         features: [

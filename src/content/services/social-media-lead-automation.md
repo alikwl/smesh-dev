@@ -20,7 +20,7 @@ integrations:
   - "Notion / Slack"
   - "Twilio / WhatsApp API"
 expected_delivery: "4-8 Days"
-starting_price: "PKR 45,000 / $600"
+starting_price: "$600"
 faqs:
   - q: "Is this safe for my Facebook page?"
     a: "Yes. We strictly use Meta's official webhook integrations and API tokens, ensuring full compliance with platform terms of service."

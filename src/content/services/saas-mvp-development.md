@@ -20,7 +20,7 @@ integrations:
   - "Stripe Billing"
   - "Vercel hosting"
 expected_delivery: "2-4 Weeks"
-starting_price: "$3,500 / PKR 250,000"
+starting_price: "$3,500"
 faqs:
   - q: "What happens after the MVP is launched?"
     a: "We hand over the full GitHub repository and database credentials. You own 100% of the code, allowing you to hire any developer or scale it yourself."

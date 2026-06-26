@@ -10,7 +10,7 @@ const serviceLinks = [
 
 const resourceLinks = [
   { name: 'Resources Hub', href: '/resources/' },
-  { name: 'n8n Setup Guide', href: '/resources/sample-resource/' },
+  { name: 'WhatsApp Order Workflow', href: '/resources/n8n-whatsapp-order-workflow/' },
   { name: 'Latest Blog Posts', href: '/blog/' },
 ];
 
@@ -115,7 +115,10 @@ const companyLinks = [
 
       <!-- Newsletter Form (Linked to Supabase) -->
       <div class="lg:col-span-3 space-y-4 font-sans">
-        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Join Newsletter</h3>
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-400"></i>
+          Join Newsletter
+        </h3>
         <p class="text-xs text-slate-500 leading-relaxed">Blueprints and setups on n8n and vector setups.</p>
         
         <form id="footer-newsletter-form" class="space-y-2">

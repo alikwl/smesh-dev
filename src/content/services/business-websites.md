@@ -20,7 +20,7 @@ integrations:
   - "n8n Webhook"
   - "GitHub Pages"
 expected_delivery: "3-7 Days"
-starting_price: "PKR 25,000 / $850"
+starting_price: "$850"
 faqs:
   - q: "Can I edit the content myself?"
     a: "Yes. Content can be managed in Markdown or connected to a headless CMS, depending on how hands-on you want the editing workflow to be."

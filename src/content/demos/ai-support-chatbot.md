@@ -176,7 +176,7 @@ appendAIMessage('bot', `
 } else if (cleaned.includes('pricing') || cleaned.includes('cost')) {
 appendAILog(`Embedding generated. Vector search similarity match: 91%`);
 appendAIMessage('bot', `
-<p>Smesh.Dev pricing starts at <strong>PKR 25k</strong> for local PK website setups, while international automation pipelines start at <strong>$850</strong>. Custom integrations are quoted on complexity.</p>
+<p>Smesh.Dev pricing starts at <strong>$850</strong> for custom systems and automation pipelines. Custom integrations are quoted based on complexity.</p>
 <div class="mt-2 flex items-center gap-1 text-[10px] text-indigo-500 font-semibold bg-indigo-50/50 p-1 rounded w-max">
 <span>📄</span>
 <span class="underline">pricing_faq.md</span>

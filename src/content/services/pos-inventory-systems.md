@@ -19,7 +19,7 @@ integrations:
   - "Supabase / PostgreSQL"
   - "Tailwind UI elements"
 expected_delivery: "14-25 Days"
-starting_price: "PKR 120,000 / $1,500"
+starting_price: "$1,500"
 faqs:
   - q: "Can this POS track IMEI/Serial numbers?"
     a: "Yes. Our mobile shop POS modules support unique serial/IMEI number entries, tracking which specific box was sold to which client."

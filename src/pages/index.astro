@@ -4,11 +4,11 @@ import ContactForm from '../components/ContactForm.astro';
 import SmartImage from '../components/SmartImage.astro';
 import { getCollection } from 'astro:content';
 
-const services = await getCollection('services');
-const portfolio = await getCollection('portfolio');
-const demos = await getCollection('demos');
-const resources = await getCollection('resources');
-const posts = await getCollection('posts');
+const services = (await getCollection('services')).filter(s => !s.id.includes('sample'));
+const portfolio = (await getCollection('portfolio')).filter(p => !p.id.includes('sample'));
+const demos = (await getCollection('demos')).filter(d => !d.id.includes('sample'));
+const resources = (await getCollection('resources')).filter(r => !r.id.includes('sample'));
+const posts = (await getCollection('posts')).filter(p => !p.id.includes('sample'));
 
 // Slice the latest items
 const latestPortfolio = portfolio.slice(0, 3);
@@ -54,6 +54,15 @@ const demoImageMap: Record<string, string> = {
   'saas-mvp-dashboard': '/assets/images/saas-dashboard-illustration.png',
   'lead-capture-workflow': '/assets/images/automation-workflow-illustration.png',
 };
+
+const borderColors = [
+  'border-t-teal-600',
+  'border-t-indigo-600',
+  'border-t-orange-500',
+  'border-t-rose-500',
+  'border-t-amber-500',
+  'border-t-sky-500',
+];
 ---
 
 <BaseLayout title="Grounded AI Systems & Custom n8n Automation | Smesh.Dev" description="Smesh.Dev is an AI automation studio run by Haider Ali that designs custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate operations." schemaType="home">
@@ -73,25 +82,44 @@ const demoImageMap: Record<string, string> = {
   
   <header>
     <!-- Section 1: The Hero Engine -->
-    <section class="site-shell py-20 md:py-28 text-center space-y-8 bg-gradient-to-b from-indigo-50/20 via-white to-transparent">
-      <div class="max-w-4xl mx-auto space-y-6">
-        <span class="px-3.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
+    <section class="site-shell py-16 md:py-28 text-center space-y-8 bg-gradient-to-b from-indigo-50/20 via-white to-transparent relative overflow-hidden">
+      <!-- Background Glow Orbs -->
+      <div class="absolute -top-12 left-1/4 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute top-1/4 -right-12 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Animated Floating Badges (Hidden on XS Mobile) -->
+      <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-white/70 backdrop-blur-xs text-[10px] font-semibold text-teal-700 shadow-sm absolute top-12 left-6 lg:left-24 animate-float-1">
+        <i data-lucide="zap" class="w-3.5 h-3.5 text-teal-600"></i>
+        Astro SSG Speed
+      </div>
+      <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-white/70 backdrop-blur-xs text-[10px] font-semibold text-indigo-700 shadow-sm absolute bottom-24 left-10 lg:left-32 animate-float-2">
+        <i data-lucide="git-merge" class="w-3.5 h-3.5 text-indigo-600"></i>
+        n8n Workflow Hub
+      </div>
+      <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-white/70 backdrop-blur-xs text-[10px] font-semibold text-orange-700 shadow-sm absolute top-24 right-6 lg:right-28 animate-float-3">
+        <i data-lucide="database" class="w-3.5 h-3.5 text-orange-600"></i>
+        Supabase DB Engine
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6 relative z-10 px-2">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-teal-200 bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
+          <i data-lucide="sparkles" class="h-3.5 w-3.5 text-[color:var(--accent)] animate-pulse"></i>
           Smesh.Dev Automation Studio // Powered by BismillahTC
         </span>
-        <h1 class="display-title text-slate-900 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08]">
-          Automate your dev workflow by 30% with Smesh.dev
+        <h1 class="display-title text-slate-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-display">
+          Automate your business workflows by 30%
         </h1>
-        <p class="body-copy max-w-2xl mx-auto text-base md:text-lg font-light text-slate-600 leading-relaxed">
-          Smesh.Dev is an automation and web development studio by Haider Ali (BismillahTC) that builds custom n8n workflows, local POS SQLite sync tools, and grounded AI support chatbots to automate dev workflows and business operations.
+        <p class="body-copy max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light text-slate-655 leading-relaxed">
+          We design custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate your operations, reduce manual tasks, and launch your software products in weeks.
         </p>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4 font-sans">
-        <button id="hero-audit-btn" class="button-primary px-8 py-3.5 rounded-xl text-sm font-bold shadow-md cursor-pointer">
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4 font-sans relative z-10">
+        <button id="hero-audit-btn" class="button-primary px-8 py-3.5 rounded-xl text-sm font-bold shadow-md cursor-pointer hover:shadow-lg transition">
           Request Free Audit
           <i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i>
         </button>
-        <a href="/resources/" class="button-secondary px-8 py-3.5 rounded-xl text-sm font-bold">
+        <a href="/resources/" class="button-secondary px-8 py-3.5 rounded-xl text-sm font-bold shadow-sm hover:shadow transition">
           Free Resources
           <i data-lucide="folder-open" class="h-4 w-4 ml-1.5"></i>
         </a>
@@ -105,10 +133,15 @@ const demoImageMap: Record<string, string> = {
       <div class="grid gap-6 md:grid-cols-3 items-center">
         <!-- Metric Column -->
         <div class="flex items-center gap-4 px-6 md:border-r border-slate-200/80 last:border-none">
-          <span class="text-4xl font-extrabold text-[color:var(--accent)] font-display shrink-0">70%</span>
+          <div class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-teal-50 text-[color:var(--accent)] shrink-0">
+            <i data-lucide="trending-down" class="h-5 w-5"></i>
+          </div>
           <div>
-            <h4 class="text-xs font-bold text-[color:var(--ink)] font-sans uppercase tracking-wider">Average Reduction</h4>
-            <p class="text-xs text-[color:var(--muted)] font-light mt-0.5">In operational admin time across implemented systems.</p>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-[color:var(--accent)] font-display shrink-0">70%</span>
+              <span class="text-xs font-bold text-[color:var(--ink)] font-sans uppercase tracking-wider">Reduction</span>
+            </div>
+            <p class="text-xs text-[color:var(--muted)] font-light mt-0.5">Average reduction in manual ops admin time.</p>
           </div>
         </div>
         <!-- Fleet Logistics Case Study Column -->
@@ -137,14 +170,17 @@ const demoImageMap: Record<string, string> = {
     <section class="site-shell py-16 md:py-20 border-t border-slate-200/60 bg-slate-50/20 rounded-[32px] border border-slate-100 mb-16" aria-label="Interactive AI Auditor">
       <div class="max-w-4xl mx-auto px-4 md:px-0">
         <div class="text-center space-y-4 mb-10">
-          <span class="section-kicker">ROI Calculator</span>
+          <span class="section-kicker">
+            <i data-lucide="calculator" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+            ROI Calculator
+          </span>
           <h2 class="text-3xl font-extrabold text-[color:var(--ink)] leading-tight">Check Your Workflow Efficiency</h2>
           <p class="text-xs md:text-sm text-[color:var(--muted)] font-light max-w-lg mx-auto">
             Calculate how much time and money you can save by automating manual tasks with n8n and Supabase.
           </p>
         </div>
 
-        <div class="grid gap-8 md:grid-cols-[1.1fr_0.9fr] bg-white rounded-[24px] p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="grid gap-8 grid-cols-1 md:grid-cols-[1.1fr_0.9fr] bg-white rounded-[24px] p-5 sm:p-8 border border-slate-200 shadow-sm">
           <!-- Inputs -->
           <div class="space-y-6">
             <div class="space-y-2.5">
@@ -165,7 +201,7 @@ const demoImageMap: Record<string, string> = {
                 <label for="auditor-hours-range" class="block text-xs font-bold text-[color:var(--ink)] uppercase tracking-wider font-sans">
                   Weekly hours spent by your team:
                 </label>
-                <span id="auditor-hours-val" class="font-display font-bold text-xs bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2.5 py-1 rounded-lg">10h</span>
+                <span id="auditor-hours-val" class="font-display font-bold text-xs bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2.5 py-1 rounded-lg font-mono">10h</span>
               </div>
               <input type="range" id="auditor-hours-range" min="2" max="60" value="10" class="w-full accent-[color:var(--accent)] cursor-pointer" />
               <div class="flex justify-between text-[10px] text-slate-400 font-sans">
@@ -176,19 +212,19 @@ const demoImageMap: Record<string, string> = {
           </div>
 
           <!-- Outputs -->
-          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-6">
+          <div class="p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-6">
             <div class="space-y-4">
               <h4 class="text-xs font-bold text-[color:var(--ink)] uppercase tracking-wider font-sans border-b border-slate-200 pb-2">
                 Estimated Impact Report:
               </h4>
-              <div class="grid grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Hours Saved / Yr</span>
-                  <span id="output-hours" class="text-xl font-bold text-[color:var(--accent-strong)] font-display">416 hours</span>
+                  <span id="output-hours" class="text-xl font-bold text-[color:var(--accent-strong)] font-display font-mono">416 hours</span>
                 </div>
                 <div>
                   <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Annual Savings</span>
-                  <span id="output-savings" class="text-xl font-bold text-[color:var(--accent-strong)] font-display">$12,480</span>
+                  <span id="output-savings" class="text-xl font-bold text-[color:var(--accent-strong)] font-display font-mono">$12,480</span>
                 </div>
               </div>
               <div class="pt-2 border-t border-slate-200/60">
@@ -197,7 +233,7 @@ const demoImageMap: Record<string, string> = {
               </div>
             </div>
 
-            <button id="auditor-cta" class="button-primary w-full rounded-xl py-3 text-xs font-bold font-sans">
+            <button id="auditor-cta" class="button-primary w-full rounded-xl py-3 text-xs font-bold font-sans cursor-pointer">
               Claim This Audit & Automate
               <i data-lucide="arrow-right" class="w-4 h-4 ml-1.5"></i>
             </button>
@@ -209,7 +245,10 @@ const demoImageMap: Record<string, string> = {
     <!-- Section 4: Solution Matrix (AI-Scrapable Capabilities Matrix Table) -->
     <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Capabilities Matrix">
       <div class="space-y-4 mb-12">
-        <span class="section-kicker">Service Matrix</span>
+        <span class="section-kicker">
+          <i data-lucide="activity" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+          Service Matrix
+        </span>
         <h2 class="text-3xl md:text-4xl font-extrabold text-[color:var(--ink)] leading-tight">
           Capabilities & Solutions Matrix
         </h2>
@@ -218,7 +257,8 @@ const demoImageMap: Record<string, string> = {
         </p>
       </div>
 
-      <div class="overflow-x-auto rounded-[24px] border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm">
+      <!-- Desktop Table (Hidden on Mobile) -->
+      <div class="hidden md:block overflow-x-auto rounded-[24px] border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm">
         <table class="w-full text-left border-collapse min-w-[700px] font-sans">
           <thead>
             <tr class="border-b border-slate-200 bg-slate-50/50">
@@ -255,12 +295,61 @@ const demoImageMap: Record<string, string> = {
           </tbody>
         </table>
       </div>
+
+      <!-- Mobile Card Layout (Shown on Mobile) -->
+      <div class="grid gap-4 md:hidden">
+        <article class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] shrink-0"></span>
+            <h3 class="font-bold text-sm text-[color:var(--ink)]">AI Support Agents</h3>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Primary Tech Stack</span>
+            <p class="text-xs font-mono text-[color:var(--muted)] bg-slate-50 p-2 rounded-lg mt-1">n8n, Supabase, Anthropic API, OpenAI API</p>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Verifiable Business Outcome</span>
+            <p class="text-xs font-light text-[color:var(--ink)] mt-1">24/7 Grounded Chatbots that actually resolve customer and team queries using internal documentation.</p>
+          </div>
+        </article>
+        <article class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] shrink-0"></span>
+            <h3 class="font-bold text-sm text-[color:var(--ink)]">Custom Pipelines</h3>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Primary Tech Stack</span>
+            <p class="text-xs font-mono text-[color:var(--muted)] bg-slate-50 p-2 rounded-lg mt-1">n8n, Custom APIs, SMS Gateways, PostgreSQL</p>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Verifiable Business Outcome</span>
+            <p class="text-xs font-light text-[color:var(--ink)] mt-1">End-to-end automation for logistics, from dispatch coordination to live customer SMS tracking.</p>
+          </div>
+        </article>
+        <article class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] shrink-0"></span>
+            <h3 class="font-bold text-sm text-[color:var(--ink)]">Next-Gen POS</h3>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Primary Tech Stack</span>
+            <p class="text-xs font-mono text-[color:var(--muted)] bg-slate-50 p-2 rounded-lg mt-1">Astro, SQLite, IndexedDB, Supabase</p>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Verifiable Business Outcome</span>
+            <p class="text-xs font-light text-[color:var(--ink)] mt-1">Offline-first, high-efficiency dashboards engineered for real-time local commerce checkouts.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- Section 5: The Engineering Engine -->
     <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Our Stack Standards">
       <div class="space-y-4 mb-12 text-center">
-        <span class="section-kicker">Standards</span>
+        <span class="section-kicker">
+          <i data-lucide="cpu" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+          Standards
+        </span>
         <h2 class="text-3xl md:text-4xl font-extrabold text-[color:var(--ink)] leading-tight">
           The Engineering Engine
         </h2>
@@ -269,12 +358,16 @@ const demoImageMap: Record<string, string> = {
         </p>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <!-- Astro + Tailwind -->
-        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:shadow-md transition">
+        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300">
           <div class="space-y-4">
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
-              <i data-lucide="chrome" class="h-5 w-5"></i>
+            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+              <!-- Custom Astro Logo SVG -->
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 22h4l6-12 6 12h4L12 2z" />
+                <path d="M12 10l-4 8h8l-4-8z" />
+              </svg>
             </div>
             <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug">Astro + Tailwind</h3>
             <p class="text-xs text-[color:var(--muted)] font-light leading-relaxed">
@@ -284,10 +377,17 @@ const demoImageMap: Record<string, string> = {
         </article>
 
         <!-- n8n Ecosystem -->
-        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:shadow-md transition">
+        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300">
           <div class="space-y-4">
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700">
-              <i data-lucide="git-merge" class="h-5 w-5"></i>
+            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-700">
+              <!-- Custom n8n Nodes Logo SVG -->
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="6" r="3" />
+                <circle cx="18" cy="18" r="3" />
+                <line x1="9" y1="12" x2="15" y2="7" />
+                <line x1="9" y1="12" x2="15" y2="17" />
+              </svg>
             </div>
             <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug">n8n Ecosystem</h3>
             <p class="text-xs text-[color:var(--muted)] font-light leading-relaxed">
@@ -297,12 +397,15 @@ const demoImageMap: Record<string, string> = {
         </article>
 
         <!-- Supabase -->
-        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:shadow-md transition">
+        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300">
           <div class="space-y-4">
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
-              <i data-lucide="database" class="h-5 w-5"></i>
+            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+              <!-- Custom Supabase Bolt Logo SVG -->
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
             </div>
-            <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug">Supabase Persistence</h3>
+            <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug">Supabase</h3>
             <p class="text-xs text-[color:var(--muted)] font-light leading-relaxed">
               PostgreSQL relational database power, secure row-level auth, and vector search embeddings for RAG tools.
             </p>
@@ -310,10 +413,16 @@ const demoImageMap: Record<string, string> = {
         </article>
 
         <!-- Vibe Coding -->
-        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:shadow-md transition">
+        <article class="surface-card rounded-[24px] p-6 bg-white flex flex-col justify-between border border-slate-200 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300">
           <div class="space-y-4">
-            <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
-              <i data-lucide="sparkles" class="h-5 w-5"></i>
+            <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+              <!-- Custom Vibe Code SVG -->
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+                <path d="M18 6l2 2-2 2" />
+                <path d="M22 8h-4" />
+              </svg>
             </div>
             <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug">Vibe Coding Cycle</h3>
             <p class="text-xs text-[color:var(--muted)] font-light leading-relaxed">
@@ -327,24 +436,28 @@ const demoImageMap: Record<string, string> = {
     <!-- Section 6: Dynamic Capabilities / Services Collections -->
     <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Capabilities Grid">
       <div class="space-y-4 mb-12">
-        <span class="section-kicker">Scope Areas</span>
+        <span class="section-kicker">
+          <i data-lucide="layers" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+          Scope Areas
+        </span>
         <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">Automation systems that scale your operations.</h2>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {services.slice(0, 6).map((service) => {
+      <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {services.slice(0, 6).map((service, index) => {
           const title = service.data.title;
           const desc = service.data.description || service.data.headline || '';
           const price = service.data.price || service.data.starting_price || 'Custom Scope';
           const icon = service.data.icon || service.data.hero_icon || 'cpu';
           const tag = service.data.tag || '';
           const slug = service.id.replace(/\.md$/, '');
+          const topBorderClass = borderColors[index % borderColors.length];
           return (
-            <article class="surface-card rounded-[30px] p-6 border border-slate-200/80 bg-white/50 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+            <article class={`surface-card rounded-[30px] p-6 border border-slate-200/80 bg-white/50 flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg hover:border-slate-355 transition-all duration-300 border-t-4 ${topBorderClass}`}>
               <div class="space-y-4">
                 <div class="flex items-center justify-between">
-                  <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]">
-                    <i data-lucide={icon} class="h-5 w-5"></i>
+                  <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]">
+                    <i data-lucide={icon} class="h-6 w-6"></i>
                   </div>
                   {tag && <span class="chip capitalize font-sans">{tag}</span>}
                 </div>
@@ -368,14 +481,24 @@ const demoImageMap: Record<string, string> = {
           );
         })}
       </div>
+
+      <div class="mt-12 text-center font-sans">
+        <a href="/services/" class="button-primary px-8 py-3.5 rounded-xl text-xs font-bold shadow-md cursor-pointer hover:shadow-lg transition">
+          View All Services
+          <i data-lucide="grid" class="h-4 w-4 ml-1.5"></i>
+        </a>
+      </div>
     </section>
 
     <!-- Section 7: Case Studies & Live Demos -->
     <section class="site-shell py-16 md:py-24 border-t border-slate-100 bg-slate-50/40" aria-label="Portfolio and Demos">
       <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] mb-12 lg:items-end">
         <div>
-          <span class="section-kicker">Case Studies</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-950 leading-tight mt-3">Concrete business setups built and verified.</h2>
+          <span class="section-kicker">
+            <i data-lucide="folder-git" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+            Case Studies
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-955 leading-tight mt-3">Concrete business setups built and verified.</h2>
         </div>
         <p class="text-xs md:text-sm text-slate-500 font-light leading-relaxed">
           Instead of slide decks, we launch live demo widgets so clients can test the exact flow states (WhatsApp catalogs, support AI bots, scheduling loops) before booking a project.
@@ -383,14 +506,14 @@ const demoImageMap: Record<string, string> = {
       </div>
 
       <!-- Portfolio Grid -->
-      <div class="grid gap-6 md:grid-cols-2 mb-12">
+      <div class="grid gap-6 grid-cols-1 md:grid-cols-2 mb-12">
         {latestPortfolio.map((project) => {
           const slug = project.id.replace(/\.md$/, '');
           const image = project.data.image || '/assets/images/placeholder.png';
           return (
-            <article class="surface-card rounded-[32px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col justify-between hover:shadow-md transition">
+            <article class="surface-card rounded-[32px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg hover:border-slate-300 transition-all duration-300">
               <div>
-                <div class="relative overflow-hidden aspect-[16/10]">
+                <div class="relative overflow-hidden aspect-video">
                   <SmartImage src={image} alt={project.data.title} class="w-full h-full object-cover" />
                 </div>
                 <div class="p-6 space-y-3">
@@ -414,18 +537,21 @@ const demoImageMap: Record<string, string> = {
 
       <!-- Demos Rows -->
       <div class="space-y-4">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-sans">⚡ Test Live Mock Demos</h3>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-sans flex items-center gap-1">
+          <i data-lucide="play" class="w-3.5 h-3.5 text-slate-450 fill-current"></i>
+          Test Live Mock Demos
+        </h3>
+        <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {latestDemos.map((demo) => {
             const slug = demo.id.replace(/\.md$/, '');
             const demoImage = demoImageMap[slug] || '/assets/images/placeholder.png';
             return (
-              <a href={`/demos/${slug}/`} class="group p-4 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow transition flex items-center gap-4">
+              <a href={`/demos/${slug}/`} class="group p-4 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition flex items-center gap-4">
                 <div class="w-12 h-12 rounded-xl overflow-hidden shrink-0">
                   <SmartImage src={demoImage} alt={demo.data.title} class="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-slate-950 group-hover:text-indigo-600 transition">{demo.data.title}</h4>
+                  <h4 class="text-xs font-bold text-slate-955 group-hover:text-indigo-600 transition">{demo.data.title}</h4>
                   <p class="text-[10px] text-slate-400 mt-0.5 line-clamp-1">{demo.data.category}</p>
                 </div>
               </a>
@@ -439,16 +565,20 @@ const demoImageMap: Record<string, string> = {
     <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Resources Hub Magnet">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
         <div>
-          <span class="section-kicker">Free Blueprints</span>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-950 leading-tight mt-3">Download premium guides and systems.</h2>
+          <span class="section-kicker">
+            <i data-lucide="book-open" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+            Free Blueprints
+          </span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-955 leading-tight mt-3">Download premium guides and systems.</h2>
         </div>
-        <a href="/resources/" class="button-secondary text-xs font-bold shrink-0 font-sans">
+        <a href="/resources/" class="button-secondary text-xs font-bold shrink-0 font-sans hover:shadow-xs transition">
           Browse All Resources
           <i data-lucide="arrow-right" class="w-4 h-4 ml-1.5 text-slate-400"></i>
         </a>
       </div>
 
-      <div class="overflow-x-auto rounded-[24px] border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm">
+      <!-- Desktop Table View (Hidden on Mobile) -->
+      <div class="hidden md:block overflow-x-auto rounded-[24px] border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm">
         <table class="w-full text-left border-collapse min-w-[700px] font-sans">
           <thead>
             <tr class="border-b border-slate-200 bg-slate-50/50 text-xs text-[color:var(--ink)] uppercase tracking-wider">
@@ -493,13 +623,50 @@ const demoImageMap: Record<string, string> = {
           </tbody>
         </table>
       </div>
+
+      <!-- Mobile Card Layout (Shown on Mobile) -->
+      <div class="grid gap-4 md:hidden">
+        {latestResources.map((asset) => {
+          const slug = asset.id.replace(/\.(md|mdx)$/, '');
+          let techStack = 'n8n / JavaScript';
+          if (asset.data.targetServiceTag === 'ai-support-chatbots') {
+            techStack = 'n8n / Supabase / OpenAI';
+          } else if (asset.data.targetServiceTag === 'pos-inventory-systems') {
+            techStack = 'Astro / Supabase / PostgreSQL';
+          } else if (asset.data.targetServiceTag === 'automation') {
+            techStack = 'n8n / WhatsApp API';
+          }
+          const priceDisplay = asset.data.premium ? `${asset.data.estimatedValue || '$29 Value'} (Now Free)` : 'Free';
+          return (
+            <article class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:-translate-y-0.5 hover:shadow-md transition">
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-[9px] uppercase tracking-wider text-slate-500 font-sans font-bold shrink-0">{asset.data.category}</span>
+                <span class="text-xs font-semibold text-slate-800">{priceDisplay}</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-[color:var(--ink)] leading-snug">{asset.data.title}</h4>
+                <p class="text-xs text-[color:var(--muted)] font-light mt-1.5 leading-relaxed">{asset.data.description}</p>
+              </div>
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-[10px] font-mono text-slate-500">{techStack}</span>
+                <a href={`/resources/${slug}/`} class="inline-flex h-8 px-4 items-center justify-center rounded-lg bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold transition">
+                  {asset.data.premium ? 'Unlock' : 'Download'}
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
     </section>
 
     <!-- Section 9: Engineering Logs Blog -->
     <section class="site-shell py-16 md:py-24 border-t border-slate-100 bg-slate-50/20" aria-label="Insights Blog">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
         <div>
-          <span class="section-kicker">Logs</span>
+          <span class="section-kicker">
+            <i data-lucide="terminal" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+            Logs
+          </span>
           <h2 class="text-3xl md:text-4xl font-extrabold text-slate-955 leading-tight mt-3">Engineering guides on automation setup.</h2>
         </div>
         <a href="/blog/" class="button-secondary text-xs font-bold font-sans">
@@ -508,7 +675,7 @@ const demoImageMap: Record<string, string> = {
         </a>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 grid-cols-1 md:grid-cols-3">
         {latestPosts.map((post) => {
           const slug = post.id.replace(/\.md$/, '');
           const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
@@ -517,9 +684,12 @@ const demoImageMap: Record<string, string> = {
             day: 'numeric'
           });
           return (
-            <article class="bg-white rounded-3xl p-5 border border-slate-200 hover:shadow transition flex flex-col justify-between">
+            <article class="bg-white rounded-3xl p-5 border border-slate-200 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 transition-all duration-300 flex flex-col justify-between">
               <div>
-                <span class="text-[10px] text-slate-400 font-sans font-semibold uppercase">{post.data.category}</span>
+                <div class="flex items-center gap-1.5 text-[10px] text-slate-450 font-sans font-semibold uppercase">
+                  <i data-lucide="tag" class="w-3 h-3"></i>
+                  <span>{post.data.category}</span>
+                </div>
                 <h3 class="text-base font-bold text-slate-900 mt-2 line-clamp-2 leading-snug">
                   <a href={`/blog/${slug}/`} class="hover:text-indigo-650 transition">{post.data.title}</a>
                 </h3>
@@ -540,17 +710,23 @@ const demoImageMap: Record<string, string> = {
     <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="FAQ Accordion Section">
       <div class="max-w-3xl mx-auto space-y-8">
         <div class="text-center space-y-3">
-          <span class="section-kicker">FAQ</span>
-          <h2 class="text-3xl font-extrabold text-slate-950">AEO/GEO Structured Questions</h2>
+          <span class="section-kicker">
+            <i data-lucide="help-circle" class="w-3 h-3 text-[color:var(--accent-strong)]"></i>
+            FAQ
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-955">Frequently Asked Questions</h2>
           <p class="text-xs text-slate-500 max-w-md mx-auto">Understanding target-driven workflow logic directly.</p>
         </div>
 
         <div class="space-y-4 font-sans">
           {homepageFaqs.map((faq, index) => (
-            <details class="faq-details group border border-slate-200 rounded-2xl p-5 bg-white transition" open={index === 0}>
-              <summary class="flex items-center justify-between font-bold text-sm text-slate-900 cursor-pointer list-none select-none">
-                <span>{faq.q}</span>
-                <span class="transition group-open:rotate-180 text-slate-400">
+            <details class="faq-details group border border-slate-200 rounded-2xl p-4 sm:p-5 bg-white transition hover:border-slate-300" open={index === 0}>
+              <summary class="flex items-center justify-between font-bold text-sm text-slate-900 cursor-pointer list-none select-none py-1">
+                <span class="flex items-center gap-2">
+                  <i data-lucide="help-circle" class="w-4 h-4 text-teal-600 shrink-0"></i>
+                  {faq.q}
+                </span>
+                <span class="transition group-open:rotate-180 text-slate-400 shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                 </span>
               </summary>
@@ -566,6 +742,26 @@ const demoImageMap: Record<string, string> = {
 
   <ContactForm />
 </BaseLayout>
+
+<style>
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(-1deg); }
+  }
+  .animate-float-1 {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+  .animate-float-2 {
+    animation: float-delayed 8s ease-in-out infinite;
+  }
+  .animate-float-3 {
+    animation: float-slow 7s ease-in-out infinite;
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

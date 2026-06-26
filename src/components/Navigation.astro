@@ -132,6 +132,15 @@ const menuItems = [
     updateHeader();
 
     // Mobile menu toggles
+    const closeMobileMenu = () => {
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+      }
+    };
+
     if (mobileBtn && mobileMenu) {
       mobileBtn.addEventListener('click', () => {
         const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
@@ -141,6 +150,12 @@ const menuItems = [
         closeIcon?.classList.toggle('hidden');
       });
     }
+
+    // Close menu when a link inside mobile menu is clicked
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+    mobileMenuLinks?.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
 
     // Modal Control
     const openModal = () => {

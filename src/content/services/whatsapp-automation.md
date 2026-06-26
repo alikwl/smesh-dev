@@ -20,7 +20,7 @@ integrations:
   - "Google Sheets"
   - "Supabase DB"
 expected_delivery: "5-10 Days"
-starting_price: "PKR 55,000 / $600"
+starting_price: "$600"
 faqs:
   - q: "Will my number get blocked?"
     a: "We only use official WhatsApp Business API endpoints and follow strict rate-limiting policies to ensure zero risk of account suspensions."

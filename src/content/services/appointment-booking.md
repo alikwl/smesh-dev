@@ -19,7 +19,7 @@ integrations:
   - "n8n / Twilio"
   - "Supabase / SQLite"
 expected_delivery: "5-10 Days"
-starting_price: "PKR 55,000 / $800"
+starting_price: "$800"
 faqs:
   - q: "Can I limit how many slots are booked?"
     a: "Yes. You can set maximum daily limits, buffer times between slots, and block off custom dates easily."

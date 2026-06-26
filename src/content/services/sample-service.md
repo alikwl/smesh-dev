@@ -2,7 +2,7 @@
 title: "Sample Automation Service"
 description: "A complete description of this automation service template."
 icon: "cpu"
-price: "PKR 50,000"
+price: "$200"
 tag: "automation"
 seoKeywords:
   - "workflow automation"

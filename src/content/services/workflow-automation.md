@@ -20,7 +20,7 @@ integrations:
   - "Slack / Discord"
   - "Google Sheets / Airtable"
 expected_delivery: "5-10 Days"
-starting_price: "$1,200 / PKR 95,000"
+starting_price: "$1,200"
 faqs:
   - q: "What is n8n?"
     a: "n8n is a powerful workflow automation tool. It works similarly to Zapier but is far more cost-effective and allows custom JavaScript nodes for advanced data handling."

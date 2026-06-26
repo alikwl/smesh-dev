@@ -21,7 +21,7 @@ integrations:
   - "n8n"
   - "Astro / Next.js Widget"
 expected_delivery: "10-15 Days"
-starting_price: "$1,800 / PKR 150,000"
+starting_price: "$1,800"
 faqs:
   - q: "Will the AI make up false details?"
     a: "No. We implement system instructions and vector retrieval constraints (RAG) that force the model to say 'I don't know' rather than hallucinating answers."
