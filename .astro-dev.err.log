@@ -1,0 +1,435 @@
+[31m[1m11:26:30[22m [ERROR][39m Could not import `/src/components/Header.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    at async handleInvoke (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:39131:22)[22m
+[31m[1m11:26:30[22m [ERROR][39m Could not import `/src/components/Header.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:22[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:22[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:45[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:45[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:47[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:47[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:48[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:48[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:48[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:48[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:48[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:27:48[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:28:23[22m [ERROR][39m Could not import `/src/components/ContactForm.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:28:45[22m [ERROR][39m Could not import `../components/ContactForm.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at C:\Haider\smesh.dev\src\pages\contact.astro:3:25
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:29:14[22m [ERROR][39m Could not import `/src/components/ContactForm.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    at async handleInvoke (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:39131:22)[22m
+[31m[1m11:38:14[22m [ERROR][39m Could not import `../components/ContactForm.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:38:17[22m [ERROR][39m Could not import `../components/ContactForm.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:38:42[22m [ERROR][39m Could not import `../components/ContactForm.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:39:36[22m [ERROR] [vite][39m [31mInternal server error: [postcss] C:/Haider/smesh.dev/src/styles/global.css:186:5: The `prose` class does not exist. If `prose` is a custom class, make sure it is defined within a `@layer` directive.[39m
+  Plugin: [35mvite:css[39m
+  File: [36mC:/Haider/smesh.dev/src/styles/global.css[39m:186:4
+[33m  184|  
+  185|    .prose-shell {
+  186|      @apply prose prose-neutral max-w-none;
+     |      ^
+  187|      --tw-prose-body: #4d4a42;
+  188|      --tw-prose-headings: #171713;[39m
+      at Input.error (C:\Haider\smesh.dev\node_modules\postcss\lib\input.js:135:16)
+      at AtRule.error (C:\Haider\smesh.dev\node_modules\postcss\lib\node.js:146:32)
+      at processApply (C:\Haider\smesh.dev\node_modules\tailwindcss\lib\lib\expandApplyAtRules.js:380:29)
+      at C:\Haider\smesh.dev\node_modules\tailwindcss\lib\lib\expandApplyAtRules.js:551:9
+      at C:\Haider\smesh.dev\node_modules\tailwindcss\lib\processTailwindFeatures.js:55:50
+      at async plugins (C:\Haider\smesh.dev\node_modules\tailwindcss\lib\plugin.js:38:17)
+      at async LazyResult.runAsync (C:\Haider\smesh.dev\node_modules\postcss\lib\lazy-result.js:293:11)
+      at async runPostCSS (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:43983:21)
+      at async compilePostCSS (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:43953:18)
+      at async compileCSS (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:43808:27)
+[31m[1m11:53:24[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:24[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:24[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:24[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:30[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:30[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:33[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:34[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:38[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:44[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:44[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:44[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:47[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:47[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:48[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:48[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:48[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:48[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:48[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:48[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:50[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:50[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:50[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:51[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:51[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:51[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:52[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:52[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:52[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:52[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:52[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:52[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:53[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:53[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:53[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:54[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:54[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:54[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:54[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at C:/Haider/smesh.dev/src/components/Header.astro:8:1
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m11:53:54[22m [ERROR][39m [31m[CompilerError][39m The closing frontmatter fence (---) is missing an opening fence
+  [1mHint:[22m
+[33m    Add --- at the beginning of your file before any import statements or code[39m
+  [1mStack trace:[22m
+[2m    at handleCompileResultErrors (file:///C:/Haider/smesh.dev/node_modules/astro/dist/core/compile/compile.js:65:11)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m13:08:16[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m13:08:17[22m [ERROR][39m Could not import `/src/components/Footer.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Haider/smesh.dev/node_modules/vite/dist/node/chunks/dep-Dm0c1Wj2.js:35835:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
