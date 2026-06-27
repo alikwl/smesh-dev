@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SmartImage from '../../components/SmartImage.astro';
 import { getAllPortfolio, getAllDemos } from '../../lib/supabase';
+import { testimonials } from '../../data/testimonials';
 
 const portfolioItems = await getAllPortfolio();
 const demos = await getAllDemos();
@@ -177,6 +178,50 @@ const demoImageMap: Record<string, string> = {
           );
         })}
       </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials Section -->
+  <section class="site-shell py-20 border-t border-slate-200/60" aria-label="Client Testimonials">
+    <div class="space-y-4 mb-14">
+      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
+        Client Testimonials
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight font-display">
+        Delivering measurable impact.
+      </h2>
+      <p class="body-copy max-w-xl text-slate-655 font-light">
+        Hear from our partners about the hours reclaimed, manual errors eliminated, and workflows unlocked.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((t) => (
+        <div class="bg-white/70 border border-slate-200 rounded-[28px] p-6 md:p-8 backdrop-blur-md hover:shadow-md transition duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <!-- Quote -->
+            <p class="text-xs text-slate-655 leading-relaxed font-sans font-light italic">
+              "{t.quote}"
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 space-y-4">
+            <!-- Metric -->
+            <div class="bg-emerald-50 border border-emerald-100/50 text-emerald-700 text-[9px] font-bold tracking-wide py-1.5 px-3 rounded-xl inline-block font-sans">
+              {t.metric}
+            </div>
+
+            <!-- Author Info -->
+            <div class="flex items-center">
+              <img src={t.avatar} alt={t.name} class="w-9 h-9 rounded-full object-cover mr-3 border border-slate-200" />
+              <div class="font-sans">
+                <h4 class="text-xs font-bold text-slate-900">{t.name}</h4>
+                <p class="text-[10px] text-slate-400 font-light">{t.role}, {t.company}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
