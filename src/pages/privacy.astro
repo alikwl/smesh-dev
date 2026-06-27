@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout 
+  title="Privacy Policy | Smesh.Dev" 
+  description="Privacy Policy for Smesh.dev. Learn how we collect, store, and process your data under BismillahTC Digital Services, Khanewal."
+>
+  <section class="site-shell py-16 md:py-24 max-w-3xl mx-auto">
+    <div class="space-y-6">
+      <span class="section-kicker">Legal</span>
+      <h1 class="display-title text-[color:var(--ink)] text-4xl sm:text-5xl font-extrabold tracking-tight font-display border-b border-slate-200 pb-6">
+        Privacy Policy
+      </h1>
+      <p class="text-xs text-slate-400 font-sans">
+        Last Updated: June 2026 &mdash; Khanewal, Pakistan
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-10 text-sm leading-relaxed text-slate-655 font-sans font-light">
+      <p>
+        At <strong>Smesh.dev</strong> (operated by <strong>BismillahTC Digital Services</strong>), we value your trust and are committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights regarding your data in plain, straightforward language with minimal legal jargon.
+      </p>
+
+      <!-- Section 1 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">1. What Data We Collect</h2>
+        <p>
+          We only collect data that you voluntarily provide to us when using Smesh.dev. This includes:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Form Submissions:</strong> When you request a free audit or submit a project brief, we collect your name, email address, WhatsApp number, and details about your business bottlenecks.</li>
+          <li><strong>WhatsApp Chats:</strong> If you choose to contact Haider Ali directly via WhatsApp, we retain the chat history to discuss project scopes and coordinate work.</li>
+          <li><strong>Website Analytics:</strong> We use privacy-friendly, anonymized traffic analytics to understand page views and performance, without tracking your personal identity across the web.</li>
+        </ul>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">2. How We Use Your Data</h2>
+        <p>
+          Your information is used strictly to deliver and improve our automation consulting services:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>To review your workflow bottlenecks and prepare project scope proposals.</li>
+          <li>To build, test, and hand over your custom n8n and Supabase databases.</li>
+          <li>To email you free digital blueprints, guides, or system updates you subscribe to.</li>
+        </ul>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">3. Data Sharing & Security</h2>
+        <p>
+          We do not sell, rent, or distribute your personal details to marketing list brokers or unrelated third parties. Your data is only shared with our secure service infrastructure providers to execute your requests:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Supabase:</strong> For secure database storage using standard server encryption and Row Level Security (RLS).</li>
+          <li><strong>n8n:</strong> For running automation workflows (e.g. routing contact requests or mailing lists).</li>
+        </ul>
+        <p>
+          All project credentials, API keys, and database logins you share during active consulting are stored in encrypted vaults and destroyed post-handover.
+        </p>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">4. Cookies & Local Storage</h2>
+        <p>
+          We do not use invasive tracking cookies. We only use browser local storage (like <code>{"unlocked_{slug}"}</code>) to remember if you have unlocked a free resource blueprint so you do not have to fill out the form multiple times on the same device.
+        </p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">5. Your Rights & Data Deletion</h2>
+        <p>
+          You have full ownership of your data. At any time, you can request to:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Review what personal data we hold about you.</li>
+          <li>Correct any inaccurate details.</li>
+          <li>Permanently delete your information from our databases.</li>
+        </ul>
+        <p>
+          To make a request, simply email me at <a href={`mailto:${site.email}`} class="text-[color:var(--accent-strong)] font-semibold underline">{site.email}</a> or reach out on WhatsApp. We will process your deletion request within 48 hours.
+        </p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="space-y-4 border-t border-slate-205 pt-6">
+        <h2 class="text-base font-bold text-slate-900 font-display">Questions or Concerns?</h2>
+        <p>
+          If you have any questions about this policy, you can contact me directly:
+        </p>
+        <ul class="space-y-1 text-xs">
+          <li><strong>Lead Developer:</strong> Haider Ali</li>
+          <li><strong>Entity:</strong> BismillahTC Digital Services</li>
+          <li><strong>Address:</strong> Khanewal, Punjab, Pakistan</li>
+          <li><strong>Direct Email:</strong> <a href={`mailto:${site.email}`} class="text-[color:var(--accent-strong)] font-semibold underline">{site.email}</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
