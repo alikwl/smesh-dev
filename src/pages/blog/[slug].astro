@@ -19,6 +19,13 @@ const date = new Date(published_at);
 
 const htmlContent = marked.parse(content);
 
+function estimateReadTime(text: string) {
+  const wordsPerMinute = 200;
+  const words = (text || '').trim().split(/\s+/).length;
+  return Math.ceil(words / wordsPerMinute);
+}
+const readTime = estimateReadTime(content);
+
 function extractHeadings(markdown: string) {
   const list = [];
   const headingRegex = /^(#{2,3})\s+(.+)$/gm;
@@ -49,12 +56,24 @@ const formatDate = (value?: Date) => {
 const lastUpdatedDate = new Date(date);
 lastUpdatedDate.setDate(lastUpdatedDate.getDate() + 1); // Mock 1 day later update for Google Freshness
 
+// Fetch related posts (exclude current)
+const allPosts = await getAllBlogPosts();
+const relatedPosts = allPosts
+  .filter((p) => p.slug !== post.slug)
+  .slice(0, 2);
+
 // Breadcrumbs navigation path
 const breadcrumbs = [
   { name: 'Home', href: '/' },
   { name: 'Blog', href: '/blog/' },
   { name: category || 'Articles', href: `/blog/#${(category || '').toLowerCase().replace(/\s+/g, '-')}` }
 ];
+
+// Share Links
+const postUrl = site.url + '/blog/' + post.slug + '/';
+const shareTwitter = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(title)}`;
+const shareLinkedIn = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
+const shareWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + postUrl)}`;
 
 // BlogPosting JSON-LD Schema Markup
 const blogSchema = {
@@ -66,7 +85,7 @@ const blogSchema = {
   },
   "headline": title,
   "description": description,
-  "image": site.url + (cover_image || '/assets/images/placeholder.png'),
+  "image": site.url + (cover_image || '/assets/images/placeholder.webp'),
   "datePublished": date.toISOString(),
   "dateModified": lastUpdatedDate.toISOString(),
   "author": {
@@ -147,7 +166,7 @@ const howToMap = {
 const howToSchema = howToMap[post.slug] || null;
 
 const metaDescription = description || `Read article: ${title}. Learn n8n automation setups, database design, and optimization steps by Haider Ali (BismillahTC).`;
-const postImage = cover_image || '/assets/images/placeholder.png';
+const postImage = cover_image || '/assets/images/placeholder.webp';
 ---
 
 <BaseLayout title={title} description={metaDescription} image={postImage} schemaType="other">
@@ -158,54 +177,84 @@ const postImage = cover_image || '/assets/images/placeholder.png';
   <article class="py-14 md:py-20 bg-white" aria-label="Blog Article Content">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Above the Fold (Breadcrumbs & Headline & Meta) -->
-      <nav class="flex flex-wrap items-center gap-2 text-[10px] font-sans font-bold uppercase tracking-wider text-slate-400 mb-6" aria-label="Breadcrumb">
-        {breadcrumbs.map((crumb, idx) => (
-          <>
-            <a href={crumb.href} class="hover:text-[color:var(--accent-strong)] transition">{crumb.name}</a>
-            {idx < breadcrumbs.length - 1 && <span class="text-slate-350">/</span>}
-          </>
-        ))}
-      </nav>
+      <!-- Above the Fold (Breadcrumbs & Category Tag) -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <nav class="flex items-center gap-2 text-[10px] font-sans font-bold uppercase tracking-wider text-slate-400" aria-label="Breadcrumb">
+          {breadcrumbs.map((crumb, idx) => (
+            <>
+              <a href={crumb.href} class="hover:text-[color:var(--accent-strong)] transition">{crumb.name}</a>
+              {idx < breadcrumbs.length - 1 && <span class="text-slate-350">/</span>}
+            </>
+          ))}
+        </nav>
+        <span class="chip bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] border border-[color:var(--accent-soft)] px-2.5 py-0.5 rounded text-[10px] font-sans font-extrabold uppercase tracking-wider">
+          {category || 'Automation'}
+        </span>
+      </div>
 
       <div class="space-y-4 mb-8">
         <h1 class="text-3xl md:text-5xl font-extrabold font-display text-slate-900 tracking-tight leading-tight">
           {title}
         </h1>
 
-        <!-- Author Meta Info -->
-        <div class="flex flex-wrap items-center gap-4 py-4 border-y border-slate-100 font-sans text-xs text-slate-500">
-          <img 
-            src="/assets/images/resources/author-haider-ali.webp" 
-            alt="Haider Ali Avatar" 
-            class="w-10 h-10 rounded-full border border-slate-200 object-cover"
-          />
-          <div>
-            <div class="flex items-center gap-1.5 font-bold text-slate-900">
-              <span>{author}</span>
-              <span class="text-slate-350">&bull;</span>
-              <span class="text-[10px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2 py-0.5 rounded">Lead Developer</span>
+        <!-- Author Meta Info + Share Buttons -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-4 border-y border-slate-100 font-sans text-xs text-slate-500">
+          <div class="flex items-center gap-3">
+            <img 
+              src="/assets/images/resources/author-haider-ali.webp" 
+              alt="Haider Ali Avatar" 
+              class="w-10 h-10 rounded-full border border-slate-200 object-cover"
+            />
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-slate-900">
+                <span>{author}</span>
+                <span class="text-slate-350">&bull;</span>
+                <span class="text-[10px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2 py-0.5 rounded">Lead Developer</span>
+              </div>
+              <div class="mt-0.5 text-[10px] text-slate-450">
+                Published: {formatDate(date)} &bull; {readTime} min read
+              </div>
             </div>
-            <div class="mt-0.5 text-[10px] text-slate-400">
-              Published on {formatDate(date)} &bull; Updated on {formatDate(lastUpdatedDate)}
-            </div>
+          </div>
+
+          <!-- Share buttons -->
+          <div class="flex items-center gap-3 self-start sm:self-center border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
+            <span class="text-[9px] uppercase font-bold tracking-wider text-slate-400">Share:</span>
+            <a href={shareTwitter} target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 transition animate-hover" aria-label="Share on X">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href={shareLinkedIn} target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 transition animate-hover" aria-label="Share on LinkedIn">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0h.003z"/></svg>
+            </a>
+            <a href={shareWhatsApp} target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 transition animate-hover" aria-label="Share on WhatsApp">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.454L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 2.002 14.053.978 11.42.978c-5.443 0-9.866 4.372-9.87 9.802 0 1.696.444 3.351 1.286 4.816l-.995 3.636 3.716-.978zM17.8 14.398c-.34-.17-2.012-.994-2.324-1.107-.313-.114-.54-.17-.768.17-.228.34-.88 1.107-1.078 1.335-.198.228-.397.256-.738.086-1.517-.76-2.613-1.393-3.66-3.197-.278-.477.278-.443.796-.1.465.31.54.51.767.17.227-.34.34-.51.17-.853-.17-.34-.768-1.849-1.05-2.53-.276-.665-.558-.574-.768-.585-.199-.01-.426-.01-.653-.01-.227 0-.597.086-.91.427-.312.34-1.193 1.166-1.193 2.846 0 1.68 1.222 3.302 1.393 3.53.17.228 2.404 3.672 5.823 5.148.813.351 1.448.56 1.942.717.817.26 1.562.223 2.15.136.656-.097 2.013-.824 2.297-1.62.285-.796.285-1.478.199-1.62-.086-.14-.313-.228-.654-.398z"/></svg>
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Intro lead paragraph (The Hook - first 15%) -->
-      <p class="text-base text-slate-650 leading-relaxed font-light font-sans mb-6 border-l-4 border-[color:var(--accent)] pl-4 italic">
+      <!-- Full Width Featured Cover Image -->
+      <div class="aspect-[21/10] w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm my-6">
+        <img 
+          src={postImage} 
+          alt={title} 
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- Intro lead paragraph (The Hook) -->
+      <p class="text-base sm:text-lg text-slate-650 leading-relaxed font-light font-sans mb-8 border-l-4 border-[color:var(--accent)] pl-4 italic">
         {description}
       </p>
 
       <!-- Clickable Table of Contents (TOC) -->
       {headings.length > 0 && (
         <nav class="ambient-panel rounded-2xl p-5 border border-slate-250 bg-slate-50/50 my-8 font-sans" aria-label="Table of Contents">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Jump To Section</p>
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Table of Contents</p>
           <ul class="space-y-2">
             {headings.filter(h => h.depth <= 3).map(h => (
-              <li class={h.depth === 3 ? "pl-4" : ""}>
-                <a href={`#${h.slug}`} class="text-xs text-slate-700 hover:text-[color:var(--accent-strong)] hover:underline transition">
+              <li class={h.depth === 3 ? "pl-4 text-xs" : "text-xs"}>
+                <a href={`#${h.slug}`} class="text-slate-700 hover:text-[color:var(--accent-strong)] hover:underline transition font-medium">
                   {h.depth === 3 ? "→ " : ""}{h.text}
                 </a>
               </li>
@@ -217,16 +266,16 @@ const postImage = cover_image || '/assets/images/placeholder.png';
       <!-- Inline Hook CTA Banner -->
       <aside class="surface-card rounded-2xl p-5 border border-[color:var(--line)] bg-[color:var(--bg-soft)] my-8 font-sans flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Short on time?</h4>
-          <p class="text-[11px] text-slate-500 mt-1 leading-normal">Let us configure and launch this custom automation system for your team.</p>
+          <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Want this automated?</h4>
+          <p class="text-[11px] text-slate-500 mt-1 leading-normal">Haider Ali can build, deploy, and support this exact integration pipeline for you.</p>
         </div>
         <button class="trigger-audit-modal shrink-0 inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold transition cursor-pointer">
-          Claim Tech Audit
+          Claim Free Automation Audit
         </button>
       </aside>
 
       <!-- Main Value-Bomb Body Content -->
-      <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8">
+      <div class="content-body prose max-w-[72ch] mx-auto py-4">
         <MDXComponents>
           <div set:html={htmlContent} />
         </MDXComponents>
@@ -238,8 +287,8 @@ const postImage = cover_image || '/assets/images/placeholder.png';
           <div class="text-[color:var(--accent-strong)] mt-0.5"><i data-lucide="info" class="w-5 h-5"></i></div>
           <div>
             <h4 class="font-bold text-slate-900 text-sm">Strategic Case Study</h4>
-            <p class="text-xs text-slate-600 mt-1 font-light leading-relaxed">
-              See this integration workflow in action: Read how we automated lead capture sync and n8n pipelines in our <a href="/portfolio/agency-website-automation/" class="font-bold text-[color:var(--accent-strong)] underline hover:text-[color:var(--accent-strong)]">agency website case study</a>.
+            <p class="text-xs text-slate-660 mt-1 font-light leading-relaxed">
+              Read how we automated lead capture sync and n8n pipelines in our <a href="/portfolio/agency-website-automation/" class="font-bold text-[color:var(--accent-strong)] underline hover:text-[color:var(--accent-strong)]">agency website case study</a>.
             </p>
           </div>
         </div>
@@ -248,25 +297,24 @@ const postImage = cover_image || '/assets/images/placeholder.png';
       <!-- Article Conclusion & wrap-up -->
       <section class="mt-12 pt-8 border-t border-slate-100 font-sans" aria-label="Article Conclusion">
         <h2 class="text-xl font-bold text-slate-900 mb-4" id="article-summary-heading">Summary wrap-up</h2>
-        <p class="text-xs text-slate-600 leading-relaxed font-light">
+        <p class="text-xs text-slate-660 leading-relaxed font-light">
           Automating operational workflows using custom-mapped n8n instances and centralizing logs inside Supabase is the single highest-leverage move for service operations today. It eliminates overhead and ensures zero customer inquiries slip through the cracks.
         </p>
       </section>
 
-      <!-- The Ultimate Funnel Exit (The Closer CTA) -->
-      <div class="mt-12 p-8 md:p-10 bg-slate-900 text-white rounded-3xl text-center space-y-6 shadow-md relative overflow-hidden font-sans">
-        <div class="absolute inset-0 bg-gradient-to-tr from-teal-900/30 to-indigo-900/20 pointer-events-none"></div>
-        <div class="space-y-3 relative z-10">
-          <h3 class="text-xl md:text-2xl font-extrabold text-white">Ready to implement this system?</h3>
-          <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed font-light">
-            Skip the manual headaches. Schedule a free 15-minute discovery audit call and let's map out the shortest automation path for your workflows.
-          </p>
-        </div>
-        <div class="flex justify-center pt-2 relative z-10">
-          <button class="trigger-audit-modal inline-flex items-center px-6 py-3 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-xs font-bold rounded-xl transition shadow-lg cursor-pointer">
-            Book Your Free Discovery Call
-            <i data-lucide="arrow-right" class="h-3.5 h-3.5 ml-2"></i>
-          </button>
+      <!-- Bottom Share Links -->
+      <div class="flex items-center justify-between border-y border-slate-100 py-4 my-8 font-sans">
+        <span class="text-xs font-bold text-slate-500">Liked this blueprint? Share it:</span>
+        <div class="flex items-center gap-3">
+          <a href={shareTwitter} target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 transition" aria-label="Share on X">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href={shareLinkedIn} target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 transition" aria-label="Share on LinkedIn">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0h.003z"/></svg>
+          </a>
+          <a href={shareWhatsApp} target="_blank" rel="noopener" class="text-slate-400 hover:text-slate-900 transition" aria-label="Share on WhatsApp">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.454L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 2.002 14.053.978 11.42.978c-5.443 0-9.866 4.372-9.87 9.802 0 1.696.444 3.351 1.286 4.816l-.995 3.636 3.716-.978zM17.8 14.398c-.34-.17-2.012-.994-2.324-1.107-.313-.114-.54-.17-.768.17-.228.34-.88 1.107-1.078 1.335-.198.228-.397.256-.738.086-1.517-.76-2.613-1.393-3.66-3.197-.278-.477.278-.443.796-.1.465.31.54.51.767.17.227-.34.34-.51.17-.853-.17-.34-.768-1.849-1.05-2.53-.276-.665-.558-.574-.768-.585-.199-.01-.426-.01-.653-.01-.227 0-.597.086-.91.427-.312.34-1.193 1.166-1.193 2.846 0 1.68 1.222 3.302 1.393 3.53.17.228 2.404 3.672 5.823 5.148.813.351 1.448.56 1.942.717.817.26 1.562.223 2.15.136.656-.097 2.013-.824 2.297-1.62.285-.796.285-1.478.199-1.62-.086-.14-.313-.228-.654-.398z"/></svg>
+          </a>
         </div>
       </div>
 
@@ -286,10 +334,70 @@ const postImage = cover_image || '/assets/images/placeholder.png';
             <p class="text-[11px] text-slate-450 mt-0.5">Principal Developer & Automation Engineer at BismillahTC Digital Services</p>
           </div>
           <p class="text-[11px] text-slate-600 leading-relaxed font-light">
-            Haider specializes in designing lightweight, offline-first checkout tools, integrating secure Supabase PostgreSQL schemas, and configuring complex n8n automation pipelines for founders and e-commerce brands worldwide.
+            Haider Ali is an expert automation engineer specializing in building custom n8n pipelines, designing relational Supabase databases, training RAG-powered support chatbots, and building high-speed static websites for businesses across Pakistan and internationally.
           </p>
         </div>
       </section>
+
+      <!-- Related Posts Section (2 Cards) -->
+      {relatedPosts.length > 0 && (
+        <section class="mt-16 pt-12 border-t border-slate-100 font-sans" aria-label="Related Articles">
+          <h3 class="text-xs uppercase font-bold tracking-wider text-slate-400 mb-6 font-sans">Related Blueprints & Guides</h3>
+          <div class="grid gap-6 sm:grid-cols-2">
+            {relatedPosts.map((rPost) => {
+              const rSlug = rPost.slug;
+              const rImage = rPost.cover_image || '/assets/images/placeholder.webp';
+              const rReadTime = estimateReadTime(rPost.content);
+              return (
+                <div class="group relative flex flex-col justify-between p-5 rounded-2xl border border-slate-200 hover:border-slate-350 hover:shadow-sm transition bg-white">
+                  <div class="space-y-4">
+                    <div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-slate-50 border border-slate-100">
+                      <img 
+                        src={rImage} 
+                        alt="" 
+                        class="w-full h-full object-cover group-hover:scale-102 transition duration-500"
+                      />
+                    </div>
+                    <div class="space-y-1">
+                      <span class="chip bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider inline-block">
+                        {rPost.category || 'Article'}
+                      </span>
+                      <h4 class="text-sm font-bold text-slate-900 leading-snug group-hover:text-[color:var(--accent-strong)] transition">
+                        <a href={`/blog/${rSlug}/`} class="after:absolute after:inset-0">
+                          {rPost.title}
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between pt-4 mt-4 border-t border-slate-100 text-[10px] text-slate-400">
+                    <span>{rReadTime} min read</span>
+                    <span class="font-bold group-hover:translate-x-0.5 transition duration-200 inline-flex items-center gap-0.5 text-[color:var(--accent-strong)]">
+                      Read Article &rarr;
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <!-- The Ultimate Funnel Exit (The Closer CTA) -->
+      <div class="mt-12 p-8 md:p-10 bg-slate-900 text-white rounded-3xl text-center space-y-6 shadow-md relative overflow-hidden font-sans">
+        <div class="absolute inset-0 bg-gradient-to-tr from-teal-900/30 to-indigo-900/20 pointer-events-none"></div>
+        <div class="space-y-3 relative z-10">
+          <h3 class="text-xl md:text-2xl font-extrabold text-white">Ready to implement this system?</h3>
+          <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed font-light">
+            Skip the manual headaches. Schedule a free 15-minute discovery audit call and let's map out the shortest automation path for your workflows.
+          </p>
+        </div>
+        <div class="flex justify-center pt-2 relative z-10">
+          <button class="trigger-audit-modal inline-flex items-center px-6 py-3 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-xs font-bold rounded-xl transition shadow-lg cursor-pointer">
+            Book Your Free Discovery Call
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5 ml-2"></i>
+          </button>
+        </div>
+      </div>
 
     </div>
   </article>
