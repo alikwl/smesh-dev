@@ -17,12 +17,12 @@ const slug = item.id.replace(/\.md$/, '');
 const { Content } = await item.render();
 
 const demoImageMap: Record<string, string> = {
-  'whatsapp-order-system': '/assets/images/whatsapp-phone-mockup.png',
-  'ai-support-chatbot': '/assets/images/ai-network-illustration.png',
-  'booking-dashboard': '/assets/images/calendar-booking-mockup.png',
-  'pos-inventory-dashboard': '/assets/images/saas-dashboard-illustration.png',
-  'saas-mvp-dashboard': '/assets/images/saas-dashboard-illustration.png',
-  'lead-capture-workflow': '/assets/images/automation-workflow-illustration.png',
+  'whatsapp-order-system': '/assets/images/portfolio/whatsapp-order-bot.webp',
+  'ai-support-chatbot': '/assets/images/portfolio/ai-support-rag.webp',
+  'booking-dashboard': '/assets/images/portfolio/booking-dashboard.webp',
+  'pos-inventory-dashboard': '/assets/images/portfolio/pos-inventory.webp',
+  'saas-mvp-dashboard': '/assets/images/portfolio/saas-mvp-dashboard.webp',
+  'lead-capture-workflow': '/assets/images/portfolio/agency-website.webp',
 };
 const heroImage = demoImageMap[slug] || '/assets/images/placeholder.png';
 

@@ -4,6 +4,7 @@ import ContactForm from '../components/ContactForm.astro';
 import SmartImage from '../components/SmartImage.astro';
 import { getCollection } from 'astro:content';
 import { testimonials } from '../data/testimonials';
+import ServiceIllustration from '../components/ServiceIllustration.astro';
 
 const services = (await getCollection('services')).filter(s => !s.id.includes('sample'));
 const portfolio = (await getCollection('portfolio')).filter(p => !p.id.includes('sample'));
@@ -48,12 +49,12 @@ const homepageFaqs = [
 ];
 
 const demoImageMap: Record<string, string> = {
-  'whatsapp-order-system': '/assets/images/whatsapp-phone-mockup.png',
-  'ai-support-chatbot': '/assets/images/ai-network-illustration.png',
-  'booking-dashboard': '/assets/images/calendar-booking-mockup.png',
-  'pos-inventory-dashboard': '/assets/images/saas-dashboard-illustration.png',
-  'saas-mvp-dashboard': '/assets/images/saas-dashboard-illustration.png',
-  'lead-capture-workflow': '/assets/images/automation-workflow-illustration.png',
+  'whatsapp-order-system': '/assets/images/portfolio/whatsapp-order-bot.webp',
+  'ai-support-chatbot': '/assets/images/portfolio/ai-support-rag.webp',
+  'booking-dashboard': '/assets/images/portfolio/booking-dashboard.webp',
+  'pos-inventory-dashboard': '/assets/images/portfolio/pos-inventory.webp',
+  'saas-mvp-dashboard': '/assets/images/portfolio/saas-mvp-dashboard.webp',
+  'lead-capture-workflow': '/assets/images/portfolio/agency-website.webp',
 };
 
 const borderColors = [
@@ -579,9 +580,7 @@ const borderColors = [
             <article class={`surface-card rounded-[30px] p-6 border border-slate-200/80 bg-white/50 flex flex-col justify-between hover:-translate-y-1 hover:shadow-lg hover:border-slate-355 transition-all duration-300 border-t-4 ${topBorderClass}`}>
               <div class="space-y-4">
                 <div class="flex items-center justify-between">
-                  <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]">
-                    <i data-lucide={icon} class="h-6 w-6"></i>
-                  </div>
+                  <ServiceIllustration slug={slug} class="w-20 h-20 border border-slate-200 bg-white" />
                   {tag && <span class="chip capitalize font-sans">{tag}</span>}
                 </div>
 
