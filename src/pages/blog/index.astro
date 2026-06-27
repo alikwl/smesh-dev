@@ -25,17 +25,17 @@ const formatDate = (value?: Date) => {
 };
 
 const estimateReadTime = (body: string) => {
-  const words = body.trim().split(/\s+/).length;
+  const words = (body || '').trim().split(/\s+/).length;
   return Math.ceil(words / 220); // 220 words per minute average reading speed
 };
 
 // Map post slugs to visual thumbnail illustrations
 const postImageMap: Record<string, string> = {
-  'how-whatsapp-automation-helps-local-shops': '/assets/images/whatsapp-phone-mockup.png',
-  'what-is-ai-support-chatbot-rag': '/assets/images/ai-network-illustration.png',
-  'business-website-checklist-pakistan': '/assets/images/website-mockup-illustration.png',
-  'n8n-automation-ideas-for-founders': '/assets/images/automation-workflow-illustration.png',
-  'seo-basics-for-service-businesses-2026': '/assets/images/website-mockup-illustration.png',
+  'how-whatsapp-automation-helps-local-shops': '/assets/images/blog/whatsapp-automation.webp',
+  'what-is-ai-support-chatbot-rag': '/assets/images/blog/ai-support-rag.webp',
+  'business-website-checklist-pakistan': '/assets/images/blog/website-checklist.webp',
+  'n8n-automation-ideas-for-founders': '/assets/images/blog/n8n-automation-ideas.webp',
+  'seo-basics-for-service-businesses-2026': '/assets/images/blog/seo-basics-2026.webp',
 };
 ---
 
@@ -49,10 +49,10 @@ const postImageMap: Record<string, string> = {
         <span class="px-3.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
           BismillahTC Systems Academy
         </span>
-        <h1 class="display-title text-slate-900 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08]">
+        <h1 class="display-title text-slate-900 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08] font-display">
           Master Workflow Automation: Free Blueprints & Guides
         </h1>
-        <p class="body-copy text-base text-slate-600 leading-relaxed font-light">
+        <p class="body-copy text-base text-slate-655 leading-relaxed font-light">
           Get actionable tutorials, custom n8n configurations, and Supabase integration guides written to eliminate administrative overhead from your operations.
         </p>
 
@@ -83,7 +83,7 @@ const postImageMap: Record<string, string> = {
           <span class="text-[9px] font-mono text-slate-400">PDF + Workflow JSON</span>
         </div>
         <div class="space-y-3">
-          <h2 class="text-xl font-bold text-slate-900 leading-snug">The Ultimate n8n & Supabase Lead Funnel Blueprint</h2>
+          <h2 class="text-xl font-bold text-slate-900 leading-snug font-display">The Ultimate n8n & Supabase Lead Funnel Blueprint</h2>
           <p class="text-xs text-slate-550 leading-relaxed font-light">
             Download our step-by-step setup guide and importable JSON file to capture leads from WhatsApp, run RAG matching, and sync them directly to your Supabase tables.
           </p>
@@ -104,8 +104,8 @@ const postImageMap: Record<string, string> = {
       <div class="section-kicker mb-6">Featured Article</div>
       {(() => {
         const slug = featuredPost.slug;
-        const image = featuredPost.cover_image || postImageMap[slug] || '/assets/images/placeholder.png';
-        const readTime = estimateReadTime(featuredPost.content);
+        const image = featuredPost.cover_image || postImageMap[slug] || '/assets/images/placeholder.webp';
+        const readTime = featuredPost.reading_time || estimateReadTime(featuredPost.content);
         return (
           <article class="surface-card rounded-[32px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] hover:shadow-md transition duration-300">
             <div class="relative overflow-hidden aspect-[16/10] lg:aspect-auto lg:h-full min-h-[300px]">
@@ -118,7 +118,7 @@ const postImageMap: Record<string, string> = {
                   <span class="text-slate-400 text-[10px] font-medium">&bull;</span>
                   <span class="text-slate-400 text-[10px] font-medium">{readTime} min read</span>
                 </div>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-955 leading-tight hover:text-[color:var(--accent-strong)] transition">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-955 leading-tight hover:text-[color:var(--accent-strong)] transition font-display">
                   <a href={`/blog/${slug}/`}>{featuredPost.title}</a>
                 </h2>
                 <p class="text-xs md:text-sm text-slate-550 leading-relaxed font-light line-clamp-3">
@@ -140,8 +140,8 @@ const postImageMap: Record<string, string> = {
 
   <!-- Section 3: Topic Categories Grid (The AI Explorer) -->
   <section class="site-shell py-8 border-t border-slate-200/50" aria-label="Topic Navigation Filter">
-    <div class="text-center max-w-2xl mx-auto mb-8">
-      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">All Engineering Articles</h2>
+    <div class="text-center max-w-2xl mx-auto mb-8 font-sans">
+      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight font-display">All Engineering Articles</h2>
       <p class="text-xs text-slate-500 mt-2">Deep dives, blueprints, and strategies on automation systems.</p>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-3">
@@ -168,8 +168,8 @@ const postImageMap: Record<string, string> = {
       {gridPosts.length > 0 ? (
         gridPosts.map((post) => {
           const slug = post.slug;
-          const image = post.cover_image || postImageMap[slug] || '/assets/images/placeholder.png';
-          const readTime = estimateReadTime(post.content);
+          const image = post.cover_image || postImageMap[slug] || '/assets/images/placeholder.webp';
+          const readTime = post.reading_time || estimateReadTime(post.content);
           const filterTag = (post.category || '').toLowerCase().replace(/\s+/g, '-');
           return (
             <article 
@@ -185,7 +185,7 @@ const postImageMap: Record<string, string> = {
                     <span class="chip bg-indigo-50 border border-indigo-100/50 text-indigo-700 text-[10px] font-bold capitalize">{post.category}</span>
                     <span class="text-slate-400 text-[9px] font-medium">{readTime} min read</span>
                   </div>
-                  <h3 class="text-lg font-bold text-slate-900 leading-snug hover:text-[color:var(--accent-strong)] transition">
+                  <h3 class="text-lg font-bold text-slate-900 leading-snug hover:text-[color:var(--accent-strong)] transition font-display">
                     <a href={`/blog/${slug}/`}>{post.title}</a>
                   </h3>
                   <p class="text-xs text-slate-550 leading-relaxed line-clamp-3 font-light">
@@ -216,8 +216,8 @@ const postImageMap: Record<string, string> = {
     <div class="bg-gradient-to-r from-teal-900/90 to-slate-900 text-white rounded-[36px] p-8 md:p-12 text-center space-y-6 shadow-xl relative overflow-hidden font-sans">
       <div class="max-w-2xl mx-auto space-y-4 relative z-10">
         <span class="chip bg-teal-500/20 border border-teal-400/30 text-teal-350 text-[9px] font-bold uppercase tracking-wider font-sans mx-auto">Free Resource Hub</span>
-        <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight">Need Importable Workflow JSON Files?</h2>
-        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto">Skip the manual setup entirely. Grab our complete pre-built n8n automations and Supabase database schemas directly from our Resources Hub.</p>
+        <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight font-display">Need Importable Workflow JSON Files?</h2>
+        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto font-light">Skip the manual setup entirely. Grab our complete pre-built n8n automations and Supabase database schemas directly from our Resources Hub.</p>
         <div class="pt-4">
           <a href="/resources/" class="inline-flex items-center px-8 py-3.5 bg-white text-slate-900 hover:bg-slate-50 text-sm font-bold rounded-xl transition shadow-lg">
             Explore Resources Hub
