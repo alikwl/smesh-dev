@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout 
+  title="Cookie Policy | Smesh.Dev" 
+  description="Cookie Policy for Smesh.dev. Learn what cookies and local storage tags we use, how we protect your preferences, and how to manage them."
+>
+  <section class="site-shell py-16 md:py-24 max-w-3xl mx-auto">
+    <div class="space-y-6">
+      <span class="section-kicker">Legal</span>
+      <h1 class="display-title text-[color:var(--ink)] text-4xl sm:text-5xl font-extrabold tracking-tight font-display border-b border-slate-200 pb-6">
+        Cookie Policy
+      </h1>
+      <p class="text-xs text-slate-400 font-sans">
+        Last Updated: June 2026 &mdash; Khanewal, Pakistan
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-10 text-sm leading-relaxed text-slate-655 font-sans font-light">
+      <p>
+        This Cookie Policy explains how <strong>Smesh.dev</strong> (operated by <strong>BismillahTC Digital Services</strong>) uses cookies, browser local storage, and similar technologies to improve your experience on our website.
+      </p>
+
+      <!-- Section 1 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">1. What Are Cookies?</h2>
+        <p>
+          Cookies are small text files that websites save to your computer or mobile device when you visit them. They help the website remember your actions and preferences (like login sessions, form inputs, or display preferences) over a period of time, so you don't have to keep re-entering them whenever you come back to the site or browse from one page to another.
+        </p>
+        <p>
+          We also use <strong>local storage</strong> (`localStorage` and `sessionStorage`), which is a modern browser technology that lets us save data directly in your browser without sending it back to our servers, keeping page loads extremely fast.
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">2. What Cookies & Storage We Use</h2>
+        <p>
+          We believe in keeping our site clean, fast, and light. We do not use intrusive tracking cookies. The cookies and local storage tokens we use are strictly for essential site operations and preference settings:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Resource Unlock Preference (Essential):</strong> When you unlock a free PDF or n8n workflow blueprint, we save a tag (like <code>unlocked_slug</code>) in your browser's local storage. This keeps the resource open for you so you don't have to fill out the form every single time you view it.</li>
+          <li><strong>Chat Support Widget (Functional):</strong> We use a session token to keep your live AI chatbot chat history active as you click around different pages.</li>
+          <li><strong>Analytics (Performance):</strong> We may use basic, privacy-friendly analytics tools to see general traffic statistics (like which pages are most popular) without identifying you personally.</li>
+        </ul>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">3. Third-Party Cookies</h2>
+        <p>
+          When you use Smesh.dev, some external services we integrate may set their own cookies to function properly:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Supabase:</strong> Sets secure authentication cookies if you access database dashboards or portals.</li>
+          <li><strong>WhatsApp Widget:</strong> Direct chat links or embedded support widgets may trigger basic cookies set by WhatsApp/Meta to track chat intent.</li>
+          <li><strong>Embedded Demos:</strong> Some of our interactive workflow and internal tool demos run in safe iframe embeds (like n8n or Retool) which might load functional cookies to run the app sandbox.</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">4. How to Manage Cookies</h2>
+        <p>
+          You have full control over cookies and local storage. You can:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Delete all cookies and clear your browser's cache or local storage through your browser settings.</li>
+          <li>Block cookies entirely by setting your browser to Private or Incognito mode.</li>
+        </ul>
+        <p class="text-xs text-amber-600 bg-amber-50 border border-amber-100 p-3 rounded-lg">
+          <strong>Note:</strong> If you clear your browser cache or block local storage, previously unlocked resources will return to their locked state, and you will need to enter your email again to download them.
+        </p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">5. Your Consent</h2>
+        <p>
+          By continuing to use Smesh.dev, downloading our free blueprints, or interacting with our chatbots, you agree to our use of cookies and local storage tags as described in this policy.
+        </p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 font-display">6. Policy Updates</h2>
+        <p>
+          We may update this Cookie Policy occasionally to reflect changes in our tools or third-party widgets. We recommend checking this page periodically to stay informed.
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="space-y-4 border-t border-slate-200 pt-6">
+        <h2 class="text-base font-bold text-slate-900 font-display">Contact Us</h2>
+        <p>
+          If you have any questions about how we use cookies, feel free to email:
+        </p>
+        <p class="text-xs font-semibold">
+          Email: <a href={`mailto:${site.email}`} class="text-[color:var(--accent-strong)] underline">{site.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
