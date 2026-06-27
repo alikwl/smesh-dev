@@ -16,14 +16,14 @@ export const clientSectors = [
 export const deliveryPrinciples = [
   {
     title: 'Small teams, fast approvals',
-    text: 'Direct founder communication keeps projects moving without account-manager lag.',
+    description: 'Direct founder communication keeps projects moving without account-manager lag.',
   },
   {
     title: 'Systems that your team can maintain',
-    text: 'Every build ships with clear structure, handover notes, and practical ownership paths.',
+    description: 'Every build ships with clear structure, handover notes, and practical ownership paths.',
   },
   {
     title: 'Lead capture built into every surface',
-    text: 'Landing pages, chat flows, forms, and demos all push visitors toward one clear next step.',
+    description: 'Landing pages, chat flows, forms, and demos all push visitors toward one clear next step.',
   },
 ];

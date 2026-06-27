@@ -65,7 +65,7 @@ const borderColors = [
 ];
 ---
 
-<BaseLayout title="Grounded AI Systems & Custom n8n Automation | Smesh.Dev" description="Smesh.Dev is an AI automation studio run by Haider Ali that designs custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate operations." schemaType="home">
+<BaseLayout title="n8n & AI Automation Studio | Built by Haider Ali | Smesh.Dev" description="Smesh.Dev is a personal automation studio run by Haider Ali that designs custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate operations." schemaType="home">
   <!-- FAQ Structured Schema for AEO/GEO discovery -->
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -86,7 +86,7 @@ const borderColors = [
       <!-- Background Glow Orbs -->
       <div class="absolute -top-12 left-1/4 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute top-1/4 -right-12 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
+ 
       <!-- Animated Floating Badges (Hidden on XS Mobile) -->
       <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/50 bg-white/70 backdrop-blur-xs text-[10px] font-semibold text-teal-700 shadow-sm absolute top-12 left-6 lg:left-24 animate-float-1">
         <i data-lucide="zap" class="w-3.5 h-3.5 text-teal-600"></i>
@@ -100,17 +100,17 @@ const borderColors = [
         <i data-lucide="database" class="w-3.5 h-3.5 text-orange-600"></i>
         Supabase DB Engine
       </div>
-
+ 
       <div class="max-w-4xl mx-auto space-y-6 relative z-10 px-2">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-teal-200 bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-teal-200 bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans animate-fade-slide-down">
           <i data-lucide="sparkles" class="h-3.5 w-3.5 text-[color:var(--accent)] animate-pulse"></i>
-          Smesh.Dev Automation Studio // Powered by BismillahTC
+          Smesh.Dev // Personal Automation Studio // Built by Haider Ali
         </span>
         <h1 class="display-title text-slate-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-display">
           Automate your business workflows by 30%
         </h1>
         <p class="body-copy max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light text-slate-655 leading-relaxed">
-          We design custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate your operations, reduce manual tasks, and launch your software products in weeks.
+          I build custom n8n workflows, Supabase databases, local retail POS systems, and grounded AI support chatbots to automate your business operations and eliminate manual copy-pasting—giving you reliable, agency-free execution.
         </p>
       </div>
 
@@ -242,6 +242,112 @@ const borderColors = [
       </div>
     </section>
 
+    <!-- Section: Engagement Process & Studio Guarantees -->
+    <section class="site-shell py-16 md:py-24 border-t border-slate-100 bg-white/40 rounded-[32px] border border-slate-200/80 mb-16" aria-label="Our Process & Guarantees">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+        
+        <!-- Left: Guarantees & Values -->
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <span class="section-kicker">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[color:var(--accent-strong)]"></i>
+              Studio Guarantees
+            </span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+              Practical execution, backed by honest promises.
+            </h2>
+            <p class="body-copy max-w-lg">
+              Smesh.dev is my personal studio, not a bloated agency. You work directly with me—the engineer who actually maps, codes, and maintains your workflows. This direct line allows me to offer robust guarantees that standard agencies cannot match.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Guarantee 1 -->
+            <div class="flex items-start gap-4">
+              <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-[color:var(--accent)] shrink-0 border border-teal-100/50">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">30-Day Post-Launch Support Guarantee</h3>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                  Every build includes 30 days of active post-handover support. If a workflow fails or an API schema changes during this period, I will jump in and fix it for free.
+                </p>
+              </div>
+            </div>
+
+            <!-- Guarantee 2 -->
+            <div class="flex items-start gap-4">
+              <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-750 shrink-0 border border-indigo-100/50">
+                <i data-lucide="code" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">100% Code & Infrastructure Ownership</h3>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                  No vendor lock-in. Your n8n workflows and Supabase databases are hosted on your own servers or cloud accounts. You get full code, clean schemas, and absolute control.
+                </p>
+              </div>
+            </div>
+
+            <!-- Guarantee 3 -->
+            <div class="flex items-start gap-4">
+              <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600 shrink-0 border border-orange-100/50">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Straightforward Pricing & Honest Scope</h3>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                  I estimate by the value delivered, not by hours padded. You get a fixed-price scope proposal with clear deliverables. No hidden fees or surprise invoices.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: The 3-Step Process -->
+        <div class="bg-white rounded-[32px] p-6 sm:p-8 border border-slate-200 shadow-sm space-y-8">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-sans border-b border-slate-100 pb-4">
+            Our Delivery Process
+          </h3>
+
+          <ol class="space-y-8 relative before:absolute before:left-5 before:top-2 before:bottom-2 before:w-[1.5px] before:bg-slate-100">
+            <!-- Step 1 -->
+            <li class="flex items-start gap-4 relative">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-extrabold z-10 shrink-0 font-display">1</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900">Discovery & Flow Mapping</h4>
+                <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                  We schedule a brief call or chat on WhatsApp to map out your current bottlenecks. I trace your inputs, triggers, and targets on a node-by-node canvas to outline the exact system required.
+                </p>
+              </div>
+            </li>
+
+            <!-- Step 2 -->
+            <li class="flex items-start gap-4 relative">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-extrabold z-10 shrink-0 font-display">2</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900">Structured Build & Sync</h4>
+                <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                  I construct your n8n workflow pipelines, code custom API connectors, and set up your Supabase database schemas. The work is delivered in logical phases so you see functional progress in real-time.
+                </p>
+              </div>
+            </li>
+
+            <!-- Step 3 -->
+            <li class="flex items-start gap-4 relative">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white text-xs font-extrabold z-10 shrink-0 font-display">3</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900">Handover & Support Gate</h4>
+                <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                  We verify the live system against real-world data checks. I provide Loom video walkthroughs, documentation notes, and transition ownership directly to your server, starting your 30-day guarantee window.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
     <!-- Section 4: Solution Matrix (AI-Scrapable Capabilities Matrix Table) -->
     <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Capabilities Matrix">
       <div class="space-y-4 mb-12">
@@ -287,7 +393,7 @@ const borderColors = [
             <tr class="hover:bg-slate-50/40 transition">
               <td class="p-5 font-bold text-[color:var(--ink)] flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-[color:var(--accent)] shrink-0"></span>
-                Next-Gen POS
+                Offline-First POS
               </td>
               <td class="p-5 text-[color:var(--muted)] font-mono">Astro, SQLite, IndexedDB, Supabase</td>
               <td class="p-5 text-[color:var(--ink)] font-light">Offline-first, high-efficiency dashboards engineered for real-time local commerce checkouts.</td>
@@ -329,7 +435,7 @@ const borderColors = [
         <article class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] shrink-0"></span>
-            <h3 class="font-bold text-sm text-[color:var(--ink)]">Next-Gen POS</h3>
+            <h3 class="font-bold text-sm text-[color:var(--ink)]">Offline-First POS</h3>
           </div>
           <div>
             <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-semibold">Primary Tech Stack</span>

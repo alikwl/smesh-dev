@@ -2,100 +2,136 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SmartImage from '../components/SmartImage.astro';
 import { site } from '../data/site';
-import { deliveryPrinciples, proofMetrics } from '../data/proof';
 ---
 
-<BaseLayout title="About Smesh.Dev | AI Automation & Custom Web Studio" description="Meet Haider Ali, founder of Smesh.Dev under BismillahTC Digital Services. We build custom n8n workflows, local retail POS systems, and automation databases.">
+<BaseLayout 
+  title="About Haider Ali | n8n & AI Automation Engineer" 
+  description="Meet Haider Ali, an automation engineer and founder of Smesh.dev. Specializing in n8n workflows, AI chatbots, POS systems, and Astro websites."
+>
   <section class="site-shell py-16 md:py-24">
-    <div class="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-end">
-      <div>
-        <div class="section-kicker">About the studio</div>
-        <h1 class="display-title mt-5 text-[color:var(--ink)]">Independent execution for founders and operators who need reliable digital systems, not agency theatre.</h1>
-        <p class="body-copy mt-6 max-w-2xl">
-          Smesh.Dev is the personal studio of Haider Ali, focused on websites, automation, internal tools, and AI support systems that solve real operational bottlenecks for service businesses and product teams.
+    <div class="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <div class="space-y-6">
+        <span class="section-kicker">
+          Founder & Engineer
+        </span>
+        <h1 class="display-title text-[color:var(--ink)] text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] font-display">
+          Hi, I'm Haider Ali &mdash;<br />
+          <span class="text-[color:var(--accent-strong)]">Automation Engineer</span> & Founder of Smesh.dev
+        </h1>
+        <p class="body-copy text-sm sm:text-base leading-relaxed text-slate-600 font-light">
+          Operating under <strong>BismillahTC Digital Services</strong>, based in Khanewal, I bring 8+ years of hands-on experience in building custom digital systems, automating business backends, and building fast web products.
         </p>
-      </div>
-
-      <div class="ambient-panel rounded-[32px] p-6 md:p-8">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">What clients value most</p>
-        <div class="mt-5 grid gap-4 sm:grid-cols-3">
-          {proofMetrics.slice(0, 3).map((metric) => (
-            <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-4">
-              <p class="text-2xl font-semibold text-[color:var(--ink)]">{metric.value}</p>
-              <p class="mt-2 text-sm text-[color:var(--muted)]">{metric.label}</p>
-            </div>
-          ))}
+        <p class="body-copy text-sm sm:text-base leading-relaxed text-slate-600 font-light">
+          I started Smesh.dev as a personal studio to offer high-context engineering directly to founders and business owners. I reject agency bureaucracy—when you book a project, you work directly with me.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2 font-sans">
+          <a href={site.whatsappLink} target="_blank" rel="noopener" class="button-primary px-8 py-3.5 rounded-xl font-bold flex items-center gap-2 shadow-md">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            WhatsApp Haider
+          </a>
+          <a href={`mailto:${site.email}`} class="button-secondary px-8 py-3.5 rounded-xl font-bold flex items-center gap-2">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            Email {site.email}
+          </a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="site-shell pb-16 md:pb-20">
-    <div class="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
-      <div class="surface-card overflow-hidden rounded-[34px] border border-slate-200/60 bg-slate-50 min-h-[360px] relative aspect-square lg:aspect-auto lg:h-full">
+      <div class="surface-card overflow-hidden rounded-[36px] border border-slate-200 bg-slate-50 relative aspect-square max-w-md mx-auto lg:max-w-none w-full shadow-sm">
         <SmartImage
           src="/assets/images/resources/author-haider-ali.webp"
           alt="Haider Ali - Founder & Lead Developer"
-          class="absolute inset-0 w-full h-full object-cover object-center"
+          class="w-full h-full object-cover object-center"
         />
-      </div>
-
-      <div class="surface-card rounded-[34px] p-8 md:p-10">
-        <div class="section-kicker">Founder</div>
-        <h2 class="section-title mt-4 text-[color:var(--ink)]">Haider Ali, lead developer and systems integrator</h2>
-        <p class="mt-5 text-sm leading-7 text-[color:var(--muted)]">
-          I work directly with clients from discovery through launch. That means the same person who maps the workflow also writes the implementation, tests the edge cases, and prepares the handover.
-        </p>
-        <p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">
-          My focus is practical execution: simplify the sales journey, reduce repetitive operations, and build web experiences that make the business look trustworthy the moment someone lands on the page.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href={`mailto:${site.email}`} class="button-secondary">Email {site.email}</a>
-          <a href={site.whatsappLink} target="_blank" rel="noopener" class="button-primary">WhatsApp {site.whatsapp}</a>
+        <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-xs px-4 py-3 rounded-2xl border border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-800 font-sans shadow-xs">
+          <span>Based in Khanewal, Pakistan</span>
+          <span class="flex items-center gap-1.5 text-emerald-600">
+            <span class="live-dot h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
+            Available for Booking
+          </span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="site-shell pb-16 md:pb-20">
-    <div class="max-w-3xl">
-      <div class="section-kicker">Working principles</div>
-      <h2 class="section-title mt-4 text-[color:var(--ink)]">The studio runs on clarity, lean systems, and honest delivery.</h2>
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-3">
-      {deliveryPrinciples.map((principle, index) => (
-        <article class="surface-card rounded-[30px] p-7">
-          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--muted-soft)]">Principle 0{index + 1}</p>
-          <h3 class="mt-4 text-xl font-semibold text-[color:var(--ink)]">{principle.title}</h3>
-          <p class="mt-4 text-sm leading-7 text-[color:var(--muted)]">{principle.description}</p>
-        </article>
-      ))}
+  <!-- Mission Quote Section -->
+  <section class="site-shell pb-16 md:pb-24">
+    <div class="ambient-panel rounded-[36px] p-8 md:p-12 text-center max-w-4xl mx-auto space-y-4">
+      <span class="text-[10px] font-bold uppercase tracking-widest text-[color:var(--accent-strong)] font-sans">Our Purpose</span>
+      <blockquote class="text-xl sm:text-2xl font-extrabold text-[color:var(--ink)] leading-normal font-display max-w-2xl mx-auto">
+        "I build the autonomous nervous system for small and medium businesses so owners can focus on growth instead of repetitive tasks."
+      </blockquote>
+      <cite class="block text-xs font-semibold text-slate-450 uppercase tracking-wider font-sans not-italic mt-4">
+        &mdash; Haider Ali, Founder
+      </cite>
     </div>
   </section>
 
-  <section class="site-shell pb-20 md:pb-24">
-    <div class="ambient-panel rounded-[36px] p-8 md:p-10">
-      <div class="max-w-3xl">
-        <div class="section-kicker">Engagement style</div>
-        <h2 class="section-title mt-4 text-[color:var(--ink)]">A straightforward process from brief to handover.</h2>
+  <!-- What I Do Section -->
+  <section class="site-shell pb-16 md:pb-24">
+    <div class="space-y-4 mb-12 text-center">
+      <span class="section-kicker">Core Focus</span>
+      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">What I Build</h2>
+      <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto font-light">Practical digital solutions engineered for immediate efficiency gains.</p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 max-w-4xl mx-auto font-sans">
+      <!-- Feature 1 -->
+      <article class="surface-card rounded-[28px] p-6 border border-slate-200 bg-white/70 hover:-translate-y-0.5 hover:shadow-md transition duration-300 space-y-4">
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-[color:var(--accent)] shrink-0 border border-teal-100/50">
+          <i data-lucide="git-merge" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-955 font-display">Custom n8n Workflows</h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-light">
+          Connecting your lead captures, database triggers, WhatsApp channels, and third-party APIs into self-running pipelines that run 24/7.
+        </p>
+      </article>
+
+      <!-- Feature 2 -->
+      <article class="surface-card rounded-[28px] p-6 border border-slate-200 bg-white/70 hover:-translate-y-0.5 hover:shadow-md transition duration-300 space-y-4">
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-750 shrink-0 border border-indigo-100/50">
+          <i data-lucide="message-square" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-955 font-display">AI RAG Support Chatbots</h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-light">
+          Configuring grounded AI chat agents linked directly to your company knowledge bases (using vector embeddings) to resolve client support tickets instantly.
+        </p>
+      </article>
+
+      <!-- Feature 3 -->
+      <article class="surface-card rounded-[28px] p-6 border border-slate-200 bg-white/70 hover:-translate-y-0.5 hover:shadow-md transition duration-300 space-y-4">
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-600 shrink-0 border border-orange-100/50">
+          <i data-lucide="database" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-955 font-display">Offline-First POS Checkout Systems</h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-light">
+          Designing retail sales interfaces that run locally on low internet connections (with SQLite/IndexedDB) and sync central stock data to Supabase once online.
+        </p>
+      </article>
+
+      <!-- Feature 4 -->
+      <article class="surface-card rounded-[28px] p-6 border border-slate-200 bg-white/70 hover:-translate-y-0.5 hover:shadow-md transition duration-300 space-y-4">
+        <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 shrink-0 border border-emerald-100/50">
+          <i data-lucide="layout" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-955 font-display">High-Speed Web Apps (Astro & Supabase)</h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-light">
+          Scaffolding fast, SEO-ready business sites and internal operational dashboards with sub-second page loads and robust PostgreSQL backends.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Trust Guarantee Section -->
+  <section class="site-shell pb-20 md:pb-28">
+    <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 shadow-sm">
+      <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50 text-[color:var(--accent)] shrink-0 border border-teal-100/50">
+        <i data-lucide="shield-check" class="w-8 h-8"></i>
       </div>
-      <div class="mt-8 grid gap-4 md:grid-cols-2">
-        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
-          <p class="text-sm font-semibold text-[color:var(--ink)]">1. Discovery and flow mapping</p>
-          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">We define the real problem, the current friction, and the smallest system that meaningfully improves it.</p>
-        </div>
-        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
-          <p class="text-sm font-semibold text-[color:var(--ink)]">2. Structured implementation</p>
-          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">Builds are phased so you can see working progress quickly instead of waiting through a long black-box process.</p>
-        </div>
-        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
-          <p class="text-sm font-semibold text-[color:var(--ink)]">3. Real-world testing</p>
-          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">Forms, flows, dashboards, and automation branches are validated around realistic usage, not just happy-path demos.</p>
-        </div>
-        <div class="rounded-[24px] border border-[color:var(--line)] bg-white/80 p-5">
-          <p class="text-sm font-semibold text-[color:var(--ink)]">4. Handover and growth path</p>
-          <p class="mt-2 text-sm leading-7 text-[color:var(--muted)]">You get a usable system plus enough clarity to keep moving without depending on guesswork.</p>
-        </div>
+      <div class="space-y-3">
+        <h3 class="text-xl font-bold text-slate-900 font-display">I personally handle every project from start to finish.</h3>
+        <p class="text-xs md:text-sm text-slate-500 leading-relaxed font-light">
+          When you partner with Smesh.dev, you work directly with me. I map your processes, configure the databases, write the code, and manage the final rollout. There are no account managers, no layers of bureaucracy, and no junior handoffs.
+        </p>
       </div>
     </div>
   </section>

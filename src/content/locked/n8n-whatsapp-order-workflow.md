@@ -1,4 +1,4 @@
-# WhatsApp Auto-Order Intake Schema
+## WhatsApp Auto-Order Intake Schema
 This guide provides the exact JSON schema and layout diagram to host an automated order intake pipeline on n8n.
 
 ### Blueprint Details
