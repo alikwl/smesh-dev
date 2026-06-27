@@ -338,7 +338,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
 
               if (error) throw error;
 
-              newsletterStrip.innerHTML = `<div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div><div class="relative z-10 flex items-center justify-center py-8 text-emerald-400 font-semibold text-sm font-sans"><p>✓ You're on the list! We'll be in touch soon.</p></div>`;
+              newsletterStrip.innerHTML = `<div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div><div class="relative z-10 flex items-center justify-center py-8 text-emerald-450 font-bold text-xs sm:text-sm font-sans text-center px-4"><p>✓ Subscribed! Free blueprints and weekly n8n configs are on the way to your inbox. ⚡</p></div>`;
               console.log(`Newsletter signup: ${email}`);
             } catch (err: any) {
               console.error('Failed to subscribe:', err);

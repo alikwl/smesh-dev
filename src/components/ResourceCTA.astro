@@ -137,7 +137,7 @@ if (!validTypes.includes(mappedType)) {
           }
 
           // On success: replace card innerHTML
-          card.innerHTML = `<div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div><div class="relative z-10 flex items-center justify-center py-8 text-emerald-400 font-semibold text-sm font-sans"><p>✓ You're on the list! We'll be in touch soon.</p></div>`;
+          card.innerHTML = `<div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div><div class="relative z-10 flex items-center justify-center py-8 text-emerald-450 font-bold text-xs sm:text-sm font-sans text-center px-4"><p>✓ Blueprint Unlocked! We have sent the direct download link and n8n workflow file to your email. ⚡</p></div>`;
           
           // Log success to console for debugging
           console.log(`Lead captured: ${email} from ${resourceSlug}`);

@@ -41,8 +41,13 @@ const companyLinks = [
         </a>
 
         <p class="text-xs leading-relaxed text-slate-500 max-w-sm">
-          Smesh.dev is a personal automation studio by <strong>BismillahTC Digital Services</strong>, Khanewal. Managed by lead developer <strong>Haider Ali</strong>, we build custom digital nervous systems for businesses using n8n and Supabase.
+          Smesh.dev is a personal automation studio by <strong>BismillahTC Digital Services</strong>, Khanewal, Pakistan. Managed by lead developer <strong>Haider Ali</strong>, we build custom digital nervous systems for businesses using n8n and Supabase.
         </p>
+
+        <div class="text-[11px] text-slate-400 space-y-1 font-sans">
+          <div><strong>WhatsApp:</strong> <a href="https://wa.me/923422222752" target="_blank" rel="noopener" class="hover:text-slate-700 transition">+92 342 2222752</a></div>
+          <div><strong>Email:</strong> <a href={`mailto:${site.email}`} class="hover:text-slate-700 transition">{site.email}</a></div>
+        </div>
 
         <!-- SEO Social Graph Anchors -->
         <div class="flex items-center gap-3 pt-2 font-sans" aria-label="Social Profiles">
@@ -177,8 +182,8 @@ const companyLinks = [
         if (error) {
           if (error.code === '23505') {
             if (successMsg) {
-              successMsg.textContent = "Already subscribed! 🎉";
-              successMsg.className = "text-[10px] text-emerald-600 font-semibold font-sans";
+              successMsg.textContent = "You're already on our automation list! 🎉";
+              successMsg.className = "text-[10px] text-emerald-650 font-bold font-sans";
             }
             const inputContainer = form.querySelector('.flex');
             if (inputContainer) inputContainer.classList.add('hidden');
@@ -188,8 +193,8 @@ const companyLinks = [
         }
 
         if (successMsg) {
-          successMsg.textContent = "✓ You're on the list!";
-          successMsg.className = "text-[10px] text-emerald-600 font-semibold font-sans";
+          successMsg.textContent = "✓ Subscribed! Free blueprints are on the way. ⚡";
+          successMsg.className = "text-[10px] text-emerald-650 font-bold font-sans";
         }
         const inputContainer = form.querySelector('.flex');
         if (inputContainer) inputContainer.classList.add('hidden');

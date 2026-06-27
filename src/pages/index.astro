@@ -66,7 +66,7 @@ const borderColors = [
 ];
 ---
 
-<BaseLayout title="n8n & AI Automation Studio | Built by Haider Ali | Smesh.Dev" description="Smesh.Dev is a personal automation studio run by Haider Ali that designs custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate operations." schemaType="home">
+<BaseLayout title="Smesh.dev | Haider Ali – n8n Automation & AI Systems" description="Smesh.Dev is a personal automation studio run by Haider Ali that designs custom n8n workflows, database integrations, local retail POS systems, and grounded RAG support chatbots to automate operations." schemaType="home">
   <!-- FAQ Structured Schema for AEO/GEO discovery -->
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -102,28 +102,44 @@ const borderColors = [
         Supabase DB Engine
       </div>
  
-      <div class="max-w-4xl mx-auto space-y-6 relative z-10 px-2">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-teal-200 bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans animate-fade-slide-down">
-          <i data-lucide="sparkles" class="h-3.5 w-3.5 text-[color:var(--accent)] animate-pulse"></i>
-          Smesh.Dev // Personal Automation Studio // Built by Haider Ali
-        </span>
-        <h1 class="display-title text-slate-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-display">
-          Automate your business workflows by 30%
-        </h1>
-        <p class="body-copy max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-light text-slate-655 leading-relaxed">
-          I build custom n8n workflows, Supabase databases, local retail POS systems, and grounded AI support chatbots to automate your business operations and eliminate manual copy-pasting—giving you reliable, agency-free execution.
-        </p>
-      </div>
+      <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center max-w-5xl mx-auto relative z-10 px-4 text-center lg:text-left">
+        <!-- Left side: Text Copy & Call-to-actions -->
+        <div class="space-y-6">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border border-teal-200 bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans animate-fade-slide-down">
+            <i data-lucide="sparkles" class="h-3.5 w-3.5 text-[color:var(--accent)] animate-pulse"></i>
+            Smesh.Dev // Personal Automation Studio // Built by Haider Ali
+          </span>
+          <h1 class="display-title text-slate-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-display">
+            Automate your business workflows by 30%
+          </h1>
+          <p class="body-copy text-sm sm:text-base md:text-lg font-light text-slate-655 leading-relaxed">
+            I build custom n8n workflows, Supabase databases, local retail POS systems, and grounded AI support chatbots to automate your business operations and eliminate manual copy-pasting—giving you reliable, agency-free execution.
+          </p>
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 font-sans">
+            <button id="hero-audit-btn" class="button-primary px-8 py-3.5 rounded-xl text-sm font-bold shadow-md cursor-pointer hover:shadow-lg transition">
+              Request Free Audit
+              <i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i>
+            </button>
+            <a href="/resources/" class="button-secondary px-8 py-3.5 rounded-xl text-sm font-bold shadow-sm hover:shadow transition">
+              Free Resources
+              <i data-lucide="folder-open" class="h-4 w-4 ml-1.5"></i>
+            </a>
+          </div>
+        </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4 font-sans relative z-10">
-        <button id="hero-audit-btn" class="button-primary px-8 py-3.5 rounded-xl text-sm font-bold shadow-md cursor-pointer hover:shadow-lg transition">
-          Request Free Audit
-          <i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i>
-        </button>
-        <a href="/resources/" class="button-secondary px-8 py-3.5 rounded-xl text-sm font-bold shadow-sm hover:shadow transition">
-          Free Resources
-          <i data-lucide="folder-open" class="h-4 w-4 ml-1.5"></i>
-        </a>
+        <!-- Right side: Haider Ali Transparent Portrait -->
+        <div class="relative flex justify-center items-center">
+          <div class="absolute w-64 h-64 bg-indigo-500/10 rounded-full blur-2xl -z-10"></div>
+          <div class="absolute w-48 h-48 bg-teal-500/10 rounded-full blur-xl -z-10"></div>
+          
+          <div class="relative w-64 sm:w-72 lg:w-80 aspect-[2/3] max-w-full overflow-hidden rounded-[32px] border border-slate-200/80 bg-white/40 backdrop-blur-md shadow-lg p-2.5 group">
+            <img 
+              src="/assets/images/haider-ali.png" 
+              alt="Haider Ali - Smesh.Dev Lead Systems Engineer" 
+              class="w-full h-full object-cover rounded-[22px] grayscale group-hover:grayscale-0 transition-all duration-500" 
+            />
+          </div>
+        </div>
       </div>
     </section>
   </header>

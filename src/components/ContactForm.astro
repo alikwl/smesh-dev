@@ -216,18 +216,15 @@ const whatsappPrefill = `${site.whatsappLink}?text=${encodeURIComponent('Hi Haid
         <div id="form-error-alert" class="mt-6 hidden rounded-[22px] border border-rose-100 bg-rose-50/50 p-4 text-xs text-slate-600 font-sans">
           <h4 class="font-bold text-rose-700">Connection failed. Please try again.</h4>
           <p class="mt-1">If the form still fails, email <a href={`mailto:${site.email}`} class="font-semibold text-[color:var(--accent-strong)] hover:underline">{site.email}</a> or send the brief on WhatsApp.</p>
-        </div>
-      </div>
-
-      <!-- SUCCESS STATE -->
+              <!-- SUCCESS STATE -->
       <div id="form-success-container" class="hidden py-8 text-center space-y-6">
-        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-[color:var(--accent)] border border-emerald-100">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-55 text-emerald-700 border border-emerald-100 animate-bounce">
           <i data-lucide="check" class="h-8 w-8"></i>
         </div>
         <div class="space-y-2">
-          <h3 class="text-xl font-bold text-slate-950 font-display">Brief received — thank you!</h3>
-          <p class="text-xs text-slate-655 leading-relaxed font-light font-sans max-w-sm mx-auto">
-            I will review your requirements and respond within 4 hours via WhatsApp or email to share the project scope.
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-950 font-display">System Brief Received!</h3>
+          <p class="text-xs sm:text-sm text-slate-655 leading-relaxed font-light font-sans max-w-sm mx-auto">
+            Your project details have been successfully synced to our Supabase database. Lead engineer <strong>Haider Ali</strong> will review your manual bottlenecks and respond with a tailored workflow proposal within 4 hours.
           </p>
         </div>
         <div class="pt-2 max-w-sm mx-auto">
@@ -237,9 +234,10 @@ const whatsappPrefill = `${site.whatsappLink}?text=${encodeURIComponent('Hi Haid
             rel="noopener"
             class="button-primary w-full justify-center text-xs py-3.5 px-8 font-sans font-bold flex items-center gap-2 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] border-none text-white shadow-sm"
           >
-            <span>Message on WhatsApp too →</span>
+            <span>Instantly Ping via WhatsApp →</span>
           </a>
         </div>
+      </div>        </div>
       </div>
     </div>
   </div>
