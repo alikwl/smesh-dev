@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import MDXComponents from '../../components/MDXComponents.astro';
 import { site } from '../../data/site';
-import { getAllBlogPosts } from '../../lib/supabase';
-import { marked } from 'marked';
+import { getAllBlogPosts, getAllPortfolio } from '../../lib/supabase';
+import { Marked } from 'marked';
 
 export async function getStaticPaths() {
   const posts = await getAllBlogPosts();
@@ -25,11 +25,38 @@ const {
   cover_image, 
   published_at,
   reading_time,
-  tags = []
+  tags = [],
+  meta_title,
+  meta_description,
+  og_image,
+  canonical_url,
+  word_count,
+  last_modified,
+  faq_schema,
+  related_slugs,
+  related_case_study_slug,
+  slug
 } = post;
 const date = new Date(published_at);
 
-const htmlContent = marked.parse(content);
+// Custom renderer to shift heading hierarchy down by 1 level (H1 -> H2, H2 -> H3, H3 -> H4)
+// to ensure that H1 only belongs to the main page title for optimal SEO.
+// Uses a scoped Marked instance so other pages (portfolio, resources) are unaffected.
+const blogMarked = new Marked({
+  renderer: {
+    heading({ tokens, depth, text }) {
+      const adjustedLevel = depth === 1 ? 2 : depth + 1;
+      const id = text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      const renderedText = this.parser.parseInline(tokens);
+      return `<h${adjustedLevel} id="${id}">${renderedText}</h${adjustedLevel}>\n`;
+    }
+  }
+});
+
+const htmlContent = blogMarked.parse(content);
 
 function estimateReadTime(text: string) {
   const wordsPerMinute = 200;
@@ -40,39 +67,65 @@ const readTime = reading_time || estimateReadTime(content);
 
 function extractHeadings(markdown: string) {
   const list = [];
-  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  // Match H1, H2, and H3 headings from markdown
+  const headingRegex = /^(#{1,3})\s+(.+)$/gm;
   let match;
   while ((match = headingRegex.exec(markdown)) !== null) {
-    const depth = match[1].length;
+    const rawDepth = match[1].length;
+    // Shift depth down by 1 (H1 -> H2, H2 -> H3, H3 -> H4) to match the SEO heading hierarchy
+    const depth = rawDepth === 1 ? 2 : rawDepth + 1;
     const text = match[2].trim();
-    const slug = text
+    const slugName = text
       .toLowerCase()
       .replace(/[^\w\s-]/g, '')
       .replace(/\s+/g, '-');
-    list.push({ depth, text, slug });
+    list.push({ depth, text, slug: slugName });
   }
   return list;
 }
 
 const headings = extractHeadings(content);
 
-const formatDate = (value?: Date) => {
+const formatDate = (value?: Date | string) => {
   if (!value) return '';
-  return value.toLocaleDateString('en-US', {
+  const d = typeof value === 'string' ? new Date(value) : value;
+  return d.toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric'
   });
 };
 
-const lastUpdatedDate = new Date(date);
-lastUpdatedDate.setDate(lastUpdatedDate.getDate() + 1); // Mock 1 day later update for Google Freshness
+const lastUpdated = last_modified ? formatDate(last_modified) : null;
+const lastUpdatedDate = last_modified ? new Date(last_modified) : new Date(date);
 
 // Fetch related posts (exclude current)
+let relatedPosts = [];
 const allPosts = await getAllBlogPosts();
-const relatedPosts = allPosts
-  .filter((p) => p.slug !== post.slug)
-  .slice(0, 2);
+
+if (related_slugs && Array.isArray(related_slugs) && related_slugs.length > 0) {
+  relatedPosts = allPosts.filter((p) => related_slugs.includes(p.slug));
+} else {
+  // Fallback: match by same category, excluding current post
+  relatedPosts = allPosts
+    .filter((p) => p.slug !== post.slug && p.category === post.category)
+    .slice(0, 3);
+  
+  if (relatedPosts.length < 2) {
+    const additional = allPosts
+      .filter((p) => p.slug !== post.slug && !relatedPosts.some(rp => rp.slug === p.slug))
+      .slice(0, 3 - relatedPosts.length);
+    relatedPosts = [...relatedPosts, ...additional];
+  }
+}
+relatedPosts = relatedPosts.slice(0, 3);
+
+// Fetch case study portfolio item dynamically (exact match only)
+let caseStudy: { title: string; slug: string; short_description?: string; excerpt?: string } | null = null;
+if (related_case_study_slug) {
+  const allPortfolio = await getAllPortfolio();
+  caseStudy = allPortfolio.find((p: any) => p.slug === related_case_study_slug) || null;
+}
 
 // Breadcrumbs navigation path
 const breadcrumbs = [
@@ -82,22 +135,28 @@ const breadcrumbs = [
 ];
 
 // Share Links
-const postUrl = site.url + '/blog/' + post.slug + '/';
+const postUrl = site.url + '/blog/' + slug + '/';
 const shareTwitter = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(title)}`;
 const shareLinkedIn = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
 const shareWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + postUrl)}`;
 
-// BlogPosting JSON-LD Schema Markup
-const blogSchema = {
+// Generate dynamic SEO Meta values
+const pageTitle = meta_title || title;
+const pageDescription = meta_description || description || `Read article: ${title}. Learn n8n automation setups, database design, and optimization steps by Haider Ali (BismillahTC).`;
+const pageImage = og_image || cover_image || '/assets/images/placeholder.webp';
+const canonicalUrl = canonical_url || `https://smesh.dev/blog/${slug}/`;
+
+// Article JSON-LD Schema Markup
+const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
+  "@type": "Article",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": Astro.url.href
+    "@id": postUrl
   },
   "headline": title,
-  "description": description,
-  "image": site.url + (cover_image || '/assets/images/placeholder.webp'),
+  "description": pageDescription,
+  "image": pageImage.startsWith('http') ? pageImage : `${site.url}${pageImage}`,
   "datePublished": date.toISOString(),
   "dateModified": lastUpdatedDate.toISOString(),
   "author": {
@@ -113,8 +172,32 @@ const blogSchema = {
       "@type": "ImageObject",
       "url": `${site.url}/assets/logo.png`
     }
-  }
+  },
+  "keywords": Array.isArray(tags) ? tags.join(', ') : '',
+  "wordCount": word_count || content.split(/\s+/).length
 };
+
+// Safe parse faq_schema — Supabase may return it as a JSON string or a native array
+const parsedFaqSchema: Array<{ question?: string; q?: string; answer?: string; a?: string }> | null = (() => {
+  if (!faq_schema) return null;
+  const parsed = typeof faq_schema === 'string' ? JSON.parse(faq_schema) : faq_schema;
+  return Array.isArray(parsed) && parsed.length > 0 ? parsed : null;
+})();
+
+// FAQ Page JSON-LD Schema Markup
+const faqJsonLd = parsedFaqSchema ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": parsedFaqSchema.map((faq: any) => ({
+    "@type": "Question",
+    "name": faq.question || faq.q || "",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer || faq.a || ""
+    }
+  }))
+} : null;
+
 const howToMap = {
   'how-i-built-smesh-dev-using-ai-vibe-coding': {
     "@context": "https://schema.org",
@@ -175,15 +258,15 @@ const howToMap = {
     ]
   }
 };
-const howToSchema = howToMap[post.slug] || null;
+const howToSchema = howToMap[slug] || null;
 
-const metaDescription = description || `Read article: ${title}. Learn n8n automation setups, database design, and optimization steps by Haider Ali (BismillahTC).`;
 const postImage = cover_image || '/assets/images/placeholder.webp';
 ---
 
-<BaseLayout title={title} description={metaDescription} image={postImage} schemaType="other">
-  <!-- Injected structured BlogPosting schema -->
-  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+<BaseLayout title={pageTitle} description={pageDescription} image={pageImage} canonical={canonicalUrl} type="article" schemaType="other">
+  <!-- Injected structured Article schema -->
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
   {howToSchema && <script slot="head" type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
 
   <article class="py-14 md:py-20 bg-white" aria-label="Blog Article Content">
@@ -234,8 +317,16 @@ const postImage = cover_image || '/assets/images/placeholder.webp';
                 <span class="text-slate-350">&bull;</span>
                 <span class="text-[10px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2 py-0.5 rounded">Lead Developer</span>
               </div>
-              <div class="mt-0.5 text-[10px] text-slate-450">
-                Published: {formatDate(date)} &bull; {readTime} min read
+              <div class="mt-0.5 text-[10px] text-slate-450 flex flex-wrap gap-x-2 gap-y-0.5">
+                <span>Published: {formatDate(date)}</span>
+                {lastUpdated && (
+                  <>
+                    <span>&bull;</span>
+                    <span class="font-semibold text-slate-600">Last updated: {lastUpdated}</span>
+                  </>
+                )}
+                <span>&bull;</span>
+                <span>{readTime} min read</span>
               </div>
             </div>
           </div>
@@ -275,10 +366,10 @@ const postImage = cover_image || '/assets/images/placeholder.webp';
         <nav class="ambient-panel rounded-2xl p-5 border border-slate-250 bg-slate-50/50 my-8 font-sans" aria-label="Table of Contents">
           <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Table of Contents</p>
           <ul class="space-y-2">
-            {headings.filter(h => h.depth <= 3).map(h => (
-              <li class={h.depth === 3 ? "pl-4 text-xs" : "text-xs"}>
-                <a href={`#${h.slug}`} class="text-slate-700 hover:text-[color:var(--accent-strong)] hover:underline transition font-medium">
-                  {h.depth === 3 ? "→ " : ""}{h.text}
+            {headings.filter(h => h.depth <= 4).map(h => (
+              <li class={h.depth === 4 ? "pl-8 text-xs text-slate-500" : h.depth === 3 ? "pl-4 text-xs text-slate-600" : "text-xs text-slate-700"}>
+                <a href={`#${h.slug}`} class="hover:text-[color:var(--accent-strong)] hover:underline transition font-medium">
+                  {h.depth === 4 ? "↳ " : h.depth === 3 ? "→ " : ""}{h.text}
                 </a>
               </li>
             ))}
@@ -304,18 +395,57 @@ const postImage = cover_image || '/assets/images/placeholder.webp';
         </MDXComponents>
       </div>
 
-      <!-- Mid-Post Call-Out Box -->
-      <div class="my-8 rounded-2xl border border-[color:var(--accent-soft)] bg-[color:var(--accent-soft)]/20 p-6 font-sans">
-        <div class="flex gap-3">
-          <div class="text-[color:var(--accent-strong)] mt-0.5"><i data-lucide="info" class="w-5 h-5"></i></div>
-          <div>
-            <h4 class="font-bold text-slate-900 text-sm">Strategic Case Study</h4>
-            <p class="text-xs text-slate-660 mt-1 font-light leading-relaxed">
-              Read how we automated lead capture sync and n8n pipelines in our <a href="/portfolio/agency-website-automation/" class="font-bold text-[color:var(--accent-strong)] underline hover:text-[color:var(--accent-strong)]">agency website case study</a>.
-            </p>
+      <!-- Visible FAQ Accordion Section (from faq_schema) — placed before case study & summary -->
+      {parsedFaqSchema && parsedFaqSchema.length > 0 && (
+        <section class="mt-12 pt-8 border-t border-slate-100 font-sans" aria-label="Frequently Asked Questions">
+          <h2 class="text-xl font-bold text-slate-900 mb-6 font-display">Frequently Asked Questions</h2>
+          <div class="space-y-3">
+            {parsedFaqSchema.map((faq, index) => (
+              <details class="faq-details group border border-slate-200 rounded-2xl p-4 sm:p-5 bg-white transition hover:border-slate-300" open={index === 0}>
+                <summary class="flex items-center justify-between font-bold text-sm text-slate-900 cursor-pointer list-none select-none py-1">
+                  <span class="flex items-center gap-2">
+                    <i data-lucide="help-circle" class="w-4 h-4 text-teal-600 shrink-0"></i>
+                    {faq.question || faq.q}
+                  </span>
+                  <span class="transition group-open:rotate-180 text-slate-400 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                  </span>
+                </summary>
+                <p class="text-xs text-slate-600 leading-relaxed mt-4 pt-4 border-t border-slate-100 font-light">
+                  {faq.answer || faq.a}
+                </p>
+              </details>
+            ))}
           </div>
-        </div>
-      </div>
+        </section>
+      )}
+
+      <!-- Dynamic Strategic Case Study Box (from related_case_study_slug → portfolio) -->
+      {caseStudy && (
+        <section class="my-10 font-sans" aria-label="Strategic Case Study">
+          <div class="group border border-slate-200 bg-slate-50/40 hover:bg-slate-50 hover:border-slate-300 rounded-2xl p-6 transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="flex-1 space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-slate-100 text-slate-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H9a2 2 0 0 0-2 2v2H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V4a2 2 0 0 0-2-2z"/><path d="M7 6h10"/></svg>
+                </span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-450">Strategic Case Study</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base">{caseStudy.title}</h3>
+              {(caseStudy.short_description || caseStudy.excerpt) && (
+                <p class="text-xs text-slate-600 leading-relaxed font-light">
+                  {caseStudy.short_description || caseStudy.excerpt}
+                </p>
+              )}
+            </div>
+            <div class="shrink-0 w-full md:w-auto">
+              <a href={`/portfolio/${caseStudy.slug}/`} class="w-full md:w-auto inline-flex h-10 px-5 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition shadow-xs">
+                Read Full Case Study
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
 
       <!-- Article Conclusion & wrap-up -->
       <section class="mt-12 pt-8 border-t border-slate-100 font-sans" aria-label="Article Conclusion">
@@ -362,11 +492,11 @@ const postImage = cover_image || '/assets/images/placeholder.webp';
         </div>
       </section>
 
-      <!-- Related Posts Section (2 Cards) -->
+      <!-- Related Posts Section (Dynamic Cards) -->
       {relatedPosts.length > 0 && (
         <section class="mt-16 pt-12 border-t border-slate-100 font-sans" aria-label="Related Articles">
           <h3 class="text-xs uppercase font-bold tracking-wider text-slate-400 mb-6 font-sans">Related Blueprints & Guides</h3>
-          <div class="grid gap-6 sm:grid-cols-2">
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {relatedPosts.map((rPost) => {
               const rSlug = rPost.slug;
               const rImage = rPost.cover_image || '/assets/images/placeholder.webp';

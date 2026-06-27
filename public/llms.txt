@@ -19,9 +19,30 @@ We provide custom development and direct integration blueprints across the follo
 - **Business Websites & SaaS MVPs:** Developing fast static architectures using Astro and Next.js, featuring optimized JSON-LD, 100/100 PageSpeed optimization, and conversion-focused structures.
 - **POS & Inventory Systems:** Creating light POS checkouts, IMEI serial tracking systems, and daily profit report logs designed for standard mobile, garment, or wholesale outlets.
 
+## Blog — Engineering Guides on Automation Setup
+All blog content is dynamically served from a Supabase `blog_posts` table with full SEO metadata, structured Article and FAQPage JSON-LD schemas, and reading-time estimates. Topics include:
+- **How I Built Smesh.Dev Using AI Vibe Coding:** A transparent build diary covering Astro + Supabase architecture, AI-assisted development with Claude and Cursor, and the full deployment pipeline.
+- **SEO Basics for Service Businesses (2026):** Actionable local SEO, AIO, and GEO checklist for small businesses in Pakistan and internationally.
+- **n8n Automation Ideas for Founders:** Practical n8n workflow blueprints for lead capture, invoicing, CRM sync, and WhatsApp notifications.
+- **Business Website Checklist Pakistan:** Step-by-step guide to launching a professional business website with local hosting, WhatsApp integration, and fast loading.
+- **What Is an AI Support Chatbot (RAG)?:** Explains Retrieval-Augmented Generation, vector search, and how grounded chatbots reduce hallucinations for customer support.
+- **How WhatsApp Automation Helps Local Shops:** Real-world automation patterns for order intake, stock checks, and fulfillment alerts via WhatsApp Business API and n8n.
+
+Blog URL: https://smesh.dev/blog/
+
 ## Free Blueprints & Resources
-We provide pre-built templates and system outlines to accelerate business automation:
+We provide pre-built templates, downloadable guides, and system outlines to accelerate business automation. Resources are gated with email capture and served from a Supabase `resources` table:
 - **n8n WhatsApp Auto-Order Intake Schema:** A step-by-step webhook intake schema to capture, validate, and write WhatsApp orders to Google Sheets and Supabase.
 - **Offline POS SQLite Sync Guide:** An offline-first database queue and synchronization architecture to sync SQLite transactions to central Supabase tables.
 - **Supabase Vector RAG Prompt:** A production-ready pgvector cosine similarity search query and system prompt for support agents.
 - **AIO / SEO / GEO Checklists:** Detailed fundamentals for local service business discoverability and crawler indexing optimization.
+
+Resources URL: https://smesh.dev/resources/
+
+## Technical Architecture
+- **Frontend:** Astro 5 (static prerendering with hybrid SSR via @astrojs/node)
+- **Database:** Supabase (PostgreSQL) — tables for blog_posts, resources, leads, demos, portfolio, services
+- **Styling:** Tailwind CSS 3 with custom design tokens
+- **Deployment:** GitHub Pages / Vercel
+- **Automation:** n8n self-hosted workflows
+- **AI:** OpenAI embeddings + Supabase pgvector for RAG chatbots
