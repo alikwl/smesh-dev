@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import ServiceIllustration from '../../components/ServiceIllustration.astro';
 
-const collectionServices = await getCollection('services');
+const collectionServices = (await getCollection('services')).filter(s => !s.id.includes('sample'));
 
 // Custom structured FAQ data matching search engine keywords (H3)
 const servicesFaqs = [
@@ -136,21 +136,77 @@ const servicesSchema = {
 ---
 
 <BaseLayout title="Premium Digital Automation & Custom Web Services" description="Custom n8n workflows, grounded AI-support chatbot systems, Supabase databases, and premium web architectures that scale operations." schemaType="service">
-  <!-- Structured Service Schema Markup -->
-  <script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
-
-  <!-- Structured FAQPage Schema Markup for AEO/SGE search engines -->
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <!-- FAQPage JSON-LD in head slot -->
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": servicesFaqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.a
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do n8n and Supabase reduce monthly subscription fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Traditional automation tools like Zapier charge per-task fees. By deploying self-hosted n8n connected to Supabase PostgreSQL, you pay a flat infrastructure fee and run millions of tasks monthly without scaling costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you integrate custom OpenAI assistants with WhatsApp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We build n8n workflows that connect OpenAI or Gemini APIs to WhatsApp Business Cloud API, creating AI-powered reply bots grounded in your business documents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I own the code and Supabase schemas after delivery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "100% yes. All n8n workflows, Supabase database schemas, and frontend code are handed over completely. You retain full ownership with no vendor lock-in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the typical delivery timeline for an automation project?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simple API workflows take 5-10 days. WhatsApp automation takes 10-20 days. AI chatbots and SaaS MVPs take 3-4 weeks depending on complexity."
+        }
       }
-    }))
+    ]
+  })} />
+
+  <!-- ItemList Service Schema in head slot -->
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Smesh.Dev Services",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "WhatsApp Automation",
+        "url": "https://smesh.dev/services/whatsapp-automation/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI Support Chatbots",
+        "url": "https://smesh.dev/services/ai-support-chatbots/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Workflow & n8n Automation",
+        "url": "https://smesh.dev/services/workflow-automation/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Business Websites & SaaS MVPs",
+        "url": "https://smesh.dev/services/business-websites/"
+      }
+    ]
   })} />
 
   <!-- Section 1: Hero Section (The Hook) -->
