@@ -29,5 +29,41 @@ faqs:
 ---
 Our custom WhatsApp automation solutions are built on lightweight pipelines (like n8n and Google Sheets) to keep running costs at zero. 
 
-### Why Automate WhatsApp?
-Most small business owners spend 4+ hours daily answering the same questions: *'What are your timings?', 'Is this size in stock?', 'How can I pay?'*. Our setup takes care of this by instantly showing rich interactive menus, catalog lists, and capturing order logs directly to Sheets without any human intervention.
+## Why WhatsApp Automation is Critical for Pakistani Businesses
+
+In Pakistan, WhatsApp is not just a messaging app — it is the primary sales channel for thousands of retail shops, clothing brands, and service providers. Over 40 million Pakistanis use WhatsApp daily, and most customers expect replies within minutes.
+
+When your team manually handles product inquiries, calculates bills, checks stock, and follows up on payments, you lose 3 to 4 hours every single day. During peak seasons, this bottleneck directly costs you sales.
+
+## What We Build
+
+We connect your WhatsApp Business Cloud API to a custom n8n workflow engine that handles the entire customer journey automatically:
+
+**Catalog & Product Inquiry Handling**
+Customers click interactive buttons to browse product categories, receive images and pricing instantly, and confirm orders — all without a single manual reply from your team.
+
+**Real-Time Inventory Sync**
+Your stock database (Google Sheets or Supabase) is checked automatically before any product is confirmed. You never oversell an out-of-stock item again.
+
+**Automated Order Logging**
+Every confirmed order is written directly into your fulfillment sheet or Supabase database, triggering a notification to your packing team instantly.
+
+**Smart Human Handoff**
+When a customer asks something outside your automation scope, the system detects the intent and routes the conversation to your human agent — with full context preserved.
+
+## Technology Stack
+
+We use the official WhatsApp Business Cloud API (Meta) combined with self-hosted n8n workflows and Supabase PostgreSQL for database storage. This means zero per-message fees and complete data ownership.
+
+- **WhatsApp Business Cloud API** — Official Meta integration
+- **n8n** — Self-hosted workflow automation engine
+- **Supabase / Google Sheets** — Order and inventory database
+- **Custom JavaScript nodes** — Advanced logic and validation
+
+## Who This Is For
+
+This service is ideal for retail shops, clothing brands, fabric stores, grocery delivery services, food businesses, and any business in Pakistan where WhatsApp is the main customer communication channel.
+
+## Real Results
+
+Our clients typically see a 40-60% reduction in manual reply time within the first week of deployment. One e-commerce client in Khanewal reported a 35% sales increase after automating their catalog and order confirmation flow.

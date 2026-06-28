@@ -28,3 +28,35 @@ faqs:
     a: "We can host it on your own server (costing around $5/month) or connect to n8n Cloud so you have full data privacy and control."
 ---
 Stop copy-pasting data between tabs. Automating your backend tasks ensures zero human data-entry errors, faster client follow-ups, and lets you focus on building features or finding sales.
+
+## The Hidden Cost of Manual Workflows
+
+Every time your team copies a lead from Facebook Ads into a Google Sheet, manually sends a WhatsApp follow-up, or updates inventory across three different tools, they are performing work that a properly configured automation can handle in milliseconds.
+
+A business processing 50 leads per day loses approximately 2 to 3 hours daily to this manual data movement. Over a month, that is 60 to 90 hours of productive capacity wasted on copy-paste.
+
+## What We Automate With n8n
+
+**Lead Capture and CRM Routing**
+When a prospect submits a form on your website, n8n captures the webhook payload, enriches the lead data, writes it to your CRM or Google Sheet, and sends an instant WhatsApp alert to your sales team — all within 3 seconds.
+
+**Invoice and Billing Pipelines**
+When a payment is confirmed in Stripe or your local payment gateway, n8n automatically generates an invoice PDF, emails it to the client, updates your accounting sheet, and marks the project as paid in your database.
+
+**Inventory and Stock Sync**
+When stock levels drop below a threshold in your database, n8n sends a reorder alert to your supplier via WhatsApp or email and updates your storefront product availability automatically.
+
+**Multi-Channel Notification Systems**
+Route specific events to specific channels — critical alerts to Slack, customer updates to WhatsApp, financial summaries to email — based on rules you define.
+
+## Why n8n Over Zapier or Make?
+
+n8n is self-hosted and open-source. You pay a flat server cost instead of per-task fees. At scale, this can reduce automation costs by 70 to 90% compared to Zapier. You also own every workflow, credential, and data point with zero vendor lock-in.
+
+## Technology Stack
+
+- **n8n** — Self-hosted workflow automation (Docker)
+- **Supabase / PostgreSQL** — Relational database backend
+- **Webhooks** — Real-time event triggers
+- **Custom JavaScript** — Advanced data transformation nodes
+- **WhatsApp Business API / SMTP / Slack** — Notification channels

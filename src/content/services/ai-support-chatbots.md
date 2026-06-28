@@ -29,3 +29,45 @@ faqs:
     a: "We set up a simple Google Drive folder or Git repo. Simply drop new text files or updated guides there, and the database syncs automatically."
 ---
 Traditional support widgets rely on rigid button paths. Our RAG-powered AI assistants understand natural human speech, answer in seconds, and ensure visitors get correct info without waiting for a rep.
+
+## The Problem with Generic AI Chatbots
+
+Most businesses that try AI chatbots face the same issue — the bot confidently gives wrong answers. It invents policies, fabricates prices, and makes promises the business cannot keep. This is called hallucination, and it destroys customer trust.
+
+The solution is RAG: Retrieval-Augmented Generation.
+
+## How RAG Chatbots Work
+
+Instead of relying on general AI knowledge, a RAG chatbot is grounded in your specific business documents:
+
+**Step 1 — Knowledge Ingestion**
+We take your support documents, product PDFs, policy guides, and FAQs, split them into structured chunks, and convert them into mathematical vectors using OpenAI or Gemini embeddings.
+
+**Step 2 — Vector Storage in Supabase**
+These vectors are stored in a Supabase PostgreSQL database with the pgvector extension. This becomes your chatbot's private knowledge base.
+
+**Step 3 — Semantic Search on Every Query**
+When a customer asks a question, the system searches your knowledge base for the most relevant paragraphs using cosine similarity matching — not simple keyword search.
+
+**Step 4 — Grounded AI Response**
+The retrieved context is injected into the AI prompt with strict instructions: answer using only this information. The result is accurate, citation-ready responses every time.
+
+## What We Deliver
+
+- A custom-styled chat widget matching your brand colors
+- Supabase pgvector knowledge database with your documents
+- n8n workflow connecting OpenAI or Gemini to your widget
+- Human handoff trigger when confidence score is low
+- Lead capture form when bot cannot find an answer
+- Admin panel to add new documents without redeployment
+
+## Technology Stack
+
+- **Supabase pgvector** — Vector similarity search database
+- **OpenAI / Gemini** — Embedding and completion models
+- **n8n** — Workflow orchestration and fallback logic
+- **Astro / React** — Embedded chat widget frontend
+
+## Ideal Use Cases
+
+RAG chatbots work best for businesses with structured knowledge: SaaS products with documentation, e-commerce stores with shipping and return policies, clinics with appointment FAQs, educational platforms with course guides, and any business receiving repetitive customer queries.
