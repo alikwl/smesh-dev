@@ -29,7 +29,38 @@ We configure safe, secure webhooks, vector connections, and client databases dir
 System Checkout
 </span> </div> <div class="grid grid-cols-2 gap-4 border-b border-white/10 pb-6"> <div> <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-sans">Expected Delivery</p> <p class="text-xl font-extrabold text-white mt-1 font-display">10-15 Days</p> </div> <div> <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-sans">Starting Quote</p> <p class="text-xl font-extrabold text-white mt-1 font-display">$1,800</p> </div> </div> <div class="space-y-2 text-xs text-slate-300 font-sans font-light leading-relaxed"> <p>✓ Custom n8n workflow pipelines included.</p> <p>✓ Full client-side data configuration & Supabase hook setup.</p> <p>✓ Hand-off instruction session & 30 days post-launch support.</p> </div> </div> <div class="pt-8 relative z-10"> <button id="deploy-system-btn" class="w-full justify-center inline-flex items-center justify-center px-6 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
 Deploy This System For My Business
-<i data-lucide="sparkles" class="w-4 h-4 ml-2"></i> </button> </div> </div> </div> </section>  <section class="site-shell pb-16 md:pb-24" aria-label="Technical Details"> <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm"> <span class="section-kicker mb-4">Implementation breakdown</span> <h2 class="text-2xl font-bold text-slate-900 mb-6 font-display">Deep Dive & Technical Breakdown</h2> <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8 mt-4 text-slate-650"> <div class="mdx-content prose content-body prose-shell">  <p>Traditional support widgets rely on rigid button paths. Our RAG-powered AI assistants understand natural human speech, answer in seconds, and ensure visitors get correct info without waiting for a rep.</p>  </div> </div> </div> </section>  <section class="site-shell pb-24" aria-label="Frequently Asked Questions"> <div class="max-w-4xl mx-auto space-y-6"> <div class="space-y-4 mb-10"> <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
+<i data-lucide="sparkles" class="w-4 h-4 ml-2"></i> </button> </div> </div> </div> </section>  <section class="site-shell pb-16 md:pb-24" aria-label="Technical Details"> <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm"> <span class="section-kicker mb-4">Implementation breakdown</span> <h2 class="text-2xl font-bold text-slate-900 mb-6 font-display">Deep Dive & Technical Breakdown</h2> <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8 mt-4 text-slate-650"> <div class="mdx-content prose content-body prose-shell">  <p>Traditional support widgets rely on rigid button paths. Our RAG-powered AI assistants understand natural human speech, answer in seconds, and ensure visitors get correct info without waiting for a rep.</p>
+<h2 id="the-problem-with-generic-ai-chatbots">The Problem with Generic AI Chatbots</h2>
+<p>Most businesses that try AI chatbots face the same issue — the bot confidently gives wrong answers. It invents policies, fabricates prices, and makes promises the business cannot keep. This is called hallucination, and it destroys customer trust.</p>
+<p>The solution is RAG: Retrieval-Augmented Generation.</p>
+<h2 id="how-rag-chatbots-work">How RAG Chatbots Work</h2>
+<p>Instead of relying on general AI knowledge, a RAG chatbot is grounded in your specific business documents:</p>
+<p><strong>Step 1 — Knowledge Ingestion</strong>
+We take your support documents, product PDFs, policy guides, and FAQs, split them into structured chunks, and convert them into mathematical vectors using OpenAI or Gemini embeddings.</p>
+<p><strong>Step 2 — Vector Storage in Supabase</strong>
+These vectors are stored in a Supabase PostgreSQL database with the pgvector extension. This becomes your chatbot’s private knowledge base.</p>
+<p><strong>Step 3 — Semantic Search on Every Query</strong>
+When a customer asks a question, the system searches your knowledge base for the most relevant paragraphs using cosine similarity matching — not simple keyword search.</p>
+<p><strong>Step 4 — Grounded AI Response</strong>
+The retrieved context is injected into the AI prompt with strict instructions: answer using only this information. The result is accurate, citation-ready responses every time.</p>
+<h2 id="what-we-deliver">What We Deliver</h2>
+<ul>
+<li>A custom-styled chat widget matching your brand colors</li>
+<li>Supabase pgvector knowledge database with your documents</li>
+<li>n8n workflow connecting OpenAI or Gemini to your widget</li>
+<li>Human handoff trigger when confidence score is low</li>
+<li>Lead capture form when bot cannot find an answer</li>
+<li>Admin panel to add new documents without redeployment</li>
+</ul>
+<h2 id="technology-stack">Technology Stack</h2>
+<ul>
+<li><strong>Supabase pgvector</strong> — Vector similarity search database</li>
+<li><strong>OpenAI / Gemini</strong> — Embedding and completion models</li>
+<li><strong>n8n</strong> — Workflow orchestration and fallback logic</li>
+<li><strong>Astro / React</strong> — Embedded chat widget frontend</li>
+</ul>
+<h2 id="ideal-use-cases">Ideal Use Cases</h2>
+<p>RAG chatbots work best for businesses with structured knowledge: SaaS products with documentation, e-commerce stores with shipping and return policies, clinics with appointment FAQs, educational platforms with course guides, and any business receiving repetitive customer queries.</p>  </div> </div> </div> </section>  <section class="site-shell pb-24" aria-label="Frequently Asked Questions"> <div class="max-w-4xl mx-auto space-y-6"> <div class="space-y-4 mb-10"> <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
 Service FAQ
 </span> <h2 class="text-3xl font-extrabold text-slate-900 font-display">
 Frequently Asked Questions

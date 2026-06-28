@@ -29,7 +29,29 @@ We configure safe, secure webhooks, vector connections, and client databases dir
 System Checkout
 </span> </div> <div class="grid grid-cols-2 gap-4 border-b border-white/10 pb-6"> <div> <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-sans">Expected Delivery</p> <p class="text-xl font-extrabold text-white mt-1 font-display">5-10 Days</p> </div> <div> <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold font-sans">Starting Quote</p> <p class="text-xl font-extrabold text-white mt-1 font-display">$1,200</p> </div> </div> <div class="space-y-2 text-xs text-slate-300 font-sans font-light leading-relaxed"> <p>✓ Custom n8n workflow pipelines included.</p> <p>✓ Full client-side data configuration & Supabase hook setup.</p> <p>✓ Hand-off instruction session & 30 days post-launch support.</p> </div> </div> <div class="pt-8 relative z-10"> <button id="deploy-system-btn" class="w-full justify-center inline-flex items-center justify-center px-6 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
 Deploy This System For My Business
-<i data-lucide="sparkles" class="w-4 h-4 ml-2"></i> </button> </div> </div> </div> </section>  <section class="site-shell pb-16 md:pb-24" aria-label="Technical Details"> <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm"> <span class="section-kicker mb-4">Implementation breakdown</span> <h2 class="text-2xl font-bold text-slate-900 mb-6 font-display">Deep Dive & Technical Breakdown</h2> <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8 mt-4 text-slate-650"> <div class="mdx-content prose content-body prose-shell">  <p>Stop copy-pasting data between tabs. Automating your backend tasks ensures zero human data-entry errors, faster client follow-ups, and lets you focus on building features or finding sales.</p>  </div> </div> </div> </section>  <section class="site-shell pb-24" aria-label="Frequently Asked Questions"> <div class="max-w-4xl mx-auto space-y-6"> <div class="space-y-4 mb-10"> <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
+<i data-lucide="sparkles" class="w-4 h-4 ml-2"></i> </button> </div> </div> </div> </section>  <section class="site-shell pb-16 md:pb-24" aria-label="Technical Details"> <div class="surface-card rounded-[32px] p-8 md:p-12 border border-slate-200 bg-white/60 backdrop-blur-sm shadow-sm"> <span class="section-kicker mb-4">Implementation breakdown</span> <h2 class="text-2xl font-bold text-slate-900 mb-6 font-display">Deep Dive & Technical Breakdown</h2> <div class="content-body prose max-w-[72ch] mx-auto px-4 py-8 sm:px-6 md:px-8 mt-4 text-slate-650"> <div class="mdx-content prose content-body prose-shell">  <p>Stop copy-pasting data between tabs. Automating your backend tasks ensures zero human data-entry errors, faster client follow-ups, and lets you focus on building features or finding sales.</p>
+<h2 id="the-hidden-cost-of-manual-workflows">The Hidden Cost of Manual Workflows</h2>
+<p>Every time your team copies a lead from Facebook Ads into a Google Sheet, manually sends a WhatsApp follow-up, or updates inventory across three different tools, they are performing work that a properly configured automation can handle in milliseconds.</p>
+<p>A business processing 50 leads per day loses approximately 2 to 3 hours daily to this manual data movement. Over a month, that is 60 to 90 hours of productive capacity wasted on copy-paste.</p>
+<h2 id="what-we-automate-with-n8n">What We Automate With n8n</h2>
+<p><strong>Lead Capture and CRM Routing</strong>
+When a prospect submits a form on your website, n8n captures the webhook payload, enriches the lead data, writes it to your CRM or Google Sheet, and sends an instant WhatsApp alert to your sales team — all within 3 seconds.</p>
+<p><strong>Invoice and Billing Pipelines</strong>
+When a payment is confirmed in Stripe or your local payment gateway, n8n automatically generates an invoice PDF, emails it to the client, updates your accounting sheet, and marks the project as paid in your database.</p>
+<p><strong>Inventory and Stock Sync</strong>
+When stock levels drop below a threshold in your database, n8n sends a reorder alert to your supplier via WhatsApp or email and updates your storefront product availability automatically.</p>
+<p><strong>Multi-Channel Notification Systems</strong>
+Route specific events to specific channels — critical alerts to Slack, customer updates to WhatsApp, financial summaries to email — based on rules you define.</p>
+<h2 id="why-n8n-over-zapier-or-make">Why n8n Over Zapier or Make?</h2>
+<p>n8n is self-hosted and open-source. You pay a flat server cost instead of per-task fees. At scale, this can reduce automation costs by 70 to 90% compared to Zapier. You also own every workflow, credential, and data point with zero vendor lock-in.</p>
+<h2 id="technology-stack">Technology Stack</h2>
+<ul>
+<li><strong>n8n</strong> — Self-hosted workflow automation (Docker)</li>
+<li><strong>Supabase / PostgreSQL</strong> — Relational database backend</li>
+<li><strong>Webhooks</strong> — Real-time event triggers</li>
+<li><strong>Custom JavaScript</strong> — Advanced data transformation nodes</li>
+<li><strong>WhatsApp Business API / SMTP / Slack</strong> — Notification channels</li>
+</ul>  </div> </div> </div> </section>  <section class="site-shell pb-24" aria-label="Frequently Asked Questions"> <div class="max-w-4xl mx-auto space-y-6"> <div class="space-y-4 mb-10"> <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
 Service FAQ
 </span> <h2 class="text-3xl font-extrabold text-slate-900 font-display">
 Frequently Asked Questions
