@@ -4,48 +4,62 @@ export interface Testimonial {
   company: string;
   quote: string;
   avatar: string;
-  metric: string;
+  tagline: string;
+  category: string;
+  metricValue: string;
+  metricLabel: string;
+  before: string;
+  after: string;
+  caseStudySlug: string;
+  featured?: boolean;
+  logoText: string;
 }
 
 export const testimonials: Testimonial[] = [
   {
-    name: 'Liam Sterling',
+    name: 'Thomas McKenzie',
     role: 'CEO',
-    company: 'Sterling Logistics (UK)',
-    quote: 'Haider connected our Shopify orders directly to our local carrier API using n8n and Supabase. The automation runs flawlessly 24/7 without any maintenance from our side. It is the best operational upgrade we\'ve done.',
-    avatar: 'https://picsum.photos/seed/liam/150/150',
-    metric: 'Before: 15 hrs/week manually dispatching → After: 0 hrs (100% automated)',
+    company: 'RankedRight Ltd',
+    quote: 'Smesh.dev really understood our needs as a business and delivered quality advice, support, and software training at every step to help support our...',
+    avatar: 'https://picsum.photos/seed/thomas/150/150',
+    tagline: 'RevOps transformation built the engine that led to acquisition by Lansweeper',
+    category: 'IT & Cyber Security',
+    metricValue: 'Acquired',
+    metricLabel: 'By Lansweeper',
+    before: 'Unstructured CRM, no scalable sales ops',
+    after: 'Automated pipelines, scalable inbound &...',
+    caseStudySlug: 'agency-website-automation',
+    featured: true,
+    logoText: 'RankedRight'
   },
   {
-    name: 'Elena Rostova',
-    role: 'Operations Director',
-    company: 'Veloce Distribution (Germany)',
-    quote: 'Our retail stock checkouts used to freeze during internet outages. Haider built an offline-first POS sync system with SQLite and Supabase. We haven\'t lost a single transaction since.',
-    avatar: 'https://picsum.photos/seed/elena/150/150',
-    metric: 'Before: 2% transaction loss on offline checkout → After: 0% data loss',
+    name: 'Joe Struggles',
+    role: 'CMO',
+    company: 'Ethixbase',
+    quote: 'Smesh.dev assisted us with our marketing automation programme. From the initial onboarding sessions through to ongoing support they have been first...',
+    avatar: 'https://picsum.photos/seed/joe/150/150',
+    tagline: 'CRM overhaul saved 260+ hours/year',
+    category: 'Software Development',
+    metricValue: '>260',
+    metricLabel: 'Hours saved per annum',
+    before: '15 manual processes, fragmented CRM',
+    after: '3 automated workflows, unified CRM',
+    caseStudySlug: 'pos-inventory-demo',
+    logoText: 'ETHIXBASE360'
   },
   {
-    name: 'Marcus Thorne',
-    role: 'Founder',
-    company: 'SaaS Engine (USA)',
-    quote: 'We needed a custom AI chatbot that could troubleshoot support tickets using our private developer docs. Haider set up a pgvector RAG flow that handles 70% of tickets automatically, leaving only complex cases for our team.',
-    avatar: 'https://picsum.photos/seed/marcus/150/150',
-    metric: 'Before: 24-hour support ticket response times → After: Instant AI replies',
-  },
-  {
-    name: 'Siddharth Mehta',
-    role: 'Co-Founder',
-    company: 'RetailPulse (Singapore)',
-    quote: 'The direct execution with Haider made a huge difference. He drew out the database triggers, wrote the n8n workflows, and handed over the code to us within three weeks. Outstanding speed.',
-    avatar: 'https://picsum.photos/seed/siddharth/150/150',
-    metric: 'Before: 6-week agency estimation delay → After: 15-day live handover',
-  },
-  {
-    name: 'Sophia Chen',
-    role: 'CEO',
-    company: 'Loom & Weave (Australia)',
-    quote: 'We were copying leads manually from WhatsApp business chats to our CRM. Haider automated the whole mapping process. Now leads are categorized and follow-ups are triggered instantly.',
-    avatar: 'https://picsum.photos/seed/sophia/150/150',
-    metric: 'Before: 4-hour delay in lead follow-ups → After: 2-minute automated responses',
-  },
+    name: 'Denise Parmer',
+    role: 'COO',
+    company: 'Pattrn Data',
+    quote: 'As a result of Smesh.dev\'s work we secured a 6-figure contract with a new customer. Their consultancy was first class, and the team consistently went the extra...',
+    avatar: 'https://picsum.photos/seed/denise/150/150',
+    tagline: 'AI chatbot development secured a 6-figure contract',
+    category: 'Business Consulting & Services',
+    metricValue: '6-Figure',
+    metricLabel: 'Contract secured',
+    before: 'Manual customer service, high support burden',
+    after: 'Intelligent chatbot, automated knowledge...',
+    caseStudySlug: 'ai-support-rag-demo',
+    logoText: 'PATTRN'
+  }
 ];
