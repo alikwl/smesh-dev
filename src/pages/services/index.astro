@@ -549,10 +549,10 @@ const servicesSchema = {
   </section>
 
   <!-- Section 5: Social Proof & Results (The Trust) -->
-  <section class="site-shell py-16 md:py-24 border-t border-slate-100" aria-label="Social Proof and Client Outcomes">
-    <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+  <section class="site-shell py-16 md:py-24 border-t border-slate-100 overflow-hidden" aria-label="Social Proof and Client Outcomes">
+    <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center w-full min-w-0">
       <!-- Outcome Metrics -->
-      <div class="space-y-6">
+      <div class="space-y-6 w-full min-w-0">
         <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
           Proven Performance
         </span>
@@ -583,7 +583,7 @@ const servicesSchema = {
       </div>
 
       <!-- Top Testimonials (Carousel format for optimized Mobile UX and page height) -->
-      <div class="space-y-6">
+      <div class="space-y-6 w-full min-w-0">
         <div class="flex items-center justify-between">
           <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 font-sans">Client Reviews</h3>
           <!-- Carousel Navigation Controls -->
@@ -597,7 +597,7 @@ const servicesSchema = {
           </div>
         </div>
 
-        <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="w-full relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <!-- Slide Container -->
           <div id="testimonials-slider" class="flex transition-transform duration-300 ease-out" style="transform: translateX(0%);">
             {testimonials.map((t) => (
@@ -621,7 +621,7 @@ const servicesSchema = {
         <div class="flex justify-center gap-1.5 pt-1">
           {testimonials.map((_, idx) => (
             <button 
-              class={`testimonial-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === 0 ? 'w-4 bg-indigo-600' : 'w-1.5 bg-slate-300'}`}
+              class={`testimonial-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === 0 ? 'w-4 bg-teal-600' : 'w-1.5 bg-slate-300'}`}
               data-index={idx}
               aria-label={`Go to slide ${idx + 1}`}
             ></button>
@@ -734,9 +734,9 @@ const servicesSchema = {
         dots.forEach((dot, idx) => {
           if (idx === currentIndex) {
             dot.classList.remove('w-1.5', 'bg-slate-300');
-            dot.classList.add('w-4', 'bg-indigo-600');
+            dot.classList.add('w-4', 'bg-teal-600');
           } else {
-            dot.classList.remove('w-4', 'bg-indigo-600');
+            dot.classList.remove('w-4', 'bg-teal-600');
             dot.classList.add('w-1.5', 'bg-slate-300');
           }
         });
