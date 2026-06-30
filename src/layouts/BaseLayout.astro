@@ -45,8 +45,6 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest" defer></script>
   <slot name="head" />
 </head>
 <body id="top" class="min-h-screen flex flex-col">
@@ -111,10 +109,17 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
 
   <!-- Initializing Lucide Icons & Global Code Blocks -->
   <script src="../scripts/codeblocks.js"></script>
-  <script is:inline>
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
+  <script>
+    import { createIcons, icons } from 'lucide';
+
+    // Initialize icons on client-side render
+    createIcons({ icons });
+
+    // Expose globally so other modules can call window.lucide.createIcons()
+    (window as any).lucide = {
+      createIcons: (options?: any) => createIcons({ icons, ...options }),
+      icons
+    };
 
     const revealNodes = document.querySelectorAll('[data-reveal]');
     const revealObserver = new IntersectionObserver(
