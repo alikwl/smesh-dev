@@ -1,5 +1,6 @@
 ---
-title: "Business Websites"
+title: "High-Performance Astro & Next.js Business Websites"
+description: "A modern business website is your primary digital storefront. We build clean, mobile-first Astro and Next.js sites optimized for high conversions and SEO."
 slug: "business-websites"
 hero_icon: "globe"
 headline: "Fast, clean, trustworthy websites designed to convert"
@@ -33,7 +34,7 @@ We don't build bloated WordPress themes that take 5 seconds to load. We build cl
 
 A business website that loads slowly, looks generic on mobile, or buries the contact button under layers of content is not just a design problem — it is a revenue problem.
 
-Studies consistently show that a 1-second delay in page load time reduces conversions by 7%. On Pakistani mobile networks like Jazz and Zong, this is amplified significantly. Visitors who wait more than 3 seconds typically abandon the page.
+Studies consistently show that a 1-second delay in page load time reduces conversions by 7%. On slower mobile data connections, this latency is amplified significantly. Visitors who wait more than 3 seconds typically abandon the page.
 
 ## What Makes a High-Performance Business Website
 

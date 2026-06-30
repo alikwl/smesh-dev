@@ -1,5 +1,6 @@
 ---
-title: "Workflow & n8n Automation"
+title: "n8n Workflow Automation & System Integration Services"
+description: "Connect Stripe, Slack, email, databases, and CRMs. We build secure custom n8n workflows and webhook systems to automate manual operations."
 slug: "workflow-automation"
 hero_icon: "git-branch"
 headline: "Connect Your Business Tools & Save 10+ Hours Every Week"

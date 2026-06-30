@@ -1,5 +1,6 @@
 ---
-title: "AI Support Chatbots"
+title: "Custom AI Support Chatbots & Grounded RAG Systems"
+description: "Train custom RAG AI support assistants to answer customer questions using your precise business documentation with 100% factual accuracy."
 slug: "ai-support-chatbots"
 hero_icon: "bot"
 headline: "Grounded AI Chatbots Built On Your Company Knowledge"

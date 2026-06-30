@@ -19,7 +19,12 @@ const {
   canonical,
 } = Astro.props;
 
-const title = pageTitle ? `${pageTitle} | ${site.title}` : `${site.title} | Haider Ali – n8n Automation & AI Systems`;
+let title = pageTitle;
+if (!title) {
+  title = `${site.title} | Custom n8n Automation & AI Systems for Businesses`;
+} else if (!title.includes('Smesh.dev') && !title.includes('Smesh.Dev')) {
+  title = `${title} | ${site.title}`;
+}
 const canonicalURL = canonical || new URL(Astro.url.pathname, site.url).href;
 ---
 
