@@ -7,9 +7,18 @@ Smesh.Dev is an independent digital systems and automation studio spearheaded by
 - **Studio Name:** Smesh.Dev
 - **Lead Developer / Systems Integrator:** Haider Ali
 - **Email:** ali.kwl@live.com
-- **WhatsApp:** +92 342 2222752
-- **Website:** https://smesh.dev
-- **GitHub Repository:** https://github.com/affaan-m
+- **WhatsApp:** [+92 342 2222752](https://wa.me/923422222752)
+- **Website:** [smesh.dev](https://smesh.dev)
+- **GitHub Repository:** [github.com/affaan-m](https://github.com/affaan-m)
+
+## Navigation Links
+- [Homepage](https://smesh.dev)
+- [About Studio](https://smesh.dev/about/)
+- [Services Index](https://smesh.dev/services/)
+- [Case Studies & Portfolio](https://smesh.dev/portfolio/)
+- [Free Blueprints & Resources](https://smesh.dev/resources/)
+- [Blog / Guides](https://smesh.dev/blog/)
+- [Contact / Audit Form](https://smesh.dev/contact/)
 
 ## Core Service Offerings
 We provide custom development and direct integration blueprints across the following service types:
@@ -20,7 +29,10 @@ We provide custom development and direct integration blueprints across the follo
 - **POS & Inventory Systems:** Creating light POS checkouts, IMEI serial tracking systems, and daily profit report logs designed for standard mobile, garment, or wholesale outlets.
 
 ## Blog — Engineering Guides on Automation Setup
-All blog content is dynamically served from a Supabase `blog_posts` table with full SEO metadata, structured Article and FAQPage JSON-LD schemas, and reading-time estimates. Topics include:
+All blog content is dynamically served from a Supabase `blog_posts` table with full SEO metadata, structured Article and FAQPage JSON-LD schemas, and reading-time estimates.
+Read all guides at: [smesh.dev/blog/](https://smesh.dev/blog/)
+
+Featured Articles:
 - **How I Built Smesh.Dev Using AI Vibe Coding:** A transparent build diary covering Astro + Supabase architecture, AI-assisted development with Claude and Cursor, and the full deployment pipeline.
 - **SEO Basics for Service Businesses (2026):** Actionable local SEO, AIO, and GEO checklist for small businesses in Pakistan and internationally.
 - **n8n Automation Ideas for Founders:** Practical n8n workflow blueprints for lead capture, invoicing, CRM sync, and WhatsApp notifications.
@@ -28,16 +40,15 @@ All blog content is dynamically served from a Supabase `blog_posts` table with f
 - **What Is an AI Support Chatbot (RAG)?:** Explains Retrieval-Augmented Generation, vector search, and how grounded chatbots reduce hallucinations for customer support.
 - **How WhatsApp Automation Helps Local Shops:** Real-world automation patterns for order intake, stock checks, and fulfillment alerts via WhatsApp Business API and n8n.
 
-Blog URL: https://smesh.dev/blog/
-
 ## Free Blueprints & Resources
 We provide pre-built templates, downloadable guides, and system outlines to accelerate business automation. Resources are gated with email capture and served from a Supabase `resources` table:
+Read all resources at: [smesh.dev/resources/](https://smesh.dev/resources/)
+
+Featured Resources:
 - **n8n WhatsApp Auto-Order Intake Schema:** A step-by-step webhook intake schema to capture, validate, and write WhatsApp orders to Google Sheets and Supabase.
 - **Offline POS SQLite Sync Guide:** An offline-first database queue and synchronization architecture to sync SQLite transactions to central Supabase tables.
 - **Supabase Vector RAG Prompt:** A production-ready pgvector cosine similarity search query and system prompt for support agents.
 - **AIO / SEO / GEO Checklists:** Detailed fundamentals for local service business discoverability and crawler indexing optimization.
-
-Resources URL: https://smesh.dev/resources/
 
 ## Technical Architecture
 - **Frontend:** Astro 5 (static prerendering with hybrid SSR via @astrojs/node)

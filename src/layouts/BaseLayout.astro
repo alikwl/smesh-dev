@@ -43,7 +43,11 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" />
+  </noscript>
 
   <slot name="head" />
 </head>
@@ -59,7 +63,7 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
         <div class="flex min-h-[64px] items-center justify-between gap-4">
           <!-- Minimal Logo -->
           <a href="/" class="flex items-center gap-2.5">
-            <img src="/assets/logo.png" alt="Smesh.Dev logo" class="h-8 w-8 object-contain" />
+            <img src="/assets/logo.webp" alt="Smesh.Dev logo" class="h-8 w-8 object-contain" width="32" height="32" />
             <div>
               <div class="font-display text-[1.1rem] font-bold leading-none text-slate-900">Smesh.Dev</div>
               <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-semibold font-sans">Automation Studio</div>
