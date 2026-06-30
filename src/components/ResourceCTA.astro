@@ -76,8 +76,6 @@ if (!validTypes.includes(mappedType)) {
 </div>
 
 <script>
-  import { supabase } from '../lib/supabase';
-
   const initCTA = () => {
     const cards = document.querySelectorAll('.resource-cta-card');
     cards.forEach(card => {
@@ -123,6 +121,7 @@ if (!validTypes.includes(mappedType)) {
         const dbResourceId = uuidRegex.test(resourceId) ? resourceId : null;
 
         try {
+          const { supabase } = await import('../lib/supabase');
           const { error } = await supabase.from('email_leads').insert([
             {
               email: email,

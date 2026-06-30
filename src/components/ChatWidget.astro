@@ -66,8 +66,6 @@
 </div>
 
 <script>
-  import { supabase } from '../lib/supabase';
-
   document.addEventListener('DOMContentLoaded', () => {
     const trigger = document.getElementById('smesh-chat-trigger') as HTMLButtonElement | null;
     const panel = document.getElementById('smesh-chat-panel') as HTMLDivElement | null;
@@ -156,6 +154,7 @@
             created_at: new Date().toISOString()
           };
 
+          const { supabase } = await import('../lib/supabase');
           const { error } = await supabase.from('chat_leads').insert([payload]);
           if (error) throw error;
           

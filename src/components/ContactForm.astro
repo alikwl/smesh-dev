@@ -203,8 +203,6 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
 </section>
 
 <script>
-  import { supabase } from '../lib/supabase';
-
   const formContainers = document.querySelectorAll('.smesh-contact-form-container');
 
   formContainers.forEach(container => {
@@ -338,6 +336,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
         };
 
         try {
+          const { supabase } = await import('../lib/supabase');
           const { error } = await supabase.from('contact_submissions').insert([payload]);
           if (error) throw error;
 

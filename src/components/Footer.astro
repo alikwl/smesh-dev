@@ -151,8 +151,6 @@ const companyLinks = [
 </footer>
 
 <script>
-  import { supabase } from '../lib/supabase';
-
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('footer-newsletter-form') as HTMLFormElement | null;
     const emailInput = document.getElementById('news-email') as HTMLInputElement | null;
@@ -180,6 +178,7 @@ const companyLinks = [
           created_at: new Date().toISOString()
         };
 
+        const { supabase } = await import('../lib/supabase');
         const { error } = await supabase.from('email_leads').insert([payload]);
         
         if (error) {

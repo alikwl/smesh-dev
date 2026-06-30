@@ -228,8 +228,6 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
 
   <!-- Client-Side Category Filtering & Newsletter Script -->
   <script>
-    import { supabase } from '../../lib/supabase';
-
     document.addEventListener('DOMContentLoaded', () => {
       let currentFilter = 'All';
       let currentSearch = '';
@@ -327,6 +325,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
             messageBox.classList.add('hidden');
 
             try {
+              const { supabase } = await import('../../lib/supabase');
               const { error } = await supabase.from('email_leads').insert([
                 {
                   email: email,

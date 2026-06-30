@@ -52,8 +52,6 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
 )}
 
 <script>
-  import { supabase } from '../lib/supabase';
-
   const initDownloadTracking = () => {
     const btn = document.getElementById('download-blueprint-btn');
     const wrapper = document.querySelector('.resource-gate-wrapper');
@@ -72,6 +70,7 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
           gdpr_consent: false,
           created_at: new Date().toISOString()
         };
+        const { supabase } = await import('../lib/supabase');
         await supabase.from('resource_downloads').insert([payload]);
       } catch (err) {
         console.error('Failed to log to resource_downloads:', err);
