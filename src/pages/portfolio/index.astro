@@ -242,7 +242,7 @@ const demoImageMap: Record<string, string> = {
           Let's engineer customized automation systems, robust data layers, and sync workflows designed for your business.
         </p>
         <div class="pt-4">
-          <button id="portfolio-closer-btn" class="inline-flex items-center justify-center px-8 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+          <button id="portfolio-closer-btn" class="trigger-audit-modal inline-flex items-center justify-center px-8 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
             Let's Scale Your Business
             <i data-lucide="sparkles" class="h-4 w-4 ml-2"></i>
           </button>
@@ -252,21 +252,3 @@ const demoImageMap: Record<string, string> = {
   </section>
 
 </BaseLayout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const auditModal = document.getElementById('audit-modal');
-    const openBtn = document.getElementById('portfolio-closer-btn');
-
-    if (auditModal && openBtn) {
-      openBtn.addEventListener('click', () => {
-        auditModal.classList.remove('hidden');
-        auditModal.classList.add('flex');
-        setTimeout(() => {
-          auditModal.classList.remove('opacity-0');
-          auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-        }, 10);
-      });
-    }
-  });
-</script>

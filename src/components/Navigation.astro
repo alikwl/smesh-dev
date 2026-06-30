@@ -49,14 +49,14 @@ const menuItems = [
 
       <!-- CTA Section -->
       <div class="hidden items-center gap-3 lg:flex font-sans">
-        <button id="nav-audit-btn" class="button-primary px-4 py-2.5 text-xs font-bold cursor-pointer">
+        <button id="nav-audit-btn" class="trigger-audit-modal button-primary px-4 py-2.5 text-xs font-bold cursor-pointer">
           Get a Free Audit
           <i data-lucide="sparkles" class="h-3.5 w-3.5 ml-1"></i>
         </button>
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobile-nav-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-slate-200 bg-white text-slate-800 lg:hidden" aria-controls="mobile-nav-menu" aria-expanded="false">
+      <button id="mobile-nav-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-slate-200 bg-white text-slate-800 lg:hidden" aria-controls="mobile-nav-menu" aria-expanded="false" aria-label="Open main menu">
         <span class="sr-only">Open main menu</span>
         <span id="nav-menu-icon" class="flex h-5 w-5 flex-col items-center justify-center gap-[3.5px]">
           <span class="block h-[1.8px] w-5 rounded-full bg-current"></span>
@@ -83,7 +83,7 @@ const menuItems = [
       </div>
 
       <div class="pt-2">
-        <button id="mobile-nav-audit-btn" class="button-primary w-full justify-center py-3 text-sm font-bold shadow-md cursor-pointer">
+        <button id="mobile-nav-audit-btn" class="trigger-audit-modal button-primary w-full justify-center py-3 text-sm font-bold shadow-md cursor-pointer">
           Get a Free Audit
           <i data-lucide="sparkles" class="h-4 w-4 ml-1.5"></i>
         </button>
@@ -93,7 +93,7 @@ const menuItems = [
 </header>
 
 <!-- Audit Modal Container -->
-<div id="audit-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-all duration-300">
+<div id="audit-modal" role="dialog" aria-modal="true" aria-label="Request a Free Tech Audit Form" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-all duration-300">
   <div class="bg-white rounded-[24px] sm:rounded-[32px] max-w-3xl w-full border border-slate-100 shadow-2xl relative scale-95 transition-all duration-300 flex flex-col overflow-hidden max-h-[92vh] sm:max-h-[90vh]">
     <button id="close-audit-modal" class="absolute top-4 right-4 z-20 p-2 rounded-xl text-slate-450 hover:bg-slate-50 hover:text-slate-800 transition cursor-pointer bg-white/80 backdrop-blur-xs shadow-xs border border-slate-100/50" aria-label="Close modal">
       <i data-lucide="x" class="w-4 h-4"></i>
@@ -113,10 +113,7 @@ const menuItems = [
     const header = document.getElementById('site-navigation');
 
     const auditModal = document.getElementById('audit-modal');
-    const openAuditBtns = [
-      document.getElementById('nav-audit-btn'),
-      document.getElementById('mobile-nav-audit-btn')
-    ];
+    const openAuditBtns = document.querySelectorAll('.trigger-audit-modal');
     const closeAuditBtn = document.getElementById('close-audit-modal');
 
     // Scroll state header

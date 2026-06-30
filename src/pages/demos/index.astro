@@ -227,21 +227,5 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
       });
     });
 
-    // Modal Control logic
-    const auditModal = document.getElementById('audit-modal');
-    const openBtns = document.querySelectorAll('.trigger-audit-modal');
-
-    openBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (auditModal) {
-          auditModal.classList.remove('hidden');
-          auditModal.classList.add('flex');
-          setTimeout(() => {
-            auditModal.classList.remove('opacity-0');
-            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-          }, 10);
-        }
-      });
-    });
   });
 </script>

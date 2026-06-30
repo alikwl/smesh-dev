@@ -1,5 +1,6 @@
 ---
 title: "SEO, AIO & GEO Setup"
+description: "Future-proof your business rankings for human search and AI engine answers (GEO/AIO) with optimized canonical structure and JSON-LD schema."
 slug: "seo-aio-geo-content"
 hero_icon: "search"
 headline: "Optimize Your Business for Human Search & AI Engine Answers"

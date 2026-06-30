@@ -2,7 +2,7 @@
 title: WhatsApp Order Bot for Local Shop
 slug: whatsapp-order-bot-demo
 category: Automation
-description: An automated conversational order management system designed for a local retail shop in Pakistan, allowing customers to place orders directly over WhatsApp.
+description: An automated conversational order management system designed for retail shops, allowing customers to place orders directly over WhatsApp.
 problem: The client, a local fabric retailer, was losing up to 40% of customer queries during peak hours on WhatsApp because their manual staff could not keep up with typing responses and sorting sizes/prices.
 solution: We designed and deployed a custom n8n workflow connected to the Official WhatsApp Business Cloud API. The bot presents customers with product buttons, validates stock instantly from a Google Sheet database, calculates totals, and prompts for payment receipts.
 result: Over 600 orders successfully processed in the first month without manual intervention, saving 15+ staff hours daily.

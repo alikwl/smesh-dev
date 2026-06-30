@@ -8,7 +8,7 @@ tech:
   - WhatsApp API
   - Google Sheets
 image: /assets/images/whatsapp-phone-mockup.png
-use_case: "In Pakistan, many local fashion brands manage hundreds of order queries manually on WhatsApp, resulting in long response delays. Smesh.Dev replaces this manual workflow with an automated database catalog sync."
+use_case: "Many retail fashion brands manage hundreds of order queries manually on WhatsApp, resulting in long response delays. Smesh.Dev replaces this manual workflow with an automated database catalog sync."
 steps:
   - title: Customer Opens Chat
     description: WhatsApp API receives the incoming message via webhook

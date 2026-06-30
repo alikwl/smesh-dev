@@ -556,23 +556,3 @@ const postImage = cover_image || '/assets/images/placeholder.webp';
   </article>
 </BaseLayout>
 
-<!-- Modal Script Integration -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const auditModal = document.getElementById('audit-modal');
-    const openBtns = document.querySelectorAll('.trigger-audit-modal');
-
-    if (auditModal) {
-      openBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          auditModal.classList.remove('hidden');
-          auditModal.classList.add('flex');
-          setTimeout(() => {
-            auditModal.classList.remove('opacity-0');
-            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-          }, 10);
-        });
-      });
-    }
-  });
-</script>

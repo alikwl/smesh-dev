@@ -56,7 +56,7 @@ const metaDescription = description || `Read case study: ${title}. Learn how Sme
 
 <BaseLayout title={`Case Study: ${title}`} description={metaDescription} image={heroImage}>
   <!-- Injected JSON-LD Rich Snippet Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify(caseStudySchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(caseStudySchema)} />
 
   <!-- Breadcrumbs -->
   <nav class="site-shell py-6 text-xs font-sans" aria-label="Breadcrumb">
@@ -225,22 +225,3 @@ const metaDescription = description || `Read case study: ${title}. Learn how Sme
   </article>
 </BaseLayout>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const auditModal = document.getElementById('audit-modal');
-    const openBtns = document.querySelectorAll('.trigger-audit-modal');
-
-    openBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (auditModal) {
-          auditModal.classList.remove('hidden');
-          auditModal.classList.add('flex');
-          setTimeout(() => {
-            auditModal.classList.remove('opacity-0');
-            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-          }, 10);
-        }
-      });
-    });
-  });
-</script>

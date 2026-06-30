@@ -1,5 +1,6 @@
 ---
 title: "SaaS & MVP Development"
+description: "Launch your software prototype in weeks. We build custom SaaS MVPs using Next.js and Supabase with user auth, database setup, and billing integrations."
 slug: "saas-mvp-development"
 hero_icon: "layers"
 headline: "Launch Your SaaS Prototype in Weeks, Not Months"

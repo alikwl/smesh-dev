@@ -1,6 +1,6 @@
 export const site = {
   title: 'Smesh.Dev',
-  description: 'Automation systems, websites, and AI support tools for founders, retailers, and service businesses.',
+  description: 'Bespoke n8n workflow automation, secure database integrations, AI-powered support chatbots, and high-performance custom business systems.',
   url: 'https://smesh.dev',
   email: 'ali.kwl@live.com', // Future suggestion: hello@smesh.dev for professional branding
   whatsapp: '+923422222752',

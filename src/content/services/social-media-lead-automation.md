@@ -1,5 +1,6 @@
 ---
 title: "Social Media & Lead Automation"
+description: "Capture incoming social media leads instantly. We build automated workflows to route Facebook Lead Ads, DMs, and comments straight to your CRM."
 slug: "social-media-lead-automation"
 hero_icon: "megaphone"
 headline: "Capture Social Media Leads Instantly to Your CRM"

@@ -1,5 +1,6 @@
 ---
 title: "Dashboards & Internal Tools"
+description: "Centralize sales, orders, and operational data with custom admin dashboards. Securely connect Google Sheets, databases, and third-party APIs."
 slug: "dashboards-internal-tools"
 hero_icon: "layout"
 headline: "Centralize Your Business Data with Custom Admin Dashboards"

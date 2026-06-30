@@ -34,10 +34,13 @@ const orgSchema = {
   "@type": "Organization",
   "@id": `${site.url}/#organization`,
   "name": "BismillahTC Digital Services",
+  "legalName": "BismillahTC Digital Services",
   "alternateName": "Smesh.Dev",
   "url": `${site.url}/`,
   "logo": `${site.url}/assets/logo.png`,
+  "image": `${site.url}/assets/images/og-preview.png`,
   "description": site.description,
+  "email": "ali.kwl@live.com",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "PK",
@@ -84,9 +87,23 @@ const localServiceSchema = {
   "knowsAbout": ["n8n", "AI Agents", "Supabase", "PostgreSQL", "Workflow Automation"],
   "url": `${site.url}/`,
   "logo": `${site.url}/assets/logo.png`,
+  "image": `${site.url}/assets/images/og-preview.png`,
   "description": site.description,
   "telephone": "+923422222752",
   "email": "ali.kwl@live.com",
+  "priceRange": "$$",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
   "address": { 
     "@type": "PostalAddress", 
     "addressCountry": "PK",
@@ -115,6 +132,8 @@ const serviceSchema = type === 'service' ? {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": title,
+  "logo": `${site.url}/assets/logo.png`,
+  "image": `${site.url}/assets/images/og-preview.png`,
   "provider": {
     "@type": "ProfessionalService",
     "name": "Smesh.Dev",

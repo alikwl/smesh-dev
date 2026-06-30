@@ -208,7 +208,7 @@ const faqSchema = faqs.length > 0 ? {
         </div>
 
         <div class="pt-8 relative z-10">
-          <button id="deploy-system-btn" class="w-full justify-center inline-flex items-center justify-center px-6 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
+          <button id="deploy-system-btn" class="trigger-audit-modal w-full justify-center inline-flex items-center justify-center px-6 py-3.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-sm font-bold rounded-xl transition shadow-lg cursor-pointer">
             Deploy This System For My Business
             <i data-lucide="sparkles" class="w-4 h-4 ml-2"></i>
           </button>
@@ -265,20 +265,4 @@ const faqSchema = faqs.length > 0 ? {
 
 </BaseLayout>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const auditModal = document.getElementById('audit-modal');
-    const openBtn = document.getElementById('deploy-system-btn');
 
-    if (auditModal && openBtn) {
-      openBtn.addEventListener('click', () => {
-        auditModal.classList.remove('hidden');
-        auditModal.classList.add('flex');
-        setTimeout(() => {
-          auditModal.classList.remove('opacity-0');
-          auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-        }, 10);
-      });
-    }
-  });
-</script>

@@ -1,5 +1,6 @@
 ---
 title: "Appointment Booking Systems"
+description: "Streamline client scheduling with custom appointment booking pages. Automatically sync schedules with Google Calendar and trigger email/WhatsApp alerts."
 slug: "appointment-booking"
 hero_icon: "calendar"
 headline: "Self-Service Booking Pages with Automatic Alerts"

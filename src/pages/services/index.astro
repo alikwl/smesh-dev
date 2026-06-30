@@ -323,9 +323,9 @@ const servicesSchema = {
             </div>
 
             <div class="space-y-3">
-              <h2 class="text-2xl font-bold text-slate-955 leading-snug">
+              <h3 class="text-2xl font-bold text-slate-955 leading-snug">
                 <a href={`/services/${service.slug}/`} class="hover:text-[color:var(--accent-strong)] transition">{service.title}</a>
-              </h2>
+              </h3>
               <p class="text-xs text-slate-550 leading-relaxed min-h-[48px] font-light">{service.short}</p>
             </div>
 
@@ -676,43 +676,34 @@ const servicesSchema = {
   </section>
 </BaseLayout>
 
-<!-- Modal Booking & Selection Script -->
+<!-- Booking & Testimonials Script -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const auditModal = document.getElementById('audit-modal');
-    const openBtns = document.querySelectorAll('.trigger-audit-modal');
     const bookBtns = document.querySelectorAll('.book-service-btn');
-    const serviceSelect = document.getElementById('service') as HTMLSelectElement | null;
-
-    const openModal = () => {
-      if (!auditModal) return;
-      auditModal.classList.remove('hidden');
-      auditModal.classList.add('flex');
-      setTimeout(() => {
-        auditModal.classList.remove('opacity-0');
-        auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-      }, 10);
-    };
-
-    openBtns.forEach(btn => btn.addEventListener('click', openModal));
 
     bookBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const serviceName = btn.getAttribute('data-book-service');
-        
-        // Pre-fill the dropdown select inside the contact form
-        if (serviceSelect && serviceName) {
-          const hasOption = Array.from(serviceSelect.options).some(opt => opt.value === serviceName);
-          if (!hasOption) {
-            const opt = document.createElement('option');
-            opt.value = serviceName;
-            opt.text = serviceName;
-            serviceSelect.appendChild(opt);
+        const serviceName = btn.getAttribute('data-book-service') || '';
+        let targetValue = 'Something else';
+        if (serviceName.includes('WhatsApp')) targetValue = 'WhatsApp Bot';
+        else if (serviceName.includes('Chatbot') || serviceName.includes('AI')) targetValue = 'AI Chatbot';
+        else if (serviceName.includes('Workflow') || serviceName.includes('Automation')) targetValue = 'n8n Workflow';
+        else if (serviceName.includes('SaaS') || serviceName.includes('MVP')) targetValue = 'SaaS/MVP';
+        else if (serviceName.includes('Extension')) targetValue = 'Chrome Extension';
+
+        // Check the matching checkbox inside the modal contact form
+        const modalFormContainer = document.querySelector('#audit-modal .smesh-contact-form-container');
+        if (modalFormContainer) {
+          const checkbox = modalFormContainer.querySelector(`input[name="services"][value="${targetValue}"]`) as HTMLInputElement | null;
+          if (checkbox) {
+            checkbox.checked = true;
+            checkbox.dispatchEvent(new Event('change'));
           }
-          serviceSelect.value = serviceName;
         }
 
-        openModal();
+        // Programmatically trigger modal open
+        const triggerBtn = document.querySelector('.trigger-audit-modal') as HTMLElement | null;
+        triggerBtn?.click();
       });
     });
 

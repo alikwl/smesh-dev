@@ -53,7 +53,7 @@ const demoSchema = {
 
 <BaseLayout title={title} description={metaDescription} image={heroImage}>
   <!-- Injected SoftwareApplication JSON-LD Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify(demoSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(demoSchema)} />
 
   <!-- Breadcrumbs -->
   <nav class="site-shell py-6 text-xs font-sans" aria-label="Breadcrumb">
@@ -291,22 +291,3 @@ const demoSchema = {
   </section>
 </BaseLayout>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const auditModal = document.getElementById('audit-modal');
-    const openBtns = document.querySelectorAll('.trigger-audit-modal');
-
-    openBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (auditModal) {
-          auditModal.classList.remove('hidden');
-          auditModal.classList.add('flex');
-          setTimeout(() => {
-            auditModal.classList.remove('opacity-0');
-            auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
-          }, 10);
-        }
-      });
-    });
-  });
-</script>

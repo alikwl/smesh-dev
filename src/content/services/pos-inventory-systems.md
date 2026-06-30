@@ -1,5 +1,6 @@
 ---
 title: "POS & Inventory Systems"
+description: "Manage stock barcodes, calculate daily profits, and track customer credit ledger records from a fast, web-based custom POS inventory dashboard."
 slug: "pos-inventory-systems"
 hero_icon: "shopping-bag"
 headline: "Custom Web POS & Stock Tracking for Retailers"
