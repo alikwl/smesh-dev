@@ -245,7 +245,7 @@ const faqSchema = faqs.length > 0 ? {
         <div class="space-y-4">
           {faqs.map((faq) => (
             <details class="group border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-6 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-              <summary class="flex items-center justify-between font-sans text-sm font-semibold text-slate-900 cursor-pointer list-none">
+              <summary class="flex items-center justify-between font-sans text-sm font-semibold text-slate-900 cursor-pointer list-none py-3.5">
                 <span>{faq.q}</span>
                 <span class="ml-1.5 shrink-0 rounded-full bg-slate-100 p-1.5 text-slate-900 group-open:rotate-180 transition duration-300">
                   <svg class="h-4.5 w-4.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

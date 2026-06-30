@@ -63,7 +63,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`email-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Email Address</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
               </div>
               <input type="email" id={`email-${uniqueId}`} name="email" placeholder="you@domain.com" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
               <p data-error-for="email" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter a valid email address.</p>
@@ -81,7 +81,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
           <div class="space-y-2">
             <div class="flex items-center justify-between mb-1">
               <label class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Services Interested In</label>
-              <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span>
+              <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
             </div>
             <div class="flex flex-wrap gap-2 pt-0.5">
               {["AI Chatbot", "WhatsApp Bot", "n8n Workflow", "SaaS/MVP", "Chrome Extension", "Something else"].map((srv) => (
@@ -108,7 +108,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`budget-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Budget Range</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
               </div>
               <select id={`budget-${uniqueId}`} name="budget" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
                 <option value="">Select budget range</option>
@@ -124,7 +124,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`timeline-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Project Timeline</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
               </div>
               <select id={`timeline-${uniqueId}`} name="timeline" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
                 <option value="">Select timeline</option>
@@ -139,7 +139,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`referral-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">How did you find us?</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
               </div>
               <select id={`referral-${uniqueId}`} name="referral" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
                 <option value="">Select source</option>
@@ -154,7 +154,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
 
           <!-- Submit CTA Section -->
           <div class="pt-2 space-y-4">
-            <button type="submit" class="submit-btn button-primary w-full text-xs sm:text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-1.5 shadow-sm bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white border-none cursor-pointer font-sans font-bold animate-pulse hover:animate-none">
+            <button type="submit" class="submit-btn button-primary w-full text-xs sm:text-sm py-3.5 px-6 rounded-xl flex items-center justify-center gap-1.5 shadow-sm bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white border-none cursor-pointer font-sans font-bold">
               <span>Submit Project Details</span>
               <i data-lucide="send" class="h-4 w-4"></i>
             </button>

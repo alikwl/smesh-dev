@@ -66,6 +66,10 @@
   transition: opacity 200ms ease;
   font-weight: normal;
   user-select: none;
+  /* Expand touch target to 48px x 48px */
+  padding: 12px 16px;
+  margin-top: -12px;
+  margin-left: -8px;
 }
 
 .prose-shell h2:hover .heading-anchor,
