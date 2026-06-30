@@ -84,8 +84,8 @@ window.enhanceMarkdownContent = (container) => {
 
   // 4. Image Figures & Lazy Loading
   root.querySelectorAll('img').forEach((img) => {
-    // Skip small UI icons, avatar pictures, preview mockup
-    if (img.classList.contains('w-8') || img.classList.contains('w-10') || img.classList.contains('w-12') || img.id === 'resource-preview-img' || img.closest('.site-navigation') || img.closest('.unlock-card-container')) return;
+    // Skip small UI icons, avatar pictures, preview mockup, logos, and footer/header elements
+    if (img.closest('a') || img.closest('header') || img.closest('footer') || img.classList.contains('w-8') || img.classList.contains('w-10') || img.classList.contains('w-12') || img.id === 'resource-preview-img' || img.closest('.site-navigation') || img.closest('.unlock-card-container')) return;
 
     img.setAttribute('loading', 'lazy');
 
