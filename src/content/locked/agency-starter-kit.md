@@ -1,0 +1,1 @@
+# Astro Agency Boilerplate setup instructions\n\nThis boilerplate is configured with custom styles and sitemaps for high-speed delivery.\n\n### 1. Installation\nRun `npm install` in the template folder.\n\n### 2. Development\nRun `npm run dev` to start the local hot-reloaded dev server.

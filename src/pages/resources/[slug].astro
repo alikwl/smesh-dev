@@ -24,11 +24,17 @@ const cleanTitle = title.replace(/^#+\s*/, '').trim();
 
 const typeMap: Record<string, 'article' | 'pdf' | 'tool' | 'snippet'> = {
   'Guide': 'article',
+  'Business Playbooks': 'article',
   'article': 'article',
   'PDF': 'pdf',
+  'Cheat Sheets': 'pdf',
   'pdf': 'pdf',
   'Prompt': 'snippet',
+  'AI Prompt Vault': 'snippet',
   'snippet': 'snippet',
+  'n8n Templates': 'tool',
+  'Supabase Kits': 'tool',
+  'Astro Starters': 'tool',
   'Tool': 'tool',
   'tool': 'tool'
 };

@@ -62,7 +62,7 @@ const portfolio = defineCollection({
 const resources = defineCollection({
   schema: z.object({
     title: z.string(),
-    category: z.enum(['PDF', 'Prompt', 'Guide']),
+    category: z.enum(['PDF', 'Prompt', 'Guide', 'n8n Templates', 'AI Prompt Vault', 'Supabase Kits', 'Astro Starters', 'Business Playbooks', 'Cheat Sheets']),
     targetServiceTag: z.string(),
     description: z.string(),
     premium: z.boolean(),

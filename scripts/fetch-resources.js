@@ -48,13 +48,24 @@ const testimonialsMap = {
 };
 
 function normalizeCategory(category) {
-  if (!category) return 'Prompt';
+  if (!category) return 'AI Prompt Vault';
   const cat = category.trim().toLowerCase();
-  if (cat.startsWith('prompt')) return 'Prompt';
-  if (cat.startsWith('pdf')) return 'PDF';
-  if (cat.startsWith('guide')) return 'Guide';
-  return 'Prompt'; // default fallback
+  
+  if (cat.includes('n8n') || cat.includes('template')) return 'n8n Templates';
+  if (cat.includes('prompt') || cat.includes('vault')) return 'AI Prompt Vault';
+  if (cat.includes('supabase') || cat.includes('kit')) return 'Supabase Kits';
+  if (cat.includes('astro') || cat.includes('starter')) return 'Astro Starters';
+  if (cat.includes('playbook') || cat.includes('guide') || cat.includes('business')) return 'Business Playbooks';
+  if (cat.includes('cheat') || cat.includes('pdf') || cat.includes('sheet') || cat.includes('schema')) return 'Cheat Sheets';
+  
+  // Backward compatibility maps
+  if (cat === 'prompt') return 'AI Prompt Vault';
+  if (cat === 'guide') return 'Business Playbooks';
+  if (cat === 'pdf') return 'Cheat Sheets';
+  
+  return category.trim();
 }
+
 
 async function run() {
   try {

@@ -3,7 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const items = await getCollection('resources');
-const categories = ['All', 'PDF', 'Prompt', 'Guide'];
+const categories = [
+  'All',
+  'n8n Templates',
+  'AI Prompt Vault',
+  'Supabase Kits',
+  'Astro Starters',
+  'Business Playbooks',
+  'Cheat Sheets'
+];
 
 // Map resource slugs/ids to custom mockups/teasers if needed, or let it use the clean blurred preview
 const estimatedValues: Record<string, string> = {
@@ -11,12 +19,18 @@ const estimatedValues: Record<string, string> = {
   'offline-pos-sync-guide': '$29 Value',
   'supabase-vector-rag-prompt': '$39 Value',
   'sample-khazaana': '$19 Value',
+  'n8n-lead-router-workflow': '$49 Value',
+  'supabase-vector-store-kit': '$39 Value',
+  'agency-starter-kit': '$29 Value',
 };
 
 const categoryGradients: Record<string, string> = {
-  'PDF': 'from-indigo-500 via-indigo-600 to-violet-700',
-  'Guide': 'from-teal-500 via-teal-600 to-emerald-700',
-  'Prompt': 'from-amber-500 via-amber-600 to-orange-600',
+  'n8n Templates': 'from-orange-500 via-orange-600 to-amber-600',
+  'AI Prompt Vault': 'from-indigo-500 via-indigo-600 to-violet-700',
+  'Supabase Kits': 'from-emerald-500 via-emerald-600 to-teal-700',
+  'Astro Starters': 'from-purple-500 via-purple-600 to-pink-600',
+  'Business Playbooks': 'from-teal-500 via-teal-600 to-emerald-700',
+  'Cheat Sheets': 'from-blue-500 via-blue-600 to-cyan-700',
 };
 const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
 ---
@@ -65,7 +79,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
             ]}
             data-filter={category}
           >
-            {category === 'All' ? 'All Resources' : `${category}s`}
+            {category === 'All' ? 'All Resources' : category}
           </button>
         ))}
       </div>

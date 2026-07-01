@@ -1,97 +1,116 @@
-# Smesh.dev Design System & UI Specification
+# Smesh.dev Design System
 
-This specification governs the visual language, typography, color palette, spacing tokens, and component guidelines for the Smesh.dev workspace.
+**Version:** 1.0  
+**Last Updated:** July 2026  
+**Purpose:** This document serves as the single source of truth for all visual and UI decisions. Every new component, page, or update **must** follow this system for consistency.
 
 ---
 
 ## 🎨 Visual Theme & Atmosphere
 
-Smesh.dev is styled with a **warm, editorial, and minimalist tech aesthetic**. It avoids cold dark-mode grids and generic developer templates, opting for a clean, spacious look resembling a high-end publication. It incorporates clean lines, glassmorphism panel backdrops, and deep teal accents.
+Smesh.dev follows a **warm, editorial, minimalist tech aesthetic** — inspired by high-end publications and premium SaaS brands. 
+
+- **Core Feeling:** Professional, trustworthy, calm, and approachable.
+- **Avoid:** Cold dark themes, aggressive gradients, generic tech templates, or overly flashy elements.
+- **Key Elements:** Clean lines, generous whitespace, subtle glassmorphism panels, warm neutral base with deep teal accents.
 
 ---
 
-## 🎨 Color Palette & Semantics
+## 🎨 Color Palette & Semantic Tokens
 
-The CSS variables are declared in [global.css](file:///c:/Haider/smesh.dev/src/styles/global.css). Use these values via semantic classes:
+All colors are defined as CSS variables in `src/styles/global.css`.
 
-| Token Name | Hex/RGBA Value | Semantic Role | Tailwind Equivalent |
-|------------|----------------|---------------|---------------------|
-| `--bg` | `#f3efe6` | Global page background (Soft warm beige) | Custom background |
-| `--bg-soft` | `#fbf8f2` | Inner panels / secondary backgrounds | `bg-neutral-50` / Custom |
-| `--surface` | `rgba(255, 251, 245, 0.97)` | Card surfaces (Glassmorphic cards) | Glass backdrop |
-| `--surface-strong`| `#fffefb` | High contrast elements (Forms, input fields) | Off-white |
-| `--line` | `rgba(44, 44, 38, 0.12)` | Subtle borders and dividers | Custom line border |
-| `--line-strong`| `rgba(44, 44, 38, 0.2)` | Prominent borders, tables, select boxes | Strong border |
-| `--ink` | `#171713` | Main copy and headings (Rich dark charcoal) | `text-stone-900` |
-| `--muted` | `#5c5a52` | Secondary copy, descriptors | `text-stone-600` |
-| `--muted-soft`| `#615e56` | Captions, small footnotes | `text-stone-500` |
-| `--accent` | `#0f766e` | Brand primary color (Deep teal) | `text-teal-700` |
-| `--accent-strong`| `#115e59` | Active buttons, primary focus (Dark teal) | `bg-teal-800` |
-| `--accent-soft`| `rgba(15, 118, 110, 0.12)`| Hover accents, tag background | Teal-50 tint |
+| Token              | Hex / Value                  | Semantic Role                        | Tailwind Usage          |
+|--------------------|------------------------------|--------------------------------------|-------------------------|
+| `--bg`             | `#f3efe6`                    | Main page background (warm cream)    | `bg-[var(--bg)]`        |
+| `--bg-soft`        | `#fbf8f2`                    | Secondary panels                     | Light neutral           |
+| `--surface`        | `rgba(255, 251, 245, 0.97)`  | Glassmorphic cards                   | Backdrop blur           |
+| `--surface-strong` | `#fffefb`                    | Forms, inputs, modals                | Off-white               |
+| `--line`           | `rgba(44, 44, 38, 0.12)`     | Subtle dividers                      | Border                  |
+| `--line-strong`    | `rgba(44, 44, 38, 0.2)`      | Prominent borders                    | Strong border           |
+| `--ink`            | `#171713`                    | Primary text & headings              | `text-stone-950`        |
+| `--muted`          | `#5c5a52`                    | Secondary text                       | `text-stone-600`        |
+| `--muted-soft`     | `#615e56`                    | Captions & footnotes                 | `text-stone-500`        |
+| `--accent`         | `#0f766e`                    | Brand primary (Deep Teal)            | `text-teal-700`         |
+| `--accent-strong`  | `#115e59`                    | Hover/active states                  | `bg-teal-800`           |
+| `--accent-soft`    | `rgba(15, 118, 110, 0.12)`   | Hover tints, tags                    | Teal subtle             |
+
+**Primary Accent:** Deep Teal (`--accent`) — Use for all CTAs, links, and highlights.
 
 ---
 
 ## 📐 Spacing & Layout
 
-- **Container constraints**: All contents must be centered within the `.site-shell` class (max-width `1240px`).
-- **Responsive padding**:
-  - Desktop: `px-6`
-  - Tablet: `px-5`
-  - Mobile: `px-4`
-- **Section spacing**: Vertical gaps must follow comfortable padding ratios:
-  - Standard section gap: `py-16 md:py-24`
-  - Hero section gap: `pt-28 pb-16 md:pt-36 md:pb-24`
+- **Max Container Width:** `1240px` (`.site-shell` class)
+- **Horizontal Padding:** `px-4 sm:px-6 lg:px-8`
+- **Section Vertical Spacing:**
+  - Standard: `py-16 md:py-24`
+  - Hero/Large: `pt-28 pb-20 md:pt-36 md:pb-28`
+- **Grid:** 12-column responsive grid with consistent gutters.
 
 ---
 
 ## 🔠 Typography
 
-Headings and body text must respect the selected typographic hierarchy:
+- **Heading Font:** `Sora` (sans-serif) — Bold, modern, excellent for display
+- **Body Font:** `Manrope` (sans-serif) — Highly readable for long content
+- **Letter Spacing:** Headings `-0.04em`, Body `normal`
 
-- **Headings (H1 to H6)**:
-  - Font: `Sora` sans-serif
-  - Letter spacing: `-0.04em`
-  - Wrapping: `text-wrap: balance`
-- **Body Copy, Lists, Forms**:
-  - Font: `Manrope` sans-serif
-  - Wrapping: `text-wrap: pretty`
-- **Scale**:
-  - `.display-title` (Hero): `text-[2.15rem] sm:text-[2.7rem] lg:text-[3.15rem] xl:text-[3.45rem] font-semibold leading-[1]`
-  - `.section-title`: `text-[1.45rem] sm:text-[1.8rem] font-semibold leading-[1.08]`
-  - `.body-copy`: `text-[13px] md:text-[14px] leading-[1.75]`
+**Scale:**
+
+- **Hero/Display Title:** `text-[2.15rem] sm:text-[2.7rem] lg:text-[3.15rem] xl:text-[3.45rem] font-semibold leading-tight`
+- **Section Title:** `text-[1.45rem] sm:text-[1.8rem] font-semibold leading-tight`
+- **Body Text:** `text-[14px] md:text-[15px] leading-relaxed`
+- **Small Text:** `text-sm` (captions, footnotes)
 
 ---
 
-## 🧩 Component Library
+## 🧩 Component Guidelines
 
-### 1. Buttons
-- **Primary Action**: Solid `#0f766e` (`var(--accent)`).
-  - Hover state: Shifts to `#115e59` (`var(--accent-strong)`), translates up by `2px`, and adds smooth shadow scaling.
-  - Transition speed: `220ms ease`.
-- **Secondary Action**: Bordered (`border border-line`).
-  - Hover state: Background turns slightly translucent teal tint (`var(--accent-soft)`).
+### Buttons
+- **Primary:** Solid `--accent` background, white text. Hover → `--accent-strong` + slight lift + shadow.
+- **Secondary:** Outlined with `--line`, hover fills with `--accent-soft`.
+- **Transition:** `220ms ease` for all states.
 
-### 2. Cards (`.ambient-panel` & `.surface-card`)
-- **Panel Design**: Translucent backdrop with `18px` blur filter (`backdrop-filter: blur(18px)`), surrounded by a thin border `1px solid var(--line)`.
-- **Interaction**:
-  - Hover: Translates upward (`translate-y-[-2px]`) with box shadow scaling (`box-shadow: 0 18px 36px rgba(18, 26, 22, 0.08)`).
-  - Border radius: `.radius-lg` (`24px`), `.radius-md` (`18px`).
+### Cards & Panels
+- **Style:** `.ambient-panel` or `.surface-card` — Glassmorphism (`backdrop-filter: blur(18px)`), border `1px solid var(--line)`, border-radius 18-24px.
+- **Hover Effect:** `translate-y-[-3px]` + soft shadow.
 
-### 3. Forms
-- **Input Fields**: Placed in `.surface-strong` container with `#171713` borders.
-- **Focus states**: Inputs must clearly display a outline-offset focus ring when active:
-  `outline: 2px solid rgba(15, 118, 110, 0.45); outline-offset: 3px;`
+### Forms & Inputs
+- Clean labels, generous spacing.
+- Focus state: Strong teal outline (`outline: 2px solid rgba(15, 118, 110, 0.5)`).
+- Error states clearly marked in red-amber tone (minimal use).
+
+### Navigation & Header
+- Clean, minimal, sticky with soft backdrop blur.
+- Logo + primary nav + CTA button.
 
 ---
 
-## ❌ Do's & Don'ts
+## ✅ Do's & Don'ts
 
-### ✅ Do:
-- Keep background colors limited to cream `#f3efe6` or variations of `#fbf8f2`.
-- Use a single consistent transition duration (`220ms ease`) for all interactive elements.
-- Keep typography scales clean and restrict heavy font weight parameters.
+**Do:**
+- Always maintain warm cream background base.
+- Use generous whitespace.
+- Keep one primary accent color (teal).
+- Ensure excellent readability and mobile experience.
+- Follow E-E-A-T visual trust signals (professional typography, clean layout).
 
-### ❌ Don't:
-- Never use pure black (`#000000`) or pure white (`#ffffff`) for backgrounds or copy.
-- Never use generic blue, green, or purple colors.
-- Never add unnecessary shadows or hard box-borders that break the publication feel.
+**Don't:**
+- Never use pure black (#000) or pure white (#fff) backgrounds.
+- Never introduce new accent colors without updating this document.
+- Avoid heavy shadows or skeuomorphic effects.
+- Do not use generic Tailwind defaults that break the editorial feel.
+
+---
+
+## 📋 Usage Rules for Agents
+
+1. Always read this file before generating or modifying any UI.
+2. New components must be added here first (update this document).
+3. All pages (Home, Services, Blog, About, Legal, etc.) must respect this system.
+4. Performance first: Keep designs lightweight for Astro static generation.
+
+---
+
+**Approved by:** Haider Ali (Smesh.dev)

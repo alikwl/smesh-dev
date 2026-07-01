@@ -1,0 +1,1 @@
+# Supabase Vector Store & RAG Starter Kit\n\nThis starter kit contains full DDL schemas and Node.js code blocks to run semantic searches directly within PostgreSQL.\n\n### 1. Enable pgvector\nRun: `CREATE EXTENSION IF NOT EXISTS vector;` in your Supabase SQL editor.\n\n### 2. Table DDL\nCreate chunks table with 1536-dimension embeddings.
