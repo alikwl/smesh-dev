@@ -16,8 +16,10 @@ Use this skill whenever you are:
 2. **Tailwind-Mapped CSS Variables**: Refer to the CSS variables in `src/styles/global.css` (e.g. `var(--accent)`, `var(--bg)`) to keep custom styling unified.
 3. **No Placeholders**: Never write placeholders for styles; all components must support fully styled states (hover, focus, active).
 4. **Editorial Typography**: Headings must strictly use the `Sora` font with balanced text wrapping. Body text must use `Manrope`.
+5. **Source Folder Isolation**: Design and styling changes must strictly occur inside source folders (`src/`, `public/`). Never suggest or execute changes in dev tool directories (`.cursor/`, `.gemini/`), cache folders (`.astro/`), or output folders (`dist/`).
 
 ## Task Checklist
 - [ ] Verify styling uses semantic layout CSS classes (e.g., `.site-shell`, `.ambient-panel`, `.surface-card`).
 - [ ] Confirm margins and paddings match layout ratios (e.g., site container padding).
 - [ ] Check color contrasts to maintain clean readability (dark ink on warm beige background).
+

@@ -70,3 +70,38 @@ This document defines the roles, traits, strict constraints, and output rules fo
 * **Output Rules**:
   - Provide a clear test checklist showing verified devices and resolutions.
   - Explicitly document if tests failed and how to resolve them.
+
+---
+
+## 📁 Project Directory Boundaries & Folder Structure Rules
+
+The project structure contains several specific directories. All agents must strictly respect their boundaries:
+
+1. **`.agents/`** (Dot Agents):
+   - **Purpose**: Core workspace configurations, custom skills, and custom workflows.
+   - **Rule**: Highest priority. Always read files in this folder first to align with the Smesh.dev design and business constitution.
+
+2. **`.github/`**:
+   - **Purpose**: GitHub Actions workflows and CI/CD pipelines.
+   - **Rule**: Read to ensure deployment compliance, but do not modify unless configuring GitHub Pages deployment.
+
+3. **`src/`**, **`public/`**, and **`production_artifacts/`**:
+   - **Purpose**: Main codebase source, assets, and project requirements.
+   - **Rule**: All source modifications, styling edits, component building, and feature updates must be done strictly within these directories.
+
+4. **`agents/`** (No Dot):
+   - **Purpose**: Contains the 67 specialized framework subagent definitions.
+   - **Rule**: Read-only. Do not delete, merge, or modify these files unless explicitly directed. They are required for subagent routing.
+
+5. **`dist/`** and **`downloads/`**:
+   - **Purpose**: Build outputs and temporary/cached downloads.
+   - **Rule**: Never modify or add files here manually. Never track these folders in git commits.
+
+6. **`.cursor/`** and **`.gemini/`**:
+   - **Purpose**: Dev tool configs (Cursor profiles, Antigravity logs).
+   - **Rule**: Treat as temporary/dev tools. Never edit, suggest changes, or include their contents in production files.
+
+7. **`.astro/`**:
+   - **Purpose**: Astro framework internal cache and TypeScript declarations.
+   - **Rule**: Keep clean. Never modify its contents manually.
+
