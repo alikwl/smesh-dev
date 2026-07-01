@@ -48,7 +48,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
             Unlock the exact system configurations, database schemas, and prompt strategies I use to design high-speed static integrations and automated workflows.
           </p>
         </div>
-        <div class="ambient-panel rounded-[32px] p-6 border border-[color:var(--line)] bg-white/60 font-sans">
+        <div class="ambient-panel rounded-[32px] p-6 border border-[color:var(--line)] bg-[color:var(--surface)]/60 font-sans">
           <span class="px-2.5 py-0.5 rounded bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-[10px] font-bold uppercase tracking-wider">AEO Grounded</span>
           <h2 class="font-bold text-[color:var(--ink)] mt-3 text-lg leading-snug">Grounded Execution Blueprints</h2>
           <p class="text-xs text-[color:var(--muted)] leading-relaxed mt-2 font-light">
@@ -62,11 +62,11 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
   <!-- Interactive Category Filters & Search Section -->
   <section class="site-shell pb-10">
     <div class="mb-8">
-      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Available Blueprints & Guides</h2>
-      <p class="text-xs text-slate-500 mt-2">Filter and search structured templates, config files, and integration guides.</p>
+      <h2 class="text-3xl font-extrabold text-[color:var(--ink)] leading-tight">Available Blueprints & Guides</h2>
+      <p class="text-xs text-[color:var(--muted-soft)] mt-2">Filter and search structured templates, config files, and integration guides.</p>
     </div>
     
-    <div class="ambient-panel rounded-3xl p-5 border border-[color:var(--line)] bg-white/40 backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div class="ambient-panel rounded-3xl p-5 border border-[color:var(--line)] bg-[color:var(--surface)]/40 backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <!-- Category Filters -->
       <div class="flex flex-wrap gap-2.5 font-sans" id="resources-filter-container">
         {categories.map((category, index) => (
@@ -75,7 +75,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
               'resources-filter-btn rounded-full border px-4 py-2 text-[10px] font-bold uppercase tracking-wider transition cursor-pointer select-none',
               index === 0
                 ? 'border-[color:var(--accent)] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] shadow-sm'
-                : 'border-[color:var(--line)] bg-white/40 backdrop-blur-md text-[color:var(--muted)] hover:border-[color:var(--line-strong)] hover:text-[color:var(--ink)]',
+                : 'border-[color:var(--line)] bg-[color:var(--surface)]/40 backdrop-blur-md text-[color:var(--muted)] hover:border-[color:var(--line-strong)] hover:text-[color:var(--ink)]',
             ]}
             data-filter={category}
           >
@@ -86,14 +86,14 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
 
       <!-- Live Search Bar -->
       <div class="relative w-full md:max-w-xs font-sans">
-        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-[color:var(--meta)]">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </span>
         <input
           type="text"
           id="resources-search-input"
           placeholder="Search blueprints..."
-          class="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-[color:var(--line)] bg-white/50 backdrop-blur-md text-xs font-sans text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] transition"
+          class="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-[color:var(--line)] bg-[color:var(--surface)] backdrop-blur-md text-xs font-sans text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:bg-[color:var(--surface-strong)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] transition"
         />
       </div>
     </div>
@@ -111,13 +111,13 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
         const gradientClass = categoryGradients[category] || defaultGradient;
         return (
           <article 
-            class="resources-card ambient-panel overflow-hidden rounded-[30px] border border-[color:var(--line)] bg-white/50 backdrop-blur-md hover:-translate-y-1.5 hover:shadow-xl hover:bg-white/80 transition-all duration-300 flex flex-col justify-between"
+            class="resources-card ambient-panel overflow-hidden rounded-[30px] border border-[color:var(--line)] bg-[color:var(--surface)] hover:-translate-y-1.5 hover:shadow-xl hover:bg-[color:var(--surface-strong)] transition-all duration-300 flex flex-col justify-between"
             data-category={category}
             data-slug={slug}
           >
             <div>
               <!-- 1. The Teaser Visual & Lock Badge -->
-              <div class="relative overflow-hidden aspect-[16/10] bg-slate-950 flex items-center justify-center border-b border-slate-100 select-none">
+              <div class="relative overflow-hidden aspect-[16/10] bg-[color:var(--ink)]/5 flex items-center justify-center border-b border-[color:var(--line)] select-none">
                 {previewImage ? (
                   <img 
                     src={previewImage} 
@@ -149,7 +149,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
                   <h3 class="text-base font-bold text-[color:var(--ink)] leading-snug line-clamp-2 min-h-[3rem] hover:text-[color:var(--accent-strong)] transition">
                     <a href={`/resources/${slug}/`}>{cleanTitle}</a>
                   </h3>
-                  <p class="text-sm text-slate-500 leading-relaxed line-clamp-3 font-light">{description}</p>
+                  <p class="text-sm text-[color:var(--muted)] leading-relaxed line-clamp-3 font-light">{description}</p>
                 </div>
               </div>
             </div>
@@ -165,7 +165,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
               <div>
                 <a 
                   href={`/resources/${slug}/`}
-                  class="inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer font-sans"
+                  class="inline-flex h-9 px-4 items-center justify-center rounded-xl bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-xs font-bold transition cursor-pointer font-sans"
                 >
                   Read Now
                 </a>
@@ -177,7 +177,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
     </div>
 
     <!-- No Results Placeholder -->
-    <div id="no-results-container" class="hidden text-center py-16 px-4 ambient-panel rounded-[30px] border border-[color:var(--line)] bg-white/30 backdrop-blur-md max-w-md mx-auto mt-6 space-y-4">
+    <div id="no-results-container" class="hidden text-center py-16 px-4 ambient-panel rounded-[30px] border border-[color:var(--line)] bg-[color:var(--surface)]/30 backdrop-blur-md max-w-md mx-auto mt-6 space-y-4">
       <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100/50 text-[color:var(--accent)] flex items-center justify-center mx-auto">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       </div>
@@ -191,7 +191,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
   <!-- Newsletter Signup Strip -->
   <section class="site-shell pb-20 md:pb-24">
     <div 
-      class="newsletter-signup-strip p-6 sm:p-10 bg-slate-900 text-white border border-slate-800 rounded-[32px] shadow-lg relative overflow-hidden font-sans"
+      class="newsletter-signup-strip p-6 sm:p-10 bg-[color:var(--ink)] text-[color:var(--bg-soft)] border border-[color:var(--line-strong)] rounded-[32px] shadow-lg relative overflow-hidden font-sans"
       data-resource-slug="resources-hub"
       data-resource-type="newsletter"
     >
@@ -207,7 +207,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
           <h3 class="text-xl sm:text-2xl font-bold text-white leading-tight">
             Get new blueprints before they go public.
           </h3>
-          <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed">
+          <p class="text-xs sm:text-sm text-[color:var(--meta)] font-light leading-relaxed">
             Join developers getting n8n + Supabase resources weekly. No fluff, no spam.
           </p>
         </div>
@@ -219,7 +219,7 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
               type="email" 
               required 
               placeholder="you@company.com" 
-              class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 text-xs focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] transition font-sans"
+              class="w-full px-4 py-3 rounded-xl border border-[color:var(--line)] bg-[color:var(--ink)]/50 text-[color:var(--bg-soft)] text-xs focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] transition font-sans"
             />
             <button 
               type="submit" 
@@ -289,10 +289,10 @@ const defaultGradient = 'from-slate-600 via-slate-700 to-slate-800';
 
           filterButtons.forEach(b => {
             b.classList.remove('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]', 'shadow-sm');
-            b.classList.add('border-[color:var(--line)]', 'bg-white/40', 'text-[color:var(--muted)]');
+            b.classList.add('border-[color:var(--line)]', 'bg-[color:var(--surface)]/40', 'text-[color:var(--muted)]');
           });
 
-          btn.classList.remove('border-[color:var(--line)]', 'bg-white/40', 'text-[color:var(--muted)]');
+          btn.classList.remove('border-[color:var(--line)]', 'bg-[color:var(--surface)]/40', 'text-[color:var(--muted)]');
           btn.classList.add('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]', 'shadow-sm');
 
           filterCards();

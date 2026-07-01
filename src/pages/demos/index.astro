@@ -42,7 +42,7 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
       <h1 class="display-title text-slate-950 font-extrabold tracking-tight leading-[1.08] font-display">
         Interact Before You Implement.
       </h1>
-      <p class="body-copy max-w-2xl mx-auto text-slate-655 leading-relaxed font-light">
+      <p class="body-copy max-w-2xl mx-auto text-[color:var(--muted)] leading-relaxed font-light">
         Test out our simulated live automation systems, databases, and client dashboards right inside your browser to see how we automate operations.
       </p>
       
@@ -60,9 +60,9 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
     <!-- Trust Stats Grid -->
     <div class="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto pt-10">
       {proofMetrics.slice(0, 3).map((metric) => (
-        <div class="surface-card rounded-[24px] border border-slate-200 bg-white/70 p-6 shadow-sm hover:shadow-md transition duration-200">
-          <p class="text-3xl font-extrabold text-slate-900 font-display">{metric.value}</p>
-          <p class="mt-2 text-[10px] text-slate-500 font-semibold tracking-wider uppercase font-sans">{metric.label}</p>
+        <div class="surface-card rounded-[24px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 p-6 shadow-sm hover:shadow-md transition duration-200">
+          <p class="text-3xl font-extrabold text-[color:var(--ink)] font-display">{metric.value}</p>
+          <p class="mt-2 text-[10px] text-[color:var(--muted-soft)] font-semibold tracking-wider uppercase font-sans">{metric.label}</p>
         </div>
       ))}
     </div>
@@ -77,7 +77,7 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
             'demo-filter-btn rounded-full border px-5 py-2 text-xs font-semibold font-sans tracking-wide transition cursor-pointer',
             index === 0
               ? 'border-[color:var(--accent)] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)]'
-              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-350 hover:text-slate-900',
+              : 'border-[color:var(--line)] bg-[color:var(--surface-strong)] text-[color:var(--muted)] hover:border-slate-350 hover:text-[color:var(--ink)]',
           ]}
           data-filter={category}
         >
@@ -90,7 +90,7 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
   <!-- Demos Grid Section -->
   <section class="site-shell pb-24">
     <div class="mb-8 max-w-2xl">
-      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Live Interactive Sandboxes</h2>
+      <h2 class="text-3xl font-extrabold text-[color:var(--ink)] leading-tight">Live Interactive Sandboxes</h2>
       <p class="text-xs text-slate-505 mt-2">Click any mockup to open its interactive flow, configure inputs, and trigger responses.</p>
     </div>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="demos-grid">
@@ -102,7 +102,7 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
 
         return (
           <article
-            class="demo-card surface-card overflow-hidden rounded-[32px] border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative group"
+            class="demo-card surface-card overflow-hidden rounded-[32px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative group"
             data-category={item.data.category}
           >
             <!-- Live Indicator Badge -->
@@ -113,7 +113,7 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
 
             <div class="space-y-6">
               <!-- Aspect 4:3 Image Wrapper -->
-              <div class="relative overflow-hidden aspect-[4/3] bg-slate-100/50 border-b border-slate-200">
+              <div class="relative overflow-hidden aspect-[4/3] bg-[color:var(--bg-soft)]/50 border-b border-[color:var(--line)]">
                 <SmartImage src={image} alt={item.data.title} class="h-full w-full object-cover hover:scale-[1.02] transition-transform duration-500" />
               </div>
 
@@ -121,25 +121,25 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
               <div class="px-6 pb-6 space-y-4">
                 <div class="flex flex-wrap items-center gap-1.5 font-sans">
                   <span class="chip text-[9px] font-bold capitalize">{item.data.category}</span>
-                  {tech.slice(0, 3).map((t) => <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-500 text-[9px] font-semibold">{t}</span>)}
+                  {tech.slice(0, 3).map((t) => <span class="px-2 py-0.5 rounded bg-[color:var(--bg-soft)] text-[color:var(--muted-soft)] text-[9px] font-semibold">{t}</span>)}
                 </div>
 
                 <div class="space-y-2">
                   <h3 class="text-lg font-bold text-slate-950 font-display leading-snug">{item.data.title}</h3>
-                  <p class="text-xs text-slate-600 leading-relaxed font-light line-clamp-3">{item.data.description}</p>
+                  <p class="text-xs text-[color:var(--muted)] leading-relaxed font-light line-clamp-3">{item.data.description}</p>
                 </div>
 
                 <!-- Best Use Case Highlight Box -->
-                <div class="rounded-2xl border border-slate-200/50 bg-slate-50/50 p-4 font-sans text-xs">
-                  <p class="text-[9px] uppercase tracking-wider text-slate-400 font-bold">Primary Application</p>
-                  <p class="mt-1.5 text-slate-700 leading-relaxed font-light">{item.data.use_case}</p>
+                <div class="rounded-2xl border border-[color:var(--line)]/50 bg-[color:var(--bg-soft)]/50 p-4 font-sans text-xs">
+                  <p class="text-[9px] uppercase tracking-wider text-[color:var(--meta)] font-bold">Primary Application</p>
+                  <p class="mt-1.5 text-[color:var(--muted)] leading-relaxed font-light">{item.data.use_case}</p>
                 </div>
               </div>
             </div>
 
             <!-- Card Bottom Action Links -->
-            <div class="px-6 pb-6 pt-4 border-t border-slate-100/80 flex items-center justify-between font-sans mt-auto">
-              <button class="trigger-audit-modal text-xs font-bold text-indigo-650 hover:text-indigo-850 transition cursor-pointer">
+            <div class="px-6 pb-6 pt-4 border-t border-[color:var(--line)]/80 flex items-center justify-between font-sans mt-auto">
+              <button class="trigger-audit-modal text-xs font-bold text-[color:var(--accent)] hover:text-indigo-850 transition cursor-pointer">
                 Request Similar Build
               </button>
               <a href={`/demos/${slug}/`} class="inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition shadow-sm">
@@ -153,9 +153,9 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
     </div>
 
     <!-- No results message -->
-    <div id="no-demos-msg" class="mt-10 hidden rounded-[28px] border border-slate-200 bg-white/70 p-12 text-center max-w-md mx-auto">
-      <h3 class="text-lg font-bold text-slate-900 font-display">No demo in this category yet.</h3>
-      <p class="mt-2 text-xs text-slate-500 font-light leading-relaxed">Switch filters or request a custom pipeline demo tailored to your company offer.</p>
+    <div id="no-demos-msg" class="mt-10 hidden rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 p-12 text-center max-w-md mx-auto">
+      <h3 class="text-lg font-bold text-[color:var(--ink)] font-display">No demo in this category yet.</h3>
+      <p class="mt-2 text-xs text-[color:var(--muted-soft)] font-light leading-relaxed">Switch filters or request a custom pipeline demo tailored to your company offer.</p>
     </div>
   </section>
 
@@ -173,7 +173,7 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
         <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight font-display">
           Need a Custom Sandbox Built for Your Business?
         </h2>
-        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto font-light leading-relaxed">
+        <p class="text-xs md:text-sm text-[color:var(--line)] max-w-md mx-auto font-light leading-relaxed">
           I can design a realistic interactive mockup tailored to your specific offer, database schema, and client intake journey.
         </p>
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -200,10 +200,10 @@ const categories = ['All', ...new Set(items.map((item) => item.data.category))];
     const setActiveState = (activeButton: Element) => {
       buttons.forEach((button) => {
         button.classList.remove('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]');
-        button.classList.add('border-slate-200', 'bg-white', 'text-slate-600');
+        button.classList.add('border-[color:var(--line)]', 'bg-[color:var(--surface-strong)]', 'text-[color:var(--muted)]');
       });
 
-      activeButton.classList.remove('border-slate-200', 'bg-white', 'text-slate-600');
+      activeButton.classList.remove('border-[color:var(--line)]', 'bg-[color:var(--surface-strong)]', 'text-[color:var(--muted)]');
       activeButton.classList.add('border-[color:var(--accent)]', 'bg-[color:var(--accent-soft)]', 'text-[color:var(--accent-strong)]');
     };
 

@@ -21,15 +21,15 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <h2 class="mt-4 text-3xl font-semibold leading-[1.06] text-[color:var(--ink)] sm:text-4xl">Tell me what is slowing the business down, and I will map the shortest path to a working system.</h2>
           </div>
           <div class="grid gap-3 sm:grid-cols-3">
-            <div class="rounded-[22px] border border-[color:var(--line)] bg-white/70 p-4">
+            <div class="rounded-[22px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 p-4">
               <p class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] font-sans font-bold">Response</p>
               <p class="mt-2 text-sm font-semibold text-[color:var(--ink)]">WhatsApp or email follow-up</p>
             </div>
-            <div class="rounded-[22px] border border-[color:var(--line)] bg-white/70 p-4">
+            <div class="rounded-[22px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 p-4">
               <p class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] font-sans font-bold">Scope</p>
               <p class="mt-2 text-sm font-semibold text-[color:var(--ink)]">Web, automation, AI support</p>
             </div>
-            <div class="rounded-[22px] border border-[color:var(--line)] bg-white/70 p-4">
+            <div class="rounded-[22px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 p-4">
               <p class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted-soft)] font-sans font-bold">Direct line</p>
               <p class="mt-2 text-sm font-semibold text-[color:var(--ink)] font-sans">{site.whatsapp}</p>
             </div>
@@ -48,14 +48,14 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <!-- Full Name -->
             <div>
               <label for={`name-${uniqueId}`} class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Full Name <span class="text-rose-500">*</span></label>
-              <input type="text" id={`name-${uniqueId}`} name="name" required placeholder="Haider Ali" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
+              <input type="text" id={`name-${uniqueId}`} name="name" required placeholder="Haider Ali" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
               <p data-error-for="name" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter your full name.</p>
             </div>
 
             <!-- WhatsApp Number -->
             <div>
               <label for={`whatsapp-${uniqueId}`} class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">WhatsApp Number <span class="text-rose-500">*</span></label>
-              <input type="tel" id={`whatsapp-${uniqueId}`} name="whatsapp" required placeholder="+92 300 0000000" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
+              <input type="tel" id={`whatsapp-${uniqueId}`} name="whatsapp" required placeholder="+92 300 0000000" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
               <p data-error-for="whatsapp" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter your WhatsApp number (min 8 digits).</p>
             </div>
 
@@ -63,16 +63,16 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`email-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Email Address</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-[color:var(--muted-soft)] font-semibold font-sans">Optional</span>
               </div>
-              <input type="email" id={`email-${uniqueId}`} name="email" placeholder="you@domain.com" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
+              <input type="email" id={`email-${uniqueId}`} name="email" placeholder="you@domain.com" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
               <p data-error-for="email" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please enter a valid email address.</p>
             </div>
 
             <!-- Business Type -->
             <div>
               <label for={`business_type-${uniqueId}`} class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Business Type <span class="text-rose-500">*</span></label>
-              <input type="text" id={`business_type-${uniqueId}`} name="business_type" required placeholder="Retail shop, SaaS, clinic, agency..." class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
+              <input type="text" id={`business_type-${uniqueId}`} name="business_type" required placeholder="Retail shop, SaaS, clinic, agency..." class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all" />
               <p data-error-for="business_type" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please specify your business type.</p>
             </div>
           </div>
@@ -81,13 +81,13 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
           <div class="space-y-2">
             <div class="flex items-center justify-between mb-1">
               <label class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Services Interested In</label>
-              <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
+              <span class="text-[9px] uppercase tracking-wider text-[color:var(--muted-soft)] font-semibold font-sans">Optional</span>
             </div>
             <div class="flex flex-wrap gap-2 pt-0.5">
               {["AI Chatbot", "WhatsApp Bot", "n8n Workflow", "SaaS/MVP", "Chrome Extension", "Something else"].map((srv) => (
                 <label class="cursor-pointer select-none">
                   <input type="checkbox" name="services" value={srv} class="sr-only peer" />
-                  <span class="inline-block rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-slate-700 peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans">
+                  <span class="inline-block rounded-full border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-1.5 text-xs font-medium text-[color:var(--muted)] peer-checked:border-teal-700 peer-checked:bg-teal-50 peer-checked:text-teal-800 transition-all font-sans">
                     {srv}
                   </span>
                 </label>
@@ -98,7 +98,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
           <!-- What do you want to automate? -->
           <div>
             <label for={`message-${uniqueId}`} class="mb-1.5 block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">What do you want to automate? <span class="text-rose-500">*</span></label>
-            <textarea id={`message-${uniqueId}`} name="message" rows="4" required placeholder="Describe your manual workflows, bottlenecks, or what you want the system to do. The more detail you share, the better proposal you'll get." class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm leading-relaxed text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all resize-none"></textarea>
+            <textarea id={`message-${uniqueId}`} name="message" rows="4" required placeholder="Describe your manual workflows, bottlenecks, or what you want the system to do. The more detail you share, the better proposal you'll get." class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm leading-relaxed text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all resize-none"></textarea>
             <p data-error-for="message" class="mt-1.5 hidden text-xs text-rose-500 font-sans">Please describe what you want to automate (min 15 characters).</p>
           </div>
 
@@ -108,9 +108,9 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`budget-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Budget Range</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-[color:var(--muted-soft)] font-semibold font-sans">Optional</span>
               </div>
-              <select id={`budget-${uniqueId}`} name="budget" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
+              <select id={`budget-${uniqueId}`} name="budget" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
                 <option value="">Select budget range</option>
                 <option value="Under $1,500 USD">Under $1,500 USD</option>
                 <option value="$1,500 – $3,500 USD">$1,500 – $3,500 USD</option>
@@ -124,9 +124,9 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`timeline-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">Project Timeline</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-[color:var(--muted-soft)] font-semibold font-sans">Optional</span>
               </div>
-              <select id={`timeline-${uniqueId}`} name="timeline" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
+              <select id={`timeline-${uniqueId}`} name="timeline" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
                 <option value="">Select timeline</option>
                 <option value="As soon as possible">As soon as possible</option>
                 <option value="Within 1 month">Within 1 month</option>
@@ -139,9 +139,9 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for={`referral-${uniqueId}`} class="block text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted-soft)] font-sans font-bold">How did you find us?</label>
-                <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold font-sans">Optional</span>
+                <span class="text-[9px] uppercase tracking-wider text-[color:var(--muted-soft)] font-semibold font-sans">Optional</span>
               </div>
-              <select id={`referral-${uniqueId}`} name="referral" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-white px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
+              <select id={`referral-${uniqueId}`} name="referral" class="w-full rounded-[14px] sm:rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-3.5 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm text-[color:var(--ink)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)] font-sans transition-all">
                 <option value="">Select source</option>
                 <option value="Google Search">Google Search</option>
                 <option value="Twitter/X">Twitter/X</option>
@@ -169,7 +169,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
           </div>
         </form>
 
-        <div class="form-error-alert mt-6 hidden rounded-[22px] border border-rose-100 bg-rose-50/50 p-4 text-xs text-slate-600 font-sans">
+        <div class="form-error-alert mt-6 hidden rounded-[22px] border border-rose-100 bg-rose-50/50 p-4 text-xs text-[color:var(--muted)] font-sans">
           <h4 class="font-bold text-rose-700">Connection failed. Please try again.</h4>
           <p class="mt-1">If the form still fails, email <a href={`mailto:${site.email}`} class="font-semibold text-[color:var(--accent-strong)] hover:underline">{site.email}</a> or send the brief on WhatsApp.</p>
         </div>
@@ -182,7 +182,7 @@ const whatsappPrefillDefault = `${site.whatsappLink}?text=${encodeURIComponent('
         </div>
         <div class="space-y-2">
           <h3 class="text-xl sm:text-2xl font-bold text-slate-955 font-display">System Brief Received!</h3>
-          <p class="text-xs sm:text-sm text-slate-655 leading-relaxed font-light font-sans max-w-sm mx-auto">
+          <p class="text-xs sm:text-sm text-[color:var(--muted)] leading-relaxed font-light font-sans max-w-sm mx-auto">
             Your project details have been successfully synced to our Supabase database. Lead engineer <strong>Haider Ali</strong> will review your manual bottlenecks and respond with a tailored workflow proposal within 4 hours.
           </p>
         </div>

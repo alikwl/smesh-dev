@@ -18,14 +18,14 @@ const menuItems = [
 ];
 ---
 
-<header id="site-navigation" class="sticky top-0 z-50 border-b border-transparent bg-white/80 backdrop-blur-md transition-all duration-300">
+<header id="site-navigation" class="sticky top-0 z-50 border-b border-transparent bg-[color:var(--bg-soft)]/80 backdrop-blur-md transition-all duration-300">
   <div class="site-shell">
     <div class="flex min-h-[64px] items-center justify-between gap-4">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2.5">
         <img src="/assets/logo.webp" alt="Smesh.Dev logo" class="h-8 w-8 object-contain" width="32" height="32" />
         <div>
-          <div class="font-display text-[1.1rem] font-bold leading-none text-slate-900">Smesh.Dev</div>
+          <div class="font-display text-[1.1rem] font-bold leading-none text-[color:var(--ink)]">Smesh.Dev</div>
           <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-semibold font-sans">Automation Studio</div>
         </div>
       </a>
@@ -38,8 +38,8 @@ const menuItems = [
             class:list={[
               'rounded-xl px-3 py-1.5 text-[11px] xl:px-4 xl:py-2 xl:text-xs font-semibold tracking-wide transition-all duration-200',
               isActive(item.url)
-                ? 'bg-slate-900 text-white shadow-xs'
-                : 'text-slate-600 hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--accent-strong)]',
+                ? 'bg-[color:var(--accent-strong)] text-white shadow-xs'
+                : 'text-[color:var(--muted)] hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--accent-strong)]',
             ]}
           >
             {item.name}
@@ -56,7 +56,7 @@ const menuItems = [
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobile-nav-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-slate-200 bg-white text-slate-800 lg:hidden" aria-controls="mobile-nav-menu" aria-expanded="false" aria-label="Open main menu">
+      <button id="mobile-nav-btn" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface)] text-[color:var(--ink)] lg:hidden" aria-controls="mobile-nav-menu" aria-expanded="false" aria-label="Open main menu">
         <span class="sr-only">Open main menu</span>
         <span id="nav-menu-icon" class="flex h-5 w-5 flex-col items-center justify-center gap-[3.5px]">
           <span class="block h-[1.8px] w-5 rounded-full bg-current"></span>
@@ -72,11 +72,11 @@ const menuItems = [
   </div>
 
   <!-- Mobile Nav Overlay Menu -->
-  <div id="mobile-nav-menu" class="hidden border-t border-slate-100 bg-white lg:hidden">
+  <div id="mobile-nav-menu" class="hidden border-t border-[color:var(--line)] bg-[color:var(--bg-soft)] lg:hidden">
     <div class="site-shell py-5 space-y-4 font-sans">
       <div class="grid gap-2">
         {menuItems.map((item) => (
-          <a href={item.url} class={`block rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${isActive(item.url) ? 'bg-slate-900 text-white shadow-xs' : 'bg-slate-50 text-slate-600 hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--accent-strong)]'}`}>
+          <a href={item.url} class={`block rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${isActive(item.url) ? 'bg-[color:var(--accent-strong)] text-white shadow-xs' : 'bg-[color:var(--surface)] text-[color:var(--muted)] hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--accent-strong)]'}`}>
             {item.name}
           </a>
         ))}
@@ -93,9 +93,9 @@ const menuItems = [
 </header>
 
 <!-- Audit Modal Container -->
-<div id="audit-modal" role="dialog" aria-modal="true" aria-label="Request a Free Tech Audit Form" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-all duration-300">
-  <div class="bg-white rounded-[24px] sm:rounded-[32px] max-w-3xl w-full border border-slate-100 shadow-2xl relative scale-95 transition-all duration-300 flex flex-col overflow-hidden max-h-[92vh] sm:max-h-[90vh]">
-    <button id="close-audit-modal" class="absolute top-4 right-4 z-20 p-2 rounded-xl text-slate-450 hover:bg-slate-50 hover:text-slate-800 transition cursor-pointer bg-white/80 backdrop-blur-xs shadow-xs border border-slate-100/50" aria-label="Close modal">
+<div id="audit-modal" role="dialog" aria-modal="true" aria-label="Request a Free Tech Audit Form" class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-4 bg-[color:var(--ink)]/60 backdrop-blur-sm opacity-0 transition-all duration-300">
+  <div class="bg-[color:var(--surface)] rounded-[24px] sm:rounded-[32px] max-w-3xl w-full border border-[color:var(--line)] shadow-2xl relative scale-95 transition-all duration-300 flex flex-col overflow-hidden max-h-[92vh] sm:max-h-[90vh]">
+    <button id="close-audit-modal" class="absolute top-4 right-4 z-20 p-2 rounded-xl text-[color:var(--muted)] hover:bg-[color:var(--bg-soft)] hover:text-[color:var(--ink)] transition cursor-pointer bg-[color:var(--surface-strong)]/80 backdrop-blur-xs shadow-xs border border-[color:var(--line)]" aria-label="Close modal">
       <i data-lucide="x" class="w-4 h-4"></i>
     </button>
     <div class="overflow-y-auto p-5 sm:p-8 md:p-10">
@@ -121,8 +121,8 @@ const menuItems = [
       if (!header) return;
       const scrolled = window.scrollY > 15;
       header.classList.toggle('shadow-[0_8px_30px_rgba(15,23,42,0.06)]', scrolled);
-      header.classList.toggle('border-slate-100', scrolled);
-      header.classList.toggle('bg-white/95', scrolled);
+      header.classList.toggle('border-[color:var(--line)]', scrolled);
+      header.classList.toggle('bg-[color:var(--bg-soft)]/95', scrolled);
     };
 
     window.addEventListener('scroll', updateHeader, { passive: true });
@@ -161,14 +161,14 @@ const menuItems = [
       auditModal.classList.add('flex');
       setTimeout(() => {
         auditModal.classList.remove('opacity-0');
-        auditModal.querySelector('.bg-white')?.classList.remove('scale-95');
+        auditModal.querySelector('.bg-[color:var(--surface-strong)]')?.classList.remove('scale-95');
       }, 10);
     };
 
     const closeModal = () => {
       if (!auditModal) return;
       auditModal.classList.add('opacity-0');
-      auditModal.querySelector('.bg-white')?.classList.add('scale-95');
+      auditModal.querySelector('.bg-[color:var(--surface-strong)]')?.classList.add('scale-95');
       setTimeout(() => {
         auditModal.classList.remove('flex');
         auditModal.classList.add('hidden');

@@ -5,22 +5,34 @@
 @tailwind utilities;
 
 :root {
-  --bg: #f3efe6;
-  --bg-soft: #fbf8f2;
-  --surface: rgba(255, 251, 245, 0.97);
-  --surface-strong: #fffefb;
-  --line: rgba(44, 44, 38, 0.12);
-  --line-strong: rgba(44, 44, 38, 0.2);
-  --ink: #171713;
-  --muted: #5c5a52;
-  --muted-soft: #615e56;
-  --accent: #0f766e;
-  --accent-strong: #115e59;
-  --accent-soft: rgba(15, 118, 110, 0.12);
-  --shadow: 0 18px 60px rgba(18, 26, 22, 0.08);
-  --radius-lg: 24px;
-  --radius-md: 18px;
-  --radius-sm: 12px;
+  --bg: #ffffff;
+  --bg-soft: #f5f5f7;
+  --surface: #f5f5f7;
+  --surface-warm: #fbfbfd;
+  --surface-strong: #ffffff;
+  --line: #e8e8ed;
+  --line-strong: #d2d2d7;
+  --border: #d2d2d7;
+  --border-soft: #e8e8ed;
+  --ink: #1d1d1f;
+  --muted: #424245;
+  --muted-soft: #6e6e73;
+  --meta: #86868b;
+  --accent: #0071e3;
+  --accent-strong: #0066cc;
+  --accent-soft: rgba(0, 113, 227, 0.08);
+  --accent-on: #ffffff;
+  --accent-hover: #0077ed;
+  --accent-active: #0066cc;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 980px;
+
+  --font-display: "SF Pro Display", "SF Pro Icons", "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "SF Pro Text", "SF Pro Icons", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
 }
 
 html {
@@ -29,11 +41,11 @@ html {
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-body);
   overflow-x: hidden;
   background:
-    radial-gradient(circle at top left, rgba(15, 118, 110, 0.06), transparent 24%),
-    radial-gradient(circle at top right, rgba(15, 118, 110, 0.04), transparent 18%),
+    radial-gradient(circle at top left, rgba(0, 113, 227, 0.03), transparent 24%),
+    radial-gradient(circle at top right, rgba(0, 113, 227, 0.02), transparent 18%),
     var(--bg);
   color: var(--ink);
 }
@@ -44,8 +56,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Sora', sans-serif;
-  letter-spacing: -0.04em;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -82,42 +94,42 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid rgba(15, 118, 110, 0.45);
+  outline: 2px solid rgba(0, 113, 227, 0.45);
   outline-offset: 3px;
   border-radius: 8px;
 }
 
 ::selection {
-  background: rgba(15, 118, 110, 0.16);
+  background: rgba(0, 113, 227, 0.16);
 }
 
 @layer components {
   .site-shell {
-    @apply mx-auto w-full max-w-[1240px] px-4 sm:px-5 lg:px-6;
+    @apply mx-auto w-full max-w-[1024px] px-4 sm:px-5 lg:px-6;
   }
 
   .section-kicker {
     @apply inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em];
-    color: var(--accent-strong);
-    border-color: rgba(15, 118, 110, 0.16);
+    color: var(--accent);
+    border-color: rgba(0, 113, 227, 0.16);
     background: rgba(255, 255, 255, 0.62);
   }
 
   .display-title {
-    @apply text-[2.15rem] font-semibold leading-[1] sm:text-[2.7rem] lg:text-[3.15rem] xl:text-[3.45rem];
+    @apply text-[2.15rem] font-semibold leading-[1.05] sm:text-[2.7rem] lg:text-[3.15rem] xl:text-[3.45rem] tracking-tight;
   }
 
   .section-title {
-    @apply text-[1.45rem] font-semibold leading-[1.08] sm:text-[1.8rem];
+    @apply text-[1.45rem] font-semibold leading-[1.08] sm:text-[1.8rem] tracking-tight;
   }
 
   .body-copy {
-    @apply text-[13px] leading-[1.75] md:text-[14px];
+    @apply text-[14px] leading-[1.47] md:text-[15px];
     color: var(--muted);
   }
 
   .ambient-panel {
-    background: var(--surface);
+    background: var(--surface-warm);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid var(--line);
@@ -132,13 +144,13 @@ body {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .surface-card {
     background: var(--surface-strong);
     border: 1px solid var(--line);
-    box-shadow: 0 14px 36px rgba(18, 26, 22, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
   }
 
   .surface-card-hover {
@@ -147,33 +159,34 @@ body {
 
   .surface-card-hover:hover {
     transform: translateY(-2px);
-    box-shadow: 0 18px 36px rgba(18, 26, 22, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-[14px] px-4 py-2.5 text-[13px] font-semibold text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold text-white transition-all;
     background: var(--accent);
-    box-shadow: 0 10px 24px rgba(15, 118, 110, 0.16);
+    box-shadow: 0 10px 24px rgba(0, 113, 227, 0.16);
   }
 
   .button-primary:hover {
-    background: var(--accent-strong);
+    background: var(--accent-hover);
     transform: translateY(-1px);
   }
 
   .button-primary:active {
+    background: var(--accent-active);
     transform: translateY(1px);
   }
 
   .button-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-[14px] px-4 py-2.5 text-[13px] font-semibold;
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--ink);
-    border: 1px solid var(--line);
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold transition-all;
+    background: var(--surface);
+    color: var(--accent);
+    border: 1px solid transparent;
   }
 
   .button-secondary:hover {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--line-strong);
     transform: translateY(-1px);
   }
 
@@ -198,7 +211,7 @@ body {
 
   .eyebrow-link {
     @apply inline-flex items-center gap-2 text-sm font-semibold;
-    color: var(--accent-strong);
+    color: var(--accent);
   }
 
   .stack-list {
@@ -206,16 +219,16 @@ body {
   }
 
   .stack-list > li {
-    @apply flex items-start gap-3 rounded-[16px] border px-3 py-2.5 text-[13px] leading-6;
+    @apply flex items-start gap-3 rounded-[12px] border px-3 py-2.5 text-[13px] leading-6;
     border-color: var(--line);
-    background: rgba(255, 255, 255, 0.78);
+    background: var(--surface-warm);
     color: var(--muted);
   }
 
   .metric-strip {
-    @apply rounded-[16px] border p-3.5 md:p-4;
+    @apply rounded-[12px] border p-3.5 md:p-4;
     border-color: var(--line);
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(251, 248, 242, 0.88));
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 247, 0.88));
   }
 
   .metric-strip-value {
@@ -229,9 +242,9 @@ body {
   }
 
   .soft-mini-card {
-    @apply flex items-start gap-3 rounded-[14px] border p-3;
+    @apply flex items-start gap-3 rounded-[12px] border p-3;
     border-color: var(--line);
-    background: rgba(255, 255, 255, 0.72);
+    background: var(--surface-warm);
   }
 
   .icon-frame {
@@ -319,9 +332,9 @@ body {
 
   .back-to-top {
     @apply fixed bottom-5 left-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border text-[color:var(--ink)] opacity-0 pointer-events-none transition-all duration-300;
-    background: rgba(255, 255, 255, 0.92);
+    background: var(--surface-strong);
     border-color: var(--line);
-    box-shadow: 0 16px 34px rgba(18, 26, 22, 0.12);
+    box-shadow: var(--shadow);
   }
 
   .back-to-top.is-visible {
@@ -335,7 +348,7 @@ body {
 
   .prose-shell {
     max-width: none;
-    color: #4d4a42;
+    color: var(--muted);
   }
 
   .prose-shell > * + * {
@@ -345,32 +358,33 @@ body {
   .prose-shell h2,
   .prose-shell h3,
   .prose-shell h4 {
-    color: #171713;
-    font-family: 'Sora', sans-serif;
-    line-height: 1.15;
+    color: var(--ink);
+    font-family: var(--font-display);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
   }
 
   .prose-shell h2 {
     font-size: 1.65rem;
-    margin-top: 2rem;
+    margin-top: 2.2rem;
   }
 
   .prose-shell h3 {
     font-size: 1.3rem;
-    margin-top: 1.75rem;
+    margin-top: 1.85rem;
   }
 
   .prose-shell p,
   .prose-shell li {
     font-size: 0.98rem;
-    line-height: 1.9;
-    color: #4d4a42;
+    line-height: 1.47;
+    color: var(--muted);
   }
 
   .prose-shell a {
-    color: #115e59;
+    color: var(--accent-strong);
     text-decoration: underline;
-    text-decoration-color: rgba(15, 118, 110, 0.35);
+    text-decoration-color: rgba(0, 113, 227, 0.35);
     text-underline-offset: 0.18em;
   }
 
@@ -388,18 +402,18 @@ body {
   }
 
   .prose-shell li::marker {
-    color: rgba(15, 118, 110, 0.72);
+    color: var(--accent);
   }
 
   .prose-shell strong {
-    color: #171713;
-    font-weight: 700;
+    color: var(--ink);
+    font-weight: 600;
   }
 
   .prose-shell blockquote {
-    border-left: 3px solid rgba(15, 118, 110, 0.28);
+    border-left: 3px solid var(--line-strong);
     padding-left: 1rem;
-    color: #5c5a52;
+    color: var(--muted-soft);
   }
 }
 

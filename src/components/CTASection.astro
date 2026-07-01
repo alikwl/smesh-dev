@@ -14,7 +14,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-16 md:py-24 bg-white">
+<section class="py-16 md:py-24 bg-[color:var(--surface-strong)]">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="bg-gradient-to-br from-indigo-500 via-blue-500 to-emerald-500 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
       <!-- Decorative pattern background -->
@@ -27,14 +27,14 @@ const {
             {description}
           </p>
           <div class="mt-6">
-            <a href={ctaLink} class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-indigo-700 bg-white hover:bg-slate-50 shadow-md hover:shadow-lg transition-all duration-200">
+            <a href={ctaLink} class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-lg text-[color:var(--accent-strong)] bg-[color:var(--surface-strong)] hover:bg-[color:var(--bg-soft)] shadow-md hover:shadow-lg transition-all duration-200">
               {ctaText}
               <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
             </a>
           </div>
         </div>
         
-        <div class="bg-white/10 rounded-2xl p-6 border border-white/20 backdrop-blur-sm space-y-4">
+        <div class="bg-[color:var(--surface)]/10 rounded-2xl p-6 border border-white/20 backdrop-blur-sm space-y-4">
           <h3 class="text-lg font-bold font-display text-white">Our 4-Step Process</h3>
           <ol class="space-y-3 text-xs text-white/90">
             <li class="flex items-start">

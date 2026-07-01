@@ -278,12 +278,12 @@ const pageTitle = `${cleanTitle} — Free Download`;
           <!-- Left Column (Value Proposition) -->
           <div class="space-y-6">
             <!-- Breadcrumbs -->
-            <nav class="text-[11px] sm:text-xs text-slate-455 flex flex-wrap items-center gap-y-1 gap-x-1.5 select-none font-sans" aria-label="Breadcrumb">
-              <a href="/resources/" class="hover:text-indigo-650 transition shrink-0">Resources</a>
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-slate-300 shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              <span class="shrink-0">{category}s</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-slate-300 shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              <span class="text-slate-655 font-semibold truncate min-w-0 max-w-[130px] xs:max-w-[180px] sm:max-w-[260px] md:max-w-xs">{cleanTitle}</span>
+            <nav class="text-[11px] sm:text-xs text-[color:var(--muted)] flex flex-wrap items-center gap-y-1 gap-x-1.5 select-none font-sans" aria-label="Breadcrumb">
+              <a href="/resources/" class="hover:text-[color:var(--accent)] transition shrink-0">Resources</a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-[color:var(--line)] shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              <span class="shrink-0">{category}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-[color:var(--line)] shrink-0"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              <span class="text-[color:var(--ink)] font-semibold truncate min-w-0 max-w-[130px] xs:max-w-[180px] sm:max-w-[260px] md:max-w-xs">{cleanTitle}</span>
             </nav>
 
             <!-- Free Resource Badge -->
@@ -292,32 +292,31 @@ const pageTitle = `${cleanTitle} — Free Download`;
             </div>
 
             <!-- Title -->
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[color:var(--ink)] tracking-tight leading-tight">
               {cleanTitle}
             </h1>
 
-            <!-- Author Meta Info -->
-            <div class="flex items-center gap-3 py-3 border-y border-slate-100 font-sans text-xs text-slate-500 my-4">
+            <!-- Author Meta Info            <div class="flex items-center gap-3 py-3 border-y border-[color:var(--line)] font-sans text-xs text-[color:var(--muted)] my-4">
               <img 
                 src="/assets/images/resources/author-haider-ali.webp" 
                 alt="Haider Ali Avatar" 
-                class="w-8 h-8 rounded-full border border-slate-200 object-cover"
+                class="w-8 h-8 rounded-full border border-[color:var(--line)] object-cover"
               />
               <div>
-                <div class="flex items-center gap-1.5 font-bold text-slate-900">
+                <div class="flex items-center gap-1.5 font-bold text-[color:var(--ink)]">
                   <span>{author}</span>
-                  <span class="text-slate-350">&bull;</span>
+                  <span class="text-[color:var(--line-strong)]">&bull;</span>
                   <span class="text-[9px] bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] px-2 py-0.5 rounded">Lead Developer</span>
                 </div>
                 {datePublished && (
-                  <div class="mt-0.5 text-[9px] text-slate-400">
+                  <div class="mt-0.5 text-[9px] text-[color:var(--muted-soft)]">
                     Released on {formatDate(datePublished)} {dateModified && `&bull; Updated on ${formatDate(dateModified)}`}
                   </div>
                 )}
               </div>
             </div>
 
-            <p class="text-sm sm:text-base leading-relaxed text-slate-650 font-light max-w-xl">
+            <p class="text-sm sm:text-base leading-relaxed text-[color:var(--muted)] font-light max-w-xl">
               {description}
             </p>
 
@@ -338,9 +337,9 @@ const pageTitle = `${cleanTitle} — Free Download`;
           </div>
 
           <!-- Right Column (Visual Proof & Lock Status overlay) -->
-          <div class="ambient-panel rounded-3xl p-4 border border-[color:var(--line)] bg-white/40 backdrop-blur-md shadow-lg overflow-hidden">
+          <div class="ambient-panel rounded-3xl p-4 border border-[color:var(--line)] bg-[color:var(--surface)]/40 backdrop-blur-md shadow-lg overflow-hidden">
             <!-- Image / Mockup Preview -->
-            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] bg-slate-950 flex items-center justify-center border border-slate-100">
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] bg-[color:var(--bg-soft)] flex items-center justify-center border border-[color:var(--line)]">
               <img 
                 src={previewImage || "/assets/images/placeholder.png"} 
                 alt={`${cleanTitle} Mockup Preview`} 
@@ -358,25 +357,25 @@ const pageTitle = `${cleanTitle} — Free Download`;
     </section>
 
     <!-- Middle Section: Inside the Vault (Deep-Dive content) -->
-    <section class="py-16 bg-slate-50/20 border-t border-[color:var(--line)]">
+    <section class="py-16 bg-[color:var(--bg-soft)]/20 border-t border-[color:var(--line)]">
       <div class="site-shell">
         <div class="max-w-3xl mx-auto space-y-8">
           
           <div class="space-y-2 mb-2 max-w-xl">
             <span class="section-kicker">Resource Vault</span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">System Outlines & Snippets</h2>
-            <p class="text-xs text-slate-550 font-light leading-relaxed font-sans">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] tracking-tight">Outlines & Snippets</h2>
+            <p class="text-xs text-[color:var(--muted)] font-light leading-relaxed font-sans">
               Here is the chapter outline and structured content within this premium integration file.
             </p>
           </div>
 
           <!-- Gated Vault Container (renders the teaser and the ResourceGate component inside the MDX) -->
-          <div class="relative rounded-[32px] border border-[color:var(--line)] bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-lg" id="gated-vault-container">
+          <div class="relative rounded-[32px] border border-[color:var(--line)] bg-[color:var(--surface)] backdrop-blur-md p-6 sm:p-10 shadow-lg" id="gated-vault-container">
             <div class="content-body prose max-w-[72ch] mx-auto px-4 py-6 sm:px-6 md:px-8">
               {tableOfContents && tableOfContents.length > 0 && (
                 <div class="mb-8 font-sans">
-                  <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">Table of Contents:</h3>
-                  <ol class="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-slate-655">
+                  <h3 class="text-xs font-bold text-[color:var(--ink)] uppercase tracking-wider mb-3">Table of Contents:</h3>
+                  <ol class="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-[color:var(--muted)]">
                     {tableOfContents.map((item) => (
                       <li>
                         <strong>{item}</strong>
@@ -387,15 +386,15 @@ const pageTitle = `${cleanTitle} — Free Download`;
               )}
 
               {excerpt && (
-                <div class="mb-8 font-sans border-t border-slate-100 pt-6">
-                  <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">📄 Excerpt: Chapter 1 Preview</h3>
-                  <p class="text-xs sm:text-sm text-slate-655 font-light leading-relaxed">{excerpt}</p>
+                <div class="mb-8 font-sans border-t border-[color:var(--line)] pt-6">
+                  <h3 class="text-xs font-bold text-[color:var(--ink)] uppercase tracking-wider mb-3">📄 Excerpt: Chapter 1 Preview</h3>
+                  <p class="text-xs sm:text-sm text-[color:var(--muted)] font-light leading-relaxed">{excerpt}</p>
                 </div>
               )}
 
               <!-- System Content -->
               {lockedHtml && (
-                <div id="locked-content-vault" class="border-t border-dashed border-slate-200 pt-8 mt-12 animate-fade-in">
+                <div id="locked-content-vault" class="border-t border-dashed border-[color:var(--line)] pt-8 mt-12 animate-fade-in">
                   <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider font-sans select-none mb-6">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     System Blueprint
@@ -424,19 +423,19 @@ const pageTitle = `${cleanTitle} — Free Download`;
 
           <!-- Resource FAQ Accordion -->
           <div class="pt-12 border-t border-[color:var(--line)]">
-            <h3 class="text-xl font-bold text-slate-900 mb-6 font-display">Frequently Asked Questions</h3>
+            <h3 class="text-xl font-bold text-[color:var(--ink)] mb-6 font-display">Frequently Asked Questions</h3>
             <div class="space-y-4">
               {faqSchema.mainEntity.map((faq) => (
-                <details class="group border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
-                  <summary class="flex items-center justify-between font-sans text-xs font-semibold text-slate-900 cursor-pointer list-none py-3.5">
+                <details class="group border border-[color:var(--line)] bg-[color:var(--surface)] backdrop-blur-md rounded-2xl p-5 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+                  <summary class="flex items-center justify-between font-sans text-xs font-semibold text-[color:var(--ink)] cursor-pointer list-none py-3.5">
                     <span>{faq.name}</span>
-                    <span class="ml-1.5 shrink-0 rounded-full bg-slate-100 p-1 group-open:rotate-180 transition duration-300">
+                    <span class="ml-1.5 shrink-0 rounded-full bg-[color:var(--bg-soft)] p-1 group-open:rotate-180 transition duration-300">
                       <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m6 9 6 6 6-6"/>
                       </svg>
                     </span>
                   </summary>
-                  <p class="mt-3 leading-relaxed text-[11px] text-slate-655 font-light font-sans border-t border-slate-100 pt-3">
+                  <p class="mt-3 leading-relaxed text-[11px] text-[color:var(--muted)] font-light font-sans border-t border-[color:var(--line)] pt-3">
                     {faq.acceptedAnswer.text}
                   </p>
                 </details>

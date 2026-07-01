@@ -14,7 +14,7 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
     <!-- Download Card Container -->
     <div 
       id="gate-card" 
-      class="ambient-panel rounded-3xl p-6 sm:p-10 border border-[color:var(--line)] bg-white/60 backdrop-blur-md shadow-xl transition-all duration-300 flex flex-col items-center text-center space-y-4"
+      class="ambient-panel rounded-3xl p-6 sm:p-10 border border-[color:var(--line)] bg-[color:var(--surface)]/60 backdrop-blur-md shadow-xl transition-all duration-300 flex flex-col items-center text-center space-y-4"
     >
       <!-- Icon Container -->
       <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100/50 text-[color:var(--accent)] flex items-center justify-center shrink-0 shadow-sm">
@@ -43,7 +43,7 @@ const { slug, resourceTitle, downloadUrl = '#' } = Astro.props;
 
       <!-- Trust/Info Lines -->
       <div class="space-y-1 pt-2 border-t border-[color:var(--line)] w-full">
-        <span class="text-[10px] text-slate-400 font-light flex items-center gap-1.5 justify-center">
+        <span class="text-[10px] text-[color:var(--meta)] font-light flex items-center gap-1.5 justify-center">
           ✓ Verified Production Run Blueprint
         </span>
       </div>

@@ -49,22 +49,22 @@ const postImageMap: Record<string, string> = {
         <span class="px-3.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent-strong)] text-xs font-bold uppercase tracking-wider font-sans">
           BismillahTC Systems Academy
         </span>
-        <h1 class="display-title text-slate-900 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08] font-display">
+        <h1 class="display-title text-[color:var(--ink)] text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08] font-display">
           Master Workflow Automation: Free Blueprints & Guides
         </h1>
-        <p class="body-copy text-base text-slate-655 leading-relaxed font-light">
+        <p class="body-copy text-base text-[color:var(--muted)] leading-relaxed font-light">
           Get actionable tutorials, custom n8n configurations, and Supabase integration guides written to eliminate administrative overhead from your operations.
         </p>
 
         <!-- Newsletter Subscription Form -->
         <div class="pt-4 space-y-3 font-sans">
-          <p class="text-xs font-semibold text-slate-500">Join 10,000+ founders and operators receiving weekly blueprints</p>
+          <p class="text-xs font-semibold text-[color:var(--muted-soft)]">Join 10,000+ founders and operators receiving weekly blueprints</p>
           <form id="blog-subscribe-form" class="flex flex-col sm:flex-row gap-3 max-w-lg">
             <input 
               type="email" 
               required 
               placeholder="Enter your work email" 
-              class="flex-grow rounded-xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)]"
+              class="flex-grow rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-strong)] px-4 py-3 text-sm text-[color:var(--ink)] placeholder:text-[color:var(--muted-soft)] focus:border-[color:var(--accent)] focus:outline-none focus:ring-4 focus:ring-[rgba(15,118,110,0.12)]"
             />
             <button type="submit" class="button-primary px-6 py-3 rounded-xl text-sm font-bold shadow-md cursor-pointer shrink-0">
               Subscribe Free
@@ -77,19 +77,19 @@ const postImageMap: Record<string, string> = {
       </div>
 
       <!-- Right Featured Offer Lead Magnet Card -->
-      <aside class="ambient-panel rounded-[32px] p-6 md:p-8 border border-slate-200 bg-white/70 backdrop-blur-md shadow-md space-y-6" aria-label="Featured Lead Magnet Download">
+      <aside class="ambient-panel rounded-[32px] p-6 md:p-8 border border-[color:var(--line)] bg-[color:var(--surface)]/70 backdrop-blur-md shadow-md space-y-6" aria-label="Featured Lead Magnet Download">
         <div class="flex items-center justify-between font-sans">
           <span class="chip bg-amber-50 border border-amber-100/50 text-amber-700 text-[9px] font-bold uppercase tracking-wider">Free Checklist ⭐</span>
-          <span class="text-[9px] font-mono text-slate-400">PDF + Workflow JSON</span>
+          <span class="text-[9px] font-mono text-[color:var(--meta)]">PDF + Workflow JSON</span>
         </div>
         <div class="space-y-3">
-          <h2 class="text-xl font-bold text-slate-900 leading-snug font-display">The Ultimate n8n & Supabase Lead Funnel Blueprint</h2>
-          <p class="text-xs text-slate-550 leading-relaxed font-light">
+          <h2 class="text-xl font-bold text-[color:var(--ink)] leading-snug font-display">The Ultimate n8n & Supabase Lead Funnel Blueprint</h2>
+          <p class="text-xs text-[color:var(--muted-soft)] leading-relaxed font-light">
             Download our step-by-step setup guide and importable JSON file to capture leads from WhatsApp, run RAG matching, and sync them directly to your Supabase tables.
           </p>
         </div>
-        <div class="pt-4 border-t border-slate-100 font-sans flex items-center justify-between">
-          <span class="text-[10px] text-slate-450">Includes standard webhooks</span>
+        <div class="pt-4 border-t border-[color:var(--line)] font-sans flex items-center justify-between">
+          <span class="text-[10px] text-[color:var(--muted-soft)]">Includes standard webhooks</span>
           <button class="trigger-audit-modal inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer">
             Get Blueprint
           </button>
@@ -107,26 +107,26 @@ const postImageMap: Record<string, string> = {
         const image = featuredPost.cover_image || postImageMap[slug] || '/assets/images/placeholder.webp';
         const readTime = featuredPost.reading_time || estimateReadTime(featuredPost.content);
         return (
-          <article class="surface-card rounded-[32px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] hover:shadow-md transition duration-300">
+          <article class="surface-card rounded-[32px] overflow-hidden border border-[color:var(--line)] bg-[color:var(--surface-strong)] shadow-sm flex flex-col lg:grid lg:grid-cols-[1.1fr_0.9fr] hover:shadow-md transition duration-300">
             <div class="relative overflow-hidden aspect-[16/10] lg:aspect-auto lg:h-full min-h-[300px]">
               <SmartImage src={image} alt={featuredPost.title} class="w-full h-full object-cover" />
             </div>
             <div class="p-8 md:p-12 flex flex-col justify-between space-y-6">
               <div class="space-y-4">
                 <div class="flex items-center gap-3 font-sans">
-                  <span class="chip bg-indigo-50 border border-indigo-100/50 text-indigo-700 text-[10px] font-bold capitalize">{featuredPost.category}</span>
-                  <span class="text-slate-400 text-[10px] font-medium">&bull;</span>
-                  <span class="text-slate-400 text-[10px] font-medium">{readTime} min read</span>
+                  <span class="chip bg-indigo-50 border border-indigo-100/50 text-[color:var(--accent-strong)] text-[10px] font-bold capitalize">{featuredPost.category}</span>
+                  <span class="text-[color:var(--meta)] text-[10px] font-medium">&bull;</span>
+                  <span class="text-[color:var(--meta)] text-[10px] font-medium">{readTime} min read</span>
                 </div>
                 <h2 class="text-2xl md:text-3xl font-extrabold text-slate-955 leading-tight hover:text-[color:var(--accent-strong)] transition font-display">
                   <a href={`/blog/${slug}/`}>{featuredPost.title}</a>
                 </h2>
-                <p class="text-xs md:text-sm text-slate-550 leading-relaxed font-light line-clamp-3">
+                <p class="text-xs md:text-sm text-[color:var(--muted-soft)] leading-relaxed font-light line-clamp-3">
                   {featuredPost.excerpt}
                 </p>
               </div>
-              <div class="font-sans flex items-center justify-between border-t border-slate-100 pt-6">
-                <span class="text-[10px] text-slate-400 font-semibold">{formatDate(new Date(featuredPost.published_at))}</span>
+              <div class="font-sans flex items-center justify-between border-t border-[color:var(--line)] pt-6">
+                <span class="text-[10px] text-[color:var(--meta)] font-semibold">{formatDate(new Date(featuredPost.published_at))}</span>
                 <a href={`/blog/${slug}/`} class="inline-flex h-10 px-5 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition">
                   Read Article
                 </a>
@@ -139,22 +139,22 @@ const postImageMap: Record<string, string> = {
   )}
 
   <!-- Section 3: Topic Categories Grid (The AI Explorer) -->
-  <section class="site-shell py-8 border-t border-slate-200/50" aria-label="Topic Navigation Filter">
+  <section class="site-shell py-8 border-t border-[color:var(--line)]/50" aria-label="Topic Navigation Filter">
     <div class="text-center max-w-2xl mx-auto mb-8 font-sans">
-      <h2 class="text-3xl font-extrabold text-slate-900 leading-tight font-display">All Engineering Articles</h2>
-      <p class="text-xs text-slate-500 mt-2">Deep dives, blueprints, and strategies on automation systems.</p>
+      <h2 class="text-3xl font-extrabold text-[color:var(--ink)] leading-tight font-display">All Engineering Articles</h2>
+      <p class="text-xs text-[color:var(--muted-soft)] mt-2">Deep dives, blueprints, and strategies on automation systems.</p>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-3">
       <button 
         data-filter="all" 
-        class="category-btn active px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition cursor-pointer font-sans"
+        class="category-btn active px-4 py-2 text-xs font-semibold rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-strong)] hover:bg-[color:var(--bg-soft)] transition cursor-pointer font-sans"
       >
         All Articles
       </button>
       {categories.map((category) => (
         <button 
           data-filter={category.toLowerCase().replace(/\s+/g, '-')} 
-          class="category-btn px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition cursor-pointer font-sans"
+          class="category-btn px-4 py-2 text-xs font-semibold rounded-xl border border-[color:var(--line)] bg-[color:var(--surface-strong)] hover:bg-[color:var(--bg-soft)] transition cursor-pointer font-sans"
         >
           #{category}
         </button>
@@ -174,7 +174,7 @@ const postImageMap: Record<string, string> = {
           return (
             <article 
               data-category={filterTag} 
-              class="post-card surface-card rounded-[28px] overflow-hidden border border-slate-200 bg-white shadow-sm flex flex-col justify-between hover:shadow-md transition duration-300"
+              class="post-card surface-card rounded-[28px] overflow-hidden border border-[color:var(--line)] bg-[color:var(--surface-strong)] shadow-sm flex flex-col justify-between hover:shadow-md transition duration-300"
             >
               <div>
                 <div class="relative overflow-hidden aspect-[16/10]">
@@ -182,20 +182,20 @@ const postImageMap: Record<string, string> = {
                 </div>
                 <div class="p-6 space-y-4">
                   <div class="flex items-center gap-3 font-sans">
-                    <span class="chip bg-indigo-50 border border-indigo-100/50 text-indigo-700 text-[10px] font-bold capitalize">{post.category}</span>
-                    <span class="text-slate-400 text-[9px] font-medium">{readTime} min read</span>
+                    <span class="chip bg-indigo-50 border border-indigo-100/50 text-[color:var(--accent-strong)] text-[10px] font-bold capitalize">{post.category}</span>
+                    <span class="text-[color:var(--meta)] text-[9px] font-medium">{readTime} min read</span>
                   </div>
-                  <h3 class="text-lg font-bold text-slate-900 leading-snug hover:text-[color:var(--accent-strong)] transition font-display">
+                  <h3 class="text-lg font-bold text-[color:var(--ink)] leading-snug hover:text-[color:var(--accent-strong)] transition font-display">
                     <a href={`/blog/${slug}/`}>{post.title}</a>
                   </h3>
-                  <p class="text-xs text-slate-550 leading-relaxed line-clamp-3 font-light">
+                  <p class="text-xs text-[color:var(--muted-soft)] leading-relaxed line-clamp-3 font-light">
                     {post.excerpt}
                   </p>
                 </div>
               </div>
-              <div class="p-6 pt-0 font-sans flex items-center justify-between border-t border-slate-100/60 mt-4">
-                <span class="text-[10px] text-slate-400 font-semibold">{formatDate(new Date(post.published_at))}</span>
-                <a href={`/blog/${slug}/`} class="text-indigo-650 hover:text-indigo-850 text-xs font-bold inline-flex items-center gap-1">
+              <div class="p-6 pt-0 font-sans flex items-center justify-between border-t border-[color:var(--line)]/60 mt-4">
+                <span class="text-[10px] text-[color:var(--meta)] font-semibold">{formatDate(new Date(post.published_at))}</span>
+                <a href={`/blog/${slug}/`} class="text-[color:var(--accent)] hover:text-indigo-850 text-xs font-bold inline-flex items-center gap-1">
                   Read Article
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 </a>
@@ -204,8 +204,8 @@ const postImageMap: Record<string, string> = {
           );
         })
       ) : (
-        <div class="col-span-full text-center py-16 bg-slate-50 border border-dashed border-slate-200 rounded-2xl p-8 font-sans">
-          <p class="text-slate-500 text-sm font-sans">No additional posts found. Check back soon for updates!</p>
+        <div class="col-span-full text-center py-16 bg-[color:var(--bg-soft)] border border-dashed border-[color:var(--line)] rounded-2xl p-8 font-sans">
+          <p class="text-[color:var(--muted-soft)] text-sm font-sans">No additional posts found. Check back soon for updates!</p>
         </div>
       )}
     </div>
@@ -217,11 +217,11 @@ const postImageMap: Record<string, string> = {
       <div class="max-w-2xl mx-auto space-y-4 relative z-10">
         <span class="chip bg-teal-500/20 border border-teal-400/30 text-teal-350 text-[9px] font-bold uppercase tracking-wider font-sans mx-auto">Free Resource Hub</span>
         <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight leading-tight font-display">Need Importable Workflow JSON Files?</h2>
-        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto font-light">Skip the manual setup entirely. Grab our complete pre-built n8n automations and Supabase database schemas directly from our Resources Hub.</p>
+        <p class="text-xs md:text-sm text-[color:var(--line)] max-w-md mx-auto font-light">Skip the manual setup entirely. Grab our complete pre-built n8n automations and Supabase database schemas directly from our Resources Hub.</p>
         <div class="pt-4">
-          <a href="/resources/" class="inline-flex items-center px-8 py-3.5 bg-white text-slate-900 hover:bg-slate-50 text-sm font-bold rounded-xl transition shadow-lg">
+          <a href="/resources/" class="inline-flex items-center px-8 py-3.5 bg-[color:var(--surface-strong)] text-[color:var(--ink)] hover:bg-[color:var(--bg-soft)] text-sm font-bold rounded-xl transition shadow-lg">
             Explore Resources Hub
-            <i data-lucide="arrow-right" class="h-4 w-4 ml-2 text-slate-500"></i>
+            <i data-lucide="arrow-right" class="h-4 w-4 ml-2 text-[color:var(--muted-soft)]"></i>
           </a>
         </div>
       </div>
@@ -252,10 +252,10 @@ const postImageMap: Record<string, string> = {
       btn.addEventListener('click', () => {
         // Toggle active states
         filterBtns.forEach(b => b.classList.remove('active', 'bg-slate-900', 'text-white', 'border-slate-900'));
-        filterBtns.forEach(b => b.classList.add('bg-white', 'text-slate-700', 'border-slate-200'));
+        filterBtns.forEach(b => b.classList.add('bg-[color:var(--surface-strong)]', 'text-[color:var(--muted)]', 'border-[color:var(--line)]'));
 
         btn.classList.add('active', 'bg-slate-900', 'text-white', 'border-slate-900');
-        btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+        btn.classList.remove('bg-[color:var(--surface-strong)]', 'text-[color:var(--muted)]', 'border-[color:var(--line)]');
 
         const filter = btn.getAttribute('data-filter');
 

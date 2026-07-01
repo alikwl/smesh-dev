@@ -32,7 +32,7 @@ const demoImageMap: Record<string, string> = {
       <h1 class="display-title text-slate-955 font-extrabold tracking-tight leading-[1.08] font-display">
         Systems Built. Workflows Automated. Results Delivered.
       </h1>
-      <p class="body-copy max-w-2xl mx-auto text-slate-655 leading-relaxed font-light">
+      <p class="body-copy max-w-2xl mx-auto text-[color:var(--muted)] leading-relaxed font-light">
         Discover how BismillahTC Digital Services transforms complex business requirements into elegant static applications and live pipelines.
       </p>
     </div>
@@ -44,7 +44,7 @@ const demoImageMap: Record<string, string> = {
       <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
         Deployments & Metrics
       </span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight font-display">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[color:var(--ink)] leading-tight font-display">
         Real-world scalability at work.
       </h2>
     </div>
@@ -65,10 +65,10 @@ const demoImageMap: Record<string, string> = {
         const linkIcon = "arrow-up-right";
 
         return (
-          <article class="surface-card rounded-[32px] overflow-hidden border border-slate-200 bg-white/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+          <article class="surface-card rounded-[32px] overflow-hidden border border-[color:var(--line)] bg-[color:var(--surface)]/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
             <div class="flex flex-col h-full w-full">
               <!-- Thumbnail Wrapper (Strictly aspect-ratio 4:3) -->
-              <div class="relative overflow-hidden aspect-[4/3] shrink-0 bg-slate-100/50 border-b border-slate-200">
+              <div class="relative overflow-hidden aspect-[4/3] shrink-0 bg-[color:var(--bg-soft)]/50 border-b border-[color:var(--line)]">
                 <SmartImage src={image} alt={`${project.title} Case Study Image`} class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
               </div>
 
@@ -86,24 +86,24 @@ const demoImageMap: Record<string, string> = {
                   <!-- Problem vs Solution breakdown -->
                   <div class="space-y-4 text-xs font-sans">
                     <div class="space-y-1">
-                      <span class="text-[9px] uppercase tracking-wider font-bold text-slate-400">The Case Study Context</span>
-                      <p class="text-slate-655 leading-relaxed font-light line-clamp-3">{problem}</p>
+                      <span class="text-[9px] uppercase tracking-wider font-bold text-[color:var(--muted-soft)]">The Case Study Context</span>
+                      <p class="text-[color:var(--muted)] leading-relaxed font-light line-clamp-3">{problem}</p>
                     </div>
                   </div>
                 </div>
 
                 <!-- Tech Badges & CTA Link -->
-                <div class="space-y-4 pt-4 border-t border-slate-100">
+                <div class="space-y-4 pt-4 border-t border-[color:var(--line)]">
                   {techList.length > 0 && (
                     <div class="flex flex-wrap gap-1.5 font-sans">
                       {techList.map((tech) => (
-                        <span class="px-2.5 py-0.5 rounded bg-slate-100 border border-slate-200/50 text-[9px] font-medium text-slate-500">{tech}</span>
+                        <span class="px-2.5 py-0.5 rounded bg-[color:var(--bg-soft)] border border-[color:var(--line)]/50 text-[9px] font-medium text-[color:var(--muted-soft)]">{tech}</span>
                       ))}
                     </div>
                   )}
 
                   <div class="pt-2 flex items-center justify-between font-sans">
-                    <a href={projectUrl} class="inline-flex items-center text-xs font-bold text-indigo-650 hover:text-indigo-850 transition">
+                    <a href={projectUrl} class="inline-flex items-center text-xs font-bold text-[color:var(--accent)] hover:text-indigo-850 transition">
                       {linkText}
                       <i data-lucide={linkIcon} class="w-3.5 h-3.5 ml-1"></i>
                     </a>
@@ -118,16 +118,16 @@ const demoImageMap: Record<string, string> = {
   </section>
 
   <!-- Live Interactive Demos Grid (The Playground) -->
-  <section class="border-t border-slate-200/60 bg-slate-50/40 py-24" aria-label="Interactive Proof-of-Concepts">
+  <section class="border-t border-[color:var(--line)]/60 bg-[color:var(--bg-soft)]/40 py-24" aria-label="Interactive Proof-of-Concepts">
     <div class="site-shell">
       <div class="space-y-4 mb-14">
         <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
           Interactive Sandboxes
         </span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight font-display">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[color:var(--ink)] leading-tight font-display">
           Interactive Proof-of-Concepts
         </h2>
-        <p class="body-copy max-w-xl text-slate-655 font-light">
+        <p class="body-copy max-w-xl text-[color:var(--muted)] font-light">
           Test our simulated live applications directly in your browser. Click through the steps to see automated catalog updates, chat workflows, and instant data integrations.
         </p>
       </div>
@@ -138,7 +138,7 @@ const demoImageMap: Record<string, string> = {
           const demoImage = demo.cover_image || demoImageMap[slug] || '/assets/images/placeholder.png';
           const tech = demo.tech || [];
           return (
-            <article class="surface-card rounded-[32px] border border-slate-200 bg-white/70 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between hover:shadow-lg hover:border-[color:var(--accent-strong)] transition-all duration-300 relative group">
+            <article class="surface-card rounded-[32px] border border-[color:var(--line)] bg-[color:var(--surface)]/70 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between hover:shadow-lg hover:border-[color:var(--accent-strong)] transition-all duration-300 relative group">
               <!-- Live status indicator -->
               <div class="absolute top-6 right-6 flex items-center gap-1.5 z-10">
                 <span class="live-dot h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -147,28 +147,28 @@ const demoImageMap: Record<string, string> = {
 
               <div class="space-y-5">
                 <!-- Thumbnail -->
-                <div class="w-16 h-16 rounded-[20px] border border-slate-200/60 overflow-hidden bg-slate-50 flex items-center justify-center p-0.5">
+                <div class="w-16 h-16 rounded-[20px] border border-[color:var(--line)]/60 overflow-hidden bg-[color:var(--bg-soft)] flex items-center justify-center p-0.5">
                   <SmartImage src={demoImage} alt={`${demo.title} Thumbnail`} class="w-full h-full object-cover rounded-[17px]" />
                 </div>
 
                 <div class="space-y-2">
                   <span class="text-[9px] uppercase tracking-widest text-[color:var(--accent-strong)] font-bold font-sans">{demo.category || 'Automation'}</span>
-                  <h3 class="text-lg font-bold text-slate-900 leading-snug font-display">{demo.title}</h3>
-                  <p class="text-xs text-slate-600 leading-relaxed font-light line-clamp-3">{demo.description}</p>
+                  <h3 class="text-lg font-bold text-[color:var(--ink)] leading-snug font-display">{demo.title}</h3>
+                  <p class="text-xs text-[color:var(--muted)] leading-relaxed font-light line-clamp-3">{demo.description}</p>
                 </div>
 
                 <!-- Tech Badges -->
                 {tech.length > 0 && (
                   <div class="flex flex-wrap gap-1.5 pt-2">
                     {tech.map((t) => (
-                      <span class="px-2.5 py-0.5 rounded-md bg-slate-100/80 border border-slate-200/50 text-[9px] font-medium text-slate-500 font-sans">{t}</span>
+                      <span class="px-2.5 py-0.5 rounded-md bg-[color:var(--bg-soft)]/80 border border-[color:var(--line)]/50 text-[9px] font-medium text-[color:var(--muted-soft)] font-sans">{t}</span>
                     ))}
                   </div>
                 )}
               </div>
 
-              <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between font-sans">
-                <span class="text-[10px] font-mono text-slate-400">Simulation: Active</span>
+              <div class="mt-8 pt-4 border-t border-[color:var(--line)] flex items-center justify-between font-sans">
+                <span class="text-[10px] font-mono text-[color:var(--muted-soft)]">Simulation: Active</span>
                 <a href={`/demos/${slug}/`} class="inline-flex h-9 px-4 items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition shadow-sm">
                   Test Sandbox
                   <i data-lucide="play" class="w-3.5 h-3.5 ml-1.5 fill-current"></i>
@@ -182,30 +182,30 @@ const demoImageMap: Record<string, string> = {
   </section>
 
   <!-- Client Testimonials Section -->
-  <section class="site-shell py-20 border-t border-slate-200/60" aria-label="Client Testimonials">
+  <section class="site-shell py-20 border-t border-[color:var(--line)]/60" aria-label="Client Testimonials">
     <div class="space-y-4 mb-14">
       <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-sans">
         Client Testimonials
       </span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight font-display">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-[color:var(--ink)] leading-tight font-display">
         Delivering measurable impact.
       </h2>
-      <p class="body-copy max-w-xl text-slate-655 font-light">
+      <p class="body-copy max-w-xl text-[color:var(--muted)] font-light">
         Hear from our partners about the hours reclaimed, manual errors eliminated, and workflows unlocked.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {testimonials.map((t) => (
-        <div class="bg-white/70 border border-slate-200 rounded-[28px] p-6 md:p-8 backdrop-blur-md hover:shadow-md transition duration-300 flex flex-col justify-between">
+        <div class="bg-[color:var(--surface)]/70 border border-[color:var(--line)] rounded-[28px] p-6 md:p-8 backdrop-blur-md hover:shadow-md transition duration-300 flex flex-col justify-between">
           <div class="space-y-4">
             <!-- Quote -->
-            <p class="text-xs text-slate-655 leading-relaxed font-sans font-light italic">
+            <p class="text-xs text-[color:var(--muted)] leading-relaxed font-sans font-light italic">
               "{t.quote}"
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-100 space-y-4">
+          <div class="mt-6 pt-4 border-t border-[color:var(--line)] space-y-4">
             <!-- Metric -->
             <div class="bg-emerald-50 border border-emerald-100/50 text-emerald-700 text-[9px] font-bold tracking-wide py-1.5 px-3 rounded-xl inline-block font-sans">
               {t.metric}
@@ -213,10 +213,10 @@ const demoImageMap: Record<string, string> = {
 
             <!-- Author Info -->
             <div class="flex items-center">
-              <img src={t.avatar} alt={t.name} class="w-9 h-9 rounded-full object-cover mr-3 border border-slate-200" />
+              <img src={t.avatar} alt={t.name} class="w-9 h-9 rounded-full object-cover mr-3 border border-[color:var(--line)]" />
               <div class="font-sans">
-                <h4 class="text-xs font-bold text-slate-900">{t.name}</h4>
-                <p class="text-[10px] text-slate-400 font-light">{t.role}, {t.company}</p>
+                <h4 class="text-xs font-bold text-[color:var(--ink)]">{t.name}</h4>
+                <p class="text-[10px] text-[color:var(--muted-soft)] font-light">{t.role}, {t.company}</p>
               </div>
             </div>
           </div>
@@ -238,7 +238,7 @@ const demoImageMap: Record<string, string> = {
         <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight font-display">
           Ready to Be Our Next Case Study?
         </h2>
-        <p class="text-xs md:text-sm text-slate-300 max-w-md mx-auto font-light leading-relaxed">
+        <p class="text-xs md:text-sm text-[color:var(--line)] max-w-md mx-auto font-light leading-relaxed">
           Let's engineer customized automation systems, robust data layers, and sync workflows designed for your business.
         </p>
         <div class="pt-4">

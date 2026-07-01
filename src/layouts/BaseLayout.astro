@@ -43,36 +43,36 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap" />
   </noscript>
 
   <slot name="head" />
 </head>
 <body id="top" class="min-h-screen flex flex-col">
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-[color:var(--surface-strong)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[color:var(--ink)]">
     Skip to content
   </a>
   <div class="grain-overlay"></div>
 
   {distractionFree ? (
-    <header id="site-navigation" class="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-md transition-all duration-300">
+    <header id="site-navigation" class="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:var(--bg-soft)]/80 backdrop-blur-md transition-all duration-300">
       <div class="site-shell">
         <div class="flex min-h-[64px] items-center justify-between gap-4">
           <!-- Minimal Logo -->
           <a href="/" class="flex items-center gap-2.5">
             <img src="/assets/logo.webp" alt="Smesh.Dev logo" class="h-8 w-8 object-contain" width="32" height="32" />
             <div>
-              <div class="font-display text-[1.1rem] font-bold leading-none text-slate-900">Smesh.Dev</div>
+              <div class="font-display text-[1.1rem] font-bold leading-none text-[color:var(--ink)]">Smesh.Dev</div>
               <div class="mt-0.5 text-[9px] uppercase tracking-[0.2em] text-[color:var(--accent-strong)] font-semibold font-sans">Automation Studio</div>
             </div>
           </a>
           <!-- Back button -->
           <div class="flex items-center gap-4">
             {backUrl && (
-              <a href={backUrl} class="text-xs font-semibold text-slate-655 hover:text-indigo-650 transition flex items-center gap-1 font-sans">
+              <a href={backUrl} class="text-xs font-semibold text-[color:var(--muted)] hover:text-[color:var(--accent)] transition flex items-center gap-1 font-sans">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="mr-0.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 {backLabel}
               </a>
@@ -91,12 +91,12 @@ const { title, description, image, type, schemaType = 'other', distractionFree =
   </main>
 
   {distractionFree ? (
-    <footer class="border-t border-slate-250 bg-slate-50/50 py-8">
-      <div class="site-shell flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 font-sans">
+    <footer class="border-t border-[color:var(--line)] bg-[color:var(--bg-soft)]/50 py-8">
+      <div class="site-shell flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[color:var(--muted-soft)] font-sans">
         <span>&copy; {new Date().getFullYear()} BismillahTC Digital Services. All rights reserved.</span>
         <div class="flex gap-4">
-          <a href="/privacy/" class="hover:text-slate-950 transition">Privacy Policy</a>
-          <a href="/terms/" class="hover:text-slate-950 transition">Terms of Service</a>
+          <a href="/privacy/" class="hover:text-[color:var(--ink)] transition">Privacy Policy</a>
+          <a href="/terms/" class="hover:text-[color:var(--ink)] transition">Terms of Service</a>
         </div>
       </div>
     </footer>

@@ -13,7 +13,7 @@ const { slug, class: className = '' } = Astro.props;
   {slug === 'ai-support-chatbots' && (
     <!-- AI Support Chatbots: Chat bubble + brain/AI network icon in Indigo/Purple -->
     <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 to-purple-500/5"></div>
-    <svg class="w-12 h-12 text-indigo-650 relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="w-12 h-12 text-[color:var(--accent)] relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Chat Bubble -->
       <path d="M40 24C40 32.8366 32.8366 39 24 39C21.5 39 19.5 38.5 17 37.5L8 40L10.5 31.5C9.5 29 9 27 9 24C9 15.1634 16.1634 9 25 9C33.8366 9 40 15.1634 40 24Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       <!-- Brain/AI Network Nodes -->
@@ -214,7 +214,7 @@ const { slug, class: className = '' } = Astro.props;
   {/* Fallback illustration if none of the above matches */}
   {!['ai-support-chatbots', 'appointment-booking', 'business-websites', 'whatsapp-automation', 'workflow-automation', 'saas-mvp-development', 'dashboards-internal-tools', 'pos-inventory-systems', 'social-media-lead-automation', 'seo-aio-geo-content', 'chrome-extensions'].includes(slug) && (
     <div class="absolute inset-0 bg-gradient-to-tr from-slate-200 to-slate-100"></div>
-    <svg class="w-12 h-12 text-slate-500 relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="w-12 h-12 text-[color:var(--muted-soft)] relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
       <path d="M12 8v8"/>
       <path d="M8 12h8"/>

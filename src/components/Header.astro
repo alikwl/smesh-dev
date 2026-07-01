@@ -26,8 +26,8 @@ const isActive = (url: string) => {
             class:list={[
               'rounded-full px-3 py-1.5 text-[13px] font-semibold transition',
               isActive(item.url)
-                ? 'bg-white text-[color:var(--ink)] shadow-sm'
-                : 'text-[color:var(--muted)] hover:bg-white hover:text-[color:var(--ink)]',
+                ? 'bg-[color:var(--surface-strong)] text-[color:var(--ink)] shadow-sm'
+                : 'text-[color:var(--muted)] hover:bg-[color:var(--surface-strong)] hover:text-[color:var(--ink)]',
             ]}
           >
             {item.name}
@@ -43,7 +43,7 @@ const isActive = (url: string) => {
         </a>
       </div>
 
-      <button id="mobile-menu-button" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-[color:var(--line)] bg-white text-[color:var(--ink)] lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
+      <button id="mobile-menu-button" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-[18px] border border-[color:var(--line)] bg-[color:var(--surface-strong)] text-[color:var(--ink)] lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <span id="menu-icon" class="flex h-5 w-5 flex-col items-center justify-center gap-[3px]">
           <span class="block h-[1.8px] w-5 rounded-full bg-current"></span>
@@ -62,7 +62,7 @@ const isActive = (url: string) => {
     <div class="site-shell origin-top py-4 transition-all duration-300">
       <div class="grid gap-2">
         {navigation.map((item) =>
-          <a href={item.url} class={`block rounded-[22px] px-4 py-3 text-sm font-semibold ${isActive(item.url) ? 'bg-white text-[color:var(--ink)] shadow-sm' : 'surface-card text-[color:var(--muted)]'}`}>
+          <a href={item.url} class={`block rounded-[22px] px-4 py-3 text-sm font-semibold ${isActive(item.url) ? 'bg-[color:var(--surface-strong)] text-[color:var(--ink)] shadow-sm' : 'surface-card text-[color:var(--muted)]'}`}>
             {item.name}
           </a>
         )}
