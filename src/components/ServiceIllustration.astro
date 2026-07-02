@@ -211,8 +211,126 @@ const { slug, class: className = '' } = Astro.props;
     </svg>
   )}
 
+  {slug === 'multi-agent-ai-systems' && (
+    <!-- Multi-Agent Autonomous AI Systems: Connected Orchestrated Nodes in Violet/Indigo/Fuchsia -->
+    <div class="absolute inset-0 bg-gradient-to-tr from-violet-500/10 to-fuchsia-500/5"></div>
+    <svg class="w-12 h-12 text-violet-650 relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer Orbit Ring -->
+      <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" class="opacity-45" />
+      
+      <!-- Central Router Node -->
+      <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2.5" fill="white" />
+      <circle cx="24" cy="24" r="2" fill="currentColor" />
+
+      <!-- Specialist Agent 1 (Top Left): Planner -->
+      <circle cx="14" cy="14" r="4.5" stroke="currentColor" stroke-width="2" fill="white" />
+      <circle cx="14" cy="14" r="1.5" fill="currentColor" />
+
+      <!-- Specialist Agent 2 (Top Right): Executor -->
+      <circle cx="34" cy="14" r="4.5" stroke="currentColor" stroke-width="2" fill="white" />
+      <circle cx="34" cy="14" r="1.5" fill="currentColor" />
+
+      <!-- Specialist Agent 3 (Bottom): Auditor/Escalation -->
+      <circle cx="24" cy="36" r="4.5" stroke="currentColor" stroke-width="2" fill="white" />
+      <circle cx="24" cy="36" r="1.5" fill="currentColor" />
+
+      <!-- Connecting Hub Lines -->
+      <line x1="24" y1="24" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1 1" />
+      <line x1="24" y1="24" x2="34" y2="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1 1" />
+      <line x1="24" y1="24" x2="24" y2="36" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1 1" />
+      
+      <!-- Sparkle (AI/Glow) -->
+      <path d="M38 24L39 26L41 27L39 28L38 30L37 28L35 27L37 26L38 24Z" fill="#8b5cf6" />
+    </svg>
+  )}
+
+  {slug === 'lead-to-revenue-automation' && (
+    <!-- Lead-to-Revenue CRM Automation: Funnel + Flow + Dollar in Emerald/Amber/Gold -->
+    <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-amber-500/5"></div>
+    <svg class="w-12 h-12 text-emerald-650 relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Funnel Top Rim -->
+      <path d="M10 12C10 10.5 16.3 9.5 24 9.5C31.7 9.5 38 10.5 38 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      
+      <!-- Funnel Body -->
+      <path d="M10 12L20 25V33L28 37V25L38 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+
+      <!-- Dollar Sign ($) emerging from the bottom outlet -->
+      <path d="M24 35C24 33.5 25.5 33 26 33C27.5 33 28 34 28 35.5C28 37 26.5 37.5 25.5 37.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M24 39C24 37.5 25.5 37 26 37C27.5 37 28 38 28 39.5C28 41 26.5 41.5 25.5 41.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M26 31V43" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+      <!-- Arrows showing automation flow -->
+      <path d="M16 17C20 19 28 19 32 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" />
+      
+      <!-- Sparkle/Glow (Revenue/Value) -->
+      <path d="M36 29L37 31L39 31.5L37 32L36 34L35 32L33 31.5L35 31L36 29Z" fill="#eab308" />
+    </svg>
+  )}
+
+  {slug === 'ecommerce-inventory-automation' && (
+    <!-- E-commerce & Inventory Automation: Shopping Cart + DB Sync + Chat Bubble in Teal/Emerald -->
+    <div class="absolute inset-0 bg-gradient-to-tr from-teal-500/10 to-emerald-500/5"></div>
+    <svg class="w-12 h-12 text-teal-655 relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Database Sync Circles -->
+      <path d="M24 10C31.7 10 38 13.5 38 18C38 22.5 31.7 26 24 26C16.3 26 10 22.5 10 18C10 13.5 16.3 10 24 10Z" stroke="currentColor" stroke-width="1.8" />
+      <path d="M10 18V25C10 29.5 16.3 33 24 33C31.7 33 38 29.5 38 25V18" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+      
+      <!-- Shopping Cart overlaying database -->
+      <circle cx="20" cy="39" r="2.5" fill="currentColor" />
+      <circle cx="30" cy="39" r="2.5" fill="currentColor" />
+      <path d="M13 32.5H16.5L20 37.5H32.5L35 30.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- WhatsApp Dialog Bubble in corner -->
+      <path d="M35 12C38 12 40 14 40 17C40 18.5 39.5 19.5 39 20.5L39.5 23.5L36.5 22.5C36 22.8 35.5 23 35 23C32 23 30 21 30 17C30 14 32 12 35 12Z" fill="white" stroke="currentColor" stroke-width="1.5" />
+    </svg>
+  )}
+
+  {slug === 'internal-knowledge-base-rag' && (
+    <!-- Internal Knowledge Base & Team RAG: Database + Shield + Search in Indigo/Purple -->
+    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 to-violet-500/5"></div>
+    <svg class="w-12 h-12 text-[color:var(--accent)] relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Shield / Security outline -->
+      <path d="M24 6C15 6 12 9 12 18V28C12 36 20 41 24 42C28 41 36 36 36 28V18C36 9 33 6 24 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <!-- Database Cylinders inside Shield -->
+      <path d="M18 16C18 14.5 21 13.5 24 13.5C27 13.5 30 14.5 30 16C30 17.5 27 18.5 24 18.5C21 18.5 18 17.5 18 16Z" stroke="currentColor" stroke-width="1.5" />
+      <path d="M18 16V22C18 23.5 21 24.5 24 24.5C27 24.5 30 23.5 30 22V16" stroke="currentColor" stroke-width="1.5" />
+      <path d="M18 22V28C18 29.5 21 30.5 24 30.5C27 30.5 30 29.5 30 28V22" stroke="currentColor" stroke-width="1.5" />
+      
+      <!-- Magnifying Glass overlaying bottom-right -->
+      <circle cx="31" cy="31" r="5" fill="white" stroke="currentColor" stroke-width="1.8" />
+      <line x1="34.5" y1="34.5" x2="39.5" y2="39.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  )}
+
+  {slug === 'n8n-self-hosted-maintenance' && (
+    <!-- n8n Self-Hosted Setup + Maintenance: Server + Gear + Database in Sky/Green -->
+    <div class="absolute inset-0 bg-gradient-to-tr from-sky-500/10 to-emerald-500/5"></div>
+    <svg class="w-12 h-12 text-[color:var(--accent)] relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Server Rack Tower -->
+      <rect x="12" y="10" width="24" height="28" rx="2" stroke="currentColor" stroke-width="2" />
+      <!-- Rack division lines -->
+      <line x1="12" y1="19" x2="36" y2="19" stroke="currentColor" stroke-width="1.5" />
+      <line x1="12" y1="29" x2="36" y2="29" stroke="currentColor" stroke-width="1.5" />
+      
+      <!-- Power LEDs / indicators on server -->
+      <circle cx="16" cy="14" r="1.5" fill="currentColor" />
+      <circle cx="20" cy="14" r="1.5" fill="currentColor" />
+      <circle cx="16" cy="24" r="1.5" fill="currentColor" />
+      <circle cx="20" cy="24" r="1.5" fill="currentColor" />
+      <circle cx="16" cy="34" r="1.5" fill="currentColor" />
+      <circle cx="20" cy="34" r="1.5" fill="currentColor" />
+      
+      <!-- Gear / Maintenance overlay in bottom-right -->
+      <circle cx="34" cy="34" r="5" fill="white" stroke="currentColor" stroke-width="1.8" />
+      <!-- gear teeth spikes -->
+      <path d="M34 27V29M34 39V41M27 34H29M39 34H41" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+    </svg>
+  )}
+
   {/* Fallback illustration if none of the above matches */}
-  {!['ai-support-chatbots', 'appointment-booking', 'business-websites', 'whatsapp-automation', 'workflow-automation', 'saas-mvp-development', 'dashboards-internal-tools', 'pos-inventory-systems', 'social-media-lead-automation', 'seo-aio-geo-content', 'chrome-extensions'].includes(slug) && (
+  {!['ai-support-chatbots', 'appointment-booking', 'business-websites', 'whatsapp-automation', 'workflow-automation', 'saas-mvp-development', 'dashboards-internal-tools', 'pos-inventory-systems', 'social-media-lead-automation', 'seo-aio-geo-content', 'chrome-extensions', 'multi-agent-ai-systems', 'lead-to-revenue-automation', 'ecommerce-inventory-automation', 'internal-knowledge-base-rag', 'n8n-self-hosted-maintenance'].includes(slug) && (
+
     <div class="absolute inset-0 bg-gradient-to-tr from-slate-200 to-slate-100"></div>
     <svg class="w-12 h-12 text-[color:var(--muted-soft)] relative z-10 transition-transform duration-300 group-hover/illus:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
