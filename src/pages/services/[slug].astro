@@ -263,6 +263,21 @@ const faqSchema = faqs.length > 0 ? {
     </section>
   )}
 
+  <!-- Spacing at bottom of page to prevent sticky bottom bar overlap on mobile -->
+  <div class="h-24 md:hidden" aria-hidden="true"></div>
+
+  <!-- Sticky Mobile Bottom CTA Bar -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[color:var(--line)] px-6 py-4 md:hidden flex items-center justify-between shadow-2xl font-sans">
+    <div class="flex flex-col">
+      <span class="text-[9px] uppercase tracking-wider text-[color:var(--muted-soft)] font-bold">Base Investment</span>
+      <span class="text-sm font-extrabold text-[color:var(--ink)]">{starting_price}</span>
+    </div>
+    <button class="trigger-audit-modal px-5 py-2.5 bg-[color:var(--accent)] hover:bg-[color:var(--accent-strong)] text-white text-xs font-bold rounded-xl transition shadow flex items-center gap-1.5 cursor-pointer">
+      Free Audit
+      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+    </button>
+  </div>
+
 </BaseLayout>
 
 
