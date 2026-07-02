@@ -1,0 +1,331 @@
+{
+  "name": "blank",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "generate-image",
+        "options": {}
+      },
+      "id": "e229e74d-93cb-4f36-848e-df4fe2a3dbad",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        250,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "table": "style_preferences",
+        "id": "={{ $json.body.style_id || 'default' }}",
+        "options": {}
+      },
+      "id": "a90d4022-df38-4e89-98ee-5abde77ef07e",
+      "name": "Supabase - Get Style",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        470,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credential-id",
+          "name": "Supabase Connection"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = input.all();\nreturn items.map(item => {\n  const payload = item.json.body || {};\n  const style = item.json.style_preferences || {};\n  \n  // Combine core topic with style preferences\n  const rawPrompt = payload.prompt || \"tech automation workspace\";\n  const modifier = style.modifiers || \"cinematic, 8k, highly detailed, professional lighting\";\n  const aspect = payload.aspect_ratio || \"16:9\";\n  \n  const finalPrompt = `A featured blog banner representing: ${rawPrompt}. Style: ${style.name || 'Modern Clean'}. Visual details: ${modifier}.`;\n  \n  return {\n    json: {\n      original_prompt: rawPrompt,\n      aspect_ratio: aspect,\n      final_prompt: finalPrompt,\n      style_name: style.name || 'Default'\n    }\n  };\n});"
+      },
+      "id": "270db86a-72ef-4d0f-a39c-5bf1c1dfbf2e",
+      "name": "Prompt Builder Code Node",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        690,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.x.ai/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"grok-2-vision-preview\",\n  \"prompt\": \"{{ $json.final_prompt }}\",\n  \"aspect_ratio\": \"{{ $json.aspect_ratio }}\",\n  \"n\": 1\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "cfd06be3-f925-4fe2-b91c-7cb0523e3cb8",
+      "name": "Grok Imagine API Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        910,
+        360
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "grok-api-credential-id",
+          "name": "Grok API Auth"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "type": "string"
+          },
+          "conditions": [
+            {
+              "id": "check-error",
+              "leftValue": "={{ $json.error || $json.message }}",
+              "transition": "isEmpty",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "4e78a6db-cfde-4a96-a8fa-71ff03b5a7db",
+      "name": "Check API Success",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1130,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.runpod.ai/v1/flux/run",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"input\": {\n    \"prompt\": \"{{ $node[\"Prompt Builder Code Node\"].json.final_prompt }}\",\n    \"width\": 1024,\n    \"height\": 576\n  }\n}",
+        "options": {}
+      },
+      "id": "89fe67db-72ab-4672-bd8a-9a05f32eb7a1",
+      "name": "Flux API Fallback",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1350,
+        480
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "flux-api-credential-id",
+          "name": "Flux API Auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upload",
+        "bucketName": "blog-images",
+        "fileName": "={{ $node[\"Prompt Builder Code Node\"].json.style_name.toLowerCase().replace(/\\s+/g, '-') }}-{{ Date.now() }}.webp",
+        "binaryPropertyName": "data",
+        "options": {}
+      },
+      "id": "f5cde29a-289c-4c6e-b83e-11df9eb30a21",
+      "name": "Supabase - Upload Image",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credential-id",
+          "name": "Supabase Connection"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "generated_images",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "original_prompt": "={{ $node[\"Prompt Builder Code Node\"].json.original_prompt }}",
+            "final_prompt": "={{ $node[\"Prompt Builder Code Node\"].json.final_prompt }}",
+            "image_url": "={{ $json.url }}",
+            "style_name": "={{ $node[\"Prompt Builder Code Node\"].json.style_name }}",
+            "status": "success",
+            "model_used": "grok-2-vision"
+          }
+        },
+        "options": {}
+      },
+      "id": "bc8c7df3-e9d2-43bb-8a8b-dfcf093d6e5a",
+      "name": "Supabase - Save Metadata",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "supabase-credential-id",
+          "name": "Supabase Connection"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "9a6efd8a-bc7e-4dbe-a23e-8ebde78fbc31",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        650
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"🚨 *n8n Image Generation Workflow Failed!*\\n*Execution ID:* {{ $json.execution.id }}\\n*Error Message:* {{ $json.execution.error.message }}\\n*Time:* {{ $json.execution.error.timestamp }}\"\n}",
+        "options": {}
+      },
+      "id": "3bd9f7c0-ee7d-4c3e-848e-ddcf89e37c8e",
+      "name": "Slack Error Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        470,
+        650
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase - Get Style",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase - Get Style": {
+      "main": [
+        [
+          {
+            "node": "Prompt Builder Code Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Builder Code Node": {
+      "main": [
+        [
+          {
+            "node": "Grok Imagine API Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grok Imagine API Call": {
+      "main": [
+        [
+          {
+            "node": "Check API Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check API Success": {
+      "main": [
+        [
+          {
+            "node": "Supabase - Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Flux API Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flux API Fallback": {
+      "main": [
+        [
+          {
+            "node": "Supabase - Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase - Upload Image": {
+      "main": [
+        [
+          {
+            "node": "Supabase - Save Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Slack Error Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "df1ce4bd-c90a-4c28-be8e-1dcfe23e9a9a",
+  "id": "blank-workflow-id",
+  "meta": {
+    "instanceId": "n8n-instance-id"
+  }
+}
