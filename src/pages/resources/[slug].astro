@@ -343,8 +343,10 @@ const pageTitle = `${cleanTitle} — Free Download`;
               <img 
                 src={previewImage || "/assets/images/placeholder.png"} 
                 alt={`${cleanTitle} Mockup Preview`} 
-                class="w-full h-full object-cover select-none" 
+                class="w-full h-full object-cover select-none blog-hero-image" 
                 id="resource-preview-img"
+                fetchpriority="high"
+                loading="eager"
                 onerror="this.onerror=null;this.src='/assets/images/placeholder.png'"
               />
               

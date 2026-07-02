@@ -1,9 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { faqs } from '../data/faqs';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
 ---
 
 <BaseLayout title="Business Automation & n8n Workflows FAQ | Smesh.dev" description="Find clear answers about project scope, timelines, database structures, and pricing for custom n8n automation and AI chatbot systems.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <section class="section-frame pt-6 md:pt-8">
     <div class="site-shell">
       <div class="max-w-3xl">

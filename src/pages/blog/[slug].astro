@@ -352,7 +352,9 @@ const postImage = cover_image || '/assets/images/placeholder.webp';
         <img 
           src={postImage} 
           alt={title} 
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover blog-hero-image"
+          fetchpriority="high"
+          loading="eager"
         />
       </div>
 
